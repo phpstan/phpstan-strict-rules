@@ -1,0 +1,35 @@
+services:
+	-
+		class: PHPStan\Rules\BooleansInConditions\BooleanInBooleanAndRule
+		tags:
+			- phpstan.rules.rule
+
+	-
+		class: PHPStan\Rules\BooleansInConditions\BooleanInBooleanNotRule
+		tags:
+			- phpstan.rules.rule
+
+	-
+		class: PHPStan\Rules\BooleansInConditions\BooleanInBooleanOrRule
+		tags:
+			- phpstan.rules.rule
+
+	-
+		class: PHPStan\Rules\BooleansInConditions\BooleanInElseIfConditionRule
+		tags:
+			- phpstan.rules.rule
+
+	-
+		class: PHPStan\Rules\BooleansInConditions\BooleanInIfConditionRule
+		tags:
+			- phpstan.rules.rule
+
+	-
+		class: PHPStan\Rules\BooleansInConditions\BooleanInTernaryOperatorRule
+		tags:
+			- phpstan.rules.rule
+
+	-
+		class: PHPStan\Rules\StrictCalls\StrictFunctionCallsRule
+		tags:
+			- phpstan.rules.rule
