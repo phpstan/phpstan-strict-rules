@@ -8,6 +8,7 @@
 
 * Require booleans in `if`, `elseif`, ternary operator, after `!`, and on both sides of `&&` and `||`.
 * Functions `in_array` and `array_search` must be called with third parameter `$strict` set to `true` to search values with matching types only.
+* Variables assigned in `while` loop condition and `for` loop initial assignment cannot be used after the loop.
 
 Additional rules are coming in subsequent releases!
 

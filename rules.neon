@@ -1,3 +1,6 @@
+parameters:
+	polluteScopeWithLoopInitialAssignments: false
+
 services:
 	-
 		class: PHPStan\Rules\BooleansInConditions\BooleanInBooleanAndRule
