@@ -33,7 +33,7 @@ class MatchingTypeInSwitchCaseConditionRule implements \PHPStan\Rules\Rule
 			}
 
 			$caseType = $scope->getType($case->cond);
-			if ($conditionType->isSupersetOf($caseType)->no()) {
+			if ($conditionType->isSuperTypeOf($caseType)->no()) {
 				$messages[] = sprintf(
 					'Switch condition type (%s) does not match case condition %s (%s).',
 					$conditionType->describe(),
