@@ -47,10 +47,14 @@ class CallToDeprecatedStaticMethodRule implements \PHPStan\Rules\Rule
 		if ($className === 'parent') {
 			$class = $scope->getClassReflection();
 			$class = $class->getParentClass();
+
+			if ($class === false) {
+				return [];
+			}
 		} else {
 			try {
 				$class = $this->broker->getClass($className);
-			}catch (\PHPStan\Broker\ClassNotFoundException $e) {
+			} catch (\PHPStan\Broker\ClassNotFoundException $e) {
 				return [];
 			}
 		}
