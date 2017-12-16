@@ -7,7 +7,6 @@ use PhpParser\Node\Expr\New_;
 use PhpParser\Node\Name;
 use PHPStan\Analyser\Scope;
 use PHPStan\Broker\Broker;
-use PHPStan\Broker\ClassNotFoundException;
 
 class InstantiationOfDeprecatedClassRule implements \PHPStan\Rules\Rule
 {
@@ -42,7 +41,7 @@ class InstantiationOfDeprecatedClassRule implements \PHPStan\Rules\Rule
 
 		try {
 			$class = $this->broker->getClass($className);
-		} catch (ClassNotFoundException $e) {
+		} catch (\PHPStan\Broker\ClassNotFoundException $e) {
 			return [];
 		}
 
