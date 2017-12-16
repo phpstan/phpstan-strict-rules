@@ -6,6 +6,7 @@ class Foo {
 
 	public static function foo()
 	{
+
 	}
 
 	/**
@@ -13,6 +14,7 @@ class Foo {
 	 */
 	public static function deprecatedFoo()
 	{
+
 	}
 
 	/**
@@ -20,6 +22,7 @@ class Foo {
 	 */
 	public static function deprecatedFoo2()
 	{
+
 	}
 
 }
@@ -29,6 +32,7 @@ class Bar extends Foo
 
 	public static function deprecatedFoo()
 	{
+
 	}
 
 }

@@ -4,6 +4,7 @@ namespace CheckDeprecatedFunctionCall;
 
 function foo()
 {
+
 }
 
 /**
@@ -11,4 +12,5 @@ function foo()
  */
 function deprecated_foo()
 {
+
 }

@@ -27,6 +27,7 @@ class Foo
 
 	public function foo()
 	{
+
 	}
 
 	/**
@@ -34,6 +35,7 @@ class Foo
 	 */
 	public function deprecatedFoo()
 	{
+
 	}
 
 	/**
@@ -41,6 +43,7 @@ class Foo
 	 */
 	public function deprecatedFoo2()
 	{
+
 	}
 
 }
@@ -50,6 +53,7 @@ class Bar extends Foo
 
 	public function deprecatedFoo()
 	{
+
 	}
 
 }
