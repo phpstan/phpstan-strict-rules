@@ -2,7 +2,8 @@
 
 namespace CheckDeprecatedStaticMethodCall;
 
-class Foo {
+class Foo
+{
 
 	public static function foo()
 	{

@@ -38,36 +38,42 @@ class CallToDeprecatedStaticMethodRule implements \PHPStan\Rules\Rule
 			return [];
 		}
 
-		$class = $node->class;
-
-		if (!$class instanceof Name) {
+		if (!$node->class instanceof Name) {
 			return [];
 		}
 
-		$className = (string) $class;
+		$className = (string) $node->class;
+
+		if ($className === 'parent') {
+			$class = $scope->getClassReflection();
+			$class = $class->getParentClass();
+		} else {
+			try {
+				$class = $this->broker->getClass($className);
+			}catch (\PHPStan\Broker\ClassNotFoundException $e) {
+				return [];
+			}
+		}
 
 		try {
-			$classReflection = $this->broker->getClass($className);
-			$methodReflection = $classReflection->getMethod($node->name, $scope);
+			$methodReflection = $class->getMethod($node->name, $scope);
 
 			if (!$methodReflection instanceof DeprecatableReflection) {
 				return [];
 			}
 
-			if ($methodReflection->isDeprecated()) {
-				return [sprintf(
-					'Call to deprecated method %s() of class %s.',
-					$methodReflection->getName(),
-					$methodReflection->getDeclaringClass()->getName()
-				)];
+			if (!$methodReflection->isDeprecated()) {
+				return [];
 			}
-		} catch (\PHPStan\Broker\ClassNotFoundException $e) {
-			// Other rules will notify if the class is not found
 		} catch (\PHPStan\Reflection\MissingMethodFromReflectionException $e) {
-			// Other rules will notify if the the method is not found
+			return [];
 		}
 
-		return [];
+		return [sprintf(
+			'Call to deprecated method %s() of class %s.',
+			$methodReflection->getName(),
+			$methodReflection->getDeclaringClass()->getName()
+		)];
 	}
 
 }

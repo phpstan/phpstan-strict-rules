@@ -25,6 +25,10 @@ class CallToDeprecatedStaticMethodRuleTest extends \PHPStan\Testing\RuleTestCase
 					'Call to deprecated method deprecatedFoo2() of class CheckDeprecatedStaticMethodCall\Foo.',
 					9,
 				],
+				[
+					'Call to deprecated method deprecatedFoo() of class CheckDeprecatedStaticMethodCall\Foo.',
+					16,
+				],
 			]
 		);
 	}
