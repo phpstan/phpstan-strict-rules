@@ -25,6 +25,14 @@ class AccessDeprecatedPropertyRuleTest extends \PHPStan\Testing\RuleTestCase
 					'Access to deprecated property deprecatedFoo of class AccessDeprecatedProperty\Foo.',
 					11,
 				],
+				[
+					'Access to deprecated property deprecatedFooFromTrait of class AccessDeprecatedProperty\Foo.',
+					16,
+				],
+				[
+					'Access to deprecated property deprecatedFooFromTrait of class AccessDeprecatedProperty\Foo.',
+					17,
+				],
 			]
 		);
 	}
