@@ -2,7 +2,28 @@
 
 namespace CheckDeprecatedMethodCall;
 
-class Foo {
+trait FooTrait
+{
+
+	public function fooFromTrait()
+	{
+
+	}
+
+	/**
+	 * @deprecated
+	 */
+	public function deprecatedFooFromTrait()
+	{
+
+	}
+
+}
+
+class Foo
+{
+
+	use FooTrait;
 
 	public function foo()
 	{
@@ -32,4 +53,3 @@ class Bar extends Foo
 	}
 
 }
-
