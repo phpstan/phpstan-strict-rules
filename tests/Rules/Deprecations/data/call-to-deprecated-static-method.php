@@ -13,6 +13,7 @@ class Bar2 extends Foo
 
 	public static function deprecatedFoo()
 	{
+		parent::foo();
 		parent::deprecatedFoo();
 	}
 
