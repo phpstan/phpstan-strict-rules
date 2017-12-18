@@ -7,6 +7,7 @@ use PhpParser\Node\Expr\StaticCall;
 use PhpParser\Node\Name;
 use PHPStan\Analyser\Scope;
 use PHPStan\Broker\Broker;
+use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\DeprecatableReflection;
 
 class CallToDeprecatedStaticMethodRule implements \PHPStan\Rules\Rule
@@ -43,41 +44,64 @@ class CallToDeprecatedStaticMethodRule implements \PHPStan\Rules\Rule
 		}
 
 		$className = (string) $node->class;
+		$class = $this->getClassWithClassName($className, $scope);
 
-		if ($className === 'parent') {
-			$class = $scope->getClassReflection();
-			$class = $class->getParentClass();
-
-			if ($class === false) {
-				return [];
-			}
-		} else {
-			try {
-				$class = $this->broker->getClass($className);
-			} catch (\PHPStan\Broker\ClassNotFoundException $e) {
-				return [];
-			}
+		if ($class === null) {
+			return [];
 		}
 
 		try {
 			$methodReflection = $class->getMethod($node->name, $scope);
-
-			if (!$methodReflection instanceof DeprecatableReflection) {
-				return [];
-			}
-
-			if (!$methodReflection->isDeprecated()) {
-				return [];
-			}
 		} catch (\PHPStan\Reflection\MissingMethodFromReflectionException $e) {
 			return [];
 		}
 
-		return [sprintf(
-			'Call to deprecated method %s() of class %s.',
-			$methodReflection->getName(),
-			$methodReflection->getDeclaringClass()->getName()
-		)];
+		$errors = [];
+
+		if ($class->isDeprecated()) {
+			$errors[] = sprintf(
+				'Call to method %s() of deprecated class %s.',
+				$methodReflection->getName(),
+				$methodReflection->getDeclaringClass()->getName()
+			);
+		}
+
+		if ($methodReflection instanceof DeprecatableReflection && $methodReflection->isDeprecated()) {
+			$errors[] = sprintf(
+				'Call to deprecated method %s() of class %s.',
+				$methodReflection->getName(),
+				$methodReflection->getDeclaringClass()->getName()
+			);
+		}
+
+		return $errors;
+	}
+
+	/**
+	 * @param string $className
+	 * @param Scope $scope
+	 * @return ClassReflection|null
+	 */
+	private function getClassWithClassName(string $className, Scope $scope)
+	{
+		if ($className === 'parent') {
+			if (!$scope->isInClass()) {
+				return null;
+			}
+
+			$class = $scope->getClassReflection();
+			$class = $class->getParentClass();
+
+			return $class !== false
+				? $class
+				: null;
+		}
+
+		try {
+			return $this->broker->getClass($className);
+		} catch (\PHPStan\Broker\ClassNotFoundException $e) {
+			return null;
+		}
 	}
 
 }

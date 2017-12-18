@@ -38,3 +38,10 @@ class Bar extends Foo
 
 }
 
+/**
+ * @deprecated
+ */
+class DeprecatedBar extends Foo
+{
+
+}
