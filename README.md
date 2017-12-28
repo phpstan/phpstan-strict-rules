@@ -11,6 +11,7 @@
 * Variables assigned in `while` loop condition and `for` loop initial assignment cannot be used after the loop.
 * Types in `switch` condition and `case` value must match. PHP compares them loosely by default and that can lead to unexpected results.
 * Statically declared methods are called statically.
+* Strict identity comparison operators `===` and `!==` must be used instead of simple equality operators `==` and `!=` respectively.
 
 Additional rules are coming in subsequent releases!
 
