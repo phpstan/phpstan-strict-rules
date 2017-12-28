@@ -12,7 +12,7 @@ class MatchingTypeInSwitchCaseConditionRuleTest extends \PHPStan\Testing\RuleTes
 		return new MatchingTypeInSwitchCaseConditionRule(new \PhpParser\PrettyPrinter\Standard());
 	}
 
-	public function testRule()
+	public function testRule(): void
 	{
 		$this->analyse([__DIR__ . '/data/matching-type.php'], [
 			[

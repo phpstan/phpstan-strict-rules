@@ -12,7 +12,7 @@ class StrictFunctionCallsRuleTest extends \PHPStan\Testing\RuleTestCase
 		return new StrictFunctionCallsRule($this->createBroker());
 	}
 
-	public function testRule()
+	public function testRule(): void
 	{
 		$this->analyse([__DIR__ . '/data/strict-calls.php'], [
 			[

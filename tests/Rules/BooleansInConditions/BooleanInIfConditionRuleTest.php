@@ -12,7 +12,7 @@ class BooleanInIfConditionRuleTest extends \PHPStan\Testing\RuleTestCase
 		return new BooleanInIfConditionRule();
 	}
 
-	public function testRule()
+	public function testRule(): void
 	{
 		$this->analyse([__DIR__ . '/data/conditions.php'], [
 			[

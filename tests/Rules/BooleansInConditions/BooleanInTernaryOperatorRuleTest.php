@@ -12,7 +12,7 @@ class BooleanInTernaryOperatorRuleTest extends \PHPStan\Testing\RuleTestCase
 		return new BooleanInTernaryOperatorRule();
 	}
 
-	public function testRule()
+	public function testRule(): void
 	{
 		$this->analyse([__DIR__ . '/data/conditions.php'], [
 			[

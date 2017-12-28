@@ -12,7 +12,7 @@ class BooleanInBooleanAndRuleTest extends \PHPStan\Testing\RuleTestCase
 		return new BooleanInBooleanAndRule();
 	}
 
-	public function testRule()
+	public function testRule(): void
 	{
 		$this->analyse([__DIR__ . '/data/conditions.php'], [
 			[
