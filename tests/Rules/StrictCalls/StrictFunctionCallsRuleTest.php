@@ -39,6 +39,30 @@ class StrictFunctionCallsRuleTest extends \PHPStan\Testing\RuleTestCase
 				'Call to function array_search() requires parameter #3 to be true.',
 				13,
 			],
+			[
+				'Call to function base64_decode() requires parameter #2 to be true.',
+				15,
+			],
+			[
+				'Call to function base64_decode() requires parameter #2 to be true.',
+				17,
+			],
+			[
+				'Call to function base64_decode() requires parameter #2 to be true.',
+				18,
+			],
+			[
+				'Call to function array_keys() requires parameter #3 to be true.',
+				20,
+			],
+			[
+				'Call to function array_keys() requires parameter #3 to be true.',
+				22,
+			],
+			[
+				'Call to function array_keys() requires parameter #3 to be true.',
+				23,
+			],
 		]);
 	}
 

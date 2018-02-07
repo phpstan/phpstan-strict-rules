@@ -9,6 +9,8 @@ class StrictFunctionCallsRule implements \PHPStan\Rules\Rule
 	private $functionArguments = [
 		'in_array' => 2,
 		'array_search' => 2,
+		'base64_decode' => 1,
+		'array_keys' => 2,
 	];
 
 	/** @var \PHPStan\Broker\Broker */
@@ -41,6 +43,10 @@ class StrictFunctionCallsRule implements \PHPStan\Rules\Rule
 		}
 		$functionName = strtolower($functionName);
 		if (!array_key_exists($functionName, $this->functionArguments)) {
+			return [];
+		}
+
+		if ($functionName === 'array_keys' && !array_key_exists(1, $node->args)) {
 			return [];
 		}
 
