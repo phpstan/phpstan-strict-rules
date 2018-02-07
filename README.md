@@ -8,6 +8,7 @@
 
 * Require booleans in `if`, `elseif`, ternary operator, after `!`, and on both sides of `&&` and `||`.
 * Functions `in_array` and `array_search` must be called with third parameter `$strict` set to `true` to search values with matching types only.
+* Function `array_filter` must be called with second parameter (callable function) taht should return `bool`.
 * Variables assigned in `while` loop condition and `for` loop initial assignment cannot be used after the loop.
 * Types in `switch` condition and `case` value must match. PHP compares them loosely by default and that can lead to unexpected results.
 * Statically declared methods are called statically.

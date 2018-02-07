@@ -3,6 +3,11 @@ parameters:
 
 services:
 	-
+		class: PHPStan\Rules\ArrayFunction\ArrayFilterFunctionBooleanRule
+		tags:
+			- phpstan.rules.rule
+
+	-
 		class: PHPStan\Rules\BooleansInConditions\BooleanInBooleanAndRule
 		tags:
 			- phpstan.rules.rule
