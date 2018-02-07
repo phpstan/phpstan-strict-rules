@@ -44,7 +44,7 @@ class DynamicCallOnStaticMethodsRule implements \PHPStan\Rules\Rule
 			''
 		)->getType();
 
-		if ($type instanceof ErrorType || !$type->canCallMethods() || !$type->hasMethod($name)) {
+		if ($type instanceof ErrorType || !$type->canCallMethods()->yes() || !$type->hasMethod($name)) {
 			return [];
 		}
 
