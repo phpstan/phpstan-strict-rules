@@ -51,14 +51,13 @@ class StrictFunctionCallsRule implements \PHPStan\Rules\Rule
 		}
 
 		$argumentPosition = $this->functionArguments[$functionName];
-		$message = sprintf('Call to function %s() requires parameter #%d to be true.', $functionName, $argumentPosition + 1);
 		if (!array_key_exists($argumentPosition, $node->args)) {
-			return [$message];
+			return [sprintf('Call to function %s() requires parameter #%d to be set.', $functionName, $argumentPosition + 1)];
 		}
 
 		$argumentType = $scope->getType($node->args[$argumentPosition]->value);
 		if (!$argumentType instanceof \PHPStan\Type\TrueBooleanType) {
-			return [$message];
+			return [sprintf('Call to function %s() requires parameter #%d to be true.', $functionName, $argumentPosition + 1)];
 		}
 
 		return [];
