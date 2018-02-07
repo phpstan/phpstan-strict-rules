@@ -16,7 +16,7 @@ class StrictFunctionCallsRuleTest extends \PHPStan\Testing\RuleTestCase
 	{
 		$this->analyse([__DIR__ . '/data/strict-calls.php'], [
 			[
-				'Call to function in_array() requires parameter #3 to be true.',
+				'Call to function in_array() requires parameter #3 to be set.',
 				5,
 			],
 			[
@@ -24,11 +24,11 @@ class StrictFunctionCallsRuleTest extends \PHPStan\Testing\RuleTestCase
 				7,
 			],
 			[
-				'Call to function in_array() requires parameter #3 to be true.',
+				'Call to function in_array() requires parameter #3 to be set.',
 				8,
 			],
 			[
-				'Call to function array_search() requires parameter #3 to be true.',
+				'Call to function array_search() requires parameter #3 to be set.',
 				10,
 			],
 			[
@@ -36,11 +36,11 @@ class StrictFunctionCallsRuleTest extends \PHPStan\Testing\RuleTestCase
 				12,
 			],
 			[
-				'Call to function array_search() requires parameter #3 to be true.',
+				'Call to function array_search() requires parameter #3 to be set.',
 				13,
 			],
 			[
-				'Call to function base64_decode() requires parameter #2 to be true.',
+				'Call to function base64_decode() requires parameter #2 to be set.',
 				15,
 			],
 			[
@@ -48,11 +48,11 @@ class StrictFunctionCallsRuleTest extends \PHPStan\Testing\RuleTestCase
 				17,
 			],
 			[
-				'Call to function base64_decode() requires parameter #2 to be true.',
+				'Call to function base64_decode() requires parameter #2 to be set.',
 				18,
 			],
 			[
-				'Call to function array_keys() requires parameter #3 to be true.',
+				'Call to function array_keys() requires parameter #3 to be set.',
 				20,
 			],
 			[
@@ -60,7 +60,7 @@ class StrictFunctionCallsRuleTest extends \PHPStan\Testing\RuleTestCase
 				22,
 			],
 			[
-				'Call to function array_keys() requires parameter #3 to be true.',
+				'Call to function array_keys() requires parameter #3 to be set.',
 				23,
 			],
 		]);
