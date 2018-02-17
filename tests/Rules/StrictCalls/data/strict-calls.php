@@ -25,3 +25,7 @@ array_keys([1, 2, 3]);
 
 $dynamicCall = 'foo';
 $dynamicCall();
+
+/** @var bool $bool */
+$bool = doFoo();
+array_keys([1, 2, 3], 1, $bool);

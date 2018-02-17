@@ -2,6 +2,8 @@
 
 namespace PHPStan\Rules\StrictCalls;
 
+use PHPStan\Type\Constant\ConstantBooleanType;
+
 class StrictFunctionCallsRule implements \PHPStan\Rules\Rule
 {
 
@@ -56,7 +58,8 @@ class StrictFunctionCallsRule implements \PHPStan\Rules\Rule
 		}
 
 		$argumentType = $scope->getType($node->args[$argumentPosition]->value);
-		if (!$argumentType instanceof \PHPStan\Type\TrueBooleanType) {
+		$trueType = new ConstantBooleanType(true);
+		if (!$trueType->isSuperTypeOf($argumentType)->yes()) {
 			return [sprintf('Call to function %s() requires parameter #%d to be true.', $functionName, $argumentPosition + 1)];
 		}
 
