@@ -1,48 +1,13 @@
 parameters:
 	polluteScopeWithLoopInitialAssignments: false
 
-services:
-	-
-		class: PHPStan\Rules\BooleansInConditions\BooleanInBooleanAndRule
-		tags:
-			- phpstan.rules.rule
-
-	-
-		class: PHPStan\Rules\BooleansInConditions\BooleanInBooleanNotRule
-		tags:
-			- phpstan.rules.rule
-
-	-
-		class: PHPStan\Rules\BooleansInConditions\BooleanInBooleanOrRule
-		tags:
-			- phpstan.rules.rule
-
-	-
-		class: PHPStan\Rules\BooleansInConditions\BooleanInElseIfConditionRule
-		tags:
-			- phpstan.rules.rule
-
-	-
-		class: PHPStan\Rules\BooleansInConditions\BooleanInIfConditionRule
-		tags:
-			- phpstan.rules.rule
-
-	-
-		class: PHPStan\Rules\BooleansInConditions\BooleanInTernaryOperatorRule
-		tags:
-			- phpstan.rules.rule
-
-	-
-		class: PHPStan\Rules\StrictCalls\DynamicCallOnStaticMethodsRule
-		tags:
-			- phpstan.rules.rule
-
-	-
-		class: PHPStan\Rules\StrictCalls\StrictFunctionCallsRule
-		tags:
-			- phpstan.rules.rule
-
-	-
-		class: PHPStan\Rules\SwitchConditions\MatchingTypeInSwitchCaseConditionRule
-		tags:
-			- phpstan.rules.rule
+rules:
+	- PHPStan\Rules\BooleansInConditions\BooleanInBooleanAndRule
+	- PHPStan\Rules\BooleansInConditions\BooleanInBooleanNotRule
+	- PHPStan\Rules\BooleansInConditions\BooleanInBooleanOrRule
+	- PHPStan\Rules\BooleansInConditions\BooleanInElseIfConditionRule
+	- PHPStan\Rules\BooleansInConditions\BooleanInIfConditionRule
+	- PHPStan\Rules\BooleansInConditions\BooleanInTernaryOperatorRule
+	- PHPStan\Rules\StrictCalls\DynamicCallOnStaticMethodsRule
+	- PHPStan\Rules\StrictCalls\StrictFunctionCallsRule
+	- PHPStan\Rules\SwitchConditions\MatchingTypeInSwitchCaseConditionRule
