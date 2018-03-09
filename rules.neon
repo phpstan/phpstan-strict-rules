@@ -8,6 +8,7 @@ rules:
 	- PHPStan\Rules\BooleansInConditions\BooleanInElseIfConditionRule
 	- PHPStan\Rules\BooleansInConditions\BooleanInIfConditionRule
 	- PHPStan\Rules\BooleansInConditions\BooleanInTernaryOperatorRule
+	- PHPStan\Rules\DisallowedConstructs\DisallowedEmptyRule
 	- PHPStan\Rules\StrictCalls\DynamicCallOnStaticMethodsRule
 	- PHPStan\Rules\StrictCalls\StrictFunctionCallsRule
 	- PHPStan\Rules\SwitchConditions\MatchingTypeInSwitchCaseConditionRule
