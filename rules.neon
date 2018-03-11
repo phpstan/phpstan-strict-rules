@@ -1,5 +1,8 @@
 parameters:
 	polluteScopeWithLoopInitialAssignments: false
+	checkAlwaysTrueCheckTypeFunctionCall: true
+	checkAlwaysTrueInstanceof: true
+	checkAlwaysTrueStrictComparison: true
 
 rules:
 	- PHPStan\Rules\BooleansInConditions\BooleanInBooleanAndRule

@@ -16,6 +16,7 @@
 * Types in `switch` condition and `case` value must match. PHP compares them loosely by default and that can lead to unexpected results.
 * Statically declared methods are called statically.
 * Disallow `empty()` - it's a very loose comparison (see [manual](https://secure.php.net/manual/en/function.empty.php)), it's recommended to use more strict one.
+* Always true `instanceof`, type-checking `is_*` functions and strict comparisons `===`/`!==`. These checks can be turned off by setting `checkAlwaysTrueInstanceof`/`checkAlwaysTrueCheckTypeFunctionCall`/`checkAlwaysTrueStrictComparison` to false.
 
 Additional rules are coming in subsequent releases!
 
