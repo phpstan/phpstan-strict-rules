@@ -3,6 +3,7 @@ parameters:
 	checkAlwaysTrueCheckTypeFunctionCall: true
 	checkAlwaysTrueInstanceof: true
 	checkAlwaysTrueStrictComparison: true
+	checkFunctionNameCase: true
 
 rules:
 	- PHPStan\Rules\BooleansInConditions\BooleanInBooleanAndRule
