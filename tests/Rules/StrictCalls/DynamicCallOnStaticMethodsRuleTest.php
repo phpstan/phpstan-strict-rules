@@ -8,9 +8,7 @@ use PHPStan\Rules\RuleLevelHelper;
 class DynamicCallOnStaticMethodsRuleTest extends \PHPStan\Testing\RuleTestCase
 {
 
-	/**
-	 * @var bool
-	 */
+	/** @var bool */
 	private $checkThisOnly;
 
 	protected function getRule(): Rule
@@ -30,15 +28,15 @@ class DynamicCallOnStaticMethodsRuleTest extends \PHPStan\Testing\RuleTestCase
 			],
 			[
 				'Dynamic call to static method StrictCalls\ClassWithStaticMethod::foo().',
-				21,
+				22,
 			],
 			[
 				'Dynamic call to static method StrictCalls\ClassUsingTrait::foo().',
-				34,
+				35,
 			],
 			[
 				'Dynamic call to static method StrictCalls\ClassUsingTrait::foo().',
-				46,
+				50,
 			],
 		]);
 	}
@@ -53,7 +51,7 @@ class DynamicCallOnStaticMethodsRuleTest extends \PHPStan\Testing\RuleTestCase
 			],
 			[
 				'Dynamic call to static method StrictCalls\ClassUsingTrait::foo().',
-				34,
+				35,
 			],
 		]);
 	}
