@@ -8,9 +8,7 @@ use PHPStan\Rules\RuleLevelHelper;
 class DynamicCallOnStaticMethodsRuleTest extends \PHPStan\Testing\RuleTestCase
 {
 
-	/**
-	 * @var bool
-	 */
+	/** @var bool */
 	private $checkThisOnly;
 
 	protected function getRule(): Rule
