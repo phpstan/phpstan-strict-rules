@@ -7,12 +7,13 @@ use PHPStan\Type\Constant\ConstantBooleanType;
 class StrictFunctionCallsRule implements \PHPStan\Rules\Rule
 {
 
-	/** @var int[] */
+	/** @var array<string, array> */
 	private $functionArguments = [
-		'in_array' => 2,
-		'array_search' => 2,
-		'base64_decode' => 1,
-		'array_keys' => 2,
+		'in_array' => [2, true],
+		'array_search' => [2, true],
+		'base64_decode' => [1, true],
+		'array_keys' => [2, true],
+		'iterator_to_array' => [1, false],
 	];
 
 	/** @var \PHPStan\Broker\Broker */
@@ -52,15 +53,15 @@ class StrictFunctionCallsRule implements \PHPStan\Rules\Rule
 			return [];
 		}
 
-		$argumentPosition = $this->functionArguments[$functionName];
+		$argumentPosition = $this->functionArguments[$functionName][0];
 		if (!array_key_exists($argumentPosition, $node->args)) {
 			return [sprintf('Call to function %s() requires parameter #%d to be set.', $functionName, $argumentPosition + 1)];
 		}
 
 		$argumentType = $scope->getType($node->args[$argumentPosition]->value);
-		$trueType = new ConstantBooleanType(true);
-		if (!$trueType->isSuperTypeOf($argumentType)->yes()) {
-			return [sprintf('Call to function %s() requires parameter #%d to be true.', $functionName, $argumentPosition + 1)];
+		$strictType = new ConstantBooleanType((bool) $this->functionArguments[$functionName][1]);
+		if (!$strictType->isSuperTypeOf($argumentType)->yes()) {
+			return [sprintf('Call to function %s() requires parameter #%d to be %s.', $functionName, $argumentPosition + 1, (bool) $this->functionArguments[$functionName][1] ? 'true' : 'false')];
 		}
 
 		return [];

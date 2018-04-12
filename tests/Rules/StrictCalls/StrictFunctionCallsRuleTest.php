@@ -67,6 +67,14 @@ class StrictFunctionCallsRuleTest extends \PHPStan\Testing\RuleTestCase
 				'Call to function array_keys() requires parameter #3 to be true.',
 				31,
 			],
+			[
+				'Call to function iterator_to_array() requires parameter #2 to be false.',
+				34,
+			],
+			[
+				'Call to function iterator_to_array() requires parameter #2 to be set.',
+				35,
+			],
 		]);
 	}
 
