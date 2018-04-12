@@ -29,3 +29,7 @@ $dynamicCall();
 /** @var bool $bool */
 $bool = doFoo();
 array_keys([1, 2, 3], 1, $bool);
+
+iterator_to_array(new \ArrayIterator([]), false);
+iterator_to_array(new \ArrayIterator([]), true);
+iterator_to_array(new \ArrayIterator([]));

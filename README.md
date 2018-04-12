@@ -12,6 +12,7 @@
   * `array_search` (3rd parameter)
   * `array_keys` (3rd parameter; only if the 2nd parameter `$search_value` is provided)
   * `base64_decode` (2nd parameter)
+* Function `iterator_to_array` must be called with second parameter `$use_keys` set to `false` to not overwite duplicate iterator keys in the result.
 * Variables assigned in `while` loop condition and `for` loop initial assignment cannot be used after the loop.
 * Types in `switch` condition and `case` value must match. PHP compares them loosely by default and that can lead to unexpected results.
 * Statically declared methods are called statically.
