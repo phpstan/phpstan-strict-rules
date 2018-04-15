@@ -2,6 +2,8 @@
 
 namespace PHPStan\Rules\BooleansInConditions;
 
+use PHPStan\Type\VerbosityLevel;
+
 class BooleanInIfConditionRule implements \PHPStan\Rules\Rule
 {
 
@@ -25,7 +27,7 @@ class BooleanInIfConditionRule implements \PHPStan\Rules\Rule
 		return [
 			sprintf(
 				'Only booleans are allowed in an if condition, %s given.',
-				$conditionExpressionType->describe()
+				$conditionExpressionType->describe(VerbosityLevel::typeOnly())
 			),
 		];
 	}

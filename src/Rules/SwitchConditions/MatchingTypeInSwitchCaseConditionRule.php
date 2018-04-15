@@ -2,6 +2,8 @@
 
 namespace PHPStan\Rules\SwitchConditions;
 
+use PHPStan\Type\VerbosityLevel;
+
 class MatchingTypeInSwitchCaseConditionRule implements \PHPStan\Rules\Rule
 {
 
@@ -39,9 +41,9 @@ class MatchingTypeInSwitchCaseConditionRule implements \PHPStan\Rules\Rule
 
 			$messages[] = sprintf(
 				'Switch condition type (%s) does not match case condition %s (%s).',
-				$conditionType->describe(),
+				$conditionType->describe(VerbosityLevel::value()),
 				$this->printer->prettyPrintExpr($case->cond),
-				$caseType->describe()
+				$caseType->describe(VerbosityLevel::typeOnly())
 			);
 		}
 

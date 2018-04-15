@@ -16,23 +16,23 @@ class MatchingTypeInSwitchCaseConditionRuleTest extends \PHPStan\Testing\RuleTes
 	{
 		$this->analyse([__DIR__ . '/data/matching-type.php'], [
 			[
-				'Switch condition type (int(1)) does not match case condition \'test\' (string).',
+				'Switch condition type (1) does not match case condition \'test\' (string).',
 				8,
 			],
 			[
-				'Switch condition type (int(1)) does not match case condition 1 > 2 (bool).',
+				'Switch condition type (1) does not match case condition 1 > 2 (bool).',
 				8,
 			],
 			[
-				'Switch condition type (string) does not match case condition 1 (int(1)).',
+				'Switch condition type (\'1\') does not match case condition 1 (int).',
 				19,
 			],
 			[
-				'Switch condition type (string) does not match case condition \'test\' (string).',
+				'Switch condition type (\'1\') does not match case condition \'test\' (string).',
 				19,
 			],
 			[
-				'Switch condition type (string) does not match case condition 1 > 2 (bool).',
+				'Switch condition type (\'1\') does not match case condition 1 > 2 (bool).',
 				19,
 			],
 		]);

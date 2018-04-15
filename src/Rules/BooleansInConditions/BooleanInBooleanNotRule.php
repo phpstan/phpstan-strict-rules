@@ -2,6 +2,8 @@
 
 namespace PHPStan\Rules\BooleansInConditions;
 
+use PHPStan\Type\VerbosityLevel;
+
 class BooleanInBooleanNotRule implements \PHPStan\Rules\Rule
 {
 
@@ -25,7 +27,7 @@ class BooleanInBooleanNotRule implements \PHPStan\Rules\Rule
 		return [
 			sprintf(
 				'Only booleans are allowed in a negated boolean, %s given.',
-				$expressionType->describe()
+				$expressionType->describe(VerbosityLevel::typeOnly())
 			),
 		];
 	}

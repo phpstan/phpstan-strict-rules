@@ -2,6 +2,8 @@
 
 namespace PHPStan\Rules\BooleansInConditions;
 
+use PHPStan\Type\VerbosityLevel;
+
 class BooleanInTernaryOperatorRule implements \PHPStan\Rules\Rule
 {
 
@@ -29,7 +31,7 @@ class BooleanInTernaryOperatorRule implements \PHPStan\Rules\Rule
 		return [
 			sprintf(
 				'Only booleans are allowed in a ternary operator condition, %s given.',
-				$conditionExpressionType->describe()
+				$conditionExpressionType->describe(VerbosityLevel::typeOnly())
 			),
 		];
 	}

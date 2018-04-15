@@ -2,6 +2,8 @@
 
 namespace PHPStan\Rules\BooleansInConditions;
 
+use PHPStan\Type\VerbosityLevel;
+
 class BooleanInBooleanOrRule implements \PHPStan\Rules\Rule
 {
 
@@ -22,7 +24,7 @@ class BooleanInBooleanOrRule implements \PHPStan\Rules\Rule
 		if (!BooleanRuleHelper::passesAsBoolean($leftType)) {
 			$messages[] = sprintf(
 				'Only booleans are allowed in ||, %s given on the left side.',
-				$leftType->describe()
+				$leftType->describe(VerbosityLevel::typeOnly())
 			);
 		}
 
@@ -30,7 +32,7 @@ class BooleanInBooleanOrRule implements \PHPStan\Rules\Rule
 		if (!BooleanRuleHelper::passesAsBoolean($rightType)) {
 			$messages[] = sprintf(
 				'Only booleans are allowed in ||, %s given on the right side.',
-				$rightType->describe()
+				$rightType->describe(VerbosityLevel::typeOnly())
 			);
 		}
 
