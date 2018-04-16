@@ -13,6 +13,24 @@ rules:
 	- PHPStan\Rules\BooleansInConditions\BooleanInIfConditionRule
 	- PHPStan\Rules\BooleansInConditions\BooleanInTernaryOperatorRule
 	- PHPStan\Rules\DisallowedConstructs\DisallowedEmptyRule
+	- PHPStan\Rules\Methods\WrongCaseOfInheritedMethodRule
 	- PHPStan\Rules\StrictCalls\DynamicCallOnStaticMethodsRule
 	- PHPStan\Rules\StrictCalls\StrictFunctionCallsRule
 	- PHPStan\Rules\SwitchConditions\MatchingTypeInSwitchCaseConditionRule
+
+services:
+	scopeIsInClass:
+		class: PHPStan\Build\ScopeIsInClassTypeSpecifyingExtension
+		arguments:
+			isInMethodName: isInClass
+			removeNullMethodName: getClassReflection
+		tags:
+			- phpstan.typeSpecifier.methodTypeSpecifyingExtension
+
+	scopeIsInTrait:
+		class: PHPStan\Build\ScopeIsInClassTypeSpecifyingExtension
+		arguments:
+			isInMethodName: isInTrait
+			removeNullMethodName: getTraitReflection
+		tags:
+			- phpstan.typeSpecifier.methodTypeSpecifyingExtension
