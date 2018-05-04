@@ -7,6 +7,7 @@
 [PHPStan](https://github.com/phpstan/phpstan) focuses on finding bugs in your code. But in PHP there's a lot of leeway in how stuff can be written. This repository contains additional rules that revolve around strictly and strongly typed code with no loose casting for those who want additional safety in extremely defensive programming:
 
 * Require booleans in `if`, `elseif`, ternary operator, after `!`, and on both sides of `&&` and `||`.
+* Require numeric operands or arrays in `+` and numeric operands in `-`/`*`/`/`/`**`/`%`.
 * These functions contain a `$strict` parameter for better type safety, it must be set to `true`:
   * `in_array` (3rd parameter)
   * `array_search` (3rd parameter)
