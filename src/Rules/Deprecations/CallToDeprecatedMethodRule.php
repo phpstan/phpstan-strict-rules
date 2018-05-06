@@ -31,6 +31,10 @@ class CallToDeprecatedMethodRule implements \PHPStan\Rules\Rule
 	 */
 	public function processNode(Node $node, Scope $scope): array
 	{
+		if (DeprecatedScopeHelper::isScopeDeprecated($scope)) {
+			return [];
+		}
+
 		if (!is_string($node->name)) {
 			return [];
 		}

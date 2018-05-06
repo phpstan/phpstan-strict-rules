@@ -22,3 +22,28 @@ class Bar2 extends Foo
 	}
 
 }
+
+/**
+ * @deprecated
+ */
+function deprecated_scope()
+{
+	Foo::foo();
+	Foo::deprecatedFoo();
+	Foo::deprecatedFoo2();
+}
+
+/**
+ * @deprecated
+ */
+class DeprecatedScope
+{
+
+	public static function foo()
+	{
+		Foo::foo();
+		Foo::deprecatedFoo();
+		Foo::deprecatedFoo2();
+	}
+
+}

@@ -42,6 +42,10 @@ class ImplementationOfDeprecatedInterfaceRule implements \PHPStan\Rules\Rule
 			return [];
 		}
 
+		if ($class->isDeprecated()) {
+			return [];
+		}
+
 		foreach ($node->implements as $implement) {
 			$interfaceName = (string) $implement;
 

@@ -8,4 +8,25 @@ foo();
 deprecated_foo();
 \CheckDeprecatedFunctionCall\deprecated_foo();
 
-non_existent_func();
+/**
+ * @deprecated
+ */
+function deprecated_scope()
+{
+	deprecated_foo();
+	\CheckDeprecatedFunctionCall\deprecated_foo();
+}
+
+/**
+ * @deprecated
+ */
+class DeprecatedScope
+{
+
+	function foo()
+	{
+		deprecated_foo();
+		\CheckDeprecatedFunctionCall\deprecated_foo();
+	}
+
+}

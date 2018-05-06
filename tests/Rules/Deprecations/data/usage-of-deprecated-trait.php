@@ -17,3 +17,25 @@ class Foo2
 		DeprecatedFooTrait;
 
 }
+
+/**
+ * @deprecated
+ */
+class DeprecatedFoo
+{
+
+	use FooTrait;
+	use DeprecatedFooTrait;
+
+}
+
+/**
+ * @deprecated
+ */
+class DeprecatedFoo2
+{
+
+	use FooTrait,
+		DeprecatedFooTrait;
+
+}

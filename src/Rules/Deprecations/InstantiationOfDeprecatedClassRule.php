@@ -31,6 +31,10 @@ class InstantiationOfDeprecatedClassRule implements \PHPStan\Rules\Rule
 	 */
 	public function processNode(Node $node, Scope $scope): array
 	{
+		if (DeprecatedScopeHelper::isScopeDeprecated($scope)) {
+			return [];
+		}
+
 		if (!$node->class instanceof Name) {
 			return [];
 		}
