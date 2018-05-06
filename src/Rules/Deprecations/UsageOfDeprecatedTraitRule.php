@@ -34,8 +34,13 @@ class UsageOfDeprecatedTraitRule implements \PHPStan\Rules\Rule
 			return [];
 		}
 
+		$classReflection = $scope->getClassReflection();
+		if ($classReflection === null) {
+			throw new \PHPStan\ShouldNotHappenException();
+		}
+
 		$errors = [];
-		$className = $scope->getClassReflection()->getName();
+		$className = $classReflection->getName();
 
 		foreach ($node->traits as $traitNameNode) {
 			$traitName = (string) $traitNameNode;

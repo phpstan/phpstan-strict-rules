@@ -35,7 +35,7 @@ class ImplementationOfDeprecatedInterfaceRuleTest extends \PHPStan\Testing\RuleT
 
 	public function testImplementationOfDeprecatedInterfacesInAnonymousClasses(): void
 	{
-		$this->markTestSkipped('The `isAnonymous` method in the ReflectionClass doesn\'t work for some reason.');
+		static::markTestSkipped('The `isAnonymous` method in the ReflectionClass doesn\'t work for some reason.');
 
 		require_once __DIR__ . '/data/implementation-of-deprecated-interface-definition.php';
 		$this->analyse(
