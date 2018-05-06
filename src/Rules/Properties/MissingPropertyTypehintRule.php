@@ -35,7 +35,7 @@ final class MissingPropertyTypehintRule implements \PHPStan\Rules\Rule
 			return [
 				sprintf(
 					'Property %s::$%s has no typehint specified',
-					$propertyReflection->getDeclaringClass()->getName(),
+					$propertyReflection->getDeclaringClass()->getDisplayName(),
 					$node->name
 				),
 			];
