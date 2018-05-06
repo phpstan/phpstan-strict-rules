@@ -4,7 +4,6 @@ namespace PHPStan\Rules\Properties;
 
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
-use PHPStan\Reflection\PropertyReflection;
 use PHPStan\Type\MixedType;
 
 final class MissingPropertyTypehintRule implements \PHPStan\Rules\Rule
@@ -31,30 +30,18 @@ final class MissingPropertyTypehintRule implements \PHPStan\Rules\Rule
 		}
 
 		$propertyReflection = $scope->getClassReflection()->getNativeProperty($node->name);
-
-		$messages = [];
-
-		$message = $this->checkPropertyType($node->name, $propertyReflection);
-		if ($message !== null) {
-			$messages[] = $message;
-		}
-
-		return $messages;
-	}
-
-	private function checkPropertyType(string $propertyName, PropertyReflection $propertyReflection): ?string
-	{
 		$returnType = $propertyReflection->getType();
-
 		if ($returnType instanceof MixedType && !$returnType->isExplicitMixed()) {
-			return sprintf(
-				'Property %s::$%s has no typehint specified',
-				$propertyReflection->getDeclaringClass()->getName(),
-				$propertyName
-			);
+			return [
+				sprintf(
+					'Property %s::$%s has no typehint specified',
+					$propertyReflection->getDeclaringClass()->getName(),
+					$node->name
+				),
+			];
 		}
 
-		return null;
+		return [];
 	}
 
 }
