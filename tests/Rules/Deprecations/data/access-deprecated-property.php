@@ -5,16 +5,16 @@ namespace AccessDeprecatedProperty;
 $foo = new Foo();
 
 $foo->foo = 'foo';
-echo $foo->foo;
+$foo->foo;
 
 $foo->deprecatedFoo = 'deprecatedFoo';
-echo $foo->deprecatedFoo;
+$foo->deprecatedFoo;
 
 $foo->fooFromTrait = 'fooFromTrait';
-echo $foo->fooFromTrait;
+$foo->fooFromTrait;
 
 $foo->deprecatedFooFromTrait = 'deprecatedFooFromTrait';
-echo $foo->deprecatedFooFromTrait;
+$foo->deprecatedFooFromTrait;
 
 /**
  * @deprecated
@@ -24,16 +24,16 @@ function deprecated_scope()
 	$foo = new Foo();
 
 	$foo->foo = 'foo';
-	echo $foo->foo;
+	$foo->foo;
 
 	$foo->deprecatedFoo = 'deprecatedFoo';
-	echo $foo->deprecatedFoo;
+	$foo->deprecatedFoo;
 
 	$foo->fooFromTrait = 'fooFromTrait';
-	echo $foo->fooFromTrait;
+	$foo->fooFromTrait;
 
 	$foo->deprecatedFooFromTrait = 'deprecatedFooFromTrait';
-	echo $foo->deprecatedFooFromTrait;
+	$foo->deprecatedFooFromTrait;
 }
 
 /**
@@ -47,16 +47,16 @@ class DeprecatedScope
 		$foo = new Foo();
 
 		$foo->foo = 'foo';
-		echo $foo->foo;
+		$foo->foo;
 
 		$foo->deprecatedFoo = 'deprecatedFoo';
-		echo $foo->deprecatedFoo;
+		$foo->deprecatedFoo;
 
 		$foo->fooFromTrait = 'fooFromTrait';
-		echo $foo->fooFromTrait;
+		$foo->fooFromTrait;
 
 		$foo->deprecatedFooFromTrait = 'deprecatedFooFromTrait';
-		echo $foo->deprecatedFooFromTrait;
+		$foo->deprecatedFooFromTrait;
 	}
 
 }

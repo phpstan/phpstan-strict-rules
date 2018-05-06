@@ -3,32 +3,32 @@
 namespace AccessDeprecatedStaticProperty;
 
 Foo::$foo = 'foo';
-echo Foo::$foo;
+Foo::$foo;
 
 Foo::$deprecatedFoo = 'foo';
-echo Foo::$deprecatedFoo;
+Foo::$deprecatedFoo;
 
 $foo = new Foo();
 
 $foo::$foo = 'foo';
-echo $foo::$foo;
+$foo::$foo;
 
 $foo::$deprecatedFoo = 'foo';
-echo $foo::$deprecatedFoo;
+$foo::$deprecatedFoo;
 
 FooTrait::$fooFromTrait = 'foo';
-echo FooTrait::$fooFromTrait;
+FooTrait::$fooFromTrait;
 
 FooTrait::$deprecatedFooFromTrait = 'foo';
-echo FooTrait::$deprecatedFooFromTrait;
+FooTrait::$deprecatedFooFromTrait;
 
 $foo = new Foo();
 
 $foo::$fooFromTrait = 'foo';
-echo $foo::$fooFromTrait;
+$foo::$fooFromTrait;
 
 $foo::$deprecatedFooFromTrait = 'foo';
-echo $foo::$deprecatedFooFromTrait;
+$foo::$deprecatedFooFromTrait;
 
 /**
  * @deprecated
@@ -36,32 +36,32 @@ echo $foo::$deprecatedFooFromTrait;
 function deprecated_scope()
 {
 	Foo::$foo = 'foo';
-	echo Foo::$foo;
+	Foo::$foo;
 
 	Foo::$deprecatedFoo = 'foo';
-	echo Foo::$deprecatedFoo;
+	Foo::$deprecatedFoo;
 
 	$foo = new Foo();
 
 	$foo::$foo = 'foo';
-	echo $foo::$foo;
+	$foo::$foo;
 
 	$foo::$deprecatedFoo = 'foo';
-	echo $foo::$deprecatedFoo;
+	$foo::$deprecatedFoo;
 
 	FooTrait::$fooFromTrait = 'foo';
-	echo FooTrait::$fooFromTrait;
+	FooTrait::$fooFromTrait;
 
 	FooTrait::$deprecatedFooFromTrait = 'foo';
-	echo FooTrait::$deprecatedFooFromTrait;
+	FooTrait::$deprecatedFooFromTrait;
 
 	$foo = new Foo();
 
 	$foo::$fooFromTrait = 'foo';
-	echo $foo::$fooFromTrait;
+	$foo::$fooFromTrait;
 
 	$foo::$deprecatedFooFromTrait = 'foo';
-	echo $foo::$deprecatedFooFromTrait;
+	$foo::$deprecatedFooFromTrait;
 }
 
 /**
@@ -73,32 +73,32 @@ class DeprecatedScope
 	public function foo()
 	{
 		Foo::$foo = 'foo';
-		echo Foo::$foo;
+		Foo::$foo;
 
 		Foo::$deprecatedFoo = 'foo';
-		echo Foo::$deprecatedFoo;
+		Foo::$deprecatedFoo;
 
 		$foo = new Foo();
 
 		$foo::$foo = 'foo';
-		echo $foo::$foo;
+		$foo::$foo;
 
 		$foo::$deprecatedFoo = 'foo';
-		echo $foo::$deprecatedFoo;
+		$foo::$deprecatedFoo;
 
 		FooTrait::$fooFromTrait = 'foo';
-		echo FooTrait::$fooFromTrait;
+		FooTrait::$fooFromTrait;
 
 		FooTrait::$deprecatedFooFromTrait = 'foo';
-		echo FooTrait::$deprecatedFooFromTrait;
+		FooTrait::$deprecatedFooFromTrait;
 
 		$foo = new Foo();
 
 		$foo::$fooFromTrait = 'foo';
-		echo $foo::$fooFromTrait;
+		$foo::$fooFromTrait;
 
 		$foo::$deprecatedFooFromTrait = 'foo';
-		echo $foo::$deprecatedFooFromTrait;
+		$foo::$deprecatedFooFromTrait;
 	}
 
 }
