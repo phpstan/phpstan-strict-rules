@@ -5,6 +5,7 @@ namespace PHPStan\Rules\Deprecations;
 use PhpParser\Node;
 use PhpParser\Node\Expr\PropertyFetch;
 use PHPStan\Analyser\Scope;
+use PHPStan\Analyzer\DeprecatedScopeHelper;
 use PHPStan\Broker\Broker;
 use PHPStan\Reflection\DeprecatableReflection;
 

@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace PHPStan\Rules\Deprecations;
+namespace PHPStan\Analyzer;
 
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\DeprecatableReflection;

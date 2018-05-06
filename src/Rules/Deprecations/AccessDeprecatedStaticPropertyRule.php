@@ -6,6 +6,7 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\StaticPropertyFetch;
 use PhpParser\Node\Name;
 use PHPStan\Analyser\Scope;
+use PHPStan\Analyzer\DeprecatedScopeHelper;
 use PHPStan\Broker\Broker;
 use PHPStan\Reflection\DeprecatableReflection;
 use PHPStan\Rules\RuleLevelHelper;

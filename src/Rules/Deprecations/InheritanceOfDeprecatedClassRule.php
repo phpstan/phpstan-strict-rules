@@ -5,6 +5,7 @@ namespace PHPStan\Rules\Deprecations;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use PHPStan\Analyser\Scope;
+use PHPStan\Analyzer\DeprecatedScopeHelper;
 use PHPStan\Broker\Broker;
 
 class InheritanceOfDeprecatedClassRule implements \PHPStan\Rules\Rule
