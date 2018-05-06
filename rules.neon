@@ -14,6 +14,7 @@ rules:
 	- PHPStan\Rules\BooleansInConditions\BooleanInTernaryOperatorRule
 	- PHPStan\Rules\DisallowedConstructs\DisallowedEmptyRule
 	- PHPStan\Rules\DisallowedConstructs\DisallowedImplicitArrayCreationRule
+	- PHPStan\Rules\Methods\MissingMethodParameterTypehintRule
 	- PHPStan\Rules\Methods\WrongCaseOfInheritedMethodRule
 	- PHPStan\Rules\StrictCalls\DynamicCallOnStaticMethodsRule
 	- PHPStan\Rules\StrictCalls\StrictFunctionCallsRule
