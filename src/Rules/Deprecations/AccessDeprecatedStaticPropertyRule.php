@@ -13,14 +13,10 @@ use PHPStan\Rules\RuleLevelHelper;
 class AccessDeprecatedStaticPropertyRule implements \PHPStan\Rules\Rule
 {
 
-	/**
-	 * @var Broker
-	 */
+	/** @var Broker */
 	private $broker;
 
-	/**
-	 * @var RuleLevelHelper
-	 */
+	/** @var RuleLevelHelper */
 	private $ruleLevelHelper;
 
 	public function __construct(Broker $broker, RuleLevelHelper $ruleLevelHelper)

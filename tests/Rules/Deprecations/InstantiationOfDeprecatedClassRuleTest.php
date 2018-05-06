@@ -11,7 +11,7 @@ class InstantiationOfDeprecatedClassRuleTest extends \PHPStan\Testing\RuleTestCa
 		return new InstantiationOfDeprecatedClassRule($broker);
 	}
 
-	public function testInstantiationOfDeprecatedClass()
+	public function testInstantiationOfDeprecatedClass(): void
 	{
 		require_once __DIR__ . '/data/instantiation-of-deprecated-class-definition.php';
 		$this->analyse(

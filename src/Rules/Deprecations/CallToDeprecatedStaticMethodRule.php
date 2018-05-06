@@ -13,9 +13,7 @@ use PHPStan\Reflection\DeprecatableReflection;
 class CallToDeprecatedStaticMethodRule implements \PHPStan\Rules\Rule
 {
 
-	/**
-	 * @var Broker
-	 */
+	/** @var Broker */
 	private $broker;
 
 	public function __construct(Broker $broker)
@@ -77,12 +75,7 @@ class CallToDeprecatedStaticMethodRule implements \PHPStan\Rules\Rule
 		return $errors;
 	}
 
-	/**
-	 * @param string $className
-	 * @param Scope $scope
-	 * @return ClassReflection|null
-	 */
-	private function getClassWithClassName(string $className, Scope $scope)
+	private function getClassWithClassName(string $className, Scope $scope): ?ClassReflection
 	{
 		if ($className === 'parent') {
 			if (!$scope->isInClass()) {

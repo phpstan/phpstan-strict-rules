@@ -11,7 +11,7 @@ class FetchingClassConstOfDeprecatedClassRuleTest extends \PHPStan\Testing\RuleT
 		return new FetchingClassConstOfDeprecatedClassRule($broker);
 	}
 
-	public function testFetchingClassConstOfDeprecatedClass()
+	public function testFetchingClassConstOfDeprecatedClass(): void
 	{
 		require_once __DIR__ . '/data/fetching-class-const-of-deprecated-class-definition.php';
 		$this->analyse(

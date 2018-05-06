@@ -11,7 +11,7 @@ class UsageOfDeprecatedTraitRuleTest extends \PHPStan\Testing\RuleTestCase
 		return new UsageOfDeprecatedTraitRule($broker);
 	}
 
-	public function testUsageOfDeprecatedTrait()
+	public function testUsageOfDeprecatedTrait(): void
 	{
 		require_once __DIR__ . '/data/usage-of-deprecated-trait-definition.php';
 		$this->analyse(

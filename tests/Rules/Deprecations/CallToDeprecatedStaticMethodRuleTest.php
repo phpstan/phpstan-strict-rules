@@ -11,7 +11,7 @@ class CallToDeprecatedStaticMethodRuleTest extends \PHPStan\Testing\RuleTestCase
 		return new CallToDeprecatedStaticMethodRule($broker);
 	}
 
-	public function testDeprecatedStaticMethodCall()
+	public function testDeprecatedStaticMethodCall(): void
 	{
 		require_once __DIR__ . '/data/call-to-deprecated-static-method-definition.php';
 		$this->analyse(

@@ -10,9 +10,7 @@ use PHPStan\Broker\Broker;
 class ImplementationOfDeprecatedInterfaceRule implements \PHPStan\Rules\Rule
 {
 
-	/**
-	 * @var Broker
-	 */
+	/** @var Broker */
 	private $broker;
 
 	public function __construct(Broker $broker)

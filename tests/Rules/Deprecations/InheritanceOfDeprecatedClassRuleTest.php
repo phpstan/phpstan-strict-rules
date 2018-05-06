@@ -11,7 +11,7 @@ class InheritanceOfDeprecatedClassRuleTest extends \PHPStan\Testing\RuleTestCase
 		return new InheritanceOfDeprecatedClassRule($broker);
 	}
 
-	public function testInheritanceOfDeprecatedClassInClasses()
+	public function testInheritanceOfDeprecatedClassInClasses(): void
 	{
 		require_once __DIR__ . '/data/inheritance-of-deprecated-class-definition.php';
 		$this->analyse(
@@ -25,7 +25,7 @@ class InheritanceOfDeprecatedClassRuleTest extends \PHPStan\Testing\RuleTestCase
 		);
 	}
 
-	public function testInheritanceOfDeprecatedClassInAnonymousClasses()
+	public function testInheritanceOfDeprecatedClassInAnonymousClasses(): void
 	{
 		$this->markTestSkipped('The `isAnonymous` method in the ReflectionClass doesn\'t work for some reason.');
 

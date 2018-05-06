@@ -11,9 +11,7 @@ use PHPStan\Reflection\DeprecatableReflection;
 class CallToDeprecatedMethodRule implements \PHPStan\Rules\Rule
 {
 
-	/**
-	 * @var Broker
-	 */
+	/** @var Broker */
 	private $broker;
 
 	public function __construct(Broker $broker)

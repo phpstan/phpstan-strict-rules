@@ -15,7 +15,7 @@ class AccessDeprecatedStaticPropertyRuleTest extends \PHPStan\Testing\RuleTestCa
 		return new AccessDeprecatedStaticPropertyRule($broker, $ruleLevelHelper);
 	}
 
-	public function testAccessDeprecatedStaticProperty()
+	public function testAccessDeprecatedStaticProperty(): void
 	{
 		require_once __DIR__ . '/data/access-deprecated-static-property-definition.php';
 		$this->analyse(
