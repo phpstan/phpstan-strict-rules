@@ -29,6 +29,9 @@
 		}
 	},
 	"autoload-dev": {
-		"classmap": ["tests/"]
+		"classmap": ["tests/"],
+		"files": [
+			"tests/Rules/Functions/data/missing-function-parameter-typehint.php"
+		]
 	}
 }
