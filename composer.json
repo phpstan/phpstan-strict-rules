@@ -31,7 +31,8 @@
 	"autoload-dev": {
 		"classmap": ["tests/"],
 		"files": [
-			"tests/Rules/Functions/data/missing-function-parameter-typehint.php"
+			"tests/Rules/Functions/data/missing-function-parameter-typehint.php",
+			"tests/Rules/Functions/data/missing-function-return-typehint.php"
 		]
 	}
 }
