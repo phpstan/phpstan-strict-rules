@@ -6,6 +6,7 @@ use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\ParameterReflection;
+use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Type\MixedType;
 
 final class MissingMethodParameterTypehintRule implements \PHPStan\Rules\Rule
@@ -35,7 +36,7 @@ final class MissingMethodParameterTypehintRule implements \PHPStan\Rules\Rule
 
 		$messages = [];
 
-		foreach ($methodReflection->getParameters() as $parameterReflection) {
+		foreach (ParametersAcceptorSelector::selectSingle($methodReflection->getVariants())->getParameters() as $parameterReflection) {
 			$message = $this->checkMethodParameter($methodReflection, $parameterReflection);
 			if ($message === null) {
 				continue;

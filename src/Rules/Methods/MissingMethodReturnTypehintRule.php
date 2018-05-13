@@ -5,6 +5,7 @@ namespace PHPStan\Rules\Methods;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
+use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Type\MixedType;
 
 final class MissingMethodReturnTypehintRule implements \PHPStan\Rules\Rule
@@ -44,7 +45,7 @@ final class MissingMethodReturnTypehintRule implements \PHPStan\Rules\Rule
 
 	private function checkMethodReturnType(MethodReflection $methodReflection): ?string
 	{
-		$returnType = $methodReflection->getReturnType();
+		$returnType = ParametersAcceptorSelector::selectSingle($methodReflection->getVariants())->getReturnType();
 
 		if ($returnType instanceof MixedType && !$returnType->isExplicitMixed()) {
 			return sprintf(
