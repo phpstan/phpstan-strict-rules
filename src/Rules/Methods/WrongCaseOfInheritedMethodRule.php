@@ -27,7 +27,7 @@ class WrongCaseOfInheritedMethodRule implements \PHPStan\Rules\Rule
 			throw new \PHPStan\ShouldNotHappenException();
 		}
 
-		$methodReflection = $scope->getClassReflection()->getNativeMethod($node->name);
+		$methodReflection = $scope->getClassReflection()->getNativeMethod($node->name->name);
 		$declaringClass = $methodReflection->getDeclaringClass();
 
 		$messages = [];
@@ -35,7 +35,7 @@ class WrongCaseOfInheritedMethodRule implements \PHPStan\Rules\Rule
 			$parentMessage = $this->findMethod(
 				$declaringClass,
 				$declaringClass->getParentClass(),
-				$node->name
+				$node->name->name
 			);
 			if ($parentMessage !== null) {
 				$messages[] = $parentMessage;
@@ -46,7 +46,7 @@ class WrongCaseOfInheritedMethodRule implements \PHPStan\Rules\Rule
 			$interfaceMessage = $this->findMethod(
 				$declaringClass,
 				$interface,
-				$node->name
+				$node->name->name
 			);
 			if ($interfaceMessage === null) {
 				continue;

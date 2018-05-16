@@ -31,7 +31,7 @@ final class MissingMethodReturnTypehintRule implements \PHPStan\Rules\Rule
 			throw new \PHPStan\ShouldNotHappenException();
 		}
 
-		$methodReflection = $scope->getClassReflection()->getNativeMethod($node->name);
+		$methodReflection = $scope->getClassReflection()->getNativeMethod($node->name->name);
 
 		$messages = [];
 

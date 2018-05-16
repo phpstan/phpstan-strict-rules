@@ -29,14 +29,14 @@ final class MissingPropertyTypehintRule implements \PHPStan\Rules\Rule
 			throw new \PHPStan\ShouldNotHappenException();
 		}
 
-		$propertyReflection = $scope->getClassReflection()->getNativeProperty($node->name);
+		$propertyReflection = $scope->getClassReflection()->getNativeProperty($node->name->name);
 		$returnType = $propertyReflection->getType();
 		if ($returnType instanceof MixedType && !$returnType->isExplicitMixed()) {
 			return [
 				sprintf(
 					'Property %s::$%s has no typehint specified',
 					$propertyReflection->getDeclaringClass()->getDisplayName(),
-					$node->name
+					$node->name->name
 				),
 			];
 		}

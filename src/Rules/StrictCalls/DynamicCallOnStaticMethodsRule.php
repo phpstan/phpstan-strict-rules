@@ -31,11 +31,11 @@ class DynamicCallOnStaticMethodsRule implements \PHPStan\Rules\Rule
 	 */
 	public function processNode(Node $node, Scope $scope): array
 	{
-		if (!is_string($node->name)) {
+		if (!$node->name instanceof Node\Identifier) {
 			return [];
 		}
 
-		$name = $node->name;
+		$name = $node->name->name;
 		$type = $this->ruleLevelHelper->findTypeToCheck(
 			$scope,
 			$node->var,
