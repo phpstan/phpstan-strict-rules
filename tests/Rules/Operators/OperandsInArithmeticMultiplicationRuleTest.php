@@ -4,12 +4,12 @@ namespace PHPStan\Rules\Operators;
 
 use PHPStan\Rules\Rule;
 
-class OperandsInArithmeticMultiplicationTest extends \PHPStan\Testing\RuleTestCase
+class OperandsInArithmeticMultiplicationRuleTest extends \PHPStan\Testing\RuleTestCase
 {
 
 	protected function getRule(): Rule
 	{
-		return new OperandsInArithmeticMultiplication();
+		return new OperandsInArithmeticMultiplicationRule();
 	}
 
 	public function testRule(): void

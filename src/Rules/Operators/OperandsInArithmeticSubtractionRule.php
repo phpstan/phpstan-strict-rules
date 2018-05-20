@@ -2,12 +2,12 @@
 
 namespace PHPStan\Rules\Operators;
 
-class OperandsInArithmeticMultiplication implements \PHPStan\Rules\Rule
+class OperandsInArithmeticSubtractionRule implements \PHPStan\Rules\Rule
 {
 
 	public function getNodeType(): string
 	{
-		return \PhpParser\Node\Expr\BinaryOp\Mul::class;
+		return \PhpParser\Node\Expr\BinaryOp\Minus::class;
 	}
 
 	/**
@@ -24,7 +24,7 @@ class OperandsInArithmeticMultiplication implements \PHPStan\Rules\Rule
 			return [];
 		}
 
-		return ['Only numeric types are allowed in arithmetic multiplication.'];
+		return ['Only numeric types are allowed in arithmetic subtraction.'];
 	}
 
 }

@@ -2,12 +2,12 @@
 
 namespace PHPStan\Rules\Operators;
 
-class OperandsInArithmeticDivision implements \PHPStan\Rules\Rule
+class OperandsInArithmeticExponentiationRule implements \PHPStan\Rules\Rule
 {
 
 	public function getNodeType(): string
 	{
-		return \PhpParser\Node\Expr\BinaryOp\Div::class;
+		return \PhpParser\Node\Expr\BinaryOp\Pow::class;
 	}
 
 	/**
@@ -24,7 +24,7 @@ class OperandsInArithmeticDivision implements \PHPStan\Rules\Rule
 			return [];
 		}
 
-		return ['Only numeric types are allowed in arithmetic division.'];
+		return ['Only numeric types are allowed in arithmetic exponentiation.'];
 	}
 
 }

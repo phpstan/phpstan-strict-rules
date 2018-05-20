@@ -2,15 +2,12 @@
 
 namespace PHPStan\Rules\Operators;
 
-use PHPStan\Type\ArrayType;
-use PHPStan\Type\MixedType;
-
-class OperandsInArithmeticAddition implements \PHPStan\Rules\Rule
+class OperandsInArithmeticModuloRule implements \PHPStan\Rules\Rule
 {
 
 	public function getNodeType(): string
 	{
-		return \PhpParser\Node\Expr\BinaryOp\Plus::class;
+		return \PhpParser\Node\Expr\BinaryOp\Mod::class;
 	}
 
 	/**
@@ -27,13 +24,7 @@ class OperandsInArithmeticAddition implements \PHPStan\Rules\Rule
 			return [];
 		}
 
-		$mixedArrayType = new ArrayType(new MixedType(), new MixedType());
-
-		if ($mixedArrayType->isSuperTypeOf($leftType)->yes() && $mixedArrayType->isSuperTypeOf($rightType)->yes()) {
-			return [];
-		}
-
-		return ['Only numeric types or arrays are allowed in arithmetic addition.'];
+		return ['Only numeric types are allowed in arithmetic modulo.'];
 	}
 
 }
