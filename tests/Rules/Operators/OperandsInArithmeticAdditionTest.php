@@ -43,14 +43,6 @@ class OperandsInArithmeticAdditionTest extends \PHPStan\Testing\RuleTestCase
 				'Only numeric types or arrays are allowed in arithmetic addition.',
 				30,
 			],
-			[
-				'Only numeric types or arrays are allowed in arithmetic addition.',
-				30,
-			],
-			[
-				'Only numeric types or arrays are allowed in arithmetic addition.',
-				30,
-			],
 		]);
 	}
 

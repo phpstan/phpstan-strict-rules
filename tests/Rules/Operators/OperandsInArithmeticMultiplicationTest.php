@@ -43,14 +43,6 @@ class OperandsInArithmeticMultiplicationTest extends \PHPStan\Testing\RuleTestCa
 				'Only numeric types are allowed in arithmetic multiplication.',
 				56,
 			],
-			[
-				'Only numeric types are allowed in arithmetic multiplication.',
-				56,
-			],
-			[
-				'Only numeric types are allowed in arithmetic multiplication.',
-				56,
-			],
 		]);
 	}
 

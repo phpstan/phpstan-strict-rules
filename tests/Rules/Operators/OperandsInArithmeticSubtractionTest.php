@@ -43,14 +43,6 @@ class OperandsInArithmeticSubtractionTest extends \PHPStan\Testing\RuleTestCase
 				'Only numeric types are allowed in arithmetic subtraction.',
 				43,
 			],
-			[
-				'Only numeric types are allowed in arithmetic subtraction.',
-				43,
-			],
-			[
-				'Only numeric types are allowed in arithmetic subtraction.',
-				43,
-			],
 		]);
 	}
 

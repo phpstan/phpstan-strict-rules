@@ -43,10 +43,6 @@ class OperandsInArithmeticExponentiationTest extends \PHPStan\Testing\RuleTestCa
 				'Only numeric types are allowed in arithmetic exponentiation.',
 				82,
 			],
-			[
-				'Only numeric types are allowed in arithmetic exponentiation.',
-				82,
-			],
 		]);
 	}
 

@@ -93,3 +93,9 @@ $int % $object;
 $int % $null;
 $int % $float % $string % $null;
 $array % $float % $array % $int;
+
+function ($mixed, int $a) {
+	$mixed + $mixed;
+	$mixed + $a;
+	$a + $mixed;
+};

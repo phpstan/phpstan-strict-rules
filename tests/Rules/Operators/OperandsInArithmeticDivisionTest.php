@@ -43,14 +43,6 @@ class OperandsInArithmeticDivisionTest extends \PHPStan\Testing\RuleTestCase
 				'Only numeric types are allowed in arithmetic division.',
 				69,
 			],
-			[
-				'Only numeric types are allowed in arithmetic division.',
-				69,
-			],
-			[
-				'Only numeric types are allowed in arithmetic division.',
-				69,
-			],
 		]);
 	}
 
