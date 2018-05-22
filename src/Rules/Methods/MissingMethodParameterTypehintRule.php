@@ -42,6 +42,9 @@ final class MissingMethodParameterTypehintRule implements \PHPStan\Rules\Rule
 				continue;
 			}
 
+			/** @var string $message */
+			$message = $message;
+
 			$messages[] = $message;
 		}
 

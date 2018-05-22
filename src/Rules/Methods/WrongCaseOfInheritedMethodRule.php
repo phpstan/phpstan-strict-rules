@@ -51,6 +51,10 @@ class WrongCaseOfInheritedMethodRule implements \PHPStan\Rules\Rule
 			if ($interfaceMessage === null) {
 				continue;
 			}
+
+			/** @var string $interfaceMessage */
+			$interfaceMessage = $interfaceMessage;
+
 			$messages[] = $interfaceMessage;
 		}
 
