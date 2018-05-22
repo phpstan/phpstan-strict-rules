@@ -53,3 +53,11 @@ class Foo extends FooParent implements FooInterface
     }
 
 }
+
+/**
+ * @method void someMethod($p1, int $p2)
+ * @method bool method2(mixed $p1, object $p2)
+ */
+class PhpDocMethod
+{
+}

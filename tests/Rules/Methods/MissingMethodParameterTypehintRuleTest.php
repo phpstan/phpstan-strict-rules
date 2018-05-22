@@ -33,6 +33,10 @@ class MissingMethodParameterTypehintRuleTest extends \PHPStan\Testing\RuleTestCa
 				'Method MissingMethodParameterTypehint\Foo::getBaz() has parameter $p3 with no typehint specified',
 				42,
 			],
+			[
+				'Method MissingMethodParameterTypehint\PhpDocMethod::someMethod() has parameter $p1 with no typehint specified',
+				58,
+			],
 		]);
 	}
 
