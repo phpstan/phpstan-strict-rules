@@ -7,6 +7,7 @@ use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\RuleLevelHelper;
 use PHPStan\Type\ErrorType;
+use PHPStan\Type\Type;
 
 class DynamicCallOnStaticMethodsRule implements \PHPStan\Rules\Rule
 {
@@ -39,7 +40,10 @@ class DynamicCallOnStaticMethodsRule implements \PHPStan\Rules\Rule
 		$type = $this->ruleLevelHelper->findTypeToCheck(
 			$scope,
 			$node->var,
-			''
+			'',
+			function (Type $type) use ($name): bool {
+				return $type->canCallMethods()->yes() && $type->hasMethod($name);
+			}
 		)->getType();
 
 		if ($type instanceof ErrorType || !$type->canCallMethods()->yes() || !$type->hasMethod($name)) {
