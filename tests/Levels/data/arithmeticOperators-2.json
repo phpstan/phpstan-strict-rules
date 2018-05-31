@@ -1,0 +1,12 @@
+[
+    {
+        "message": "Binary operation \"+\" between string and int results in an error.",
+        "line": 26,
+        "ignorable": true
+    },
+    {
+        "message": "Binary operation \"+\" between stdClass|string and int results in an error.",
+        "line": 36,
+        "ignorable": true
+    }
+]
