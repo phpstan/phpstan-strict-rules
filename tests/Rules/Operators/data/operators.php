@@ -94,8 +94,10 @@ $int % $null;
 $int % $float % $string % $null;
 $array % $float % $array % $int;
 
-function ($mixed, int $a) {
+function ($mixed, int $a, string $b) {
 	$mixed + $mixed;
 	$mixed + $a;
 	$a + $mixed;
+	$mixed + $b;
+	$b + $mixed;
 };

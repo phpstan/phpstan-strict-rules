@@ -4,6 +4,7 @@ namespace PHPStan\Rules\Operators;
 
 use PHPStan\Type\ArrayType;
 use PHPStan\Type\MixedType;
+use PHPStan\Type\VerbosityLevel;
 
 class OperandsInArithmeticAdditionRule implements \PHPStan\Rules\Rule
 {
@@ -22,18 +23,27 @@ class OperandsInArithmeticAdditionRule implements \PHPStan\Rules\Rule
 	{
 		$leftType = $scope->getType($node->left);
 		$rightType = $scope->getType($node->right);
-
-		if (OperatorRuleHelper::isValidForArithmeticOperation($leftType, $rightType)) {
-			return [];
-		}
-
 		$mixedArrayType = new ArrayType(new MixedType(), new MixedType());
 
 		if ($mixedArrayType->isSuperTypeOf($leftType)->yes() && $mixedArrayType->isSuperTypeOf($rightType)->yes()) {
 			return [];
 		}
 
-		return ['Only numeric types or arrays are allowed in arithmetic addition.'];
+		$messages = [];
+		if (!OperatorRuleHelper::isValidForArithmeticOperation($leftType)) {
+			$messages[] = sprintf(
+				'Only numeric types are allowed in +, %s given on the left side.',
+				$leftType->describe(VerbosityLevel::typeOnly())
+			);
+		}
+		if (!OperatorRuleHelper::isValidForArithmeticOperation($rightType)) {
+			$messages[] = sprintf(
+				'Only numeric types are allowed in +, %s given on the right side.',
+				$rightType->describe(VerbosityLevel::typeOnly())
+			);
+		}
+
+		return $messages;
 	}
 
 }

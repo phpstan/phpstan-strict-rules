@@ -11,15 +11,15 @@ use PHPStan\Type\UnionType;
 class OperatorRuleHelper
 {
 
-	public static function isValidForArithmeticOperation(Type $leftType, Type $rightType): bool
+	public static function isValidForArithmeticOperation(Type $type): bool
 	{
-		if ($leftType instanceof MixedType || $rightType instanceof MixedType) {
+		if ($type instanceof MixedType) {
 			return true;
 		}
 
 		$acceptedType = new UnionType([new IntegerType(), new FloatType()]);
 
-		return $acceptedType->isSuperTypeOf($leftType)->yes() && $acceptedType->isSuperTypeOf($rightType)->yes();
+		return $acceptedType->isSuperTypeOf($type)->yes();
 	}
 
 }

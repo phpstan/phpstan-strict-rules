@@ -2,6 +2,8 @@
 
 namespace PHPStan\Rules\Operators;
 
+use PHPStan\Type\VerbosityLevel;
+
 class OperandsInArithmeticDivisionRule implements \PHPStan\Rules\Rule
 {
 
@@ -17,14 +19,24 @@ class OperandsInArithmeticDivisionRule implements \PHPStan\Rules\Rule
 	 */
 	public function processNode(\PhpParser\Node $node, \PHPStan\Analyser\Scope $scope): array
 	{
+		$messages = [];
 		$leftType = $scope->getType($node->left);
-		$rightType = $scope->getType($node->right);
-
-		if (OperatorRuleHelper::isValidForArithmeticOperation($leftType, $rightType)) {
-			return [];
+		if (!OperatorRuleHelper::isValidForArithmeticOperation($leftType)) {
+			$messages[] = sprintf(
+				'Only numeric types are allowed in /, %s given on the left side.',
+				$leftType->describe(VerbosityLevel::typeOnly())
+			);
 		}
 
-		return ['Only numeric types are allowed in arithmetic division.'];
+		$rightType = $scope->getType($node->right);
+		if (!OperatorRuleHelper::isValidForArithmeticOperation($rightType)) {
+			$messages[] = sprintf(
+				'Only numeric types are allowed in /, %s given on the right side.',
+				$rightType->describe(VerbosityLevel::typeOnly())
+			);
+		}
+
+		return $messages;
 	}
 
 }
