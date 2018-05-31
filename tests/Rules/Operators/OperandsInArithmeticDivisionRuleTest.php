@@ -20,14 +20,6 @@ class OperandsInArithmeticDivisionRuleTest extends \PHPStan\Testing\RuleTestCase
 				64,
 			],
 			[
-				'Only numeric types are allowed in /, array given on the right side.',
-				65,
-			],
-			[
-				'Only numeric types are allowed in /, stdClass given on the right side.',
-				66,
-			],
-			[
 				'Only numeric types are allowed in /, null given on the right side.',
 				67,
 			],
@@ -38,14 +30,6 @@ class OperandsInArithmeticDivisionRuleTest extends \PHPStan\Testing\RuleTestCase
 			[
 				'Only numeric types are allowed in /, string given on the right side.',
 				68,
-			],
-			[
-				'Only numeric types are allowed in /, array given on the right side.',
-				69,
-			],
-			[
-				'Only numeric types are allowed in /, array given on the left side.',
-				69,
 			],
 		]);
 	}
