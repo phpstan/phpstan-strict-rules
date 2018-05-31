@@ -5,8 +5,18 @@
         "ignorable": true
     },
     {
+        "message": "Only numeric types are allowed in +, string given on the left side.",
+        "line": 27,
+        "ignorable": true
+    },
+    {
         "message": "Binary operation \"+\" between stdClass|string and int results in an error.",
         "line": 36,
+        "ignorable": true
+    },
+    {
+        "message": "Only numeric types are allowed in +, string given on the left side.",
+        "line": 43,
         "ignorable": true
     }
 ]

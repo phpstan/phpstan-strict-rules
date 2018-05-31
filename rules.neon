@@ -27,3 +27,7 @@ rules:
 	- PHPStan\Rules\StrictCalls\DynamicCallOnStaticMethodsRule
 	- PHPStan\Rules\StrictCalls\StrictFunctionCallsRule
 	- PHPStan\Rules\SwitchConditions\MatchingTypeInSwitchCaseConditionRule
+
+services:
+	-
+		class: PHPStan\Rules\Operators\OperatorRuleHelper

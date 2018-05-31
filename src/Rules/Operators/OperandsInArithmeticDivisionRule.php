@@ -7,6 +7,14 @@ use PHPStan\Type\VerbosityLevel;
 class OperandsInArithmeticDivisionRule implements \PHPStan\Rules\Rule
 {
 
+	/** @var OperatorRuleHelper */
+	private $helper;
+
+	public function __construct(OperatorRuleHelper $helper)
+	{
+		$this->helper = $helper;
+	}
+
 	public function getNodeType(): string
 	{
 		return \PhpParser\Node\Expr\BinaryOp\Div::class;
@@ -21,7 +29,7 @@ class OperandsInArithmeticDivisionRule implements \PHPStan\Rules\Rule
 	{
 		$messages = [];
 		$leftType = $scope->getType($node->left);
-		if (!OperatorRuleHelper::isValidForArithmeticOperation($leftType)) {
+		if (!$this->helper->isValidForArithmeticOperation($scope, $node->left)) {
 			$messages[] = sprintf(
 				'Only numeric types are allowed in /, %s given on the left side.',
 				$leftType->describe(VerbosityLevel::typeOnly())
@@ -29,7 +37,7 @@ class OperandsInArithmeticDivisionRule implements \PHPStan\Rules\Rule
 		}
 
 		$rightType = $scope->getType($node->right);
-		if (!OperatorRuleHelper::isValidForArithmeticOperation($rightType)) {
+		if (!$this->helper->isValidForArithmeticOperation($scope, $node->right)) {
 			$messages[] = sprintf(
 				'Only numeric types are allowed in /, %s given on the right side.',
 				$rightType->describe(VerbosityLevel::typeOnly())

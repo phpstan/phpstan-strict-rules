@@ -3,13 +3,18 @@
 namespace PHPStan\Rules\Operators;
 
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleLevelHelper;
 
 class OperandsInArithmeticModuloRuleTest extends \PHPStan\Testing\RuleTestCase
 {
 
 	protected function getRule(): Rule
 	{
-		return new OperandsInArithmeticModuloRule();
+		return new OperandsInArithmeticModuloRule(
+			new OperatorRuleHelper(
+				new RuleLevelHelper($this->createBroker(), true, false, true)
+			)
+		);
 	}
 
 	public function testRule(): void

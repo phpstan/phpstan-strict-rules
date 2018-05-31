@@ -9,6 +9,14 @@ use PHPStan\Type\VerbosityLevel;
 class OperandsInArithmeticAdditionRule implements \PHPStan\Rules\Rule
 {
 
+	/** @var OperatorRuleHelper */
+	private $helper;
+
+	public function __construct(OperatorRuleHelper $helper)
+	{
+		$this->helper = $helper;
+	}
+
 	public function getNodeType(): string
 	{
 		return \PhpParser\Node\Expr\BinaryOp\Plus::class;
@@ -30,13 +38,13 @@ class OperandsInArithmeticAdditionRule implements \PHPStan\Rules\Rule
 		}
 
 		$messages = [];
-		if (!OperatorRuleHelper::isValidForArithmeticOperation($leftType)) {
+		if (!$this->helper->isValidForArithmeticOperation($scope, $node->left)) {
 			$messages[] = sprintf(
 				'Only numeric types are allowed in +, %s given on the left side.',
 				$leftType->describe(VerbosityLevel::typeOnly())
 			);
 		}
-		if (!OperatorRuleHelper::isValidForArithmeticOperation($rightType)) {
+		if (!$this->helper->isValidForArithmeticOperation($scope, $node->right)) {
 			$messages[] = sprintf(
 				'Only numeric types are allowed in +, %s given on the right side.',
 				$rightType->describe(VerbosityLevel::typeOnly())
