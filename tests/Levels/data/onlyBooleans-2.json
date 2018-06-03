@@ -1,0 +1,12 @@
+[
+    {
+        "message": "Only booleans are allowed in an if condition, int given.",
+        "line": 26,
+        "ignorable": true
+    },
+    {
+        "message": "Only booleans are allowed in an if condition, float|string given.",
+        "line": 38,
+        "ignorable": true
+    }
+]

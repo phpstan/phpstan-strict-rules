@@ -7,6 +7,14 @@ use PHPStan\Type\VerbosityLevel;
 class BooleanInTernaryOperatorRule implements \PHPStan\Rules\Rule
 {
 
+	/** @var BooleanRuleHelper */
+	private $helper;
+
+	public function __construct(BooleanRuleHelper $helper)
+	{
+		$this->helper = $helper;
+	}
+
 	public function getNodeType(): string
 	{
 		return \PhpParser\Node\Expr\Ternary::class;
@@ -23,10 +31,11 @@ class BooleanInTernaryOperatorRule implements \PHPStan\Rules\Rule
 			return []; // elvis ?:
 		}
 
-		$conditionExpressionType = $scope->getType($node->cond);
-		if (BooleanRuleHelper::passesAsBoolean($conditionExpressionType)) {
+		if ($this->helper->passesAsBoolean($scope, $node->cond)) {
 			return [];
 		}
+
+		$conditionExpressionType = $scope->getType($node->cond);
 
 		return [
 			sprintf(

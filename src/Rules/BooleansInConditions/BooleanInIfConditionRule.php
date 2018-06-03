@@ -7,6 +7,14 @@ use PHPStan\Type\VerbosityLevel;
 class BooleanInIfConditionRule implements \PHPStan\Rules\Rule
 {
 
+	/** @var BooleanRuleHelper */
+	private $helper;
+
+	public function __construct(BooleanRuleHelper $helper)
+	{
+		$this->helper = $helper;
+	}
+
 	public function getNodeType(): string
 	{
 		return \PhpParser\Node\Stmt\If_::class;
@@ -19,10 +27,11 @@ class BooleanInIfConditionRule implements \PHPStan\Rules\Rule
 	 */
 	public function processNode(\PhpParser\Node $node, \PHPStan\Analyser\Scope $scope): array
 	{
-		$conditionExpressionType = $scope->getType($node->cond);
-		if (BooleanRuleHelper::passesAsBoolean($conditionExpressionType)) {
+		if ($this->helper->passesAsBoolean($scope, $node->cond)) {
 			return [];
 		}
+
+		$conditionExpressionType = $scope->getType($node->cond);
 
 		return [
 			sprintf(

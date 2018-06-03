@@ -30,4 +30,6 @@ rules:
 
 services:
 	-
+		class: PHPStan\Rules\BooleansInConditions\BooleanRuleHelper
+	-
 		class: PHPStan\Rules\Operators\OperatorRuleHelper

@@ -7,6 +7,14 @@ use PHPStan\Type\VerbosityLevel;
 class BooleanInBooleanNotRule implements \PHPStan\Rules\Rule
 {
 
+	/** @var BooleanRuleHelper */
+	private $helper;
+
+	public function __construct(BooleanRuleHelper $helper)
+	{
+		$this->helper = $helper;
+	}
+
 	public function getNodeType(): string
 	{
 		return \PhpParser\Node\Expr\BooleanNot::class;
@@ -19,10 +27,11 @@ class BooleanInBooleanNotRule implements \PHPStan\Rules\Rule
 	 */
 	public function processNode(\PhpParser\Node $node, \PHPStan\Analyser\Scope $scope): array
 	{
-		$expressionType = $scope->getType($node->expr);
-		if (BooleanRuleHelper::passesAsBoolean($expressionType)) {
+		if ($this->helper->passesAsBoolean($scope, $node->expr)) {
 			return [];
 		}
+
+		$expressionType = $scope->getType($node->expr);
 
 		return [
 			sprintf(

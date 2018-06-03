@@ -7,6 +7,14 @@ use PHPStan\Type\VerbosityLevel;
 class BooleanInBooleanOrRule implements \PHPStan\Rules\Rule
 {
 
+	/** @var BooleanRuleHelper */
+	private $helper;
+
+	public function __construct(BooleanRuleHelper $helper)
+	{
+		$this->helper = $helper;
+	}
+
 	public function getNodeType(): string
 	{
 		return \PhpParser\Node\Expr\BinaryOp\BooleanOr::class;
@@ -19,17 +27,17 @@ class BooleanInBooleanOrRule implements \PHPStan\Rules\Rule
 	 */
 	public function processNode(\PhpParser\Node $node, \PHPStan\Analyser\Scope $scope): array
 	{
-		$leftType = $scope->getType($node->left);
 		$messages = [];
-		if (!BooleanRuleHelper::passesAsBoolean($leftType)) {
+		if (!$this->helper->passesAsBoolean($scope, $node->left)) {
+			$leftType = $scope->getType($node->left);
 			$messages[] = sprintf(
 				'Only booleans are allowed in ||, %s given on the left side.',
 				$leftType->describe(VerbosityLevel::typeOnly())
 			);
 		}
 
-		$rightType = $scope->getType($node->right);
-		if (!BooleanRuleHelper::passesAsBoolean($rightType)) {
+		if (!$this->helper->passesAsBoolean($scope, $node->right)) {
+			$rightType = $scope->getType($node->right);
 			$messages[] = sprintf(
 				'Only booleans are allowed in ||, %s given on the right side.',
 				$rightType->describe(VerbosityLevel::typeOnly())

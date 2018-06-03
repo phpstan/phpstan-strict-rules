@@ -3,13 +3,23 @@
 namespace PHPStan\Rules\BooleansInConditions;
 
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleLevelHelper;
 
 class BooleanInBooleanNotRuleTest extends \PHPStan\Testing\RuleTestCase
 {
 
 	protected function getRule(): Rule
 	{
-		return new BooleanInBooleanNotRule();
+		return new BooleanInBooleanNotRule(
+			new BooleanRuleHelper(
+				new RuleLevelHelper(
+					$this->createBroker(),
+					true,
+					false,
+					true
+				)
+			)
+		);
 	}
 
 	public function testRule(): void
