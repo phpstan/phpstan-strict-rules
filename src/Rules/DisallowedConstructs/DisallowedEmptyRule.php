@@ -8,6 +8,14 @@ use PHPStan\Analyser\Scope;
 class DisallowedEmptyRule implements \PHPStan\Rules\Rule
 {
 
+	/** @var bool */
+	private $checkEmptyCall;
+
+	public function __construct(bool $checkEmptyCall)
+	{
+		$this->checkEmptyCall = $checkEmptyCall;
+	}
+
 	public function getNodeType(): string
 	{
 		return \PhpParser\Node\Expr\Empty_::class;
@@ -20,6 +28,10 @@ class DisallowedEmptyRule implements \PHPStan\Rules\Rule
 	 */
 	public function processNode(Node $node, Scope $scope): array
 	{
+		if (!$this->checkEmptyCall) {
+			return [];
+		}
+
 		return [
 			'Construct empty() is not allowed. Use more strict comparison.',
 		];

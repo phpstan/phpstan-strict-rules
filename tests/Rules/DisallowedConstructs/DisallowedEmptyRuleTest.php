@@ -9,7 +9,7 @@ class DisallowedEmptyRuleTest extends \PHPStan\Testing\RuleTestCase
 
 	protected function getRule(): Rule
 	{
-		return new DisallowedEmptyRule();
+		return new DisallowedEmptyRule(true);
 	}
 
 	public function testRule(): void

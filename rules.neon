@@ -4,6 +4,7 @@ parameters:
 	checkAlwaysTrueInstanceof: true
 	checkAlwaysTrueStrictComparison: true
 	checkFunctionNameCase: true
+	checkEmptyCall: true
 
 rules:
 	- PHPStan\Rules\BooleansInConditions\BooleanInBooleanAndRule
@@ -12,7 +13,6 @@ rules:
 	- PHPStan\Rules\BooleansInConditions\BooleanInElseIfConditionRule
 	- PHPStan\Rules\BooleansInConditions\BooleanInIfConditionRule
 	- PHPStan\Rules\BooleansInConditions\BooleanInTernaryOperatorRule
-	- PHPStan\Rules\DisallowedConstructs\DisallowedEmptyRule
 	- PHPStan\Rules\DisallowedConstructs\DisallowedImplicitArrayCreationRule
 	- PHPStan\Rules\Methods\MissingMethodParameterTypehintRule
 	- PHPStan\Rules\Methods\MissingMethodReturnTypehintRule
@@ -33,3 +33,9 @@ services:
 		class: PHPStan\Rules\BooleansInConditions\BooleanRuleHelper
 	-
 		class: PHPStan\Rules\Operators\OperatorRuleHelper
+	-
+		class: PHPStan\Rules\DisallowedConstructs\DisallowedEmptyRule
+		arguments:
+			checkEmptyCall: %checkEmptyCall%
+		tags:
+			- phpstan.rules.rule
