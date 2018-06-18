@@ -30,21 +30,37 @@ class OperatorRuleHelper
 			return true;
 		}
 
+		// already reported by PHPStan core
 		if ($type->toNumber() instanceof ErrorType) {
 			return true;
 		}
 
+		return $this->isSubtypeOfNumber($scope, $expr);
+	}
+
+	public function isValidForIncrementOrDecrement(Scope $scope, Expr $expr): bool
+	{
+		$type = $scope->getType($expr);
+		if ($type instanceof MixedType) {
+			return true;
+		}
+
+		return $this->isSubtypeOfNumber($scope, $expr);
+	}
+
+	private function isSubtypeOfNumber(Scope $scope, Expr $expr): bool
+	{
 		$acceptedType = new UnionType([new IntegerType(), new FloatType()]);
 
-		$typeToCheck = $this->ruleLevelHelper->findTypeToCheck(
+		$type = $this->ruleLevelHelper->findTypeToCheck(
 			$scope,
 			$expr,
 			'',
 			function (Type $type) use ($acceptedType): bool {
 				return $acceptedType->isSuperTypeOf($type)->yes();
 			}
-		);
-		$type = $typeToCheck->getType();
+		)->getType();
+
 		if ($type instanceof ErrorType) {
 			return true;
 		}
