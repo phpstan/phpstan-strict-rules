@@ -17,6 +17,10 @@ rules:
 	- PHPStan\Rules\Methods\MissingMethodParameterTypehintRule
 	- PHPStan\Rules\Methods\MissingMethodReturnTypehintRule
 	- PHPStan\Rules\Methods\WrongCaseOfInheritedMethodRule
+	- PHPStan\Rules\Operators\OperandInArithmeticPostDecrementRule
+	- PHPStan\Rules\Operators\OperandInArithmeticPostIncrementRule
+	- PHPStan\Rules\Operators\OperandInArithmeticPreDecrementRule
+	- PHPStan\Rules\Operators\OperandInArithmeticPreIncrementRule
 	- PHPStan\Rules\Operators\OperandsInArithmeticAdditionRule
 	- PHPStan\Rules\Operators\OperandsInArithmeticDivisionRule
 	- PHPStan\Rules\Operators\OperandsInArithmeticExponentiationRule
