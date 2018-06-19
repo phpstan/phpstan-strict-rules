@@ -17,7 +17,7 @@
 * Variables assigned in `while` loop condition and `for` loop initial assignment cannot be used after the loop.
 * Types in `switch` condition and `case` value must match. PHP compares them loosely by default and that can lead to unexpected results.
 * Statically declared methods are called statically.
-* Disallow `empty()` - it's a very loose comparison (see [manual](https://secure.php.net/manual/en/function.empty.php)), it's recommended to use more strict one.
+* Disallow `empty()` - it's a very loose comparison (see [manual](https://php.net/empty)), it's recommended to use more strict one.
 * Always true `instanceof`, type-checking `is_*` functions and strict comparisons `===`/`!==`. These checks can be turned off by setting `checkAlwaysTrueInstanceof`/`checkAlwaysTrueCheckTypeFunctionCall`/`checkAlwaysTrueStrictComparison` to false.
 * Correct case for referenced and called function names.
 * Correct case for inherited and implemented method names.
