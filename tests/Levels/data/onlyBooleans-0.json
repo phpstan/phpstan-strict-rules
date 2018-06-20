@@ -1,6 +1,6 @@
 [
     {
-        "message": "Method PHPStan\\Levels\\OnlyBooleans\\Foo::doFoo() has parameter $mixed with no typehint specified",
+        "message": "Method PHPStan\\Levels\\OnlyBooleans\\Foo::doFoo() has parameter $mixed with no typehint specified.",
         "line": 14,
         "ignorable": true
     },

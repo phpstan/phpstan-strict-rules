@@ -14,11 +14,11 @@ class WrongCaseOfInheritedMethodRuleTest extends \PHPStan\Testing\RuleTestCase
 	{
 		$this->analyse([__DIR__ . '/data/wrong-case.php'], [
 			[
-				'Method WrongCase\Foo::GETfoo() does not match interface method name: WrongCase\FooInterface::getFoo()',
+				'Method WrongCase\Foo::GETfoo() does not match interface method name: WrongCase\FooInterface::getFoo().',
 				25,
 			],
 			[
-				'Method WrongCase\Foo::GETbar() does not match parent method name: WrongCase\FooParent::getBar()',
+				'Method WrongCase\Foo::GETbar() does not match parent method name: WrongCase\FooParent::getBar().',
 				30,
 			],
 		]);

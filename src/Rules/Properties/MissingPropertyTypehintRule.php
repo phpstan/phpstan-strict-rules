@@ -34,7 +34,7 @@ final class MissingPropertyTypehintRule implements \PHPStan\Rules\Rule
 		if ($returnType instanceof MixedType && !$returnType->isExplicitMixed()) {
 			return [
 				sprintf(
-					'Property %s::$%s has no typehint specified',
+					'Property %s::$%s has no typehint specified.',
 					$propertyReflection->getDeclaringClass()->getDisplayName(),
 					$node->name->name
 				),

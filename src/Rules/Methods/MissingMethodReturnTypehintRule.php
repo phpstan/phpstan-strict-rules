@@ -49,7 +49,7 @@ final class MissingMethodReturnTypehintRule implements \PHPStan\Rules\Rule
 
 		if ($returnType instanceof MixedType && !$returnType->isExplicitMixed()) {
 			return sprintf(
-				'Method %s::%s() has no return typehint specified',
+				'Method %s::%s() has no return typehint specified.',
 				$methodReflection->getDeclaringClass()->getDisplayName(),
 				$methodReflection->getName()
 			);
