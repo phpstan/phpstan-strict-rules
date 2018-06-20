@@ -77,7 +77,7 @@ class WrongCaseOfInheritedMethodRule implements \PHPStan\Rules\Rule
 		}
 
 		return sprintf(
-			'Method %s::%s() does not match %s method name: %s::%s()',
+			'Method %s::%s() does not match %s method name: %s::%s().',
 			$declaringClass->getDisplayName(),
 			$methodName,
 			$classReflection->isInterface() ? 'interface' : 'parent',
