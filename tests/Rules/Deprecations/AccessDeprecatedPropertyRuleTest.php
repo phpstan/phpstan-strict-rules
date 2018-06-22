@@ -18,19 +18,19 @@ class AccessDeprecatedPropertyRuleTest extends \PHPStan\Testing\RuleTestCase
 			[__DIR__ . '/data/access-deprecated-property.php'],
 			[
 				[
-					'Access to deprecated property deprecatedFoo of class AccessDeprecatedProperty\Foo.',
+					'Access to deprecated property $deprecatedFoo of class AccessDeprecatedProperty\Foo.',
 					10,
 				],
 				[
-					'Access to deprecated property deprecatedFoo of class AccessDeprecatedProperty\Foo.',
+					'Access to deprecated property $deprecatedFoo of class AccessDeprecatedProperty\Foo.',
 					11,
 				],
 				[
-					'Access to deprecated property deprecatedFooFromTrait of class AccessDeprecatedProperty\Foo.',
+					'Access to deprecated property $deprecatedFooFromTrait of class AccessDeprecatedProperty\Foo.',
 					16,
 				],
 				[
-					'Access to deprecated property deprecatedFooFromTrait of class AccessDeprecatedProperty\Foo.',
+					'Access to deprecated property $deprecatedFooFromTrait of class AccessDeprecatedProperty\Foo.',
 					17,
 				],
 			]

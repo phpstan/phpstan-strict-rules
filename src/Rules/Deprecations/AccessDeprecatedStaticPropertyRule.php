@@ -7,10 +7,10 @@ use PhpParser\Node\Expr\StaticPropertyFetch;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
 use PHPStan\Analyser\Scope;
-use PHPStan\Analyzer\DeprecatedScopeHelper;
 use PHPStan\Broker\Broker;
 use PHPStan\Reflection\DeprecatableReflection;
 use PHPStan\Rules\RuleLevelHelper;
+use PHPStan\Type\ErrorType;
 use PHPStan\Type\Type;
 
 class AccessDeprecatedStaticPropertyRule implements \PHPStan\Rules\Rule
@@ -49,10 +49,10 @@ class AccessDeprecatedStaticPropertyRule implements \PHPStan\Rules\Rule
 		}
 
 		$propertyName = $node->name->name;
-		$referredClasses = [];
+		$referencedClasses = [];
 
 		if ($node->class instanceof Name) {
-			$referredClasses[] = (string) $node->class;
+			$referencedClasses[] = (string) $node->class;
 		} else {
 			$classTypeResult = $this->ruleLevelHelper->findTypeToCheck(
 				$scope,
@@ -63,12 +63,16 @@ class AccessDeprecatedStaticPropertyRule implements \PHPStan\Rules\Rule
 				}
 			);
 
-			$referredClasses = $classTypeResult->getReferencedClasses();
+			if ($classTypeResult->getType() instanceof ErrorType) {
+				return [];
+			}
+
+			$referencedClasses = $classTypeResult->getReferencedClasses();
 		}
 
-		foreach ($referredClasses as $referredClass) {
+		foreach ($referencedClasses as $referencedClass) {
 			try {
-				$class = $this->broker->getClass($referredClass);
+				$class = $this->broker->getClass($referencedClass);
 				$property = $class->getProperty($propertyName, $scope);
 			} catch (\PHPStan\Broker\ClassNotFoundException $e) {
 				continue;
@@ -78,9 +82,9 @@ class AccessDeprecatedStaticPropertyRule implements \PHPStan\Rules\Rule
 
 			if ($property instanceof DeprecatableReflection && $property->isDeprecated()) {
 				return [sprintf(
-					'Access to deprecated static property %s of class %s.',
+					'Access to deprecated static property $%s of class %s.',
 					$propertyName,
-					$referredClass
+					$referencedClass
 				)];
 			}
 		}

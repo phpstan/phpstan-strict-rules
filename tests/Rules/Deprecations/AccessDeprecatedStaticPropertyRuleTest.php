@@ -22,35 +22,35 @@ class AccessDeprecatedStaticPropertyRuleTest extends \PHPStan\Testing\RuleTestCa
 			[__DIR__ . '/data/access-deprecated-static-property.php'],
 			[
 				[
-					'Access to deprecated static property deprecatedFoo of class AccessDeprecatedStaticProperty\Foo.',
+					'Access to deprecated static property $deprecatedFoo of class AccessDeprecatedStaticProperty\Foo.',
 					8,
 				],
 				[
-					'Access to deprecated static property deprecatedFoo of class AccessDeprecatedStaticProperty\Foo.',
+					'Access to deprecated static property $deprecatedFoo of class AccessDeprecatedStaticProperty\Foo.',
 					9,
 				],
 				[
-					'Access to deprecated static property deprecatedFoo of class AccessDeprecatedStaticProperty\Foo.',
+					'Access to deprecated static property $deprecatedFoo of class AccessDeprecatedStaticProperty\Foo.',
 					16,
 				],
 				[
-					'Access to deprecated static property deprecatedFoo of class AccessDeprecatedStaticProperty\Foo.',
+					'Access to deprecated static property $deprecatedFoo of class AccessDeprecatedStaticProperty\Foo.',
 					17,
 				],
 				[
-					'Access to deprecated static property deprecatedFooFromTrait of class AccessDeprecatedStaticProperty\FooTrait.',
+					'Access to deprecated static property $deprecatedFooFromTrait of class AccessDeprecatedStaticProperty\FooTrait.',
 					22,
 				],
 				[
-					'Access to deprecated static property deprecatedFooFromTrait of class AccessDeprecatedStaticProperty\FooTrait.',
+					'Access to deprecated static property $deprecatedFooFromTrait of class AccessDeprecatedStaticProperty\FooTrait.',
 					23,
 				],
 				[
-					'Access to deprecated static property deprecatedFooFromTrait of class AccessDeprecatedStaticProperty\Foo.',
+					'Access to deprecated static property $deprecatedFooFromTrait of class AccessDeprecatedStaticProperty\Foo.',
 					30,
 				],
 				[
-					'Access to deprecated static property deprecatedFooFromTrait of class AccessDeprecatedStaticProperty\Foo.',
+					'Access to deprecated static property $deprecatedFooFromTrait of class AccessDeprecatedStaticProperty\Foo.',
 					31,
 				],
 			]

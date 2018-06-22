@@ -6,9 +6,9 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Identifier;
 use PHPStan\Analyser\Scope;
-use PHPStan\Analyzer\DeprecatedScopeHelper;
 use PHPStan\Broker\Broker;
 use PHPStan\Reflection\DeprecatableReflection;
+use PHPStan\Type\TypeUtils;
 
 class CallToDeprecatedMethodRule implements \PHPStan\Rules\Rule
 {
@@ -43,7 +43,7 @@ class CallToDeprecatedMethodRule implements \PHPStan\Rules\Rule
 
 		$methodName = $node->name->name;
 		$methodCalledOnType = $scope->getType($node->var);
-		$referencedClasses = $methodCalledOnType->getReferencedClasses();
+		$referencedClasses = TypeUtils::getDirectClassNames($methodCalledOnType);
 
 		foreach ($referencedClasses as $referencedClass) {
 			try {

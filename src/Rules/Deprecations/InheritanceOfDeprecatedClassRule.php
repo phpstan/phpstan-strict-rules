@@ -5,7 +5,6 @@ namespace PHPStan\Rules\Deprecations;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use PHPStan\Analyser\Scope;
-use PHPStan\Analyzer\DeprecatedScopeHelper;
 use PHPStan\Broker\Broker;
 
 class InheritanceOfDeprecatedClassRule implements \PHPStan\Rules\Rule
@@ -59,13 +58,13 @@ class InheritanceOfDeprecatedClassRule implements \PHPStan\Rules\Rule
 			if ($parentClass->isDeprecated()) {
 				if (!$class->getNativeReflection()->isAnonymous()) {
 					$errors[] = sprintf(
-						'Inheritance of deprecated class %s in class %s.',
-						$parentClassName,
-						$className
+						'Class %s extends deprecated class %s.',
+						$className,
+						$parentClassName
 					);
 				} else {
 					$errors[] = sprintf(
-						'Inheritance of deprecated class %s in an anonymous class.',
+						'Anonymous class extends deprecated class %s.',
 						$parentClassName
 					);
 				}

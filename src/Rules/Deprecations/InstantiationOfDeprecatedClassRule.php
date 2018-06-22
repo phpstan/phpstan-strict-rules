@@ -6,7 +6,6 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\New_;
 use PhpParser\Node\Name;
 use PHPStan\Analyser\Scope;
-use PHPStan\Analyzer\DeprecatedScopeHelper;
 use PHPStan\Broker\Broker;
 
 class InstantiationOfDeprecatedClassRule implements \PHPStan\Rules\Rule

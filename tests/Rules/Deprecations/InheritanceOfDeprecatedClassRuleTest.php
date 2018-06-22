@@ -18,7 +18,7 @@ class InheritanceOfDeprecatedClassRuleTest extends \PHPStan\Testing\RuleTestCase
 			[__DIR__ . '/data/inheritance-of-deprecated-class-in-classes.php'],
 			[
 				[
-					'Inheritance of deprecated class InheritanceOfDeprecatedClass\DeprecatedFoo in class InheritanceOfDeprecatedClass\Bar2.',
+					'Class InheritanceOfDeprecatedClass\Bar2 extends deprecated class InheritanceOfDeprecatedClass\DeprecatedFoo.',
 					10,
 				],
 			]
@@ -34,7 +34,7 @@ class InheritanceOfDeprecatedClassRuleTest extends \PHPStan\Testing\RuleTestCase
 			[__DIR__ . '/data/inheritance-of-deprecated-class-in-anonymous-classes.php'],
 			[
 				[
-					'Inheritance of deprecated class InheritanceOfDeprecatedClass\DeprecatedFoo in an anonymous class.',
+					'Anonymous class extends deprecated class InheritanceOfDeprecatedClass\DeprecatedFoo.',
 					9,
 				],
 			]

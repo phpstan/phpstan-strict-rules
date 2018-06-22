@@ -18,15 +18,15 @@ class ImplementationOfDeprecatedInterfaceRuleTest extends \PHPStan\Testing\RuleT
 			[__DIR__ . '/data/implementation-of-deprecated-interface-in-classes.php'],
 			[
 				[
-					'Implementation of deprecated interface ImplementationOfDeprecatedInterface\DeprecatedFooable in class ImplementationOfDeprecatedInterface\Foo2.',
+					'Class ImplementationOfDeprecatedInterface\Foo2 implements deprecated interface ImplementationOfDeprecatedInterface\DeprecatedFooable.',
 					10,
 				],
 				[
-					'Implementation of deprecated interface ImplementationOfDeprecatedInterface\DeprecatedFooable in class ImplementationOfDeprecatedInterface\Foo3.',
+					'Class ImplementationOfDeprecatedInterface\Foo3 implements deprecated interface ImplementationOfDeprecatedInterface\DeprecatedFooable.',
 					15,
 				],
 				[
-					'Implementation of deprecated interface ImplementationOfDeprecatedInterface\DeprecatedFooable2 in class ImplementationOfDeprecatedInterface\Foo3.',
+					'Class ImplementationOfDeprecatedInterface\Foo3 implements deprecated interface ImplementationOfDeprecatedInterface\DeprecatedFooable2.',
 					15,
 				],
 			]
@@ -42,15 +42,15 @@ class ImplementationOfDeprecatedInterfaceRuleTest extends \PHPStan\Testing\RuleT
 			[__DIR__ . '/data/implementation-of-deprecated-interface-in-anonymous-classes.php'],
 			[
 				[
-					'Implementation of deprecated interface ImplementationOfDeprecatedInterface\DeprecatedFooable in an anonymous class.',
+					'Anonymous class implements deprecated interface ImplementationOfDeprecatedInterface\DeprecatedFooable.',
 					9,
 				],
 				[
-					'Implementation of deprecated interface ImplementationOfDeprecatedInterface\DeprecatedFooable in an anonymous class.',
+					'Anonymous class implements deprecated interface ImplementationOfDeprecatedInterface\DeprecatedFooable.',
 					13,
 				],
 				[
-					'Implementation of deprecated interface ImplementationOfDeprecatedInterface\DeprecatedFooable2 in an anonymous class.',
+					'Anonymous class implements deprecated interface ImplementationOfDeprecatedInterface\DeprecatedFooable2.',
 					13,
 				],
 			]

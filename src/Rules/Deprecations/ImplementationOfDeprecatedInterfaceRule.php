@@ -55,13 +55,13 @@ class ImplementationOfDeprecatedInterfaceRule implements \PHPStan\Rules\Rule
 				if ($interface->isDeprecated()) {
 					if (!$class->getNativeReflection()->isAnonymous()) {
 						$errors[] = sprintf(
-							'Implementation of deprecated interface %s in class %s.',
-							$interfaceName,
-							$className
+							'Class %s implements deprecated interface %s.',
+							$className,
+							$interfaceName
 						);
 					} else {
 						$errors[] = sprintf(
-							'Implementation of deprecated interface %s in an anonymous class.',
+							'Anonymous class implements deprecated interface %s.',
 							$interfaceName
 						);
 					}
