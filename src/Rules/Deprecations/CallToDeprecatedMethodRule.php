@@ -4,6 +4,7 @@ namespace PHPStan\Rules\Deprecations;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
+use PhpParser\Node\Identifier;
 use PHPStan\Analyser\Scope;
 use PHPStan\Analyzer\DeprecatedScopeHelper;
 use PHPStan\Broker\Broker;
@@ -36,17 +37,18 @@ class CallToDeprecatedMethodRule implements \PHPStan\Rules\Rule
 			return [];
 		}
 
-		if (!is_string($node->name)) {
+		if (!$node->name instanceof Identifier) {
 			return [];
 		}
 
+		$methodName = $node->name->name;
 		$methodCalledOnType = $scope->getType($node->var);
 		$referencedClasses = $methodCalledOnType->getReferencedClasses();
 
 		foreach ($referencedClasses as $referencedClass) {
 			try {
 				$classReflection = $this->broker->getClass($referencedClass);
-				$methodReflection = $classReflection->getMethod($node->name, $scope);
+				$methodReflection = $classReflection->getMethod($methodName, $scope);
 
 				if (!$methodReflection instanceof DeprecatableReflection) {
 					continue;

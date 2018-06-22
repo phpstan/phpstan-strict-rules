@@ -4,6 +4,7 @@ namespace PHPStan\Rules\Deprecations;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\PropertyFetch;
+use PhpParser\Node\Identifier;
 use PHPStan\Analyser\Scope;
 use PHPStan\Analyzer\DeprecatedScopeHelper;
 use PHPStan\Broker\Broker;
@@ -36,17 +37,18 @@ class AccessDeprecatedPropertyRule implements \PHPStan\Rules\Rule
 			return [];
 		}
 
-		if (!is_string($node->name)) {
+		if (!$node->name instanceof Identifier) {
 			return [];
 		}
 
+		$propertyName = $node->name->name;
 		$propertyAccessedOnType = $scope->getType($node->var);
 		$referencedClasses = $propertyAccessedOnType->getReferencedClasses();
 
 		foreach ($referencedClasses as $referencedClass) {
 			try {
 				$classReflection = $this->broker->getClass($referencedClass);
-				$propertyReflection = $classReflection->getProperty($node->name, $scope);
+				$propertyReflection = $classReflection->getProperty($propertyName, $scope);
 
 				if (!$propertyReflection instanceof DeprecatableReflection) {
 					continue;
@@ -55,7 +57,7 @@ class AccessDeprecatedPropertyRule implements \PHPStan\Rules\Rule
 				if ($propertyReflection->isDeprecated()) {
 					return [sprintf(
 						'Access to deprecated property %s of class %s.',
-						$node->name,
+						$propertyName,
 						$propertyReflection->getDeclaringClass()->getName()
 					)];
 				}

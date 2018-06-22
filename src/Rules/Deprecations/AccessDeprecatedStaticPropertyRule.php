@@ -4,12 +4,14 @@ namespace PHPStan\Rules\Deprecations;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\StaticPropertyFetch;
+use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
 use PHPStan\Analyser\Scope;
 use PHPStan\Analyzer\DeprecatedScopeHelper;
 use PHPStan\Broker\Broker;
 use PHPStan\Reflection\DeprecatableReflection;
 use PHPStan\Rules\RuleLevelHelper;
+use PHPStan\Type\Type;
 
 class AccessDeprecatedStaticPropertyRule implements \PHPStan\Rules\Rule
 {
@@ -42,11 +44,11 @@ class AccessDeprecatedStaticPropertyRule implements \PHPStan\Rules\Rule
 			return [];
 		}
 
-		if (!is_string($node->name)) {
+		if (!$node->name instanceof Identifier) {
 			return [];
 		}
 
-		$propertyName = $node->name;
+		$propertyName = $node->name->name;
 		$referredClasses = [];
 
 		if ($node->class instanceof Name) {
@@ -55,7 +57,10 @@ class AccessDeprecatedStaticPropertyRule implements \PHPStan\Rules\Rule
 			$classTypeResult = $this->ruleLevelHelper->findTypeToCheck(
 				$scope,
 				$node->class,
-				'%s' // We don't care about the error message
+				'', // We don't care about the error message
+				function (Type $type) use ($propertyName) {
+					return $type->canAccessProperties()->yes() && $type->hasProperty($propertyName);
+				}
 			);
 
 			$referredClasses = $classTypeResult->getReferencedClasses();
@@ -66,15 +71,15 @@ class AccessDeprecatedStaticPropertyRule implements \PHPStan\Rules\Rule
 				$class = $this->broker->getClass($referredClass);
 				$property = $class->getProperty($propertyName, $scope);
 			} catch (\PHPStan\Broker\ClassNotFoundException $e) {
-				return [];
+				continue;
 			} catch (\PHPStan\Reflection\MissingPropertyFromReflectionException $e) {
-				return [];
+				continue;
 			}
 
 			if ($property instanceof DeprecatableReflection && $property->isDeprecated()) {
 				return [sprintf(
 					'Access to deprecated static property %s of class %s.',
-					$node->name,
+					$propertyName,
 					$referredClass
 				)];
 			}

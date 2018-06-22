@@ -4,6 +4,7 @@ namespace PHPStan\Rules\Deprecations;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\StaticCall;
+use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
 use PHPStan\Analyser\Scope;
 use PHPStan\Analyzer\DeprecatedScopeHelper;
@@ -38,9 +39,11 @@ class CallToDeprecatedStaticMethodRule implements \PHPStan\Rules\Rule
 			return [];
 		}
 
-		if (!is_string($node->name)) {
+		if (!$node->name instanceof Identifier) {
 			return [];
 		}
+
+		$methodName = $node->name->name;
 
 		if (!$node->class instanceof Name) {
 			return [];
@@ -54,7 +57,7 @@ class CallToDeprecatedStaticMethodRule implements \PHPStan\Rules\Rule
 		}
 
 		try {
-			$methodReflection = $class->getMethod($node->name, $scope);
+			$methodReflection = $class->getMethod($methodName, $scope);
 		} catch (\PHPStan\Reflection\MissingMethodFromReflectionException $e) {
 			return [];
 		}
