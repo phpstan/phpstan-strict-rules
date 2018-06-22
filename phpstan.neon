@@ -9,7 +9,7 @@ parameters:
 
 services:
 	scopeIsInClass:
-		class: PHPStan\Build\ScopeIsInClassTypeSpecifyingExtension
+		class: PHPStan\Internal\ScopeIsInClassTypeSpecifyingExtension
 		arguments:
 			isInMethodName: isInClass
 			removeNullMethodName: getClassReflection
@@ -17,7 +17,7 @@ services:
 			- phpstan.typeSpecifier.methodTypeSpecifyingExtension
 
 	scopeIsInTrait:
-		class: PHPStan\Build\ScopeIsInClassTypeSpecifyingExtension
+		class: PHPStan\Internal\ScopeIsInClassTypeSpecifyingExtension
 		arguments:
 			isInMethodName: isInTrait
 			removeNullMethodName: getTraitReflection
