@@ -21,6 +21,7 @@
 * Always true `instanceof`, type-checking `is_*` functions and strict comparisons `===`/`!==`. These checks can be turned off by setting `checkAlwaysTrueInstanceof`/`checkAlwaysTrueCheckTypeFunctionCall`/`checkAlwaysTrueStrictComparison` to false.
 * Correct case for referenced and called function names.
 * Correct case for inherited and implemented method names.
+* Disallows the usage of deprecated code.
 
 Additional rules are coming in subsequent releases!
 
