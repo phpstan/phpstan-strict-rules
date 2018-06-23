@@ -2,13 +2,17 @@
 
 namespace PHPStan\Rules\Deprecations;
 
+use PHPStan\Rules\RuleLevelHelper;
+
 class FetchingClassConstOfDeprecatedClassRuleTest extends \PHPStan\Testing\RuleTestCase
 {
 
 	protected function getRule(): \PHPStan\Rules\Rule
 	{
 		$broker = $this->createBroker();
-		return new FetchingClassConstOfDeprecatedClassRule($broker);
+		$ruleLevelHelper = new RuleLevelHelper($this->createBroker(), true, false, true);
+
+		return new FetchingClassConstOfDeprecatedClassRule($broker, $ruleLevelHelper);
 	}
 
 	public function testFetchingClassConstOfDeprecatedClass(): void
@@ -18,8 +22,20 @@ class FetchingClassConstOfDeprecatedClassRuleTest extends \PHPStan\Testing\RuleT
 			[__DIR__ . '/data/fetching-class-const-of-deprecated-class.php'],
 			[
 				[
-					'Fetching class constant of deprecated class FetchingClassConstOfDeprecatedClass\DeprecatedFoo.',
+					'Fetching class constant class of deprecated class FetchingClassConstOfDeprecatedClass\DeprecatedFoo.',
 					6,
+				],
+				[
+					'Fetching deprecated class constant DEPRECATED_FOO of class FetchingClassConstOfDeprecatedClass\Foo.',
+					9,
+				],
+				[
+					'Fetching class constant class of deprecated class FetchingClassConstOfDeprecatedClass\DeprecatedFoo.',
+					11,
+				],
+				[
+					'Fetching class constant class of deprecated class FetchingClassConstOfDeprecatedClass\DeprecatedFoo.',
+					12,
 				],
 			]
 		);

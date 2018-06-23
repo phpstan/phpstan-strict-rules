@@ -5,6 +5,12 @@ namespace FetchingClassConstOfDeprecatedClass;
 Foo::class;
 DeprecatedFoo::class;
 
+Foo::FOO;
+Foo::DEPRECATED_FOO;
+
+DeprecatedFoo::class;
+DeprecatedFoo::class;
+
 /**
  * @deprecated
  */

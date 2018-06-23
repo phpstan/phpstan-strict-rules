@@ -8,8 +8,10 @@ use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
 use PHPStan\Analyser\Scope;
 use PHPStan\Broker\Broker;
-use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\DeprecatableReflection;
+use PHPStan\Rules\RuleLevelHelper;
+use PHPStan\Type\ErrorType;
+use PHPStan\Type\Type;
 
 class CallToDeprecatedStaticMethodRule implements \PHPStan\Rules\Rule
 {
@@ -17,9 +19,13 @@ class CallToDeprecatedStaticMethodRule implements \PHPStan\Rules\Rule
 	/** @var Broker */
 	private $broker;
 
-	public function __construct(Broker $broker)
+	/** @var RuleLevelHelper */
+	private $ruleLevelHelper;
+
+	public function __construct(Broker $broker, RuleLevelHelper $ruleLevelHelper)
 	{
 		$this->broker = $broker;
+		$this->ruleLevelHelper = $ruleLevelHelper;
 	}
 
 	public function getNodeType(): string
@@ -43,35 +49,51 @@ class CallToDeprecatedStaticMethodRule implements \PHPStan\Rules\Rule
 		}
 
 		$methodName = $node->name->name;
+		$referencedClasses = [];
 
-		if (!$node->class instanceof Name) {
-			return [];
-		}
+		if ($node->class instanceof Name) {
+			$referencedClasses[] = $scope->resolveName($node->class);
+		} else {
+			$classTypeResult = $this->ruleLevelHelper->findTypeToCheck(
+				$scope,
+				$node->class,
+				'', // We don't care about the error message
+				function (Type $type) use ($methodName) {
+					return $type->canCallMethods()->yes() && $type->hasMethod($methodName);
+				}
+			);
 
-		$className = (string) $node->class;
-		$class = $this->getClassWithClassName($className, $scope);
+			if ($classTypeResult->getType() instanceof ErrorType) {
+				return [];
+			}
 
-		if ($class === null) {
-			return [];
-		}
-
-		try {
-			$methodReflection = $class->getMethod($methodName, $scope);
-		} catch (\PHPStan\Reflection\MissingMethodFromReflectionException $e) {
-			return [];
+			$referencedClasses = $classTypeResult->getReferencedClasses();
 		}
 
 		$errors = [];
 
-		if ($class->isDeprecated()) {
-			$errors[] = sprintf(
-				'Call to method %s() of deprecated class %s.',
-				$methodReflection->getName(),
-				$methodReflection->getDeclaringClass()->getName()
-			);
-		}
+		foreach ($referencedClasses as $referencedClass) {
+			try {
+				$class = $this->broker->getClass($referencedClass);
+				$methodReflection = $class->getMethod($methodName, $scope);
+			} catch (\PHPStan\Broker\ClassNotFoundException $e) {
+				continue;
+			} catch (\PHPStan\Reflection\MissingMethodFromReflectionException $e) {
+				continue;
+			}
 
-		if ($methodReflection instanceof DeprecatableReflection && $methodReflection->isDeprecated()) {
+			if ($class->isDeprecated()) {
+				$errors[] = sprintf(
+					'Call to method %s() of deprecated class %s.',
+					$methodReflection->getName(),
+					$methodReflection->getDeclaringClass()->getName()
+				);
+			}
+
+			if (!$methodReflection instanceof DeprecatableReflection || !$methodReflection->isDeprecated()) {
+				continue;
+			}
+
 			$errors[] = sprintf(
 				'Call to deprecated method %s() of class %s.',
 				$methodReflection->getName(),
@@ -80,28 +102,6 @@ class CallToDeprecatedStaticMethodRule implements \PHPStan\Rules\Rule
 		}
 
 		return $errors;
-	}
-
-	private function getClassWithClassName(string $className, Scope $scope): ?ClassReflection
-	{
-		if ($className === 'parent') {
-			if (!$scope->isInClass()) {
-				return null;
-			}
-
-			$class = $scope->getClassReflection();
-			$class = $class->getParentClass();
-
-			return $class !== false
-				? $class
-				: null;
-		}
-
-		try {
-			return $this->broker->getClass($className);
-		} catch (\PHPStan\Broker\ClassNotFoundException $e) {
-			return null;
-		}
 	}
 
 }

@@ -5,8 +5,11 @@ namespace PHPStan\Rules\Deprecations;
 use PhpParser\Node;
 use PhpParser\Node\Expr\New_;
 use PhpParser\Node\Name;
+use PhpParser\Node\Stmt\Class_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Broker\Broker;
+use PHPStan\Rules\RuleLevelHelper;
+use PHPStan\Type\ErrorType;
 
 class InstantiationOfDeprecatedClassRule implements \PHPStan\Rules\Rule
 {
@@ -14,9 +17,13 @@ class InstantiationOfDeprecatedClassRule implements \PHPStan\Rules\Rule
 	/** @var Broker */
 	private $broker;
 
-	public function __construct(Broker $broker)
+	/** @var RuleLevelHelper */
+	private $ruleLevelHelper;
+
+	public function __construct(Broker $broker, RuleLevelHelper $ruleLevelHelper)
 	{
 		$this->broker = $broker;
+		$this->ruleLevelHelper = $ruleLevelHelper;
 	}
 
 	public function getNodeType(): string
@@ -35,26 +42,49 @@ class InstantiationOfDeprecatedClassRule implements \PHPStan\Rules\Rule
 			return [];
 		}
 
-		if (!$node->class instanceof Name) {
-			return [];
+		$referencedClasses = [];
+
+		if ($node->class instanceof Name) {
+			$referencedClasses[] = $scope->resolveName($node->class);
+		} elseif ($node->class instanceof Class_) {
+			$referencedClasses[] = $scope->resolveName($node->class->namespacedName);
+		} else {
+			$classTypeResult = $this->ruleLevelHelper->findTypeToCheck(
+				$scope,
+				$node->class,
+				'', // We don't care about the error message
+				function () {
+					return true;
+				}
+			);
+
+			if ($classTypeResult->getType() instanceof ErrorType) {
+				return [];
+			}
+
+			$referencedClasses = $classTypeResult->getReferencedClasses();
 		}
 
-		$className = (string) $node->class;
+		$errors = [];
 
-		try {
-			$class = $this->broker->getClass($className);
-		} catch (\PHPStan\Broker\ClassNotFoundException $e) {
-			return [];
+		foreach ($referencedClasses as $referencedClass) {
+			try {
+				$class = $this->broker->getClass($referencedClass);
+			} catch (\PHPStan\Broker\ClassNotFoundException $e) {
+				continue;
+			}
+
+			if (!$class->isDeprecated()) {
+				continue;
+			}
+
+			$errors[] = sprintf(
+				'Instantiation of deprecated class %s.',
+				$referencedClass
+			);
 		}
 
-		if (!$class->isDeprecated()) {
-			return [];
-		}
-
-		return [sprintf(
-			'Instantiation of deprecated class %s.',
-			$className
-		)];
+		return $errors;
 	}
 
 }

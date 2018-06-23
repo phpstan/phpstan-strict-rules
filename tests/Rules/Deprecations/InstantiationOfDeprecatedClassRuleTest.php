@@ -2,13 +2,17 @@
 
 namespace PHPStan\Rules\Deprecations;
 
+use PHPStan\Rules\RuleLevelHelper;
+
 class InstantiationOfDeprecatedClassRuleTest extends \PHPStan\Testing\RuleTestCase
 {
 
 	protected function getRule(): \PHPStan\Rules\Rule
 	{
 		$broker = $this->createBroker();
-		return new InstantiationOfDeprecatedClassRule($broker);
+		$ruleLevelHelper = new RuleLevelHelper($this->createBroker(), true, false, true);
+
+		return new InstantiationOfDeprecatedClassRule($broker, $ruleLevelHelper);
 	}
 
 	public function testInstantiationOfDeprecatedClass(): void
