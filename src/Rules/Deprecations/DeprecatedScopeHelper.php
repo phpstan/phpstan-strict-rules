@@ -15,6 +15,11 @@ class DeprecatedScopeHelper
 			return true;
 		}
 
+		$trait = $scope->getTraitReflection();
+		if ($trait !== null && $trait->isDeprecated()) {
+			return true;
+		}
+
 		$function = $scope->getFunction();
 		if ($function instanceof DeprecatableReflection && $function->isDeprecated()) {
 			return true;
