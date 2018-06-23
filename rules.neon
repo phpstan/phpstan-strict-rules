@@ -20,6 +20,7 @@ rules:
 	- PHPStan\Rules\Deprecations\FetchingClassConstOfDeprecatedClassRule
 	- PHPStan\Rules\Deprecations\ImplementationOfDeprecatedInterfaceRule
 	- PHPStan\Rules\Deprecations\InheritanceOfDeprecatedClassRule
+	- PHPStan\Rules\Deprecations\InheritanceOfDeprecatedInterfaceRule
 	- PHPStan\Rules\Deprecations\InstantiationOfDeprecatedClassRule
 	- PHPStan\Rules\Deprecations\UsageOfDeprecatedTraitRule
 	- PHPStan\Rules\DisallowedConstructs\DisallowedEmptyRule
