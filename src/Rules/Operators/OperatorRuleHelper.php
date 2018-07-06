@@ -65,7 +65,12 @@ class OperatorRuleHelper
 			return true;
 		}
 
-		return $acceptedType->isSuperTypeOf($type)->yes();
+		$isSuperType = $acceptedType->isSuperTypeOf($type);
+		if ($type instanceof \PHPStan\Type\BenevolentUnionType) {
+			return !$isSuperType->no();
+		}
+
+		return $isSuperType->yes();
 	}
 
 }

@@ -36,6 +36,10 @@ class OperandsInArithmeticAdditionRuleTest extends \PHPStan\Testing\RuleTestCase
 				'Only numeric types are allowed in +, string given on the right side.',
 				29,
 			],
+			[
+				'Only numeric types are allowed in +, (array<int, string>|false) given on the left side.',
+				110,
+			],
 		]);
 	}
 

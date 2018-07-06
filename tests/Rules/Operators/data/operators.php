@@ -101,3 +101,11 @@ function ($mixed, int $a, string $b) {
 	$mixed + $b;
 	$b + $mixed;
 };
+
+function (array $array, int $int, $mixed) {
+	foreach ($array as $i => $val) {
+		$i + $int;
+	}
+
+	explode($mixed, $mixed) + $int;
+};
