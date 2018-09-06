@@ -12,7 +12,7 @@ namespace
 		$closure = function($a, $b, $c) {
 
 		};
-		
+
 		return false;
 	}
 
