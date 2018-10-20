@@ -19,7 +19,7 @@ class OperandsInArithmeticMultiplicationRuleTest extends \PHPStan\Testing\RuleTe
 
 	public function testRule(): void
 	{
-		$this->analyse([__DIR__ . '/data/operators.php'], [
+		$this->analyse([__DIR__ . '/data/arithmetic-operators.php'], [
 			[
 				'Only numeric types are allowed in *, string given on the right side.',
 				51,

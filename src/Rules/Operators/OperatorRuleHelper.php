@@ -9,6 +9,7 @@ use PHPStan\Type\ErrorType;
 use PHPStan\Type\FloatType;
 use PHPStan\Type\IntegerType;
 use PHPStan\Type\MixedType;
+use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 use PHPStan\Type\UnionType;
 
@@ -48,9 +49,53 @@ class OperatorRuleHelper
 		return $this->isSubtypeOfNumber($scope, $expr);
 	}
 
+	public function isValidForLooseComparisonOperation(Scope $scope, Expr $expr): bool
+	{
+		$type = $scope->getType($expr);
+		if ($type instanceof MixedType) {
+			return true;
+		}
+
+		// already reported by PHPStan core
+		if ($type->toNumber() instanceof ErrorType) {
+			return true;
+		}
+
+		return $this->isSubtypeOfNumberOrDateTime($scope, $expr);
+	}
+
 	private function isSubtypeOfNumber(Scope $scope, Expr $expr): bool
 	{
 		$acceptedType = new UnionType([new IntegerType(), new FloatType()]);
+
+		$type = $this->ruleLevelHelper->findTypeToCheck(
+			$scope,
+			$expr,
+			'',
+			function (Type $type) use ($acceptedType): bool {
+				return $acceptedType->isSuperTypeOf($type)->yes();
+			}
+		)->getType();
+
+		if ($type instanceof ErrorType) {
+			return true;
+		}
+
+		$isSuperType = $acceptedType->isSuperTypeOf($type);
+		if ($type instanceof \PHPStan\Type\BenevolentUnionType) {
+			return !$isSuperType->no();
+		}
+
+		return $isSuperType->yes();
+	}
+
+	private function isSubtypeOfNumberOrDateTime(Scope $scope, Expr $expr): bool
+	{
+		$acceptedType = new UnionType([
+			new IntegerType(),
+			new FloatType(),
+			new ObjectType('DateTimeInterface'),
+		]);
 
 		$type = $this->ruleLevelHelper->findTypeToCheck(
 			$scope,
