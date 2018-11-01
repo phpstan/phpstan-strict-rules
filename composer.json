@@ -6,12 +6,12 @@
 	"prefer-stable": true,
 	"extra": {
 		"branch-alias": {
-			"dev-master": "0.10-dev"
+			"dev-master": "0.11-dev"
 		}
 	},
 	"require": {
 		"php": "~7.1",
-		"phpstan/phpstan": "^0.10",
+		"phpstan/phpstan": "^0.11",
 		"nikic/php-parser": "^4.0"
 	},
 	"require-dev": {
@@ -19,7 +19,7 @@
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
 		"jakub-onderka/php-parallel-lint": "^1.0",
 		"phing/phing": "^2.16.0",
-		"phpstan/phpstan-phpunit": "^0.10",
+		"phpstan/phpstan-phpunit": "^0.11",
 		"phpunit/phpunit": "^7.0",
 		"slevomat/coding-standard": "^4.5.2"
 	},
