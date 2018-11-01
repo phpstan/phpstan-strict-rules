@@ -12,6 +12,7 @@ rules:
 	- PHPStan\Rules\BooleansInConditions\BooleanInElseIfConditionRule
 	- PHPStan\Rules\BooleansInConditions\BooleanInIfConditionRule
 	- PHPStan\Rules\BooleansInConditions\BooleanInTernaryOperatorRule
+	- PHPStan\Rules\Cast\UselessCastRule
 	- PHPStan\Rules\DisallowedConstructs\DisallowedEmptyRule
 	- PHPStan\Rules\DisallowedConstructs\DisallowedImplicitArrayCreationRule
 	- PHPStan\Rules\Functions\MissingFunctionParameterTypehintRule
