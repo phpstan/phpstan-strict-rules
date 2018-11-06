@@ -14,8 +14,8 @@ abstract class OperandInArithmeticIncrementOrDecrementRuleTest extends \PHPStan\
 		return $this->createRule(
 			new OperatorRuleHelper(
 				new RuleLevelHelper($this->createBroker(), true, false, true),
-                $this->createMock(TypeStringResolver::class),
-                ''
+				$this->createMock(TypeStringResolver::class),
+				''
 			)
 		);
 	}

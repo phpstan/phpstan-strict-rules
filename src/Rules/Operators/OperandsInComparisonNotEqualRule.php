@@ -2,8 +2,6 @@
 
 namespace PHPStan\Rules\Operators;
 
-use PHPStan\Type\ArrayType;
-use PHPStan\Type\MixedType;
 use PHPStan\Type\VerbosityLevel;
 
 class OperandsInComparisonNotEqualRule implements \PHPStan\Rules\Rule
@@ -31,24 +29,19 @@ class OperandsInComparisonNotEqualRule implements \PHPStan\Rules\Rule
 	{
 		$leftType = $scope->getType($node->left);
 		$rightType = $scope->getType($node->right);
-		$mixedArrayType = new ArrayType(new MixedType(), new MixedType());
-
-		if ($mixedArrayType->isSuperTypeOf($leftType)->yes() && $mixedArrayType->isSuperTypeOf($rightType)->yes()) {
-			return [];
-		}
 
 		$messages = [];
 		if (!$this->helper->isValidForLooseComparisonOperation($scope, $node->left)) {
 			$messages[] = sprintf(
 				'Only %s is allowed in !=, %s given on the left side.',
-                $this->helper->getAllowedLooseComparison(),
+				$this->helper->getAllowedLooseComparison(),
 				$leftType->describe(VerbosityLevel::typeOnly())
 			);
 		}
 		if (!$this->helper->isValidForLooseComparisonOperation($scope, $node->right)) {
 			$messages[] = sprintf(
 				'Only %s is allowed in !=, %s given on the right side.',
-                $this->helper->getAllowedLooseComparison(),
+				$this->helper->getAllowedLooseComparison(),
 				$rightType->describe(VerbosityLevel::typeOnly())
 			);
 		}

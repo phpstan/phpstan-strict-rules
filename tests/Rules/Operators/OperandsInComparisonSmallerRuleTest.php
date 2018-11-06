@@ -17,12 +17,12 @@ class OperandsInComparisonSmallerRuleTest extends \PHPStan\Testing\RuleTestCase
 		return new OperandsInComparisonSmallerRule(
 			new OperatorRuleHelper(
 				new RuleLevelHelper($this->createBroker(), true, false, true),
-                new TypeStringResolver(
-                    new Lexer(),
-                    new TypeParser(),
-                    new TypeNodeResolver([])
-                ),
-                'int|float|DateTimeInterface'
+				new TypeStringResolver(
+					new Lexer(),
+					new TypeParser(),
+					new TypeNodeResolver([])
+				),
+				'int|float|DateTimeInterface'
 			)
 		);
 	}

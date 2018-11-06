@@ -14,8 +14,8 @@ class OperandsInArithmeticDivisionRuleTest extends \PHPStan\Testing\RuleTestCase
 		return new OperandsInArithmeticDivisionRule(
 			new OperatorRuleHelper(
 				new RuleLevelHelper($this->createBroker(), true, false, true),
-                $this->createMock(TypeStringResolver::class),
-                ''
+				$this->createMock(TypeStringResolver::class),
+				''
 			)
 		);
 	}

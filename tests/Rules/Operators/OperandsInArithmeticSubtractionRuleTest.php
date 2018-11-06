@@ -14,8 +14,8 @@ class OperandsInArithmeticSubtractionRuleTest extends \PHPStan\Testing\RuleTestC
 		return new OperandsInArithmeticSubtractionRule(
 			new OperatorRuleHelper(
 				new RuleLevelHelper($this->createBroker(), true, false, true),
-                $this->createMock(TypeStringResolver::class),
-                ''
+				$this->createMock(TypeStringResolver::class),
+				''
 			)
 		);
 	}

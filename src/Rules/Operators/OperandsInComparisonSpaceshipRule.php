@@ -2,8 +2,6 @@
 
 namespace PHPStan\Rules\Operators;
 
-use PHPStan\Type\ArrayType;
-use PHPStan\Type\MixedType;
 use PHPStan\Type\VerbosityLevel;
 
 class OperandsInComparisonSpaceshipRule implements \PHPStan\Rules\Rule
@@ -31,11 +29,6 @@ class OperandsInComparisonSpaceshipRule implements \PHPStan\Rules\Rule
 	{
 		$leftType = $scope->getType($node->left);
 		$rightType = $scope->getType($node->right);
-		$mixedArrayType = new ArrayType(new MixedType(), new MixedType());
-
-		if ($mixedArrayType->isSuperTypeOf($leftType)->yes() && $mixedArrayType->isSuperTypeOf($rightType)->yes()) {
-			return [];
-		}
 
 		$messages = [];
 		if (!$this->helper->isValidForLooseComparisonOperation($scope, $node->left)) {
@@ -48,7 +41,7 @@ class OperandsInComparisonSpaceshipRule implements \PHPStan\Rules\Rule
 		if (!$this->helper->isValidForLooseComparisonOperation($scope, $node->right)) {
 			$messages[] = sprintf(
 				'Only %s is allowed in <=>, %s given on the right side.',
-                $this->helper->getAllowedLooseComparison(),
+				$this->helper->getAllowedLooseComparison(),
 				$rightType->describe(VerbosityLevel::typeOnly())
 			);
 		}

@@ -19,17 +19,18 @@ class OperatorRuleHelper
 	/** @var \PHPStan\Rules\RuleLevelHelper */
 	private $ruleLevelHelper;
 
-    /** @var string */
-    private $allowedLooseComparison;
+	/** @var string */
+	private $allowedLooseComparison;
 
 	/** @var Type */
 	private $looseComparisonAllowedType;
 
 	public function __construct(
-	    RuleLevelHelper $ruleLevelHelper,
-        TypeStringResolver $typeStringResolver,
-        string $allowedLooseComparison
-    ) {
+		RuleLevelHelper $ruleLevelHelper,
+		TypeStringResolver $typeStringResolver,
+		string $allowedLooseComparison
+	)
+	{
 		$this->ruleLevelHelper = $ruleLevelHelper;
 
 		$this->allowedLooseComparison = $allowedLooseComparison;
@@ -37,9 +38,9 @@ class OperatorRuleHelper
 	}
 
 	public function getAllowedLooseComparison(): string
-    {
-        return $this->allowedLooseComparison;
-    }
+	{
+		return $this->allowedLooseComparison;
+	}
 
 	public function isValidForArithmeticOperation(Scope $scope, Expr $expr): bool
 	{
@@ -103,4 +104,5 @@ class OperatorRuleHelper
 
 		return $isSuperType->yes();
 	}
+
 }

@@ -14,8 +14,8 @@ class OperandsInArithmeticMultiplicationRuleTest extends \PHPStan\Testing\RuleTe
 		return new OperandsInArithmeticMultiplicationRule(
 			new OperatorRuleHelper(
 				new RuleLevelHelper($this->createBroker(), true, false, true),
-                $this->createMock(TypeStringResolver::class),
-                ''
+				$this->createMock(TypeStringResolver::class),
+				''
 			)
 		);
 	}

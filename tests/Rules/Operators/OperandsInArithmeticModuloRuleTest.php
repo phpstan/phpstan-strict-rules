@@ -14,8 +14,8 @@ class OperandsInArithmeticModuloRuleTest extends \PHPStan\Testing\RuleTestCase
 		return new OperandsInArithmeticModuloRule(
 			new OperatorRuleHelper(
 				new RuleLevelHelper($this->createBroker(), true, false, true),
-                $this->createMock(TypeStringResolver::class),
-                ''
+				$this->createMock(TypeStringResolver::class),
+				''
 			)
 		);
 	}
