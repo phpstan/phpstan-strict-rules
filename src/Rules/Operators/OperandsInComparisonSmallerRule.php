@@ -40,13 +40,15 @@ class OperandsInComparisonSmallerRule implements \PHPStan\Rules\Rule
 		$messages = [];
 		if (!$this->helper->isValidForLooseComparisonOperation($scope, $node->left)) {
 			$messages[] = sprintf(
-				'Only numeric types and DateTime objects are allowed in <, %s given on the left side.',
+				'Only %s is allowed in <, %s given on the left side.',
+                $this->helper->getAllowedLooseComparison(),
 				$leftType->describe(VerbosityLevel::typeOnly())
 			);
 		}
 		if (!$this->helper->isValidForLooseComparisonOperation($scope, $node->right)) {
 			$messages[] = sprintf(
-				'Only numeric types and DateTime objects are allowed in <, %s given on the right side.',
+				'Only %s is allowed in <, %s given on the right side.',
+                $this->helper->getAllowedLooseComparison(),
 				$rightType->describe(VerbosityLevel::typeOnly())
 			);
 		}

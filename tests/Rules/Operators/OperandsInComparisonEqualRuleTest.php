@@ -2,6 +2,10 @@
 
 namespace PHPStan\Rules\Operators;
 
+use PHPStan\PhpDoc\TypeNodeResolver;
+use PHPStan\PhpDoc\TypeStringResolver;
+use PHPStan\PhpDocParser\Lexer\Lexer;
+use PHPStan\PhpDocParser\Parser\TypeParser;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleLevelHelper;
 
@@ -12,7 +16,13 @@ class OperandsInComparisonEqualRuleTest extends \PHPStan\Testing\RuleTestCase
 	{
 		return new OperandsInComparisonEqualRule(
 			new OperatorRuleHelper(
-				new RuleLevelHelper($this->createBroker(), true, false, true)
+				new RuleLevelHelper($this->createBroker(), true, false, true),
+                new TypeStringResolver(
+                    new Lexer(),
+                    new TypeParser(),
+                    new TypeNodeResolver([])
+                ),
+                'int|float|DateTimeInterface'
 			)
 		);
 	}
@@ -21,20 +31,19 @@ class OperandsInComparisonEqualRuleTest extends \PHPStan\Testing\RuleTestCase
 	{
 		$this->analyse([__DIR__ . '/data/comparison-operators.php'], [
 			[
-				'Only numeric types and DateTime objects are allowed in ==, string given on the right side.',
+				'Only int|float|DateTimeInterface is allowed in ==, string given on the right side.',
 				25,
 			],
 			[
-				'Only numeric types and DateTime objects are allowed in ==, null given on the right side.',
+				'Only int|float|DateTimeInterface is allowed in ==, null given on the right side.',
 				28,
 			],
 			[
-				'Only numeric types and DateTime objects are allowed in ==, null given on the right side.',
+				'Only int|float|DateTimeInterface is allowed in ==, null given on the right side.',
 				34,
 			],
 			[
-				'Only numeric types and DateTime objects are allowed in ==, (array<int, string>|false) given on the '
-					. 'left side.',
+				'Only int|float|DateTimeInterface is allowed in ==, (array<int, string>|false) given on the left side.',
 				148,
 			],
 		]);

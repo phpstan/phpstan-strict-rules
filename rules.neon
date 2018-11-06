@@ -9,6 +9,7 @@ parameters:
 	checkMissingClosureNativeReturnTypehintRule: true
 	reportMaybesInMethodSignatures: true
 	reportStaticMethodSignatures: true
+	allowedLooseComparison: int|float|DateTimeInterface
 
 rules:
 	- PHPStan\Rules\BooleansInConditions\BooleanInBooleanAndRule
@@ -54,9 +55,14 @@ services:
 		class: PHPStan\Rules\BooleansInConditions\BooleanRuleHelper
 	-
 		class: PHPStan\Rules\Operators\OperatorRuleHelper
+<<<<<<< HEAD
 	-
 		class: PHPStan\Rules\VariableVariables\VariablePropertyFetchRule
 		arguments:
 			universalObjectCratesClasses: %universalObjectCratesClasses%
 		tags:
 			- phpstan.rules.rule
+=======
+        arguments:
+            allowedLooseComparison: %allowedLooseComparison%
+>>>>>>> Make the types that are allowed for loose comparison configurable.

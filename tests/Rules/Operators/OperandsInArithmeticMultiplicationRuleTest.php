@@ -2,6 +2,7 @@
 
 namespace PHPStan\Rules\Operators;
 
+use PHPStan\PhpDoc\TypeStringResolver;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleLevelHelper;
 
@@ -12,7 +13,9 @@ class OperandsInArithmeticMultiplicationRuleTest extends \PHPStan\Testing\RuleTe
 	{
 		return new OperandsInArithmeticMultiplicationRule(
 			new OperatorRuleHelper(
-				new RuleLevelHelper($this->createBroker(), true, false, true)
+				new RuleLevelHelper($this->createBroker(), true, false, true),
+                $this->createMock(TypeStringResolver::class),
+                ''
 			)
 		);
 	}
