@@ -508,6 +508,16 @@ parameters:
 			path: tests/Rules/Operators/OperandsInArithmeticSubtractionRuleTest.php
 
 		-
+			message: "#^Class PHPStan\\\\Rules\\\\Operators\\\\OperandsInTernaryOperatorRuleTest extends generic class PHPStan\\\\Testing\\\\RuleTestCase but does not specify its types\\: TRule$#"
+			count: 1
+			path: tests/Rules/Operators/OperandsInTernaryOperatorRuleTest.php
+
+		-
+			message: "#^Method PHPStan\\\\Rules\\\\Operators\\\\OperandsInTernaryOperatorRuleTest\\:\\:getRule\\(\\) return type with generic interface PHPStan\\\\Rules\\\\Rule does not specify its types\\: TNodeType$#"
+			count: 1
+			path: tests/Rules/Operators/OperandsInTernaryOperatorRuleTest.php
+
+		-
 			message: "#^Class PHPStan\\\\Rules\\\\StrictCalls\\\\DynamicCallOnStaticMethodsRuleTest extends generic class PHPStan\\\\Testing\\\\RuleTestCase but does not specify its types\\: TRule$#"
 			count: 1
 			path: tests/Rules/StrictCalls/DynamicCallOnStaticMethodsRuleTest.php
