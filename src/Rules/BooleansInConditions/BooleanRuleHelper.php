@@ -31,7 +31,7 @@ class BooleanRuleHelper
 			$scope,
 			$expr,
 			'',
-			function (Type $type): bool {
+			static function (Type $type): bool {
 				return $type instanceof BooleanType;
 			}
 		);

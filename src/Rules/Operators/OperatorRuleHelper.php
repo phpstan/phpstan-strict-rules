@@ -56,7 +56,7 @@ class OperatorRuleHelper
 			$scope,
 			$expr,
 			'',
-			function (Type $type) use ($acceptedType): bool {
+			static function (Type $type) use ($acceptedType): bool {
 				return $acceptedType->isSuperTypeOf($type)->yes();
 			}
 		)->getType();

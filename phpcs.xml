@@ -1,10 +1,8 @@
 <?xml version="1.0"?>
 <ruleset name="PHPStan strict rules">
 	<rule ref="vendor/consistence/coding-standard/Consistence/ruleset.xml">
-		<exclude name="Squiz.Functions.GlobalFunction.Found"/>
 		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword"/>
 		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation"/>
-		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions"/>
 		<exclude name="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly"/>
 	</rule>
 	<rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses">
@@ -19,24 +17,39 @@
 	</rule>
 	<rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
 		<properties>
-			<property name="usefulAnnotations" type="array" value="
-				@dataProvider,
-				@requires
-			"/>
+			<property name="usefulAnnotations" type="array">
+				<element value="@requires"/>
+				<element value="@dataProvider"/>
+			</property>
 		</properties>
 	</rule>
 	<rule ref="SlevomatCodingStandard.ControlStructures.AssignmentInCondition"/>
 	<rule ref="SlevomatCodingStandard.ControlStructures.DisallowEqualOperators"/>
+	<rule ref="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceOperator"/>
 	<rule ref="SlevomatCodingStandard.ControlStructures.EarlyExit"/>
 	<rule ref="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming"/>
 	<rule ref="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming"/>
-	<!-- <rule ref="SlevomatCodingStandard.ControlStructures.DisallowShortTernaryOperator"/>-->
-	<!-- <rule ref="SlevomatCodingStandard.Namespaces.RequireOneNamespaceInFile"/> -->
-	<!-- <rule ref="SlevomatCodingStandard.PHP.ShortList"/> -->
+	<rule ref="SlevomatCodingStandard.ControlStructures.DisallowShortTernaryOperator"/>
 	<rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
 		<properties>
-			<property name="rootNamespaces" type="array" value="src=>PHPStan,tests=>PHPStan"/>
+			<property name="rootNamespaces" type="array">
+				<element key="src" value="PHPStan"/>
+				<element key="tests" value="PHPStan"/>
+			</property>
 		</properties>
 	</rule>
+	<rule ref="SlevomatCodingStandard.Classes.ModernClassNameReference"/>
+	<rule ref="SlevomatCodingStandard.Functions.StaticClosure"/>
+	<rule ref="SlevomatCodingStandard.Operators.RequireCombinedAssignmentOperator"/>
+	<rule ref="SlevomatCodingStandard.TypeHints.NullTypeHintOnLastPosition"/>
+	<rule ref="SlevomatCodingStandard.Classes.TraitUseDeclaration"/>
+	<rule ref="SlevomatCodingStandard.Classes.TraitUseSpacing"/>
+	<rule ref="SlevomatCodingStandard.Variables.UnusedVariable"/>
+	<rule ref="SlevomatCodingStandard.Variables.UselessVariable"/>
+	<!-- <rule ref="SlevomatCodingStandard.Functions.UnusedParameter"/> -->
+	<rule ref="SlevomatCodingStandard.Functions.UnusedInheritedVariablePassedToClosure"/>
+	<rule ref="SlevomatCodingStandard.Namespaces.UselessAlias"/>
+	<rule ref="SlevomatCodingStandard.PHP.UselessSemicolon"/>
+	<rule ref="SlevomatCodingStandard.PHP.UselessParentheses"/>
 	<exclude-pattern>tests/*/data</exclude-pattern>
 </ruleset>

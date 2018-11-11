@@ -41,7 +41,7 @@ class DynamicCallOnStaticMethodsRule implements \PHPStan\Rules\Rule
 			$scope,
 			$node->var,
 			'',
-			function (Type $type) use ($name): bool {
+			static function (Type $type) use ($name): bool {
 				return $type->canCallMethods()->yes() && $type->hasMethod($name);
 			}
 		)->getType();
