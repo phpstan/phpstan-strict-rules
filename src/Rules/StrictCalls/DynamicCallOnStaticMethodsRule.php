@@ -42,11 +42,11 @@ class DynamicCallOnStaticMethodsRule implements \PHPStan\Rules\Rule
 			$node->var,
 			'',
 			function (Type $type) use ($name): bool {
-				return $type->canCallMethods()->yes() && $type->hasMethod($name);
+				return $type->canCallMethods()->yes() && $type->hasMethod($name)->yes();
 			}
 		)->getType();
 
-		if ($type instanceof ErrorType || !$type->canCallMethods()->yes() || !$type->hasMethod($name)) {
+		if ($type instanceof ErrorType || !$type->canCallMethods()->yes() || !$type->hasMethod($name)->yes()) {
 			return [];
 		}
 
