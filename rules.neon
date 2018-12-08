@@ -4,6 +4,7 @@ parameters:
 	checkAlwaysTrueInstanceof: true
 	checkAlwaysTrueStrictComparison: true
 	checkFunctionNameCase: true
+	reportMaybesInMethodSignatures: true
 
 rules:
 	- PHPStan\Rules\BooleansInConditions\BooleanInBooleanAndRule
