@@ -22,6 +22,7 @@
 * Require parameter and return typehints for functions and methods (either native or phpDocs)
 * Correct case for referenced and called function names.
 * Correct case for inherited and implemented method names.
+* Contravariance for parameter types and covariance for return types in inherited methods
 
 Additional rules are coming in subsequent releases!
 
