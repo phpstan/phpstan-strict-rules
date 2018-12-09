@@ -7,7 +7,7 @@ parameters:
 	excludes_analyse:
 		- */tests/*/data/*
 	ignoreErrors:
-		- '~^Parameter \#1 \$node \(.*\) of method .*Rule::processNode\(\) should be compatible with parameter \$node \(PhpParser\\Node\) of method PHPStan\\Rules\\Rule::processNode\(\)$~'
+		- '~^Parameter \#1 \$node \(.*\) of method .*Rule::processNode\(\) should be contravariant with parameter \$node \(PhpParser\\Node\) of method PHPStan\\Rules\\Rule::processNode\(\)$~'
 
 services:
 	scopeIsInClass:
