@@ -5,6 +5,7 @@ parameters:
 	checkAlwaysTrueStrictComparison: true
 	checkFunctionNameCase: true
 	reportMaybesInMethodSignatures: true
+	reportStaticMethodSignatures: true
 
 rules:
 	- PHPStan\Rules\BooleansInConditions\BooleanInBooleanAndRule
