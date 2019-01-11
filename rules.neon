@@ -36,6 +36,11 @@ rules:
 	- PHPStan\Rules\StrictCalls\DynamicCallOnStaticMethodsRule
 	- PHPStan\Rules\StrictCalls\StrictFunctionCallsRule
 	- PHPStan\Rules\SwitchConditions\MatchingTypeInSwitchCaseConditionRule
+	- PHPStan\Rules\VariableVariables\VariableMethodCallRule
+	- PHPStan\Rules\VariableVariables\VariableStaticMethodCallRule
+	- PHPStan\Rules\VariableVariables\VariableStaticPropertyFetchRule
+	- PHPStan\Rules\VariableVariables\VariablePropertyFetchRule
+	- PHPStan\Rules\VariableVariables\VariableVariablesRule
 
 services:
 	-

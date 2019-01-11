@@ -18,6 +18,7 @@
 * Types in `switch` condition and `case` value must match. PHP compares them loosely by default and that can lead to unexpected results.
 * Statically declared methods are called statically.
 * Disallow `empty()` - it's a very loose comparison (see [manual](https://php.net/empty)), it's recommended to use more strict one.
+* Disallow variable variables (`$$foo`, `$this->$method()` etc.)
 * Always true `instanceof`, type-checking `is_*` functions and strict comparisons `===`/`!==`. These checks can be turned off by setting `checkAlwaysTrueInstanceof`/`checkAlwaysTrueCheckTypeFunctionCall`/`checkAlwaysTrueStrictComparison` to false.
 * Require parameter and return typehints for functions and methods (either native or phpDocs)
 * Correct case for referenced and called function names.
