@@ -1,0 +1,7 @@
+[
+    {
+        "message": "Variable $test might not be defined.",
+        "line": 11,
+        "ignorable": true
+    }
+]

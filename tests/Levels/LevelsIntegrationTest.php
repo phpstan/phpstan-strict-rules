@@ -13,6 +13,7 @@ class LevelsIntegrationTest extends \PHPStan\Testing\LevelsTestCase
 		return [
 			['arithmeticOperators'],
 			['onlyBooleans'],
+			['foreach'],
 		];
 	}
 
