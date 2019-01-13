@@ -34,4 +34,13 @@ class Foo
 		}
 	}
 
+	public function doLorem(array $a, string $b) {
+		foreach ($a as $b => $val) {
+
+		}
+		foreach ($a as $c => $val) {
+
+		}
+	}
+
 }

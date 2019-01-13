@@ -36,6 +36,10 @@ class OverwriteVariablesWithForeachRuleTest extends RuleTestCase
 				'Foreach overwrites $d with its value variable.',
 				32,
 			],
+			[
+				'Foreach overwrites $b with its key variable.',
+				38,
+			],
 		]);
 	}
 
