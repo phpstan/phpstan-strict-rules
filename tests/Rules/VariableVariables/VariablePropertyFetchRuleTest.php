@@ -17,11 +17,11 @@ class VariablePropertyFetchRuleTest extends RuleTestCase
 	{
 		$this->analyse([__DIR__ . '/data/properties.php'], [
 			[
-				'Variable properties are not allowed.',
+				'Variable property access on stdClass.',
 				6,
 			],
 			[
-				'Variable properties are not allowed.',
+				'Variable property access on stdClass.',
 				9,
 			],
 		]);

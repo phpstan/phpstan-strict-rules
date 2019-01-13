@@ -17,7 +17,7 @@ class VariableMethodCallRuleTest extends RuleTestCase
 	{
 		$this->analyse([__DIR__ . '/data/methods.php'], [
 			[
-				'Variable method calls are not allowed.',
+				'Variable method call on stdClass.',
 				7,
 			],
 		]);

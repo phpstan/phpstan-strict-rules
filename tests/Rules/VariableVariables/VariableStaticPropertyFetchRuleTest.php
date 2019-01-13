@@ -17,20 +17,24 @@ class VariableStaticPropertyFetchRuleTest extends RuleTestCase
 	{
 		$this->analyse([__DIR__ . '/data/staticProperties.php'], [
 			[
-				'Variable static properties are not allowed.',
+				'Variable static property access on Foo.',
 				7,
 			],
 			[
-				'Variable static properties are not allowed.',
+				'Variable static property access on Foo.',
 				8,
 			],
 			[
-				'Variable static properties are not allowed.',
+				'Variable static property access on Foo.',
 				10,
 			],
 			[
-				'Variable static properties are not allowed.',
+				'Variable static property access on Foo.',
 				11,
+			],
+			[
+				'Variable static property access on stdClass.',
+				13,
 			],
 		]);
 	}

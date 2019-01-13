@@ -5,6 +5,7 @@ namespace PHPStan\Rules\VariableVariables;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Type\VerbosityLevel;
 
 class VariableStaticMethodCallRule implements Rule
 {
@@ -25,8 +26,17 @@ class VariableStaticMethodCallRule implements Rule
 			return [];
 		}
 
+		if ($node->class instanceof Node\Name) {
+			$methodCalledOn = $scope->resolveName($node->class);
+		} else {
+			$methodCalledOn = $scope->getType($node->class)->describe(VerbosityLevel::typeOnly());
+		}
+
 		return [
-			'Variable static method calls are not allowed.',
+			sprintf(
+				'Variable static method call on %s.',
+				$methodCalledOn
+			),
 		];
 	}
 

@@ -5,6 +5,7 @@ namespace PHPStan\Rules\VariableVariables;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Type\VerbosityLevel;
 
 class VariableMethodCallRule implements Rule
 {
@@ -26,7 +27,10 @@ class VariableMethodCallRule implements Rule
 		}
 
 		return [
-			'Variable method calls are not allowed.',
+			sprintf(
+				'Variable method call on %s.',
+				$scope->getType($node->var)->describe(VerbosityLevel::typeOnly())
+			),
 		];
 	}
 

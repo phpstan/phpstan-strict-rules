@@ -9,4 +9,6 @@ function (stdClass $std) {
 
 	echo Foo::${$bar};
 	Foo::${$bar} = 123;
+
+	$std::$$bar = 123;
 };
