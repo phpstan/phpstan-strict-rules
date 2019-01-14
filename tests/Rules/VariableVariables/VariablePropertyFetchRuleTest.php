@@ -10,19 +10,18 @@ class VariablePropertyFetchRuleTest extends RuleTestCase
 
 	protected function getRule(): Rule
 	{
-		return new VariablePropertyFetchRule();
+		return new VariablePropertyFetchRule($this->createBroker(), [
+			'stdClass',
+			'SimpleXMLElement',
+		]);
 	}
 
 	public function testRule(): void
 	{
 		$this->analyse([__DIR__ . '/data/properties.php'], [
 			[
-				'Variable property access on stdClass.',
-				6,
-			],
-			[
-				'Variable property access on stdClass.',
-				9,
+				'Variable property access on VariablePropertyFetch\Foo.',
+				24,
 			],
 		]);
 	}

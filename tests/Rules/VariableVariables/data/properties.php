@@ -1,10 +1,28 @@
 <?php
 
-function (stdClass $std) {
-	$std->foo = 'test';
-	$foo = 'bar';
-	$std->$foo = 'foo';
+namespace VariablePropertyFetch;
 
-	echo $std->foo;
-	echo $std->$foo;
+use stdClass;
+
+class Foo
+{
+
+}
+
+class Bar extends stdClass
+{
+
+}
+
+function (stdClass $std, Foo $foo, Bar $bar) {
+	$str = 'str';
+
+	$std->foo;
+	$std->$str;
+
+	$foo->foo;
+	$foo->$str;
+
+	$bar->foo;
+	$bar->$str;
 };
