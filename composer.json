@@ -11,8 +11,8 @@
 	},
 	"require": {
 		"php": "~7.1",
-		"phpstan/phpstan": "^0.11",
-		"nikic/php-parser": "^4.0"
+		"nikic/php-parser": "^4.0",
+		"phpstan/phpstan": "^0.11"
 	},
 	"require-dev": {
 		"consistence/coding-standard": "^3.0.1",
@@ -34,5 +34,8 @@
 			"tests/Rules/Functions/data/missing-function-parameter-typehint.php",
 			"tests/Rules/Functions/data/missing-function-return-typehint.php"
 		]
+	},
+	"config": {
+		"sort-packages": true
 	}
 }
