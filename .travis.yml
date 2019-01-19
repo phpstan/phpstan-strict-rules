@@ -8,9 +8,13 @@ php:
   - 7.1
   - 7.2
   - 7.3
-before_script:
+
+before_install:
   - composer self-update
+
+install:
   - composer install
+
 script:
   - vendor/bin/phing
   - >
