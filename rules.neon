@@ -21,6 +21,7 @@ rules:
 	- PHPStan\Rules\ForeachLoop\OverwriteVariablesWithForeachRule
 	- PHPStan\Rules\Functions\MissingFunctionParameterTypehintRule
 	- PHPStan\Rules\Functions\MissingFunctionReturnTypehintRule
+	- PHPStan\Rules\Methods\MissingMethodIterableReturnTypehintRule
 	- PHPStan\Rules\Methods\MissingMethodParameterTypehintRule
 	- PHPStan\Rules\Methods\MissingMethodReturnTypehintRule
 	- PHPStan\Rules\Methods\WrongCaseOfInheritedMethodRule
