@@ -46,36 +46,20 @@ class MissingMethodReturnTypehintRuleTest extends \PHPStan\Testing\RuleTestCase
 				33,
 			],
 			[
-				'Method MissingMethodReturnTypehint\FooTrait::c1() has no return typehint specified.',
+				'Method MissingMethodReturnTypehint\Foo::c1() has no return typehint specified.',
 				42,
 			],
 			[
-				'Method MissingMethodReturnTypehint\FooTrait::c2() has a return type array with no value type specified.',
+				'Method MissingMethodReturnTypehint\Foo::c2() has a return type array with no value type specified.',
 				46,
 			],
 			[
-				'Method MissingMethodReturnTypehint\FooTrait::c3() has a return type iterable with no value type specified.',
+				'Method MissingMethodReturnTypehint\Foo::c3() has a return type iterable with no value type specified.',
 				50,
 			],
 			[
-				'Method MissingMethodReturnTypehint\FooTrait::c4() has a return type ArrayObject with no value type specified.',
-				54,
-			],
-			[
-				'Method MissingMethodReturnTypehint\Foo::c1() has no return typehint specified.',
-				120,
-			],
-			[
-				'Method MissingMethodReturnTypehint\Foo::c2() has a return type array with no value type specified.',
-				124,
-			],
-			[
-				'Method MissingMethodReturnTypehint\Foo::c3() has a return type iterable with no value type specified.',
-				128,
-			],
-			[
 				'Method MissingMethodReturnTypehint\Foo::c4() has a return type ArrayObject with no value type specified.',
-				132,
+				54,
 			],
 		]);
 	}

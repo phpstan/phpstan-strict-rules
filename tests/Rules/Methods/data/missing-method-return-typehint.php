@@ -117,22 +117,6 @@ class Foo extends FooParent implements FooInterface
 	{
 	}
 
-	public function c1($p1)
-	{
-	}
-
-	public function c2($p1): array
-	{
-	}
-
-	public function c3($p1): iterable
-	{
-	}
-
-	public function c4($p1): \ArrayObject
-	{
-	}
-
 }
 
 class SubFoo extends Foo

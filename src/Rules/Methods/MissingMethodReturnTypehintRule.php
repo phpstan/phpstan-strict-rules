@@ -35,6 +35,10 @@ final class MissingMethodReturnTypehintRule implements \PHPStan\Rules\Rule
 
 		$methodReflection = $scope->getFunction();
 
+		if (!$methodReflection instanceof MethodReflection) {
+			throw new \PHPStan\ShouldNotHappenException();
+		}
+
 		$messages = [];
 
 		$message = $this->checkMethodReturnType($methodReflection);
