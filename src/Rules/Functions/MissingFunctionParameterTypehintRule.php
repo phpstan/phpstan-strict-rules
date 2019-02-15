@@ -9,6 +9,8 @@ use PHPStan\Reflection\FunctionReflection;
 use PHPStan\Reflection\ParameterReflection;
 use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Type\MixedType;
+use PHPStan\Type\Type;
+use PHPStan\Type\VerbosityLevel;
 
 final class MissingFunctionParameterTypehintRule implements \PHPStan\Rules\Rule
 {
@@ -62,7 +64,36 @@ final class MissingFunctionParameterTypehintRule implements \PHPStan\Rules\Rule
 			);
 		}
 
+		if ($parameterType->isIterable()->yes()) {
+			return $this->checkFunctionIterableParameter(
+				$functionReflection,
+				$parameterReflection,
+				$parameterType
+			);
+		}
+
 		return null;
+	}
+
+
+	private function checkFunctionIterableParameter(
+		FunctionReflection $functionReflection,
+		ParameterReflection $parameterReflection,
+		Type $parameterType
+	): ?string
+	{
+		$valueType = $parameterType->getIterableValueType();
+
+		if (!$valueType instanceof MixedType) {
+			return null;
+		}
+
+		return sprintf(
+			'Function %s() has parameter $%s with a type %s but no value type specified.',
+			$functionReflection->getName(),
+			$parameterReflection->getName(),
+			$parameterType->describe(VerbosityLevel::typeOnly())
+		);
 	}
 
 }

@@ -7,6 +7,7 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Broker\Broker;
 use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Type\MixedType;
+use PHPStan\Type\VerbosityLevel;
 
 final class MissingFunctionReturnTypehintRule implements \PHPStan\Rules\Rule
 {
@@ -40,6 +41,16 @@ final class MissingFunctionReturnTypehintRule implements \PHPStan\Rules\Rule
 				sprintf(
 					'Function %s() has no return typehint specified.',
 					$functionReflection->getName()
+				),
+			];
+		}
+
+		if ($returnType->isIterable()->yes() && $returnType->getIterableValueType() instanceof MixedType) {
+			return [
+				sprintf(
+					'Function %s() has a return type %s with no value type specified.',
+					$functionReflection->getName(),
+					$returnType->describe(VerbosityLevel::typeOnly())
 				),
 			];
 		}

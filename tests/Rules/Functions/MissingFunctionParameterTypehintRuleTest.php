@@ -16,16 +16,40 @@ class MissingFunctionParameterTypehintRuleTest extends \PHPStan\Testing\RuleTest
 	{
 		$this->analyse([__DIR__ . '/data/missing-function-parameter-typehint.php'], [
 			[
-				'Function globalFunction() has parameter $b with no typehint specified.',
+				'Function globalFunction7() has parameter $b with no typehint specified.',
 				9,
 			],
 			[
-				'Function globalFunction() has parameter $c with no typehint specified.',
+				'Function globalFunction7() has parameter $c with no typehint specified.',
 				9,
 			],
 			[
-				'Function MissingFunctionParameterTypehint\namespacedFunction() has parameter $d with no typehint specified.',
-				24,
+				'Function globalFunction8() has parameter $a with a type array but no value type specified.',
+				18,
+			],
+			[
+				'Function globalFunction8() has parameter $b with a type iterable but no value type specified.',
+				18,
+			],
+			[
+				'Function globalFunction8() has parameter $c with a type ArrayObject but no value type specified.',
+				18,
+			],
+			[
+				'Function globalFunction9() has parameter $a with a type array but no value type specified.',
+				27,
+			],
+			[
+				'Function globalFunction9() has parameter $b with a type iterable but no value type specified.',
+				27,
+			],
+			[
+				'Function globalFunction9() has parameter $c with a type ArrayObject but no value type specified.',
+				27,
+			],
+			[
+				'Function MissingFunctionParameterTypehint\namespacedFunction1() has parameter $d with no typehint specified.',
+				37,
 			],
 		]);
 	}

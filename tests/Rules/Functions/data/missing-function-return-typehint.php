@@ -12,7 +12,7 @@ namespace
 		$closure = function($a, $b, $c) {
 
 		};
-		
+
 		return false;
 	}
 
@@ -22,6 +22,18 @@ namespace
 	function globalFunction3($a, $b, $c)
 	{
 		return false;
+	}
+
+	function globalFunction4() : array
+	{
+	}
+
+	function globalFunction5() : iterable
+	{
+	}
+
+	function globalFunction6() : \ArrayObject
+	{
 	}
 }
 
@@ -44,4 +56,25 @@ namespace MissingFunctionReturnTypehint
 	{
 		return 9;
 	};
+
+	/**
+	 * @return array<string>
+	 */
+	function namespacedFunction4() : array
+	{
+	}
+
+	/**
+	 * @return iterable<string>
+	 */
+	function namespacedFunction5() : iterable
+	{
+	}
+
+	/**
+	 * @return \ArrayObject<string>
+	 */
+	function namespacedFunction6() : \ArrayObject
+	{
+	}
 }
