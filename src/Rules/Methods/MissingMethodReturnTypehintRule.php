@@ -19,11 +19,11 @@ final class MissingMethodReturnTypehintRule implements \PHPStan\Rules\Rule
 	 */
 	public function getNodeType(): string
 	{
-		return \PhpParser\Node\Stmt\ClassMethod::class;
+		return \PHPStan\Node\InClassMethodNode::class;
 	}
 
 	/**
-	 * @param \PhpParser\Node\Stmt\ClassMethod $node
+	 * @param \PHPStan\Node\InClassMethodNode $node
 	 * @param \PHPStan\Analyser\Scope $scope
 	 *
 	 * @return string[] errors
@@ -34,11 +34,7 @@ final class MissingMethodReturnTypehintRule implements \PHPStan\Rules\Rule
 			throw new \PHPStan\ShouldNotHappenException();
 		}
 
-		if (!$scope->isInTrait()) {
-			$methodReflection = $scope->getClassReflection()->getNativeMethod($node->name->name);
-		} else {
-			$methodReflection = $scope->getTraitReflection()->getNativeMethod($node->name->name);
-		}
+		$methodReflection = $scope->getFunction();
 
 		$messages = [];
 
@@ -54,16 +50,10 @@ final class MissingMethodReturnTypehintRule implements \PHPStan\Rules\Rule
 	{
 		$returnType = ParametersAcceptorSelector::selectSingle($methodReflection->getVariants())->getReturnType();
 
-		if ($methodReflection instanceof PhpMethodReflection && $methodReflection->getDeclaringTrait()) {
-			$class = $methodReflection->getDeclaringTrait() ?? $methodReflection->getDeclaringClass();
-		} else {
-			$class = $methodReflection->getDeclaringClass();
-		}
-
 		if ($returnType instanceof MixedType && !$returnType->isExplicitMixed()) {
 			return sprintf(
 				'Method %s::%s() has no return typehint specified.',
-				$class->getDisplayName(),
+				$methodReflection->getDeclaringClass()->getDisplayName(),
 				$methodReflection->getName()
 			);
 		}
@@ -84,15 +74,9 @@ final class MissingMethodReturnTypehintRule implements \PHPStan\Rules\Rule
 			return null;
 		}
 
-		if ($methodReflection instanceof PhpMethodReflection && $methodReflection->getDeclaringTrait()) {
-			$class = $methodReflection->getDeclaringTrait() ?? $methodReflection->getDeclaringClass();
-		} else {
-			$class = $methodReflection->getDeclaringClass();
-		}
-
 		return sprintf(
 			'Method %s::%s() has a return type %s with no value type specified.',
-			$class->getDisplayName(),
+			$methodReflection->getDeclaringClass()->getDisplayName(),
 			$methodReflection->getName(),
 			$returnType->describe(VerbosityLevel::typeOnly())
 		);
