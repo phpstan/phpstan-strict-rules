@@ -8,6 +8,8 @@ use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\ParameterReflection;
 use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Type\MixedType;
+use PHPStan\Type\Type;
+use PHPStan\Type\VerbosityLevel;
 
 final class MissingMethodParameterTypehintRule implements \PHPStan\Rules\Rule
 {
@@ -17,7 +19,7 @@ final class MissingMethodParameterTypehintRule implements \PHPStan\Rules\Rule
 	 */
 	public function getNodeType(): string
 	{
-		return \PhpParser\Node\Stmt\ClassMethod::class;
+		return \PHPStan\Node\InClassMethodNode::class;
 	}
 
 	/**
@@ -26,24 +28,31 @@ final class MissingMethodParameterTypehintRule implements \PHPStan\Rules\Rule
 	 *
 	 * @return string[] errors
 	 */
-	public function processNode(Node $node, Scope $scope): array
+	public function processNode(
+		Node $node,
+		Scope $scope
+	): array
 	{
 		if (!$scope->isInClass()) {
 			throw new \PHPStan\ShouldNotHappenException();
 		}
 
-		$methodReflection = $scope->getClassReflection()->getNativeMethod($node->name->name);
+		$methodReflection = $scope->getFunction();
+
+		if (!$methodReflection instanceof MethodReflection) {
+			throw new \PHPStan\ShouldNotHappenException();
+		}
 
 		$messages = [];
 
 		foreach (ParametersAcceptorSelector::selectSingle($methodReflection->getVariants())->getParameters() as $parameterReflection) {
-			$message = $this->checkMethodParameter($methodReflection, $parameterReflection);
+			$message = $this->checkMethodParameter(
+				$methodReflection,
+				$parameterReflection
+			);
 			if ($message === null) {
 				continue;
 			}
-
-			/** @var string $message */
-			$message = $message;
 
 			$messages[] = $message;
 		}
@@ -51,7 +60,10 @@ final class MissingMethodParameterTypehintRule implements \PHPStan\Rules\Rule
 		return $messages;
 	}
 
-	private function checkMethodParameter(MethodReflection $methodReflection, ParameterReflection $parameterReflection): ?string
+	private function checkMethodParameter(
+		MethodReflection $methodReflection,
+		ParameterReflection $parameterReflection
+	): ?string
 	{
 		$parameterType = $parameterReflection->getType();
 
@@ -64,7 +76,36 @@ final class MissingMethodParameterTypehintRule implements \PHPStan\Rules\Rule
 			);
 		}
 
+		if ($parameterType->isIterable()->yes()) {
+			return $this->checkMethodIterableParameter(
+				$methodReflection,
+				$parameterReflection,
+				$parameterType
+			);
+		}
+
 		return null;
+	}
+
+	private function checkMethodIterableParameter(
+		MethodReflection $methodReflection,
+		ParameterReflection $parameterReflection,
+		Type $parameterType
+	): ?string
+	{
+		$valueType = $parameterType->getIterableValueType();
+
+		if (!$valueType instanceof MixedType) {
+			return null;
+		}
+
+		return sprintf(
+			'Method %s::%s() has parameter $%s with a type %s but no value type specified.',
+			$methodReflection->getDeclaringClass()->getDisplayName(),
+			$methodReflection->getName(),
+			$parameterReflection->getName(),
+			$parameterType->describe(VerbosityLevel::typeOnly())
+		);
 	}
 
 }

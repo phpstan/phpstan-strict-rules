@@ -68,7 +68,6 @@ final class MissingMethodReturnTypehintRule implements \PHPStan\Rules\Rule
 		return null;
 	}
 
-
 	private function checkMethodIterableReturnType(MethodReflection $methodReflection, Type $returnType): ?string
 	{
 		$valueType = $returnType->getIterableValueType();
