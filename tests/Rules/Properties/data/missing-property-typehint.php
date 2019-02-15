@@ -12,6 +12,21 @@ class MyClass
 	 * @var
 	 */
 	public $prop3;
+
+	/**
+	 * @var array
+	 */
+	public $prop4;
+
+	/**
+	 * @var iterable
+	 */
+	public $prop5;
+
+	/**
+	 * @var \ArrayObject
+	 */
+	public $prop6;
 }
 
 class ChildClass extends MyClass
@@ -25,4 +40,19 @@ class ChildClass extends MyClass
 	 * @var null
 	 */
 	protected $prop2;
+
+	/**
+	 * @var array<string>
+	 */
+	public $prop4;
+
+	/**
+	 * @var iterable<string>
+	 */
+	public $prop5;
+
+	/**
+	 * @var \ArrayObject<string>
+	 */
+	public $prop6;
 }

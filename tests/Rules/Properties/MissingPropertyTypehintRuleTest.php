@@ -25,6 +25,18 @@ class MissingPropertyTypehintRuleTest extends \PHPStan\Testing\RuleTestCase
 				'Property MissingPropertyTypehint\MyClass::$prop3 has no typehint specified.',
 				14,
 			],
+			[
+				'Property MissingPropertyTypehint\MyClass::$prop4 has a type array but no value type specified.',
+				19,
+			],
+			[
+				'Property MissingPropertyTypehint\MyClass::$prop5 has a type iterable but no value type specified.',
+				24,
+			],
+			[
+				'Property MissingPropertyTypehint\MyClass::$prop6 has a type ArrayObject but no value type specified.',
+				29,
+			],
 		]);
 	}
 
