@@ -4,6 +4,7 @@ parameters:
 	checkAlwaysTrueCheckTypeFunctionCall: true
 	checkAlwaysTrueInstanceof: true
 	checkAlwaysTrueStrictComparison: true
+	checkExplicitMixedMissingReturn: true
 	checkFunctionNameCase: true
 	reportMaybesInMethodSignatures: true
 	reportStaticMethodSignatures: true
