@@ -17,7 +17,7 @@
 * Variables assigned in `while` loop condition and `for` loop initial assignment cannot be used after the loop.
 * Variables set in foreach that's always looped thanks to non-empty arrays cannot be used after the loop.
 * Types in `switch` condition and `case` value must match. PHP compares them loosely by default and that can lead to unexpected results.
-* Statically declared methods are called statically.
+* Check that statically declared methods are called statically.
 * Disallow `empty()` - it's a very loose comparison (see [manual](https://php.net/empty)), it's recommended to use more strict one.
 * Disallow variable variables (`$$foo`, `$this->$method()` etc.)
 * Disallow overwriting variables with foreach key and value variables
