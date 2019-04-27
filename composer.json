@@ -1,12 +1,18 @@
 {
 	"name": "phpstan/phpstan-strict-rules",
 	"description": "Extra strict and opinionated rules for PHPStan",
+	"type": "phpstan-extension",
 	"license": ["MIT"],
 	"minimum-stability": "dev",
 	"prefer-stable": true,
 	"extra": {
 		"branch-alias": {
 			"dev-master": "0.11-dev"
+		},
+		"phpstan": {
+			"includes": [
+				"rules.neon"
+			]
 		}
 	},
 	"require": {
