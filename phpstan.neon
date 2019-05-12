@@ -2,6 +2,7 @@ includes:
 	- vendor/phpstan/phpstan-phpunit/extension.neon
 	- vendor/phpstan/phpstan-phpunit/rules.neon
 	- rules.neon
+	- vendor/phpstan/phpstan/conf/bleedingEdge.neon
 
 parameters:
 	excludes_analyse:
