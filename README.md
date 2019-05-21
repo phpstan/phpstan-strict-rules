@@ -30,20 +30,28 @@
 
 Additional rules are coming in subsequent releases!
 
-## Usage
 
-To use these rules, require it in [Composer](https://getcomposer.org/):
+## Installation
+
+To use this extension, require it in [Composer](https://getcomposer.org/):
 
 ```
 composer require --dev phpstan/phpstan-strict-rules
 ```
 
-And include rules.neon in your project's PHPStan config:
+If you also install [phpstan/extension-installer](https://github.com/phpstan/extension-installer) then you're all set!
+
+<details>
+  <summary>Manual installation</summary>
+
+If you don't want to use `phpstan/extension-installer`, include rules.neon in your project's PHPStan config:
 
 ```
 includes:
-	- vendor/phpstan/phpstan-strict-rules/rules.neon
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
 ```
+</details>
+
 
 ## Enabling rules one-by-one
 
@@ -61,3 +69,5 @@ services:
 		tags:
 			- phpstan.rules.rule
 ```
+
+*Unfortunately, you cannot use phpstan/extension-installer in this case.*
