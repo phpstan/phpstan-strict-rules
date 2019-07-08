@@ -28,6 +28,7 @@
 * Contravariance for parameter types and covariance for return types in inherited methods (also known as Liskov substitution principle - LSP)
 * Check LSP even for static methods
 * Check missing typehint in anonymous function when a native one could be added
+* Require calling parent constructor
 
 Additional rules are coming in subsequent releases!
 

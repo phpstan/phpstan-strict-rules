@@ -18,6 +18,7 @@ rules:
 	- PHPStan\Rules\BooleansInConditions\BooleanInIfConditionRule
 	- PHPStan\Rules\BooleansInConditions\BooleanInTernaryOperatorRule
 	- PHPStan\Rules\Cast\UselessCastRule
+	- PHPStan\Rules\Classes\RequireParentConstructCallRule
 	- PHPStan\Rules\DisallowedConstructs\DisallowedEmptyRule
 	- PHPStan\Rules\DisallowedConstructs\DisallowedImplicitArrayCreationRule
 	- PHPStan\Rules\ForeachLoop\OverwriteVariablesWithForeachRule
