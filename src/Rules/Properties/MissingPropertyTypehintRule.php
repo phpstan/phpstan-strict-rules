@@ -30,7 +30,7 @@ final class MissingPropertyTypehintRule implements \PHPStan\Rules\Rule
 		}
 
 		$propertyReflection = $scope->getClassReflection()->getNativeProperty($node->name->name);
-		$returnType = $propertyReflection->getType();
+		$returnType = $propertyReflection->getReadableType();
 		if ($returnType instanceof MixedType && !$returnType->isExplicitMixed()) {
 			return [
 				sprintf(
