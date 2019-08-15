@@ -29,7 +29,7 @@ class LevelsIntegrationTest extends \PHPStan\Testing\LevelsTestCase
 
 	public function getPhpStanConfigPath(): ?string
 	{
-		return __DIR__ . '/../../rules.neon';
+		return __DIR__ . '/phpstan.neon';
 	}
 
 }
