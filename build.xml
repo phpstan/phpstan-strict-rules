@@ -2,6 +2,7 @@
 <project name="Extra strict and opinionated rules for PHPStan" default="check">
 
 	<target name="check" depends="
+		composer-validate,
 		composer,
 		lint,
 		cs,
@@ -9,6 +10,18 @@
 		tests,
 		phpstan
 	"/>
+
+	<target name="composer-validate">
+		<exec
+				executable="composer"
+				logoutput="true"
+				passthru="true"
+				checkreturn="true"
+		>
+			<arg value="validate"/>
+			<arg value="--ansi"/>
+		</exec>
+	</target>
 
 	<target name="composer">
 		<exec
