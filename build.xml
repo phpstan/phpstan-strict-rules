@@ -3,7 +3,7 @@
 
 	<target name="check" depends="
 		composer-validate,
-		composer,
+		composer-install,
 		lint,
 		cs,
 		composer-normalize-check,
@@ -23,7 +23,7 @@
 		</exec>
 	</target>
 
-	<target name="composer">
+	<target name="composer-install">
 		<exec
 				executable="composer"
 				logoutput="true"
