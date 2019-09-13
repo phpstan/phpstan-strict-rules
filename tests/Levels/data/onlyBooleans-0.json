@@ -1,10 +1,5 @@
 [
     {
-        "message": "Method PHPStan\\Levels\\OnlyBooleans\\Foo::doFoo() has parameter $mixed with no typehint specified.",
-        "line": 14,
-        "ignorable": true
-    },
-    {
         "message": "Only booleans are allowed in an if condition, mixed given.",
         "line": 32,
         "ignorable": true
