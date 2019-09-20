@@ -20,7 +20,7 @@ class OperandsInComparisonGreaterOrEqualRuleTest extends \PHPStan\Testing\RuleTe
 				new TypeStringResolver(
 					new Lexer(),
 					new TypeParser(),
-					new TypeNodeResolver([])
+					new TypeNodeResolver([], self::getContainer())
 				),
 				'int|float|DateTimeInterface'
 			)

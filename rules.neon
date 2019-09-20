@@ -11,6 +11,9 @@ parameters:
 	reportStaticMethodSignatures: true
 	allowedLooseComparison: int|float|DateTimeInterface
 
+parametersSchema:
+	allowedLooseComparison: string()
+
 rules:
 	- PHPStan\Rules\BooleansInConditions\BooleanInBooleanAndRule
 	- PHPStan\Rules\BooleansInConditions\BooleanInBooleanNotRule
@@ -55,14 +58,11 @@ services:
 		class: PHPStan\Rules\BooleansInConditions\BooleanRuleHelper
 	-
 		class: PHPStan\Rules\Operators\OperatorRuleHelper
-<<<<<<< HEAD
+		arguments:
+			allowedLooseComparison: %allowedLooseComparison%
 	-
 		class: PHPStan\Rules\VariableVariables\VariablePropertyFetchRule
 		arguments:
 			universalObjectCratesClasses: %universalObjectCratesClasses%
 		tags:
 			- phpstan.rules.rule
-=======
-        arguments:
-            allowedLooseComparison: %allowedLooseComparison%
->>>>>>> Make the types that are allowed for loose comparison configurable.

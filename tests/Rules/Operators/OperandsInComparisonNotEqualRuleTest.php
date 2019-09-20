@@ -20,7 +20,7 @@ class OperandsInComparisonNotEqualRuleTest extends \PHPStan\Testing\RuleTestCase
 				new TypeStringResolver(
 					new Lexer(),
 					new TypeParser(),
-					new TypeNodeResolver([])
+					new TypeNodeResolver([], self::getContainer())
 				),
 				'int|float|DateTimeInterface'
 			)
