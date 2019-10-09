@@ -28,6 +28,7 @@
 * Check LSP even for static methods
 * Check missing typehint in anonymous function when a native one could be added
 * Require calling parent constructor
+* Disallow usage of backtick operator (`` $ls = `ls -la` ``)
 
 Additional rules are coming in subsequent releases!
 
