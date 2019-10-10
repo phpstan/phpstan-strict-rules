@@ -20,7 +20,7 @@ class MatchingTypeInSwitchCaseConditionRuleTest extends \PHPStan\Testing\RuleTes
 				8,
 			],
 			[
-				'Switch condition type (1) does not match case condition 1 > 2 (bool).',
+				'Switch condition type (1) does not match case condition 1 > 2 (false).',
 				8,
 			],
 			[
@@ -32,7 +32,7 @@ class MatchingTypeInSwitchCaseConditionRuleTest extends \PHPStan\Testing\RuleTes
 				19,
 			],
 			[
-				'Switch condition type (\'1\') does not match case condition 1 > 2 (bool).',
+				'Switch condition type (\'1\') does not match case condition 1 > 2 (false).',
 				19,
 			],
 		]);
