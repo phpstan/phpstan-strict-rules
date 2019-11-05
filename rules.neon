@@ -21,6 +21,7 @@ rules:
 	- PHPStan\Rules\Classes\RequireParentConstructCallRule
 	- PHPStan\Rules\DisallowedConstructs\DisallowedEmptyRule
 	- PHPStan\Rules\DisallowedConstructs\DisallowedImplicitArrayCreationRule
+	- PHPStan\Rules\DisallowedConstructs\DisallowedShortTernaryRule
 	- PHPStan\Rules\ForeachLoop\OverwriteVariablesWithForeachRule
 	- PHPStan\Rules\Methods\WrongCaseOfInheritedMethodRule
 	- PHPStan\Rules\Operators\OperandInArithmeticPostDecrementRule
