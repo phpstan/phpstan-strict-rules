@@ -5,6 +5,9 @@ namespace PHPStan\Rules\DisallowedConstructs;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 
+/**
+ * @implements \PHPStan\Rules\Rule<\PhpParser\Node\Expr\Ternary>
+ */
 class DisallowedShortTernaryRule implements \PHPStan\Rules\Rule
 {
 
@@ -13,11 +16,6 @@ class DisallowedShortTernaryRule implements \PHPStan\Rules\Rule
 		return \PhpParser\Node\Expr\Ternary::class;
 	}
 
-	/**
-	 * @param \PhpParser\Node\Expr\Ternary $node
-	 * @param \PHPStan\Analyser\Scope $scope
-	 * @return string[]
-	 */
 	public function processNode(Node $node, Scope $scope): array
 	{
 		if ($node->if !== null) {

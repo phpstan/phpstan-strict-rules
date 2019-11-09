@@ -4,6 +4,9 @@ namespace PHPStan\Rules\DisallowedConstructs;
 
 use PHPStan\Rules\Rule;
 
+/**
+ * @extends \PHPStan\Testing\RuleTestCase<DisallowedShortTernaryRule>
+ */
 class DisallowedShortTernaryRuleTest extends \PHPStan\Testing\RuleTestCase
 {
 
