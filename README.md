@@ -23,6 +23,7 @@
 * Disallow variable variables (`$$foo`, `$this->$method()` etc.)
 * Disallow overwriting variables with foreach key and value variables
 * Always true `instanceof`, type-checking `is_*` functions and strict comparisons `===`/`!==`. These checks can be turned off by setting `checkAlwaysTrueInstanceof`/`checkAlwaysTrueCheckTypeFunctionCall`/`checkAlwaysTrueStrictComparison` to false.
+* Require return typehints for callables (either native or phpDocs)
 * Correct case for referenced and called function names.
 * Correct case for inherited and implemented method names.
 * Contravariance for parameter types and covariance for return types in inherited methods (also known as Liskov substitution principle - LSP)

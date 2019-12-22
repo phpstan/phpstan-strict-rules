@@ -23,6 +23,10 @@ rules:
 	- PHPStan\Rules\DisallowedConstructs\DisallowedImplicitArrayCreationRule
 	- PHPStan\Rules\DisallowedConstructs\DisallowedShortTernaryRule
 	- PHPStan\Rules\ForeachLoop\OverwriteVariablesWithForeachRule
+	- PHPStan\Rules\Functions\MissingFunctionParameterCallableReturnTypehintRule
+	- PHPStan\Rules\Functions\MissingFunctionReturnCallableReturnTypehintRule
+	- PHPStan\Rules\Methods\MissingMethodParameterCallableReturnTypehintRule
+	- PHPStan\Rules\Methods\MissingMethodReturnCallableReturnTypehintRule
 	- PHPStan\Rules\Methods\WrongCaseOfInheritedMethodRule
 	- PHPStan\Rules\Operators\OperandInArithmeticPostDecrementRule
 	- PHPStan\Rules\Operators\OperandInArithmeticPostIncrementRule
@@ -34,6 +38,7 @@ rules:
 	- PHPStan\Rules\Operators\OperandsInArithmeticModuloRule
 	- PHPStan\Rules\Operators\OperandsInArithmeticMultiplicationRule
 	- PHPStan\Rules\Operators\OperandsInArithmeticSubtractionRule
+	- PHPStan\Rules\Properties\MissingPropertyCallableReturnTypehintRule
 	- PHPStan\Rules\StrictCalls\DynamicCallOnStaticMethodsRule
 	- PHPStan\Rules\StrictCalls\StrictFunctionCallsRule
 	- PHPStan\Rules\SwitchConditions\MatchingTypeInSwitchCaseConditionRule

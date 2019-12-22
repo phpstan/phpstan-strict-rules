@@ -41,6 +41,10 @@
 	"autoload-dev": {
 		"classmap": [
 			"tests/"
+		],
+		"files": [
+			"tests/Rules/Functions/data/missing-function-callable-parameter-callable-return-typehint.php",
+			"tests/Rules/Functions/data/missing-function-callable-return-callable-return-typehint.php"
 		]
 	},
 	"minimum-stability": "dev",
