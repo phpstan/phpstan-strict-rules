@@ -5,14 +5,23 @@ namespace PHPStan\Rules\Cast;
 class UselessCastRuleTest extends \PHPStan\Testing\RuleTestCase
 {
 
+	/** @var bool */
+	private $treatPhpDocTypesAsCertain;
+
 	protected function getRule(): \PHPStan\Rules\Rule
 	{
-		return new UselessCastRule();
+		return new UselessCastRule($this->treatPhpDocTypesAsCertain);
+	}
+
+	protected function shouldTreatPhpDocTypesAsCertain(): bool
+	{
+		return $this->treatPhpDocTypesAsCertain;
 	}
 
 	public function testUselessCast(): void
 	{
 		require_once __DIR__ . '/data/useless-cast.php';
+		$this->treatPhpDocTypesAsCertain = true;
 		$this->analyse(
 			[__DIR__ . '/data/useless-cast.php'],
 			[
@@ -38,6 +47,33 @@ class UselessCastRuleTest extends \PHPStan\Testing\RuleTestCase
 				],
 			]
 		);
+	}
+
+	public function testDoNotReportPhpDoc(): void
+	{
+		$this->treatPhpDocTypesAsCertain = false;
+		$this->analyse([__DIR__ . '/data/useless-cast-not-phpdoc.php'], [
+			[
+				'Casting to int something that\'s already int.',
+				16,
+			],
+		]);
+	}
+
+	public function testReportPhpDoc(): void
+	{
+		$this->treatPhpDocTypesAsCertain = true;
+		$this->analyse([__DIR__ . '/data/useless-cast-not-phpdoc.php'], [
+			[
+				'Casting to int something that\'s already int.',
+				16,
+			],
+			[
+				'Casting to int something that\'s already int.',
+				17,
+				'Because the type is coming from a PHPDoc, you can turn off this check by setting <fg=cyan>treatPhpDocTypesAsCertain: false</> in your <fg=cyan>%configurationFile%</>.',
+			],
+		]);
 	}
 
 }
