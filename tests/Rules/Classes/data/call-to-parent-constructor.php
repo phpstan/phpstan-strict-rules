@@ -55,16 +55,6 @@ class BCallToParentConstructor extends ACallToParentConstructor
 
 }
 
-class CCallToParentConstructor
-{
-
-	public function __construct()
-	{
-		parent::__construct();
-	}
-
-}
-
 class DCallToParentConstructor
 {
 
