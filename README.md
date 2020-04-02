@@ -1,6 +1,6 @@
 # Extra strict and opinionated rules for PHPStan
 
-[![Build Status](https://travis-ci.org/phpstan/phpstan-strict-rules.svg)](https://travis-ci.org/phpstan/phpstan-strict-rules)
+[![Build Status](https://travis-ci.com/phpstan/phpstan-strict-rules.svg?branch=master)](https://travis-ci.com/phpstan/phpstan-strict-rules)
 [![Latest Stable Version](https://poser.pugx.org/phpstan/phpstan-strict-rules/v/stable)](https://packagist.org/packages/phpstan/phpstan-strict-rules)
 [![License](https://poser.pugx.org/phpstan/phpstan-strict-rules/license)](https://packagist.org/packages/phpstan/phpstan-strict-rules)
 
