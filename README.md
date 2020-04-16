@@ -4,7 +4,7 @@
 [![Latest Stable Version](https://poser.pugx.org/phpstan/phpstan-strict-rules/v/stable)](https://packagist.org/packages/phpstan/phpstan-strict-rules)
 [![License](https://poser.pugx.org/phpstan/phpstan-strict-rules/license)](https://packagist.org/packages/phpstan/phpstan-strict-rules)
 
-[PHPStan](https://github.com/phpstan/phpstan) focuses on finding bugs in your code. But in PHP there's a lot of leeway in how stuff can be written. This repository contains additional rules that revolve around strictly and strongly typed code with no loose casting for those who want additional safety in extremely defensive programming:
+[PHPStan](https://phpstan.org/) focuses on finding bugs in your code. But in PHP there's a lot of leeway in how stuff can be written. This repository contains additional rules that revolve around strictly and strongly typed code with no loose casting for those who want additional safety in extremely defensive programming:
 
 * Require booleans in `if`, `elseif`, ternary operator, after `!`, and on both sides of `&&` and `||`.
 * Require numeric operands or arrays in `+` and numeric operands in `-`/`*`/`/`/`**`/`%`.
