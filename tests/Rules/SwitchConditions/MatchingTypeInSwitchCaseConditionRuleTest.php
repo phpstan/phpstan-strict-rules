@@ -4,6 +4,9 @@ namespace PHPStan\Rules\SwitchConditions;
 
 use PHPStan\Rules\Rule;
 
+/**
+ * @extends \PHPStan\Testing\RuleTestCase<MatchingTypeInSwitchCaseConditionRule>
+ */
 class MatchingTypeInSwitchCaseConditionRuleTest extends \PHPStan\Testing\RuleTestCase
 {
 

@@ -233,16 +233,6 @@ parameters:
 			path: src/Rules/StrictCalls/StrictFunctionCallsRule.php
 
 		-
-			message: "#^Class PHPStan\\\\Rules\\\\SwitchConditions\\\\MatchingTypeInSwitchCaseConditionRule implements generic interface PHPStan\\\\Rules\\\\Rule but does not specify its types\\: TNodeType$#"
-			count: 1
-			path: src/Rules/SwitchConditions/MatchingTypeInSwitchCaseConditionRule.php
-
-		-
-			message: "#^Parameter \\#1 \\$node \\(PhpParser\\\\Node\\\\Stmt\\\\Switch_\\) of method PHPStan\\\\Rules\\\\SwitchConditions\\\\MatchingTypeInSwitchCaseConditionRule\\:\\:processNode\\(\\) should be contravariant with parameter \\$node \\(PhpParser\\\\Node\\) of method PHPStan\\\\Rules\\\\Rule\\<PhpParser\\\\Node\\>\\:\\:processNode\\(\\)$#"
-			count: 1
-			path: src/Rules/SwitchConditions/MatchingTypeInSwitchCaseConditionRule.php
-
-		-
 			message: "#^Class PHPStan\\\\Rules\\\\VariableVariables\\\\VariableMethodCallRule implements generic interface PHPStan\\\\Rules\\\\Rule but does not specify its types\\: TNodeType$#"
 			count: 1
 			path: src/Rules/VariableVariables/VariableMethodCallRule.php
@@ -536,16 +526,6 @@ parameters:
 			message: "#^Method PHPStan\\\\Rules\\\\StrictCalls\\\\StrictFunctionCallsRuleTest\\:\\:getRule\\(\\) return type with generic interface PHPStan\\\\Rules\\\\Rule does not specify its types\\: TNodeType$#"
 			count: 1
 			path: tests/Rules/StrictCalls/StrictFunctionCallsRuleTest.php
-
-		-
-			message: "#^Class PHPStan\\\\Rules\\\\SwitchConditions\\\\MatchingTypeInSwitchCaseConditionRuleTest extends generic class PHPStan\\\\Testing\\\\RuleTestCase but does not specify its types\\: TRule$#"
-			count: 1
-			path: tests/Rules/SwitchConditions/MatchingTypeInSwitchCaseConditionRuleTest.php
-
-		-
-			message: "#^Method PHPStan\\\\Rules\\\\SwitchConditions\\\\MatchingTypeInSwitchCaseConditionRuleTest\\:\\:getRule\\(\\) return type with generic interface PHPStan\\\\Rules\\\\Rule does not specify its types\\: TNodeType$#"
-			count: 1
-			path: tests/Rules/SwitchConditions/MatchingTypeInSwitchCaseConditionRuleTest.php
 
 		-
 			message: "#^Class PHPStan\\\\Rules\\\\VariableVariables\\\\VariableMethodCallRuleTest extends generic class PHPStan\\\\Testing\\\\RuleTestCase but does not specify its types\\: TRule$#"

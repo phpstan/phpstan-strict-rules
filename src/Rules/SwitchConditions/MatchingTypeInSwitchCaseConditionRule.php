@@ -2,8 +2,12 @@
 
 namespace PHPStan\Rules\SwitchConditions;
 
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\VerbosityLevel;
 
+/**
+ * @implements \PHPStan\Rules\Rule<\PhpParser\Node\Stmt\Switch_>
+ */
 class MatchingTypeInSwitchCaseConditionRule implements \PHPStan\Rules\Rule
 {
 
@@ -20,11 +24,6 @@ class MatchingTypeInSwitchCaseConditionRule implements \PHPStan\Rules\Rule
 		return \PhpParser\Node\Stmt\Switch_::class;
 	}
 
-	/**
-	 * @param \PhpParser\Node\Stmt\Switch_ $node
-	 * @param \PHPStan\Analyser\Scope $scope
-	 * @return string[] errors
-	 */
 	public function processNode(\PhpParser\Node $node, \PHPStan\Analyser\Scope $scope): array
 	{
 		$messages = [];
@@ -39,12 +38,12 @@ class MatchingTypeInSwitchCaseConditionRule implements \PHPStan\Rules\Rule
 				continue;
 			}
 
-			$messages[] = sprintf(
+			$messages[] = RuleErrorBuilder::message(sprintf(
 				'Switch condition type (%s) does not match case condition %s (%s).',
 				$conditionType->describe(VerbosityLevel::value()),
 				$this->printer->prettyPrintExpr($case->cond),
 				$caseType->describe(VerbosityLevel::typeOnly())
-			);
+			))->build();
 		}
 
 		return $messages;
