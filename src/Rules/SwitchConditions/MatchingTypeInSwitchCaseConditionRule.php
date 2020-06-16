@@ -43,7 +43,7 @@ class MatchingTypeInSwitchCaseConditionRule implements \PHPStan\Rules\Rule
 				$conditionType->describe(VerbosityLevel::value()),
 				$this->printer->prettyPrintExpr($case->cond),
 				$caseType->describe(VerbosityLevel::typeOnly())
-			))->build();
+			))->line($case->getLine())->build();
 		}
 
 		return $messages;
