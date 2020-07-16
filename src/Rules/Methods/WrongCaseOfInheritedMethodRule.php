@@ -3,14 +3,16 @@
 namespace PHPStan\Rules\Methods;
 
 use PHPStan\Analyser\Scope;
+use PHPStan\Node\InClassMethodNode;
 use PHPStan\Reflection\ClassReflection;
+use PHPStan\Reflection\MethodReflection;
 
 class WrongCaseOfInheritedMethodRule implements \PHPStan\Rules\Rule
 {
 
 	public function getNodeType(): string
 	{
-		return \PhpParser\Node\Stmt\ClassMethod::class;
+		return InClassMethodNode::class;
 	}
 
 	/**
@@ -23,11 +25,11 @@ class WrongCaseOfInheritedMethodRule implements \PHPStan\Rules\Rule
 		Scope $scope
 	): array
 	{
-		if (!$scope->isInClass()) {
-			throw new \PHPStan\ShouldNotHappenException();
+		$methodReflection = $scope->getFunction();
+		if (!$methodReflection instanceof MethodReflection) {
+			return [];
 		}
 
-		$methodReflection = $scope->getClassReflection()->getNativeMethod($node->name->name);
 		$declaringClass = $methodReflection->getDeclaringClass();
 
 		$messages = [];
@@ -35,7 +37,7 @@ class WrongCaseOfInheritedMethodRule implements \PHPStan\Rules\Rule
 			$parentMessage = $this->findMethod(
 				$declaringClass,
 				$declaringClass->getParentClass(),
-				$node->name->name
+				$methodReflection->getName()
 			);
 			if ($parentMessage !== null) {
 				$messages[] = $parentMessage;
@@ -46,7 +48,7 @@ class WrongCaseOfInheritedMethodRule implements \PHPStan\Rules\Rule
 			$interfaceMessage = $this->findMethod(
 				$declaringClass,
 				$interface,
-				$node->name->name
+				$methodReflection->getName()
 			);
 			if ($interfaceMessage === null) {
 				continue;
