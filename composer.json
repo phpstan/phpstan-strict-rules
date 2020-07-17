@@ -7,7 +7,7 @@
 	],
 	"require": {
 		"php": "~7.1",
-		"phpstan/phpstan": "^0.12.6"
+		"phpstan/phpstan": "^0.12.33"
 	},
 	"require-dev": {
 		"consistence/coding-standard": "^3.0.1",
