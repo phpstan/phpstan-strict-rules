@@ -6,7 +6,6 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\Ternary;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
-use PHPStan\Type\Constant\ConstantBooleanType;
 use PHPStan\Type\ConstantType;
 use PHPStan\Type\VerbosityLevel;
 
@@ -31,11 +30,6 @@ class OperandsInTernaryOperatorRule implements Rule
 					'If and else parts of ternary operator are equal (%s).',
 					$ifType->describe(VerbosityLevel::value())
 				)];
-			}
-			if ($ifType instanceof ConstantBooleanType && $elseType instanceof ConstantBooleanType) {
-				return $ifType->getValue()
-					? ['Ternary operator is not needed. Use just condition casted to bool.']
-					: ['Ternary operator is not needed. Use condition with negation operator.'];
 			}
 		}
 

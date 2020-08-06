@@ -4,6 +4,9 @@ namespace PHPStan\Rules\Operators;
 
 use PHPStan\Rules\Rule;
 
+/**
+ * @extends \PHPStan\Testing\RuleTestCase<OperandsInTernaryOperatorRule>
+ */
 class OperandsInTernaryOperatorRuleTest extends \PHPStan\Testing\RuleTestCase
 {
 
@@ -34,14 +37,6 @@ class OperandsInTernaryOperatorRuleTest extends \PHPStan\Testing\RuleTestCase
 			[
 				'If and else parts of ternary operator are equal (array(1 => 1)).',
 				122,
-			],
-			[
-				'Ternary operator is not needed. Use condition with negation operator.',
-				125,
-			],
-			[
-				'Ternary operator is not needed. Use just condition casted to bool.',
-				126,
 			],
 		]);
 	}
