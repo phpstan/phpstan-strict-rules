@@ -25,39 +25,39 @@ class OverwriteVariablesWithForLoopInitRuleTest extends RuleTestCase
 			],
 			[
 				'For loop initial assignment overwrites variable $i.',
-				16,
+				20,
 			],
 			[
 				'For loop initial assignment overwrites variable $j.',
-				16,
-			],
-			[
-				'For loop initial assignment overwrites variable $i.',
 				20,
 			],
 			[
 				'For loop initial assignment overwrites variable $i.',
-				27,
+				24,
+			],
+			[
+				'For loop initial assignment overwrites variable $i.',
+				35,
 			],
 			[
 				'For loop initial assignment overwrites variable $j.',
-				27,
+				35,
 			],
 			[
 				'For loop initial assignment overwrites variable $i.',
-				31,
+				39,
 			],
 			[
 				'For loop initial assignment overwrites variable $j.',
-				31,
+				39,
 			],
 			[
 				'For loop initial assignment overwrites variable $i.',
-				38,
+				50,
 			],
 			[
 				'For loop initial assignment overwrites variable $i.',
-				42,
+				54,
 			],
 		]);
 	}
