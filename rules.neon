@@ -60,3 +60,10 @@ services:
 			universalObjectCratesClasses: %universalObjectCratesClasses%
 		tags:
 			- phpstan.rules.rule
+
+	-
+		class: PHPStan\Rules\ForLoop\OverwriteVariablesWithForLoopInitRule
+
+conditionalTags:
+	PHPStan\Rules\ForLoop\OverwriteVariablesWithForLoopInitRule:
+		phpstan.rules.rule: %featureToggles.bleedingEdge%
