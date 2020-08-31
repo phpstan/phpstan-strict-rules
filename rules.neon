@@ -9,6 +9,10 @@ parameters:
 	checkMissingClosureNativeReturnTypehintRule: true
 	reportMaybesInMethodSignatures: true
 	reportStaticMethodSignatures: true
+	allowedLooseComparison: int|float|DateTimeInterface
+
+parametersSchema:
+	allowedLooseComparison: string()
 
 rules:
 	- PHPStan\Rules\BooleansInConditions\BooleanInBooleanAndRule
@@ -33,6 +37,14 @@ rules:
 	- PHPStan\Rules\Operators\OperandsInArithmeticModuloRule
 	- PHPStan\Rules\Operators\OperandsInArithmeticMultiplicationRule
 	- PHPStan\Rules\Operators\OperandsInArithmeticSubtractionRule
+	- PHPStan\Rules\Operators\OperandsInComparisonEqualRule
+	- PHPStan\Rules\Operators\OperandsInComparisonGreaterOrEqualRule
+	- PHPStan\Rules\Operators\OperandsInComparisonGreaterRule
+	- PHPStan\Rules\Operators\OperandsInComparisonNotEqualRule
+	- PHPStan\Rules\Operators\OperandsInComparisonSmallerOrEqualRule
+	- PHPStan\Rules\Operators\OperandsInComparisonSmallerRule
+	- PHPStan\Rules\Operators\OperandsInComparisonSpaceshipRule
+	- PHPStan\Rules\Properties\MissingPropertyTypehintRule
 	- PHPStan\Rules\StrictCalls\DynamicCallOnStaticMethodsRule
 	- PHPStan\Rules\StrictCalls\StrictFunctionCallsRule
 	- PHPStan\Rules\SwitchConditions\MatchingTypeInSwitchCaseConditionRule
@@ -54,6 +66,8 @@ services:
 
 	-
 		class: PHPStan\Rules\Operators\OperatorRuleHelper
+		arguments:
+			allowedLooseComparison: %allowedLooseComparison%
 	-
 		class: PHPStan\Rules\VariableVariables\VariablePropertyFetchRule
 		arguments:

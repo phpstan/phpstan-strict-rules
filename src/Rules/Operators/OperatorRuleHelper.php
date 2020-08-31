@@ -4,6 +4,7 @@ namespace PHPStan\Rules\Operators;
 
 use PhpParser\Node\Expr;
 use PHPStan\Analyser\Scope;
+use PHPStan\PhpDoc\TypeStringResolver;
 use PHPStan\Rules\RuleLevelHelper;
 use PHPStan\Type\ErrorType;
 use PHPStan\Type\FloatType;
@@ -18,9 +19,27 @@ class OperatorRuleHelper
 	/** @var \PHPStan\Rules\RuleLevelHelper */
 	private $ruleLevelHelper;
 
-	public function __construct(RuleLevelHelper $ruleLevelHelper)
+	/** @var string */
+	private $allowedLooseComparison;
+
+	/** @var Type */
+	private $looseComparisonAllowedType;
+
+	public function __construct(
+		RuleLevelHelper $ruleLevelHelper,
+		TypeStringResolver $typeStringResolver,
+		string $allowedLooseComparison
+	)
 	{
 		$this->ruleLevelHelper = $ruleLevelHelper;
+
+		$this->allowedLooseComparison = $allowedLooseComparison;
+		$this->looseComparisonAllowedType = $typeStringResolver->resolve($allowedLooseComparison);
+	}
+
+	public function getAllowedLooseComparison(): string
+	{
+		return $this->allowedLooseComparison;
 	}
 
 	public function isValidForArithmeticOperation(Scope $scope, Expr $expr): bool
@@ -35,7 +54,7 @@ class OperatorRuleHelper
 			return true;
 		}
 
-		return $this->isSubtypeOfNumber($scope, $expr);
+		return $this->isSubtypeOf($scope, $expr, new UnionType([new IntegerType(), new FloatType()]));
 	}
 
 	public function isValidForIncrementOrDecrement(Scope $scope, Expr $expr): bool
@@ -45,13 +64,26 @@ class OperatorRuleHelper
 			return true;
 		}
 
-		return $this->isSubtypeOfNumber($scope, $expr);
+		return $this->isSubtypeOf($scope, $expr, new UnionType([new IntegerType(), new FloatType()]));
 	}
 
-	private function isSubtypeOfNumber(Scope $scope, Expr $expr): bool
+	public function isValidForLooseComparisonOperation(Scope $scope, Expr $expr): bool
 	{
-		$acceptedType = new UnionType([new IntegerType(), new FloatType()]);
+		$type = $scope->getType($expr);
+		if ($type instanceof MixedType) {
+			return true;
+		}
 
+		// already reported by PHPStan core
+		if ($type->toNumber() instanceof ErrorType) {
+			return true;
+		}
+
+		return $this->isSubtypeOf($scope, $expr, $this->looseComparisonAllowedType);
+	}
+
+	private function isSubtypeOf(Scope $scope, Expr $expr, Type $acceptedType): bool
+	{
 		$type = $this->ruleLevelHelper->findTypeToCheck(
 			$scope,
 			$expr,

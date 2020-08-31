@@ -9,6 +9,7 @@
 * Require booleans in `if`, `elseif`, ternary operator, after `!`, and on both sides of `&&` and `||`.
 * Require numeric operands or arrays in `+` and numeric operands in `-`/`*`/`/`/`**`/`%`.
 * Require numeric operand in `$var++`, `$var--`, `++$var`and `--$var`.
+* Require numeric operands or `DateTimeInterface` objects in loose comparison `==`/`!=`/`<`/`>`/`<=`/`>=`/`<=>`. Configure this by setting `allowedLooseComparison` to any (union) type (default `int|float|DateTimeInterface`).
 * These functions contain a `$strict` parameter for better type safety, it must be set to `true`:
   * `in_array` (3rd parameter)
   * `array_search` (3rd parameter)
