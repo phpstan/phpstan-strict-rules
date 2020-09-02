@@ -64,6 +64,11 @@ services:
 	-
 		class: PHPStan\Rules\ForLoop\OverwriteVariablesWithForLoopInitRule
 
+	-
+		class: PHPStan\Rules\CatchClause\OverwriteVariablesInCatchClauseRule
+
 conditionalTags:
 	PHPStan\Rules\ForLoop\OverwriteVariablesWithForLoopInitRule:
+		phpstan.rules.rule: %featureToggles.bleedingEdge%
+	PHPStan\Rules\CatchClause\OverwriteVariablesInCatchClauseRule:
 		phpstan.rules.rule: %featureToggles.bleedingEdge%
