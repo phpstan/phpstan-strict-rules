@@ -10,14 +10,14 @@
 		"phpstan/phpstan": "^0.12.33"
 	},
 	"require-dev": {
-		"consistence/coding-standard": "^3.0.1",
+		"consistence/coding-standard": "^3.10",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
 		"ergebnis/composer-normalize": "^2.0.2",
 		"phing/phing": "^2.16.0",
 		"php-parallel-lint/php-parallel-lint": "^1.2",
 		"phpstan/phpstan-phpunit": "^0.12",
 		"phpunit/phpunit": "^7.0",
-		"slevomat/coding-standard": "^4.5.2"
+		"slevomat/coding-standard": "^6.4"
 	},
 	"config": {
 		"sort-packages": true
