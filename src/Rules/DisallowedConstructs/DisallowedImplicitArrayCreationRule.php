@@ -41,7 +41,9 @@ class DisallowedImplicitArrayCreationRule implements \PHPStan\Rules\Rule
 			return [
 				sprintf('Implicit array creation is not allowed - variable $%s does not exist.', $node->name),
 			];
-		} elseif ($certainty->maybe()) {
+		}
+
+		if ($certainty->maybe()) {
 			return [
 				sprintf('Implicit array creation is not allowed - variable $%s might not exist.', $node->name),
 			];
