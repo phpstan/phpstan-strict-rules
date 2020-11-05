@@ -41,7 +41,18 @@ rules:
 	- PHPStan\Rules\VariableVariables\VariableStaticPropertyFetchRule
 	- PHPStan\Rules\VariableVariables\VariableVariablesRule
 
+conditionalTags:
+	PHPStan\Rules\Operators\OperandsInTernaryOperatorRule:
+		phpstan.rules.rule: %featureToggles.bleedingEdge%
+	PHPStan\Rules\ForLoop\OverwriteVariablesWithForLoopInitRule:
+		phpstan.rules.rule: %featureToggles.bleedingEdge%
+	PHPStan\Rules\CatchClause\OverwriteVariablesInCatchClauseRule:
+		phpstan.rules.rule: %featureToggles.bleedingEdge%
+
 services:
+	-
+		class: PHPStan\Rules\Operators\OperandsInTernaryOperatorRule
+
 	-
 		class: PHPStan\Rules\BooleansInConditions\BooleanRuleHelper
 
@@ -66,9 +77,3 @@ services:
 
 	-
 		class: PHPStan\Rules\CatchClause\OverwriteVariablesInCatchClauseRule
-
-conditionalTags:
-	PHPStan\Rules\ForLoop\OverwriteVariablesWithForLoopInitRule:
-		phpstan.rules.rule: %featureToggles.bleedingEdge%
-	PHPStan\Rules\CatchClause\OverwriteVariablesInCatchClauseRule:
-		phpstan.rules.rule: %featureToggles.bleedingEdge%
