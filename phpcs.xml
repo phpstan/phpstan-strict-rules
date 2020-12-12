@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="PHPStan strict rules">
-	<rule ref="vendor/consistence/coding-standard/Consistence/ruleset.xml">
+<ruleset name="PHPStan Strict Rules extension">
+	<rule ref="build-cs/vendor/consistence/coding-standard/Consistence/ruleset.xml">
 		<exclude name="Squiz.Functions.GlobalFunction.Found"/>
 		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword"/>
 		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation"/>
@@ -23,6 +23,7 @@
 				@dataProvider,
 				@requires
 			"/>
+			<property name="enableObjectTypeHint" value="false"/>
 		</properties>
 		<exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableParameterTypeHintSpecification"/>
 		<exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableReturnTypeHintSpecification"/>
