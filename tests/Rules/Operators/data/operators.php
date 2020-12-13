@@ -109,18 +109,3 @@ function (array $array, int $int, $mixed) {
 
 	explode($mixed, $mixed) + $int;
 };
-
-foo() ? true : true;
-foo() ? true : null;
-foo() ? $object : true;
-foo() ? $object : false;
-foo() ? $object : null;
-foo() ? [] : [];
-foo() ? 'string_val' : 'string_val';
-foo() ? [23, 24] : [23, 25];
-foo() ? [23, 24] : [23, 24];
-foo() ? [1 => 1] : ['1' => 1];
-foo() ? [1 => 1] : ['asd' => 1];
-$object ?: $object;
-foo() ? false : true;
-foo() ? true : false;

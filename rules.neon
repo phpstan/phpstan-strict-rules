@@ -42,15 +42,10 @@ rules:
 	- PHPStan\Rules\VariableVariables\VariableVariablesRule
 
 conditionalTags:
-	PHPStan\Rules\Operators\OperandsInTernaryOperatorRule:
-		phpstan.rules.rule: %featureToggles.bleedingEdge%
 	PHPStan\Rules\ForLoop\OverwriteVariablesWithForLoopInitRule:
 		phpstan.rules.rule: %featureToggles.bleedingEdge%
 
 services:
-	-
-		class: PHPStan\Rules\Operators\OperandsInTernaryOperatorRule
-
 	-
 		class: PHPStan\Rules\BooleansInConditions\BooleanRuleHelper
 
