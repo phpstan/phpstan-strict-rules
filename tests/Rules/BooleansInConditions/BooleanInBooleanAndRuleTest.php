@@ -21,7 +21,8 @@ class BooleanInBooleanAndRuleTest extends \PHPStan\Testing\RuleTestCase
 					false,
 					true
 				)
-			)
+			),
+			true
 		);
 	}
 
@@ -57,6 +58,20 @@ class BooleanInBooleanAndRuleTest extends \PHPStan\Testing\RuleTestCase
 			[
 				'Only booleans are allowed in &&, string given on the right side.',
 				13,
+			],
+		]);
+	}
+
+	public function testLogicalAnd(): void
+	{
+		$this->analyse([__DIR__ . '/data/logical-and.php'], [
+			[
+				'Only booleans are allowed in &&, string|false given on the left side.',
+				14,
+			],
+			[
+				'Only booleans are allowed in &&, mixed given on the right side.',
+				14,
 			],
 		]);
 	}

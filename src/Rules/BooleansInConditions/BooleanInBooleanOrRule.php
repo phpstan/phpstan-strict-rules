@@ -15,9 +15,13 @@ class BooleanInBooleanOrRule implements \PHPStan\Rules\Rule
 	/** @var BooleanRuleHelper */
 	private $helper;
 
-	public function __construct(BooleanRuleHelper $helper)
+	/** @var bool */
+	private $checkLogicalOrConstantCondition;
+
+	public function __construct(BooleanRuleHelper $helper, bool $checkLogicalOrConstantCondition)
 	{
 		$this->helper = $helper;
+		$this->checkLogicalOrConstantCondition = $checkLogicalOrConstantCondition;
 	}
 
 	public function getNodeType(): string
@@ -28,7 +32,7 @@ class BooleanInBooleanOrRule implements \PHPStan\Rules\Rule
 	public function processNode(\PhpParser\Node $node, \PHPStan\Analyser\Scope $scope): array
 	{
 		$originalNode = $node->getOriginalNode();
-		if (!$originalNode instanceof BooleanOr) {
+		if (!$originalNode instanceof BooleanOr && !$this->checkLogicalOrConstantCondition) {
 			return [];
 		}
 

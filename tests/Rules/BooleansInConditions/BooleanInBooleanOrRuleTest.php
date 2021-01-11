@@ -21,7 +21,8 @@ class BooleanInBooleanOrRuleTest extends \PHPStan\Testing\RuleTestCase
 					false,
 					true
 				)
-			)
+			),
+			true
 		);
 	}
 

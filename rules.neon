@@ -11,9 +11,7 @@ parameters:
 	reportStaticMethodSignatures: true
 
 rules:
-	- PHPStan\Rules\BooleansInConditions\BooleanInBooleanAndRule
 	- PHPStan\Rules\BooleansInConditions\BooleanInBooleanNotRule
-	- PHPStan\Rules\BooleansInConditions\BooleanInBooleanOrRule
 	- PHPStan\Rules\BooleansInConditions\BooleanInElseIfConditionRule
 	- PHPStan\Rules\BooleansInConditions\BooleanInIfConditionRule
 	- PHPStan\Rules\BooleansInConditions\BooleanInTernaryOperatorRule
@@ -46,6 +44,20 @@ conditionalTags:
 		phpstan.rules.rule: %featureToggles.bleedingEdge%
 
 services:
+	-
+		class: PHPStan\Rules\BooleansInConditions\BooleanInBooleanAndRule
+		arguments:
+			checkLogicalAndConstantCondition: %featureToggles.checkLogicalAndConstantCondition%
+		tags:
+			- phpstan.rules.rule
+
+	-
+		class: PHPStan\Rules\BooleansInConditions\BooleanInBooleanOrRule
+		arguments:
+			checkLogicalOrConstantCondition: %featureToggles.checkLogicalOrConstantCondition%
+		tags:
+			- phpstan.rules.rule
+
 	-
 		class: PHPStan\Rules\BooleansInConditions\BooleanRuleHelper
 
