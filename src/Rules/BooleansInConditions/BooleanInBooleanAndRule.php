@@ -2,8 +2,13 @@
 
 namespace PHPStan\Rules\BooleansInConditions;
 
+use PhpParser\Node\Expr\BinaryOp\BooleanAnd;
+use PHPStan\Node\BooleanAndNode;
 use PHPStan\Type\VerbosityLevel;
 
+/**
+ * @implements \PHPStan\Rules\Rule<BooleanAndNode>
+ */
 class BooleanInBooleanAndRule implements \PHPStan\Rules\Rule
 {
 
@@ -17,27 +22,28 @@ class BooleanInBooleanAndRule implements \PHPStan\Rules\Rule
 
 	public function getNodeType(): string
 	{
-		return \PhpParser\Node\Expr\BinaryOp\BooleanAnd::class;
+		return BooleanAndNode::class;
 	}
 
-	/**
-	 * @param \PhpParser\Node\Expr\BinaryOp\BooleanAnd $node
-	 * @param \PHPStan\Analyser\Scope $scope
-	 * @return string[] errors
-	 */
 	public function processNode(\PhpParser\Node $node, \PHPStan\Analyser\Scope $scope): array
 	{
+		$originalNode = $node->getOriginalNode();
+		if (!$originalNode instanceof BooleanAnd) {
+			return [];
+		}
+
 		$messages = [];
-		if (!$this->helper->passesAsBoolean($scope, $node->left)) {
-			$leftType = $scope->getType($node->left);
+		if (!$this->helper->passesAsBoolean($scope, $originalNode->left)) {
+			$leftType = $scope->getType($originalNode->left);
 			$messages[] = sprintf(
 				'Only booleans are allowed in &&, %s given on the left side.',
 				$leftType->describe(VerbosityLevel::typeOnly())
 			);
 		}
 
-		$rightType = $scope->getType($node->right);
-		if (!$this->helper->passesAsBoolean($scope, $node->right)) {
+		$rightScope = $node->getRightScope();
+		if (!$this->helper->passesAsBoolean($rightScope, $originalNode->right)) {
+			$rightType = $rightScope->getType($originalNode->right);
 			$messages[] = sprintf(
 				'Only booleans are allowed in &&, %s given on the right side.',
 				$rightType->describe(VerbosityLevel::typeOnly())

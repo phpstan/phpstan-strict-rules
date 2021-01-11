@@ -5,6 +5,9 @@ namespace PHPStan\Rules\BooleansInConditions;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleLevelHelper;
 
+/**
+ * @extends \PHPStan\Testing\RuleTestCase<BooleanInBooleanAndRule>
+ */
 class BooleanInBooleanAndRuleTest extends \PHPStan\Testing\RuleTestCase
 {
 
@@ -44,6 +47,16 @@ class BooleanInBooleanAndRuleTest extends \PHPStan\Testing\RuleTestCase
 			[
 				'Only booleans are allowed in &&, mixed given on the right side.',
 				19,
+			],
+		]);
+	}
+
+	public function testBug104(): void
+	{
+		$this->analyse([__DIR__ . '/data/bug-104.php'], [
+			[
+				'Only booleans are allowed in &&, string given on the right side.',
+				13,
 			],
 		]);
 	}

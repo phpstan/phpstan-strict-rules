@@ -3,16 +3,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Class PHPStan\\\\Rules\\\\BooleansInConditions\\\\BooleanInBooleanAndRule implements generic interface PHPStan\\\\Rules\\\\Rule but does not specify its types\\: TNodeType$#"
-			count: 1
-			path: src/Rules/BooleansInConditions/BooleanInBooleanAndRule.php
-
-		-
-			message: "#^Parameter \\#1 \\$node \\(PhpParser\\\\Node\\\\Expr\\\\BinaryOp\\\\BooleanAnd\\) of method PHPStan\\\\Rules\\\\BooleansInConditions\\\\BooleanInBooleanAndRule\\:\\:processNode\\(\\) should be contravariant with parameter \\$node \\(PhpParser\\\\Node\\) of method PHPStan\\\\Rules\\\\Rule\\<PhpParser\\\\Node\\>\\:\\:processNode\\(\\)$#"
-			count: 1
-			path: src/Rules/BooleansInConditions/BooleanInBooleanAndRule.php
-
-		-
 			message: "#^Class PHPStan\\\\Rules\\\\BooleansInConditions\\\\BooleanInBooleanNotRule implements generic interface PHPStan\\\\Rules\\\\Rule but does not specify its types\\: TNodeType$#"
 			count: 1
 			path: src/Rules/BooleansInConditions/BooleanInBooleanNotRule.php
@@ -21,16 +11,6 @@ parameters:
 			message: "#^Parameter \\#1 \\$node \\(PhpParser\\\\Node\\\\Expr\\\\BooleanNot\\) of method PHPStan\\\\Rules\\\\BooleansInConditions\\\\BooleanInBooleanNotRule\\:\\:processNode\\(\\) should be contravariant with parameter \\$node \\(PhpParser\\\\Node\\) of method PHPStan\\\\Rules\\\\Rule\\<PhpParser\\\\Node\\>\\:\\:processNode\\(\\)$#"
 			count: 1
 			path: src/Rules/BooleansInConditions/BooleanInBooleanNotRule.php
-
-		-
-			message: "#^Class PHPStan\\\\Rules\\\\BooleansInConditions\\\\BooleanInBooleanOrRule implements generic interface PHPStan\\\\Rules\\\\Rule but does not specify its types\\: TNodeType$#"
-			count: 1
-			path: src/Rules/BooleansInConditions/BooleanInBooleanOrRule.php
-
-		-
-			message: "#^Parameter \\#1 \\$node \\(PhpParser\\\\Node\\\\Expr\\\\BinaryOp\\\\BooleanOr\\) of method PHPStan\\\\Rules\\\\BooleansInConditions\\\\BooleanInBooleanOrRule\\:\\:processNode\\(\\) should be contravariant with parameter \\$node \\(PhpParser\\\\Node\\) of method PHPStan\\\\Rules\\\\Rule\\<PhpParser\\\\Node\\>\\:\\:processNode\\(\\)$#"
-			count: 1
-			path: src/Rules/BooleansInConditions/BooleanInBooleanOrRule.php
 
 		-
 			message: "#^Class PHPStan\\\\Rules\\\\BooleansInConditions\\\\BooleanInElseIfConditionRule implements generic interface PHPStan\\\\Rules\\\\Rule but does not specify its types\\: TNodeType$#"
@@ -283,16 +263,6 @@ parameters:
 			path: src/Rules/VariableVariables/VariableVariablesRule.php
 
 		-
-			message: "#^Class PHPStan\\\\Rules\\\\BooleansInConditions\\\\BooleanInBooleanAndRuleTest extends generic class PHPStan\\\\Testing\\\\RuleTestCase but does not specify its types\\: TRule$#"
-			count: 1
-			path: tests/Rules/BooleansInConditions/BooleanInBooleanAndRuleTest.php
-
-		-
-			message: "#^Method PHPStan\\\\Rules\\\\BooleansInConditions\\\\BooleanInBooleanAndRuleTest\\:\\:getRule\\(\\) return type with generic interface PHPStan\\\\Rules\\\\Rule does not specify its types\\: TNodeType$#"
-			count: 1
-			path: tests/Rules/BooleansInConditions/BooleanInBooleanAndRuleTest.php
-
-		-
 			message: "#^Class PHPStan\\\\Rules\\\\BooleansInConditions\\\\BooleanInBooleanNotRuleTest extends generic class PHPStan\\\\Testing\\\\RuleTestCase but does not specify its types\\: TRule$#"
 			count: 1
 			path: tests/Rules/BooleansInConditions/BooleanInBooleanNotRuleTest.php
@@ -301,16 +271,6 @@ parameters:
 			message: "#^Method PHPStan\\\\Rules\\\\BooleansInConditions\\\\BooleanInBooleanNotRuleTest\\:\\:getRule\\(\\) return type with generic interface PHPStan\\\\Rules\\\\Rule does not specify its types\\: TNodeType$#"
 			count: 1
 			path: tests/Rules/BooleansInConditions/BooleanInBooleanNotRuleTest.php
-
-		-
-			message: "#^Class PHPStan\\\\Rules\\\\BooleansInConditions\\\\BooleanInBooleanOrRuleTest extends generic class PHPStan\\\\Testing\\\\RuleTestCase but does not specify its types\\: TRule$#"
-			count: 1
-			path: tests/Rules/BooleansInConditions/BooleanInBooleanOrRuleTest.php
-
-		-
-			message: "#^Method PHPStan\\\\Rules\\\\BooleansInConditions\\\\BooleanInBooleanOrRuleTest\\:\\:getRule\\(\\) return type with generic interface PHPStan\\\\Rules\\\\Rule does not specify its types\\: TNodeType$#"
-			count: 1
-			path: tests/Rules/BooleansInConditions/BooleanInBooleanOrRuleTest.php
 
 		-
 			message: "#^Class PHPStan\\\\Rules\\\\BooleansInConditions\\\\BooleanInElseIfConditionRuleTest extends generic class PHPStan\\\\Testing\\\\RuleTestCase but does not specify its types\\: TRule$#"
