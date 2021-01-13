@@ -18,7 +18,7 @@ class BooleanInBooleanAndRule implements \PHPStan\Rules\Rule
 	/** @var bool */
 	private $checkLogicalAndConstantCondition;
 
-	public function __construct(BooleanRuleHelper $helper, bool $checkLogicalAndConstantCondition)
+	public function __construct(BooleanRuleHelper $helper, bool $checkLogicalAndConstantCondition = false)
 	{
 		$this->helper = $helper;
 		$this->checkLogicalAndConstantCondition = $checkLogicalAndConstantCondition;
