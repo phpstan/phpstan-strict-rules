@@ -1,6 +1,14 @@
 <?xml version="1.0"?>
 <ruleset name="PHPStan Strict Rules extension">
-	<rule ref="build-cs/vendor/consistence/coding-standard/Consistence/ruleset.xml">
+	<arg name="colors"/>
+	<arg name="extensions" value="php"/>
+	<arg name="encoding" value="utf-8"/>
+	<arg name="tab-width" value="4"/>
+	<arg name="cache" value="tmp/cache/phpcs"/>
+	<arg value="sp"/>
+	<file>src</file>
+	<file>tests</file>
+	<rule ref="build-cs/vendor/consistence-community/coding-standard/Consistence/ruleset.xml">
 		<exclude name="Squiz.Functions.GlobalFunction.Found"/>
 		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword"/>
 		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation"/>
@@ -53,5 +61,6 @@
 			<property name="rootNamespaces" type="array" value="src=>PHPStan,tests=>PHPStan"/>
 		</properties>
 	</rule>
+	<exclude-pattern>tests/tmp</exclude-pattern>
 	<exclude-pattern>tests/*/data</exclude-pattern>
 </ruleset>

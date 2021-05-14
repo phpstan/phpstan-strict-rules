@@ -1,1 +1,11 @@
-/tests export-ignore
+*.php text eol=lf
+
+.github export-ignore
+tests export-ignore
+tmp export-ignore
+.gitattributes export-ignore
+.gitignore export-ignore
+Makefile export-ignore
+phpcs.xml export-ignore
+phpstan.neon export-ignore
+phpunit.xml export-ignore
