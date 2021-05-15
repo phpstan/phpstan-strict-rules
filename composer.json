@@ -12,7 +12,7 @@
 	"require-dev": {
 		"php-parallel-lint/php-parallel-lint": "^1.2",
 		"phpstan/phpstan-phpunit": "^0.12.16",
-		"phpunit/phpunit": "^7.5.20"
+		"phpunit/phpunit": "^9.5"
 	},
 	"config": {
 		"platform": {
