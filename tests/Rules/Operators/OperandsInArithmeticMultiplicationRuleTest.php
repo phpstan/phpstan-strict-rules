@@ -12,7 +12,7 @@ class OperandsInArithmeticMultiplicationRuleTest extends \PHPStan\Testing\RuleTe
 	{
 		return new OperandsInArithmeticMultiplicationRule(
 			new OperatorRuleHelper(
-				new RuleLevelHelper($this->createBroker(), true, false, true)
+				self::getContainer()->getByType(RuleLevelHelper::class)
 			)
 		);
 	}

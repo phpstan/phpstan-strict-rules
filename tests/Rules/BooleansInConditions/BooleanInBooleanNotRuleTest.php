@@ -12,12 +12,7 @@ class BooleanInBooleanNotRuleTest extends \PHPStan\Testing\RuleTestCase
 	{
 		return new BooleanInBooleanNotRule(
 			new BooleanRuleHelper(
-				new RuleLevelHelper(
-					$this->createBroker(),
-					true,
-					false,
-					true
-				)
+				self::getContainer()->getByType(RuleLevelHelper::class)
 			)
 		);
 	}

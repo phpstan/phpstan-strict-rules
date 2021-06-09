@@ -15,12 +15,7 @@ class BooleanInBooleanOrRuleTest extends \PHPStan\Testing\RuleTestCase
 	{
 		return new BooleanInBooleanOrRule(
 			new BooleanRuleHelper(
-				new RuleLevelHelper(
-					$this->createBroker(),
-					true,
-					false,
-					true
-				)
+				self::getContainer()->getByType(RuleLevelHelper::class)
 			),
 			true
 		);

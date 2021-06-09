@@ -12,7 +12,7 @@ class OperandsInArithmeticSubtractionRuleTest extends \PHPStan\Testing\RuleTestC
 	{
 		return new OperandsInArithmeticSubtractionRule(
 			new OperatorRuleHelper(
-				new RuleLevelHelper($this->createBroker(), true, false, true)
+				self::getContainer()->getByType(RuleLevelHelper::class)
 			)
 		);
 	}

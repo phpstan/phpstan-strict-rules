@@ -12,12 +12,7 @@ class BooleanInIfConditionRuleTest extends \PHPStan\Testing\RuleTestCase
 	{
 		return new BooleanInIfConditionRule(
 			new BooleanRuleHelper(
-				new RuleLevelHelper(
-					$this->createBroker(),
-					true,
-					false,
-					true
-				)
+				self::getContainer()->getByType(RuleLevelHelper::class)
 			)
 		);
 	}

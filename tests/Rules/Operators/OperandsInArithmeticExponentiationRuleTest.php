@@ -12,7 +12,7 @@ class OperandsInArithmeticExponentiationRuleTest extends \PHPStan\Testing\RuleTe
 	{
 		return new OperandsInArithmeticExponentiationRule(
 			new OperatorRuleHelper(
-				new RuleLevelHelper($this->createBroker(), true, false, true)
+				self::getContainer()->getByType(RuleLevelHelper::class)
 			)
 		);
 	}

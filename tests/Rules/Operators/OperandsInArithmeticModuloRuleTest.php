@@ -12,7 +12,7 @@ class OperandsInArithmeticModuloRuleTest extends \PHPStan\Testing\RuleTestCase
 	{
 		return new OperandsInArithmeticModuloRule(
 			new OperatorRuleHelper(
-				new RuleLevelHelper($this->createBroker(), true, false, true)
+				self::getContainer()->getByType(RuleLevelHelper::class)
 			)
 		);
 	}

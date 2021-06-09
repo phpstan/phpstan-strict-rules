@@ -12,7 +12,7 @@ class OperandsInArithmeticDivisionRuleTest extends \PHPStan\Testing\RuleTestCase
 	{
 		return new OperandsInArithmeticDivisionRule(
 			new OperatorRuleHelper(
-				new RuleLevelHelper($this->createBroker(), true, false, true)
+				self::getContainer()->getByType(RuleLevelHelper::class)
 			)
 		);
 	}

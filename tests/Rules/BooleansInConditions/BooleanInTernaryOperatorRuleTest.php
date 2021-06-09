@@ -12,12 +12,7 @@ class BooleanInTernaryOperatorRuleTest extends \PHPStan\Testing\RuleTestCase
 	{
 		return new BooleanInTernaryOperatorRule(
 			new BooleanRuleHelper(
-				new RuleLevelHelper(
-					$this->createBroker(),
-					true,
-					false,
-					true
-				)
+				self::getContainer()->getByType(RuleLevelHelper::class)
 			)
 		);
 	}
