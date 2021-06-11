@@ -109,3 +109,10 @@ function (array $array, int $int, $mixed) {
 
 	explode($mixed, $mixed) + $int;
 };
+
+$float === 123.2;
+$float == 123.2;
+$float !== 123.2;
+$float != 123.2;
+$float >= 123.2;
+$float <= 123.2;
