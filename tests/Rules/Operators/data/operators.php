@@ -109,3 +109,7 @@ function (array $array, int $int, $mixed) {
 
 	explode($mixed, $mixed) + $int;
 };
+
+/** @var numeric-string $numericString */
+$numericString = doFoo();
+$numericString + 1;

@@ -21,19 +21,11 @@ class OperandsInArithmeticDivisionRuleTest extends \PHPStan\Testing\RuleTestCase
 	{
 		$this->analyse([__DIR__ . '/data/operators.php'], [
 			[
-				'Only numeric types are allowed in /, string given on the right side.',
-				64,
-			],
-			[
 				'Only numeric types are allowed in /, null given on the right side.',
 				67,
 			],
 			[
 				'Only numeric types are allowed in /, null given on the right side.',
-				68,
-			],
-			[
-				'Only numeric types are allowed in /, string given on the right side.',
 				68,
 			],
 		]);

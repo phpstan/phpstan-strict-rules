@@ -3,10 +3,5 @@
         "message": "Binary operation \"+\" between int|string and int results in an error.",
         "line": 28,
         "ignorable": true
-    },
-    {
-        "message": "Only numeric types are allowed in +, int|string given on the left side.",
-        "line": 29,
-        "ignorable": true
     }
 ]

@@ -21,16 +21,8 @@ class OperandsInArithmeticExponentiationRuleTest extends \PHPStan\Testing\RuleTe
 	{
 		$this->analyse([__DIR__ . '/data/operators.php'], [
 			[
-				'Only numeric types are allowed in **, string given on the right side.',
-				77,
-			],
-			[
 				'Only numeric types are allowed in **, null given on the right side.',
 				80,
-			],
-			[
-				'Only numeric types are allowed in **, string given on the left side.',
-				81,
 			],
 			[
 				'Only numeric types are allowed in **, null given on the right side.',

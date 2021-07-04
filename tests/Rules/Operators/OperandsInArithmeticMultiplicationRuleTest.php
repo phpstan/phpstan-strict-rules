@@ -21,19 +21,11 @@ class OperandsInArithmeticMultiplicationRuleTest extends \PHPStan\Testing\RuleTe
 	{
 		$this->analyse([__DIR__ . '/data/operators.php'], [
 			[
-				'Only numeric types are allowed in *, string given on the right side.',
-				51,
-			],
-			[
 				'Only numeric types are allowed in *, null given on the right side.',
 				54,
 			],
 			[
 				'Only numeric types are allowed in *, null given on the right side.',
-				55,
-			],
-			[
-				'Only numeric types are allowed in *, string given on the right side.',
 				55,
 			],
 		]);

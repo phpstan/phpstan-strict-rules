@@ -21,19 +21,11 @@ class OperandsInArithmeticSubtractionRuleTest extends \PHPStan\Testing\RuleTestC
 	{
 		$this->analyse([__DIR__ . '/data/operators.php'], [
 			[
-				'Only numeric types are allowed in -, string given on the right side.',
-				38,
-			],
-			[
 				'Only numeric types are allowed in -, null given on the right side.',
 				41,
 			],
 			[
 				'Only numeric types are allowed in -, null given on the right side.',
-				42,
-			],
-			[
-				'Only numeric types are allowed in -, string given on the right side.',
 				42,
 			],
 		]);

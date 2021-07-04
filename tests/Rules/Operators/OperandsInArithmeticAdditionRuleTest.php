@@ -22,19 +22,11 @@ class OperandsInArithmeticAdditionRuleTest extends \PHPStan\Testing\RuleTestCase
 	{
 		$messages = [
 			[
-				'Only numeric types are allowed in +, string given on the right side.',
-				25,
-			],
-			[
 				'Only numeric types are allowed in +, null given on the right side.',
 				28,
 			],
 			[
 				'Only numeric types are allowed in +, null given on the right side.',
-				29,
-			],
-			[
-				'Only numeric types are allowed in +, string given on the right side.',
 				29,
 			],
 		];

@@ -5,10 +5,13 @@ namespace PHPStan\Rules\Operators;
 use PhpParser\Node\Expr;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\RuleLevelHelper;
+use PHPStan\Type\Accessory\AccessoryNumericStringType;
 use PHPStan\Type\ErrorType;
 use PHPStan\Type\FloatType;
 use PHPStan\Type\IntegerType;
+use PHPStan\Type\IntersectionType;
 use PHPStan\Type\MixedType;
+use PHPStan\Type\StringType;
 use PHPStan\Type\Type;
 use PHPStan\Type\UnionType;
 
@@ -50,7 +53,7 @@ class OperatorRuleHelper
 
 	private function isSubtypeOfNumber(Scope $scope, Expr $expr): bool
 	{
-		$acceptedType = new UnionType([new IntegerType(), new FloatType()]);
+		$acceptedType = new UnionType([new IntegerType(), new FloatType(), new IntersectionType([new StringType(), new AccessoryNumericStringType()])]);
 
 		$type = $this->ruleLevelHelper->findTypeToCheck(
 			$scope,
