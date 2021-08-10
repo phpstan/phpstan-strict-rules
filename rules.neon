@@ -20,6 +20,7 @@ rules:
 	- PHPStan\Rules\DisallowedConstructs\DisallowedImplicitArrayCreationRule
 	- PHPStan\Rules\DisallowedConstructs\DisallowedShortTernaryRule
 	- PHPStan\Rules\ForeachLoop\OverwriteVariablesWithForeachRule
+	- PHPStan\Rules\Methods\MethodVisibilityOverrideRule
 	- PHPStan\Rules\Methods\WrongCaseOfInheritedMethodRule
 	- PHPStan\Rules\Operators\OperandInArithmeticPostDecrementRule
 	- PHPStan\Rules\Operators\OperandInArithmeticPostIncrementRule
