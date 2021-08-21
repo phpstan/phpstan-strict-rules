@@ -9,6 +9,7 @@ parameters:
 	checkMissingClosureNativeReturnTypehintRule: true
 	reportMaybesInMethodSignatures: true
 	reportStaticMethodSignatures: true
+	reportMaybesInPropertyPhpDocTypes: true
 
 rules:
 	- PHPStan\Rules\BooleansInConditions\BooleanInBooleanNotRule
