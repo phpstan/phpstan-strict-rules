@@ -21,6 +21,7 @@ rules:
 	- PHPStan\Rules\DisallowedConstructs\DisallowedImplicitArrayCreationRule
 	- PHPStan\Rules\DisallowedConstructs\DisallowedShortTernaryRule
 	- PHPStan\Rules\ForeachLoop\OverwriteVariablesWithForeachRule
+	- PHPStan\Rules\ForLoop\OverwriteVariablesWithForLoopInitRule
 	- PHPStan\Rules\Methods\WrongCaseOfInheritedMethodRule
 	- PHPStan\Rules\Operators\OperandInArithmeticPostDecrementRule
 	- PHPStan\Rules\Operators\OperandInArithmeticPostIncrementRule
@@ -39,10 +40,6 @@ rules:
 	- PHPStan\Rules\VariableVariables\VariableStaticMethodCallRule
 	- PHPStan\Rules\VariableVariables\VariableStaticPropertyFetchRule
 	- PHPStan\Rules\VariableVariables\VariableVariablesRule
-
-conditionalTags:
-	PHPStan\Rules\ForLoop\OverwriteVariablesWithForLoopInitRule:
-		phpstan.rules.rule: %featureToggles.bleedingEdge%
 
 services:
 	-
@@ -77,6 +74,3 @@ services:
 			universalObjectCratesClasses: %universalObjectCratesClasses%
 		tags:
 			- phpstan.rules.rule
-
-	-
-		class: PHPStan\Rules\ForLoop\OverwriteVariablesWithForLoopInitRule
