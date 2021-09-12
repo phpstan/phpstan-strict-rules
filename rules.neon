@@ -6,6 +6,7 @@ parameters:
 	checkAlwaysTrueStrictComparison: true
 	checkExplicitMixedMissingReturn: true
 	checkFunctionNameCase: true
+	checkInternalClassCaseSensitivity: true
 	reportMaybesInMethodSignatures: true
 	reportStaticMethodSignatures: true
 	reportMaybesInPropertyPhpDocTypes: true
