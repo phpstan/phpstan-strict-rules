@@ -74,3 +74,15 @@ services:
 ```
 
 *Unfortunately, you cannot use phpstan/extension-installer in this case.*
+
+### Enabling all but a few rules
+
+If you want to enable all but a few rules, or if you prefer to use the extension installer while you don't want to enable all strict rules, you can [ignore the errors](https://phpstan.org/user-guide/ignoring-errors#ignoring-in-configuration-file) from the rules you don't want to use:
+
+```
+parameters:
+    ignoreErrors:
+        - '#.*should be covariant.*#'
+        - '#.*should be contravariant.*#'
+        - '#Short ternary operator is not allowed.*#'
+```
