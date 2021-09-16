@@ -23,6 +23,7 @@ rules:
 	- PHPStan\Rules\DisallowedConstructs\DisallowedShortTernaryRule
 	- PHPStan\Rules\ForeachLoop\OverwriteVariablesWithForeachRule
 	- PHPStan\Rules\ForLoop\OverwriteVariablesWithForLoopInitRule
+	- PHPStan\Rules\Functions\ClosureUsesThisRule
 	- PHPStan\Rules\Methods\WrongCaseOfInheritedMethodRule
 	- PHPStan\Rules\Operators\OperandInArithmeticPostDecrementRule
 	- PHPStan\Rules\Operators\OperandInArithmeticPostIncrementRule

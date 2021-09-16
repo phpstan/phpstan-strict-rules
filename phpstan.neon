@@ -6,7 +6,7 @@ includes:
 	- phpstan-baseline.neon
 
 parameters:
-	excludes_analyse:
+	excludePaths:
 		- tests/*/data/*
 
 services:
