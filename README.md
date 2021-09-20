@@ -30,6 +30,7 @@
 * Check missing typehint in anonymous function when a native one could be added
 * Require calling parent constructor
 * Disallow usage of backtick operator (`` $ls = `ls -la` ``)
+* Closure should use `$this` directly instead of using `$this` variable indirectly
 
 Additional rules are coming in subsequent releases!
 
