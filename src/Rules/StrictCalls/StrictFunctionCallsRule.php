@@ -48,16 +48,16 @@ class StrictFunctionCallsRule implements \PHPStan\Rules\Rule
 			return [];
 		}
 
-		if ($functionName === 'array_keys' && !array_key_exists(1, $node->args)) {
+		if ($functionName === 'array_keys' && !array_key_exists(1, $node->getArgs())) {
 			return [];
 		}
 
 		$argumentPosition = $this->functionArguments[$functionName];
-		if (!array_key_exists($argumentPosition, $node->args)) {
+		if (!array_key_exists($argumentPosition, $node->getArgs())) {
 			return [sprintf('Call to function %s() requires parameter #%d to be set.', $functionName, $argumentPosition + 1)];
 		}
 
-		$argumentType = $scope->getType($node->args[$argumentPosition]->value);
+		$argumentType = $scope->getType($node->getArgs()[$argumentPosition]->value);
 		$trueType = new ConstantBooleanType(true);
 		if (!$trueType->isSuperTypeOf($argumentType)->yes()) {
 			return [sprintf('Call to function %s() requires parameter #%d to be true.', $functionName, $argumentPosition + 1)];
