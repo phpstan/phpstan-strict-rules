@@ -16,8 +16,7 @@ class BooleanInBooleanOrRuleTest extends \PHPStan\Testing\RuleTestCase
 		return new BooleanInBooleanOrRule(
 			new BooleanRuleHelper(
 				self::getContainer()->getByType(RuleLevelHelper::class)
-			),
-			true
+			)
 		);
 	}
 

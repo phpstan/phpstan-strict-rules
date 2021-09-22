@@ -2,7 +2,6 @@
 
 namespace PHPStan\Rules\BooleansInConditions;
 
-use PhpParser\Node\Expr\BinaryOp\BooleanOr;
 use PHPStan\Node\BooleanOrNode;
 use PHPStan\Type\VerbosityLevel;
 
@@ -15,13 +14,9 @@ class BooleanInBooleanOrRule implements \PHPStan\Rules\Rule
 	/** @var BooleanRuleHelper */
 	private $helper;
 
-	/** @var bool */
-	private $checkLogicalOrConstantCondition;
-
-	public function __construct(BooleanRuleHelper $helper, bool $checkLogicalOrConstantCondition = false)
+	public function __construct(BooleanRuleHelper $helper)
 	{
 		$this->helper = $helper;
-		$this->checkLogicalOrConstantCondition = $checkLogicalOrConstantCondition;
 	}
 
 	public function getNodeType(): string
@@ -32,10 +27,6 @@ class BooleanInBooleanOrRule implements \PHPStan\Rules\Rule
 	public function processNode(\PhpParser\Node $node, \PHPStan\Analyser\Scope $scope): array
 	{
 		$originalNode = $node->getOriginalNode();
-		if (!$originalNode instanceof BooleanOr && !$this->checkLogicalOrConstantCondition) {
-			return [];
-		}
-
 		$messages = [];
 		if (!$this->helper->passesAsBoolean($scope, $originalNode->left)) {
 			$leftType = $scope->getType($originalNode->left);
