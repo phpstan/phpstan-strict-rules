@@ -33,7 +33,7 @@ class WrongCaseOfInheritedMethodRule implements \PHPStan\Rules\Rule
 		$declaringClass = $methodReflection->getDeclaringClass();
 
 		$messages = [];
-		if ($declaringClass->getParentClass() !== false) {
+		if ($declaringClass->getParentClass() !== null) {
 			$parentMessage = $this->findMethod(
 				$declaringClass,
 				$declaringClass->getParentClass(),
