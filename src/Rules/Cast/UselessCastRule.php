@@ -8,6 +8,7 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Rules\RuleError;
 use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\ErrorType;
+use PHPStan\Type\GeneralizePrecision;
 use PHPStan\Type\TypeUtils;
 use PHPStan\Type\VerbosityLevel;
 
@@ -38,7 +39,7 @@ class UselessCastRule implements \PHPStan\Rules\Rule
 		if ($castType instanceof ErrorType) {
 			return [];
 		}
-		$castType = TypeUtils::generalizeType($castType);
+		$castType = TypeUtils::generalizeType($castType, GeneralizePrecision::lessSpecific());
 
 		if ($this->treatPhpDocTypesAsCertain) {
 			$expressionType = $scope->getType($node->expr);
