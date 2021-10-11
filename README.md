@@ -27,7 +27,6 @@
 * Correct case for inherited and implemented method names.
 * Contravariance for parameter types and covariance for return types in inherited methods (also known as Liskov substitution principle - LSP)
 * Check LSP even for static methods
-* Check missing typehint in anonymous function when a native one could be added
 * Require calling parent constructor
 * Disallow usage of backtick operator (`` $ls = `ls -la` ``)
 * Closure should use `$this` directly instead of using `$this` variable indirectly
