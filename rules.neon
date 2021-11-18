@@ -38,10 +38,13 @@ rules:
 	- PHPStan\Rules\Operators\OperandsInArithmeticMultiplicationRule
 	- PHPStan\Rules\Operators\OperandsInArithmeticSubtractionRule
 	- PHPStan\Rules\StrictCalls\DynamicCallOnStaticMethodsRule
+	- PHPStan\Rules\StrictCalls\DynamicCallOnStaticMethodsCallableRule
 	- PHPStan\Rules\StrictCalls\StrictFunctionCallsRule
 	- PHPStan\Rules\SwitchConditions\MatchingTypeInSwitchCaseConditionRule
 	- PHPStan\Rules\VariableVariables\VariableMethodCallRule
+	- PHPStan\Rules\VariableVariables\VariableMethodCallableRule
 	- PHPStan\Rules\VariableVariables\VariableStaticMethodCallRule
+	- PHPStan\Rules\VariableVariables\VariableStaticMethodCallableRule
 	- PHPStan\Rules\VariableVariables\VariableStaticPropertyFetchRule
 	- PHPStan\Rules\VariableVariables\VariableVariablesRule
 
