@@ -58,9 +58,13 @@ includes:
 
 ## Enabling rules one-by-one
 
-If you don't want to start using all the available strict rules at once but only one or two, you can! Just don't include the whole `rules.neon` from this package in your configuration, but look at its contents and copy only the rules you want to your configuration under the `services` key:
+If you don't want to start using all the available strict rules at once but only one or two, you can!
 
-```
+### Without extension-installer
+
+Just don't include the whole `rules.neon` from this package in your configuration, but look at its contents and copy only the rules you want to your configuration under the `services` key:
+
+```neon
 services:
 	-
 		class: PHPStan\Rules\StrictCalls\StrictFunctionCallsRule
@@ -73,4 +77,15 @@ services:
 			- phpstan.rules.rule
 ```
 
-*Unfortunately, you cannot use phpstan/extension-installer in this case.*
+### With extension-installer
+
+Unfortunately, by using `phpstan/extension-installer` you can't enable it one by one, ***but you can [ignore specific errors](https://phpstan.org/user-guide/ignoring-errors) instead***.
+
+For example:
+
+```neon
+parameters:
+	ignoreErrors:
+		- '#Construct empty\(\) is not allowed. Use more strict comparison.#'
+		- '#Call to function in_array\(\) requires parameter \#3 to be set.#'
+```
