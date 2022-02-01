@@ -2,33 +2,39 @@
 
 namespace PHPStan\Rules\DisallowedConstructs;
 
+use PhpParser\Node;
+use PhpParser\Node\Expr\ArrayDimFetch;
+use PhpParser\Node\Expr\Assign;
+use PhpParser\Node\Expr\Variable;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\Rule;
+use function is_string;
+use function sprintf;
 
-class DisallowedImplicitArrayCreationRule implements \PHPStan\Rules\Rule
+class DisallowedImplicitArrayCreationRule implements Rule
 {
 
 	public function getNodeType(): string
 	{
-		return \PhpParser\Node\Expr\Assign::class;
+		return Assign::class;
 	}
 
 	/**
-	 * @param \PhpParser\Node\Expr\Assign $node
-	 * @param \PHPStan\Analyser\Scope $scope
+	 * @param Assign $node
 	 * @return string[]
 	 */
-	public function processNode(\PhpParser\Node $node, Scope $scope): array
+	public function processNode(Node $node, Scope $scope): array
 	{
-		if (!$node->var instanceof \PhpParser\Node\Expr\ArrayDimFetch) {
+		if (!$node->var instanceof ArrayDimFetch) {
 			return [];
 		}
 
 		$node = $node->var;
-		while ($node instanceof \PhpParser\Node\Expr\ArrayDimFetch) {
+		while ($node instanceof ArrayDimFetch) {
 			$node = $node->var;
 		}
 
-		if (!$node instanceof \PhpParser\Node\Expr\Variable) {
+		if (!$node instanceof Variable) {
 			return [];
 		}
 

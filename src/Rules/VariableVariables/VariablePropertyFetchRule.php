@@ -3,12 +3,14 @@
 namespace PHPStan\Rules\VariableVariables;
 
 use PhpParser\Node;
+use PhpParser\Node\Expr\PropertyFetch;
 use PHPStan\Analyser\Scope;
 use PHPStan\Broker\Broker;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\TypeUtils;
 use PHPStan\Type\VerbosityLevel;
+use function sprintf;
 
 class VariablePropertyFetchRule implements Rule
 {
@@ -20,7 +22,6 @@ class VariablePropertyFetchRule implements Rule
 	private $universalObjectCratesClasses;
 
 	/**
-	 * @param Broker $broker
 	 * @param string[] $universalObjectCratesClasses
 	 */
 	public function __construct(Broker $broker, array $universalObjectCratesClasses)
@@ -35,8 +36,7 @@ class VariablePropertyFetchRule implements Rule
 	}
 
 	/**
-	 * @param \PhpParser\Node\Expr\PropertyFetch $node
-	 * @param \PHPStan\Analyser\Scope $scope
+	 * @param PropertyFetch $node
 	 * @return string[]
 	 */
 	public function processNode(Node $node, Scope $scope): array

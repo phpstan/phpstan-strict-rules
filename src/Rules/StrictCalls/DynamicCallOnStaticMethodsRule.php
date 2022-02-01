@@ -5,14 +5,16 @@ namespace PHPStan\Rules\StrictCalls;
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleLevelHelper;
 use PHPStan\Type\ErrorType;
 use PHPStan\Type\Type;
+use function sprintf;
 
-class DynamicCallOnStaticMethodsRule implements \PHPStan\Rules\Rule
+class DynamicCallOnStaticMethodsRule implements Rule
 {
 
-	/** @var \PHPStan\Rules\RuleLevelHelper */
+	/** @var RuleLevelHelper */
 	private $ruleLevelHelper;
 
 	public function __construct(RuleLevelHelper $ruleLevelHelper)
@@ -26,8 +28,7 @@ class DynamicCallOnStaticMethodsRule implements \PHPStan\Rules\Rule
 	}
 
 	/**
-	 * @param \PhpParser\Node\Expr\MethodCall $node
-	 * @param \PHPStan\Analyser\Scope $scope
+	 * @param MethodCall $node
 	 * @return string[]
 	 */
 	public function processNode(Node $node, Scope $scope): array
@@ -41,7 +42,7 @@ class DynamicCallOnStaticMethodsRule implements \PHPStan\Rules\Rule
 			$scope,
 			$node->var,
 			'',
-			function (Type $type) use ($name): bool {
+			static function (Type $type) use ($name): bool {
 				return $type->canCallMethods()->yes() && $type->hasMethod($name)->yes();
 			}
 		)->getType();

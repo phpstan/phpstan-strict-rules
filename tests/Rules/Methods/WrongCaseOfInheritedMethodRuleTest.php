@@ -2,10 +2,13 @@
 
 namespace PHPStan\Rules\Methods;
 
-class WrongCaseOfInheritedMethodRuleTest extends \PHPStan\Testing\RuleTestCase
+use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
+
+class WrongCaseOfInheritedMethodRuleTest extends RuleTestCase
 {
 
-	protected function getRule(): \PHPStan\Rules\Rule
+	protected function getRule(): Rule
 	{
 		return new WrongCaseOfInheritedMethodRule();
 	}

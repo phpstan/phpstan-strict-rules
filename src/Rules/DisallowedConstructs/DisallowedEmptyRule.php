@@ -3,19 +3,20 @@
 namespace PHPStan\Rules\DisallowedConstructs;
 
 use PhpParser\Node;
+use PhpParser\Node\Expr\Empty_;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\Rule;
 
-class DisallowedEmptyRule implements \PHPStan\Rules\Rule
+class DisallowedEmptyRule implements Rule
 {
 
 	public function getNodeType(): string
 	{
-		return \PhpParser\Node\Expr\Empty_::class;
+		return Empty_::class;
 	}
 
 	/**
-	 * @param \PhpParser\Node\Expr\Empty_ $node
-	 * @param \PHPStan\Analyser\Scope $scope
+	 * @param Empty_ $node
 	 * @return string[]
 	 */
 	public function processNode(Node $node, Scope $scope): array

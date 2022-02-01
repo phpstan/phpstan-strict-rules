@@ -4,9 +4,10 @@ namespace PHPStan\Rules\Operators;
 
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleLevelHelper;
+use PHPStan\Testing\RuleTestCase;
 use const PHP_VERSION_ID;
 
-class OperandsInArithmeticAdditionRuleTest extends \PHPStan\Testing\RuleTestCase
+class OperandsInArithmeticAdditionRuleTest extends RuleTestCase
 {
 
 	protected function getRule(): Rule

@@ -2,7 +2,9 @@
 
 namespace PHPStan\Levels;
 
-class LevelsIntegrationTest extends \PHPStan\Testing\LevelsTestCase
+use PHPStan\Testing\LevelsTestCase;
+
+class LevelsIntegrationTest extends LevelsTestCase
 {
 
 	/**

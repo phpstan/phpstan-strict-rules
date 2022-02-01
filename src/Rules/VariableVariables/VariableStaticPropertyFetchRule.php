@@ -3,9 +3,11 @@
 namespace PHPStan\Rules\VariableVariables;
 
 use PhpParser\Node;
+use PhpParser\Node\Expr\StaticPropertyFetch;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\VerbosityLevel;
+use function sprintf;
 
 class VariableStaticPropertyFetchRule implements Rule
 {
@@ -16,8 +18,7 @@ class VariableStaticPropertyFetchRule implements Rule
 	}
 
 	/**
-	 * @param \PhpParser\Node\Expr\StaticPropertyFetch $node
-	 * @param \PHPStan\Analyser\Scope $scope
+	 * @param StaticPropertyFetch $node
 	 * @return string[]
 	 */
 	public function processNode(Node $node, Scope $scope): array

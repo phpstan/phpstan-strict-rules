@@ -3,11 +3,16 @@
 namespace PHPStan\Rules\Classes;
 
 use PhpParser\Node;
+use PhpParser\Node\Expr\StaticCall;
 use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\ClassMethod;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\Rule;
+use PHPStan\ShouldNotHappenException;
+use ReflectionClass;
+use function sprintf;
 
-class RequireParentConstructCallRule implements \PHPStan\Rules\Rule
+class RequireParentConstructCallRule implements Rule
 {
 
 	public function getNodeType(): string
@@ -16,14 +21,13 @@ class RequireParentConstructCallRule implements \PHPStan\Rules\Rule
 	}
 
 	/**
-	 * @param \PhpParser\Node\Stmt\ClassMethod $node
-	 * @param \PHPStan\Analyser\Scope $scope
+	 * @param ClassMethod $node
 	 * @return string[]
 	 */
 	public function processNode(Node $node, Scope $scope): array
 	{
 		if (!$scope->isInClass()) {
-			throw new \PHPStan\ShouldNotHappenException();
+			throw new ShouldNotHappenException();
 		}
 
 		if ($scope->isInTrait()) {
@@ -85,7 +89,7 @@ class RequireParentConstructCallRule implements \PHPStan\Rules\Rule
 			}
 
 			$statement = $this->ignoreErrorSuppression($statement);
-			if ($statement instanceof \PhpParser\Node\Expr\StaticCall) {
+			if ($statement instanceof StaticCall) {
 				if (
 					$statement->class instanceof Name
 					&& ((string) $statement->class === 'parent')
@@ -105,10 +109,9 @@ class RequireParentConstructCallRule implements \PHPStan\Rules\Rule
 	}
 
 	/**
-	 * @param \ReflectionClass $classReflection
-	 * @return \ReflectionClass|false
+	 * @return ReflectionClass|false
 	 */
-	private function getParentConstructorClass(\ReflectionClass $classReflection)
+	private function getParentConstructorClass(ReflectionClass $classReflection)
 	{
 		while ($classReflection->getParentClass() !== false) {
 			$constructor = $classReflection->getParentClass()->hasMethod('__construct') ? $classReflection->getParentClass()->getMethod('__construct') : null;

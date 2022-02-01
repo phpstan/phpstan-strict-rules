@@ -2,9 +2,14 @@
 
 namespace PHPStan\Rules\BooleansInConditions;
 
+use PhpParser\Node;
+use PhpParser\Node\Stmt\If_;
+use PHPStan\Analyser\Scope;
+use PHPStan\Rules\Rule;
 use PHPStan\Type\VerbosityLevel;
+use function sprintf;
 
-class BooleanInIfConditionRule implements \PHPStan\Rules\Rule
+class BooleanInIfConditionRule implements Rule
 {
 
 	/** @var BooleanRuleHelper */
@@ -17,15 +22,14 @@ class BooleanInIfConditionRule implements \PHPStan\Rules\Rule
 
 	public function getNodeType(): string
 	{
-		return \PhpParser\Node\Stmt\If_::class;
+		return If_::class;
 	}
 
 	/**
-	 * @param \PhpParser\Node\Stmt\If_ $node
-	 * @param \PHPStan\Analyser\Scope $scope
+	 * @param If_ $node
 	 * @return string[] errors
 	 */
-	public function processNode(\PhpParser\Node $node, \PHPStan\Analyser\Scope $scope): array
+	public function processNode(Node $node, Scope $scope): array
 	{
 		if ($this->helper->passesAsBoolean($scope, $node->cond)) {
 			return [];

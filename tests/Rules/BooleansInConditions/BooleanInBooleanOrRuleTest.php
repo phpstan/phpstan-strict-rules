@@ -4,11 +4,12 @@ namespace PHPStan\Rules\BooleansInConditions;
 
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleLevelHelper;
+use PHPStan\Testing\RuleTestCase;
 
 /**
- * @extends \PHPStan\Testing\RuleTestCase<BooleanInBooleanOrRule>
+ * @extends RuleTestCase<BooleanInBooleanOrRule>
  */
-class BooleanInBooleanOrRuleTest extends \PHPStan\Testing\RuleTestCase
+class BooleanInBooleanOrRuleTest extends RuleTestCase
 {
 
 	protected function getRule(): Rule

@@ -13,7 +13,7 @@ use PHPStan\Type\Type;
 class BooleanRuleHelper
 {
 
-	/** @var \PHPStan\Rules\RuleLevelHelper */
+	/** @var RuleLevelHelper */
 	private $ruleLevelHelper;
 
 	public function __construct(RuleLevelHelper $ruleLevelHelper)
@@ -31,7 +31,7 @@ class BooleanRuleHelper
 			$scope,
 			$expr,
 			'',
-			function (Type $type): bool {
+			static function (Type $type): bool {
 				return $type instanceof BooleanType;
 			}
 		);

@@ -7,6 +7,8 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\ThisType;
+use function is_string;
+use function sprintf;
 
 /**
  * @implements Rule<Node\Expr\Closure>

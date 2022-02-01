@@ -5,17 +5,19 @@ namespace PHPStan\Rules\StrictCalls;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Node\MethodCallableNode;
+use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleLevelHelper;
 use PHPStan\Type\ErrorType;
 use PHPStan\Type\Type;
+use function sprintf;
 
 /**
- * @implements \PHPStan\Rules\Rule<MethodCallableNode>
+ * @implements Rule<MethodCallableNode>
  */
-class DynamicCallOnStaticMethodsCallableRule implements \PHPStan\Rules\Rule
+class DynamicCallOnStaticMethodsCallableRule implements Rule
 {
 
-	/** @var \PHPStan\Rules\RuleLevelHelper */
+	/** @var RuleLevelHelper */
 	private $ruleLevelHelper;
 
 	public function __construct(RuleLevelHelper $ruleLevelHelper)
@@ -39,7 +41,7 @@ class DynamicCallOnStaticMethodsCallableRule implements \PHPStan\Rules\Rule
 			$scope,
 			$node->getVar(),
 			'',
-			function (Type $type) use ($name): bool {
+			static function (Type $type) use ($name): bool {
 				return $type->canCallMethods()->yes() && $type->hasMethod($name)->yes();
 			}
 		)->getType();

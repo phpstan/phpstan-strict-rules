@@ -4,8 +4,9 @@ namespace PHPStan\Rules\BooleansInConditions;
 
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleLevelHelper;
+use PHPStan\Testing\RuleTestCase;
 
-class BooleanInIfConditionRuleTest extends \PHPStan\Testing\RuleTestCase
+class BooleanInIfConditionRuleTest extends RuleTestCase
 {
 
 	protected function getRule(): Rule

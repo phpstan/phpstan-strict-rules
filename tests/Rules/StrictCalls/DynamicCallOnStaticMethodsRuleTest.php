@@ -4,8 +4,9 @@ namespace PHPStan\Rules\StrictCalls;
 
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleLevelHelper;
+use PHPStan\Testing\RuleTestCase;
 
-class DynamicCallOnStaticMethodsRuleTest extends \PHPStan\Testing\RuleTestCase
+class DynamicCallOnStaticMethodsRuleTest extends RuleTestCase
 {
 
 	protected function getRule(): Rule

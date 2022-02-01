@@ -4,8 +4,11 @@ namespace PHPStan\Rules\ForeachLoop;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr;
+use PhpParser\Node\Stmt\Foreach_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use function is_string;
+use function sprintf;
 
 class OverwriteVariablesWithForeachRule implements Rule
 {
@@ -16,8 +19,7 @@ class OverwriteVariablesWithForeachRule implements Rule
 	}
 
 	/**
-	 * @param \PhpParser\Node\Stmt\Foreach_ $node
-	 * @param \PHPStan\Analyser\Scope $scope
+	 * @param Foreach_ $node
 	 * @return string[]
 	 */
 	public function processNode(Node $node, Scope $scope): array
@@ -39,8 +41,6 @@ class OverwriteVariablesWithForeachRule implements Rule
 	}
 
 	/**
-	 * @param Scope $scope
-	 * @param Expr $expr
 	 * @return string[]
 	 */
 	private function checkValueVar(Scope $scope, Expr $expr): array

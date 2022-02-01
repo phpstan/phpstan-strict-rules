@@ -2,13 +2,16 @@
 
 namespace PHPStan\Rules\Cast;
 
-class UselessCastRuleTest extends \PHPStan\Testing\RuleTestCase
+use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
+
+class UselessCastRuleTest extends RuleTestCase
 {
 
 	/** @var bool */
 	private $treatPhpDocTypesAsCertain;
 
-	protected function getRule(): \PHPStan\Rules\Rule
+	protected function getRule(): Rule
 	{
 		return new UselessCastRule($this->treatPhpDocTypesAsCertain);
 	}

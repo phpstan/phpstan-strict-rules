@@ -3,8 +3,9 @@
 namespace PHPStan\Rules\DisallowedConstructs;
 
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 
-class DisallowedEmptyRuleTest extends \PHPStan\Testing\RuleTestCase
+class DisallowedEmptyRuleTest extends RuleTestCase
 {
 
 	protected function getRule(): Rule
