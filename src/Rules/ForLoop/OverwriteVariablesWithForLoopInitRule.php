@@ -8,6 +8,8 @@ use PhpParser\Node\Expr\Assign;
 use PhpParser\Node\Stmt\For_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use function is_string;
+use function sprintf;
 
 /**
  * @implements Rule<For_>
@@ -22,7 +24,6 @@ class OverwriteVariablesWithForLoopInitRule implements Rule
 
 	/**
 	 * @param For_ $node
-	 * @param Scope $scope
 	 * @return string[]
 	 */
 	public function processNode(Node $node, Scope $scope): array
@@ -42,8 +43,6 @@ class OverwriteVariablesWithForLoopInitRule implements Rule
 	}
 
 	/**
-	 * @param Scope $scope
-	 * @param Expr $expr
 	 * @return string[]
 	 */
 	private function checkValueVar(Scope $scope, Expr $expr): array

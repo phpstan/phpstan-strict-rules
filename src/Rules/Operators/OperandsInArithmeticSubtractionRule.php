@@ -2,9 +2,15 @@
 
 namespace PHPStan\Rules\Operators;
 
+use PhpParser\Node;
+use PhpParser\Node\Expr\BinaryOp\BooleanAnd;
+use PhpParser\Node\Expr\BinaryOp\Minus;
+use PHPStan\Analyser\Scope;
+use PHPStan\Rules\Rule;
 use PHPStan\Type\VerbosityLevel;
+use function sprintf;
 
-class OperandsInArithmeticSubtractionRule implements \PHPStan\Rules\Rule
+class OperandsInArithmeticSubtractionRule implements Rule
 {
 
 	/** @var OperatorRuleHelper */
@@ -17,15 +23,14 @@ class OperandsInArithmeticSubtractionRule implements \PHPStan\Rules\Rule
 
 	public function getNodeType(): string
 	{
-		return \PhpParser\Node\Expr\BinaryOp\Minus::class;
+		return Minus::class;
 	}
 
 	/**
-	 * @param \PhpParser\Node\Expr\BinaryOp\BooleanAnd $node
-	 * @param \PHPStan\Analyser\Scope $scope
+	 * @param BooleanAnd $node
 	 * @return string[] errors
 	 */
-	public function processNode(\PhpParser\Node $node, \PHPStan\Analyser\Scope $scope): array
+	public function processNode(Node $node, Scope $scope): array
 	{
 		$messages = [];
 		$leftType = $scope->getType($node->left);

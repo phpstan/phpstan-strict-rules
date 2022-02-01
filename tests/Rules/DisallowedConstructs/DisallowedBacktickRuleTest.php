@@ -3,8 +3,9 @@
 namespace PHPStan\Rules\DisallowedConstructs;
 
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 
-class DisallowedBacktickRuleTest extends \PHPStan\Testing\RuleTestCase
+class DisallowedBacktickRuleTest extends RuleTestCase
 {
 
 	protected function getRule(): Rule

@@ -2,13 +2,17 @@
 
 namespace PHPStan\Rules\BooleansInConditions;
 
+use PhpParser\Node;
+use PHPStan\Analyser\Scope;
 use PHPStan\Node\BooleanOrNode;
+use PHPStan\Rules\Rule;
 use PHPStan\Type\VerbosityLevel;
+use function sprintf;
 
 /**
- * @implements \PHPStan\Rules\Rule<BooleanOrNode>
+ * @implements Rule<BooleanOrNode>
  */
-class BooleanInBooleanOrRule implements \PHPStan\Rules\Rule
+class BooleanInBooleanOrRule implements Rule
 {
 
 	/** @var BooleanRuleHelper */
@@ -24,7 +28,7 @@ class BooleanInBooleanOrRule implements \PHPStan\Rules\Rule
 		return BooleanOrNode::class;
 	}
 
-	public function processNode(\PhpParser\Node $node, \PHPStan\Analyser\Scope $scope): array
+	public function processNode(Node $node, Scope $scope): array
 	{
 		$originalNode = $node->getOriginalNode();
 		$messages = [];

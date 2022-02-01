@@ -2,9 +2,18 @@
 
 namespace PHPStan\Rules\StrictCalls;
 
+use PhpParser\Node;
+use PhpParser\Node\Expr\FuncCall;
+use PhpParser\Node\Name;
+use PHPStan\Analyser\Scope;
+use PHPStan\Broker\Broker;
+use PHPStan\Rules\Rule;
 use PHPStan\Type\Constant\ConstantBooleanType;
+use function array_key_exists;
+use function sprintf;
+use function strtolower;
 
-class StrictFunctionCallsRule implements \PHPStan\Rules\Rule
+class StrictFunctionCallsRule implements Rule
 {
 
 	/** @var int[] */
@@ -15,27 +24,26 @@ class StrictFunctionCallsRule implements \PHPStan\Rules\Rule
 		'array_keys' => 2,
 	];
 
-	/** @var \PHPStan\Broker\Broker */
+	/** @var Broker */
 	private $broker;
 
-	public function __construct(\PHPStan\Broker\Broker $broker)
+	public function __construct(Broker $broker)
 	{
 		$this->broker = $broker;
 	}
 
 	public function getNodeType(): string
 	{
-		return \PhpParser\Node\Expr\FuncCall::class;
+		return FuncCall::class;
 	}
 
 	/**
-	 * @param \PhpParser\Node\Expr\FuncCall $node
-	 * @param \PHPStan\Analyser\Scope $scope
+	 * @param FuncCall $node
 	 * @return string[] errors
 	 */
-	public function processNode(\PhpParser\Node $node, \PHPStan\Analyser\Scope $scope): array
+	public function processNode(Node $node, Scope $scope): array
 	{
-		if (!$node->name instanceof \PhpParser\Node\Name) {
+		if (!$node->name instanceof Name) {
 			return [];
 		}
 

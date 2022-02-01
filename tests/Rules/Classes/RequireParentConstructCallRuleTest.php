@@ -2,12 +2,14 @@
 
 namespace PHPStan\Rules\Classes;
 
+use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use const PHP_VERSION_ID;
 
-class RequireParentConstructCallRuleTest extends \PHPStan\Testing\RuleTestCase
+class RequireParentConstructCallRuleTest extends RuleTestCase
 {
 
-	protected function getRule(): \PHPStan\Rules\Rule
+	protected function getRule(): Rule
 	{
 		return new RequireParentConstructCallRule();
 	}

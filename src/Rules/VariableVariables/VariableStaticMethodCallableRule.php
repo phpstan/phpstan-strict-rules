@@ -7,6 +7,7 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Node\StaticMethodCallableNode;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\VerbosityLevel;
+use function sprintf;
 
 /**
  * @implements Rule<StaticMethodCallableNode>

@@ -3,8 +3,10 @@
 namespace PHPStan\Rules\VariableVariables;
 
 use PhpParser\Node;
+use PhpParser\Node\Expr\Variable;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use function is_string;
 
 class VariableVariablesRule implements Rule
 {
@@ -15,8 +17,7 @@ class VariableVariablesRule implements Rule
 	}
 
 	/**
-	 * @param \PhpParser\Node\Expr\Variable $node
-	 * @param \PHPStan\Analyser\Scope $scope
+	 * @param Variable $node
 	 * @return string[]
 	 */
 	public function processNode(Node $node, Scope $scope): array

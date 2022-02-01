@@ -2,12 +2,14 @@
 
 namespace PHPStan\Rules\Operators;
 
+use PhpParser\Node\Expr\PostInc;
+
 class OperandInArithmeticPostIncrementRule extends OperandInArithmeticIncrementOrDecrementRule
 {
 
 	public function getNodeType(): string
 	{
-		return \PhpParser\Node\Expr\PostInc::class;
+		return PostInc::class;
 	}
 
 	protected function describeOperation(): string

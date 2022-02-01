@@ -2,17 +2,19 @@
 
 namespace PHPStan\Rules\SwitchConditions;
 
+use PhpParser\PrettyPrinter\Standard;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 
 /**
- * @extends \PHPStan\Testing\RuleTestCase<MatchingTypeInSwitchCaseConditionRule>
+ * @extends RuleTestCase<MatchingTypeInSwitchCaseConditionRule>
  */
-class MatchingTypeInSwitchCaseConditionRuleTest extends \PHPStan\Testing\RuleTestCase
+class MatchingTypeInSwitchCaseConditionRuleTest extends RuleTestCase
 {
 
 	protected function getRule(): Rule
 	{
-		return new MatchingTypeInSwitchCaseConditionRule(new \PhpParser\PrettyPrinter\Standard());
+		return new MatchingTypeInSwitchCaseConditionRule(new Standard());
 	}
 
 	public function testRule(): void

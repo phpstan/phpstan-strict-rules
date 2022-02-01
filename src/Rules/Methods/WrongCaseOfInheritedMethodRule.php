@@ -2,12 +2,16 @@
 
 namespace PHPStan\Rules\Methods;
 
+use PhpParser\Node;
+use PhpParser\Node\Stmt\ClassMethod;
 use PHPStan\Analyser\Scope;
 use PHPStan\Node\InClassMethodNode;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\MethodReflection;
+use PHPStan\Rules\Rule;
+use function sprintf;
 
-class WrongCaseOfInheritedMethodRule implements \PHPStan\Rules\Rule
+class WrongCaseOfInheritedMethodRule implements Rule
 {
 
 	public function getNodeType(): string
@@ -16,12 +20,11 @@ class WrongCaseOfInheritedMethodRule implements \PHPStan\Rules\Rule
 	}
 
 	/**
-	 * @param \PhpParser\Node\Stmt\ClassMethod $node
-	 * @param \PHPStan\Analyser\Scope $scope
+	 * @param ClassMethod $node
 	 * @return string[]
 	 */
 	public function processNode(
-		\PhpParser\Node $node,
+		Node $node,
 		Scope $scope
 	): array
 	{

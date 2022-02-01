@@ -5,14 +5,16 @@ namespace PHPStan\Rules\Cast;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Cast;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleError;
 use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\ErrorType;
 use PHPStan\Type\GeneralizePrecision;
 use PHPStan\Type\TypeUtils;
 use PHPStan\Type\VerbosityLevel;
+use function sprintf;
 
-class UselessCastRule implements \PHPStan\Rules\Rule
+class UselessCastRule implements Rule
 {
 
 	/** @var bool */
@@ -29,8 +31,7 @@ class UselessCastRule implements \PHPStan\Rules\Rule
 	}
 
 	/**
-	 * @param \PhpParser\Node\Expr\Cast $node
-	 * @param \PHPStan\Analyser\Scope $scope
+	 * @param Cast $node
 	 * @return RuleError[] errors
 	 */
 	public function processNode(Node $node, Scope $scope): array

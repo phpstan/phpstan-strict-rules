@@ -3,8 +3,9 @@
 namespace PHPStan\Rules\DisallowedConstructs;
 
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 
-class DisallowedImplicitArrayCreationRuleTest extends \PHPStan\Testing\RuleTestCase
+class DisallowedImplicitArrayCreationRuleTest extends RuleTestCase
 {
 
 	protected function getRule(): Rule

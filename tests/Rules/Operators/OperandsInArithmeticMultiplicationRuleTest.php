@@ -4,8 +4,9 @@ namespace PHPStan\Rules\Operators;
 
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleLevelHelper;
+use PHPStan\Testing\RuleTestCase;
 
-class OperandsInArithmeticMultiplicationRuleTest extends \PHPStan\Testing\RuleTestCase
+class OperandsInArithmeticMultiplicationRuleTest extends RuleTestCase
 {
 
 	protected function getRule(): Rule

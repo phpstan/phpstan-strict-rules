@@ -2,12 +2,14 @@
 
 namespace PHPStan\Rules\Operators;
 
+use PhpParser\Node\Expr\PreInc;
+
 class OperandInArithmeticPreIncrementRule extends OperandInArithmeticIncrementOrDecrementRule
 {
 
 	public function getNodeType(): string
 	{
-		return \PhpParser\Node\Expr\PreInc::class;
+		return PreInc::class;
 	}
 
 	protected function describeOperation(): string

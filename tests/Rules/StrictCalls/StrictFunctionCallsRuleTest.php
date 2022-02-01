@@ -3,8 +3,9 @@
 namespace PHPStan\Rules\StrictCalls;
 
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 
-class StrictFunctionCallsRuleTest extends \PHPStan\Testing\RuleTestCase
+class StrictFunctionCallsRuleTest extends RuleTestCase
 {
 
 	protected function getRule(): Rule

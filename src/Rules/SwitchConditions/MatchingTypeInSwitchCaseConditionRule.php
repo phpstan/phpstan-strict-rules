@@ -2,29 +2,35 @@
 
 namespace PHPStan\Rules\SwitchConditions;
 
+use PhpParser\Node;
+use PhpParser\Node\Stmt\Switch_;
+use PhpParser\PrettyPrinter\Standard;
+use PHPStan\Analyser\Scope;
+use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\VerbosityLevel;
+use function sprintf;
 
 /**
- * @implements \PHPStan\Rules\Rule<\PhpParser\Node\Stmt\Switch_>
+ * @implements Rule<Switch_>
  */
-class MatchingTypeInSwitchCaseConditionRule implements \PHPStan\Rules\Rule
+class MatchingTypeInSwitchCaseConditionRule implements Rule
 {
 
-	/** @var \PhpParser\PrettyPrinter\Standard */
+	/** @var Standard */
 	private $printer;
 
-	public function __construct(\PhpParser\PrettyPrinter\Standard $printer)
+	public function __construct(Standard $printer)
 	{
 		$this->printer = $printer;
 	}
 
 	public function getNodeType(): string
 	{
-		return \PhpParser\Node\Stmt\Switch_::class;
+		return Switch_::class;
 	}
 
-	public function processNode(\PhpParser\Node $node, \PHPStan\Analyser\Scope $scope): array
+	public function processNode(Node $node, Scope $scope): array
 	{
 		$messages = [];
 		$conditionType = $scope->getType($node->cond);

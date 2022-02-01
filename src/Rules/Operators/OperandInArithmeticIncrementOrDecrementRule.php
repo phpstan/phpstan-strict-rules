@@ -2,8 +2,15 @@
 
 namespace PHPStan\Rules\Operators;
 
+use PhpParser\Node;
+use PhpParser\Node\Expr\PostDec;
+use PhpParser\Node\Expr\PostInc;
+use PhpParser\Node\Expr\PreDec;
+use PhpParser\Node\Expr\PreInc;
+use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\VerbosityLevel;
+use function sprintf;
 
 abstract class OperandInArithmeticIncrementOrDecrementRule implements Rule
 {
@@ -17,11 +24,10 @@ abstract class OperandInArithmeticIncrementOrDecrementRule implements Rule
 	}
 
 	/**
-	 * @param \PhpParser\Node\Expr\PreInc|\PhpParser\Node\Expr\PreDec|\PhpParser\Node\Expr\PostInc|\PhpParser\Node\Expr\PostDec $node
-	 * @param \PHPStan\Analyser\Scope $scope
+	 * @param PreInc|PreDec|PostInc|PostDec $node
 	 * @return string[] errors
 	 */
-	public function processNode(\PhpParser\Node $node, \PHPStan\Analyser\Scope $scope): array
+	public function processNode(Node $node, Scope $scope): array
 	{
 		$messages = [];
 		$varType = $scope->getType($node->var);

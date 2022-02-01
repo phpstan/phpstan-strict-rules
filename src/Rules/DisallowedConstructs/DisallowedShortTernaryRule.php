@@ -3,17 +3,19 @@
 namespace PHPStan\Rules\DisallowedConstructs;
 
 use PhpParser\Node;
+use PhpParser\Node\Expr\Ternary;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\Rule;
 
 /**
- * @implements \PHPStan\Rules\Rule<\PhpParser\Node\Expr\Ternary>
+ * @implements Rule<Ternary>
  */
-class DisallowedShortTernaryRule implements \PHPStan\Rules\Rule
+class DisallowedShortTernaryRule implements Rule
 {
 
 	public function getNodeType(): string
 	{
-		return \PhpParser\Node\Expr\Ternary::class;
+		return Ternary::class;
 	}
 
 	public function processNode(Node $node, Scope $scope): array

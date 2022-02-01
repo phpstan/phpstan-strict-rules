@@ -6,6 +6,7 @@ use PhpParser\Node\Expr;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\RuleLevelHelper;
 use PHPStan\Type\Accessory\AccessoryNumericStringType;
+use PHPStan\Type\BenevolentUnionType;
 use PHPStan\Type\ErrorType;
 use PHPStan\Type\FloatType;
 use PHPStan\Type\IntegerType;
@@ -18,7 +19,7 @@ use PHPStan\Type\UnionType;
 class OperatorRuleHelper
 {
 
-	/** @var \PHPStan\Rules\RuleLevelHelper */
+	/** @var RuleLevelHelper */
 	private $ruleLevelHelper;
 
 	public function __construct(RuleLevelHelper $ruleLevelHelper)
@@ -59,7 +60,7 @@ class OperatorRuleHelper
 			$scope,
 			$expr,
 			'',
-			function (Type $type) use ($acceptedType): bool {
+			static function (Type $type) use ($acceptedType): bool {
 				return $acceptedType->isSuperTypeOf($type)->yes();
 			}
 		)->getType();
@@ -69,7 +70,7 @@ class OperatorRuleHelper
 		}
 
 		$isSuperType = $acceptedType->isSuperTypeOf($type);
-		if ($type instanceof \PHPStan\Type\BenevolentUnionType) {
+		if ($type instanceof BenevolentUnionType) {
 			return !$isSuperType->no();
 		}
 

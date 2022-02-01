@@ -2,12 +2,14 @@
 
 namespace PHPStan\Rules\Operators;
 
+use PhpParser\Node\Expr\PreDec;
+
 class OperandInArithmeticPreDecrementRule extends OperandInArithmeticIncrementOrDecrementRule
 {
 
 	public function getNodeType(): string
 	{
-		return \PhpParser\Node\Expr\PreDec::class;
+		return PreDec::class;
 	}
 
 	protected function describeOperation(): string

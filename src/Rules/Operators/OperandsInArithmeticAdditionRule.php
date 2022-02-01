@@ -2,11 +2,17 @@
 
 namespace PHPStan\Rules\Operators;
 
+use PhpParser\Node;
+use PhpParser\Node\Expr\BinaryOp\BooleanAnd;
+use PhpParser\Node\Expr\BinaryOp\Plus;
+use PHPStan\Analyser\Scope;
+use PHPStan\Rules\Rule;
 use PHPStan\Type\ArrayType;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\VerbosityLevel;
+use function sprintf;
 
-class OperandsInArithmeticAdditionRule implements \PHPStan\Rules\Rule
+class OperandsInArithmeticAdditionRule implements Rule
 {
 
 	/** @var OperatorRuleHelper */
@@ -19,15 +25,14 @@ class OperandsInArithmeticAdditionRule implements \PHPStan\Rules\Rule
 
 	public function getNodeType(): string
 	{
-		return \PhpParser\Node\Expr\BinaryOp\Plus::class;
+		return Plus::class;
 	}
 
 	/**
-	 * @param \PhpParser\Node\Expr\BinaryOp\BooleanAnd $node
-	 * @param \PHPStan\Analyser\Scope $scope
+	 * @param BooleanAnd $node
 	 * @return string[] errors
 	 */
-	public function processNode(\PhpParser\Node $node, \PHPStan\Analyser\Scope $scope): array
+	public function processNode(Node $node, Scope $scope): array
 	{
 		$leftType = $scope->getType($node->left);
 		$rightType = $scope->getType($node->right);

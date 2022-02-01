@@ -3,11 +3,12 @@
 namespace PHPStan\Rules\DisallowedConstructs;
 
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 
 /**
- * @extends \PHPStan\Testing\RuleTestCase<DisallowedShortTernaryRule>
+ * @extends RuleTestCase<DisallowedShortTernaryRule>
  */
-class DisallowedShortTernaryRuleTest extends \PHPStan\Testing\RuleTestCase
+class DisallowedShortTernaryRuleTest extends RuleTestCase
 {
 
 	protected function getRule(): Rule
