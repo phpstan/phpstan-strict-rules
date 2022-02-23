@@ -26,7 +26,7 @@ abstract class OperandInArithmeticIncrementOrDecrementRuleTest extends RuleTestC
 	abstract protected function createRule(OperatorRuleHelper $helper): Rule;
 
 	/**
-	 * @return mixed[][]
+	 * @return list<array{0: string, 1: int, 2?: string}>
 	 */
 	abstract protected function getExpectedErrors(): array;
 
