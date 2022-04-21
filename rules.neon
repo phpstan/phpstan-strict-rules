@@ -4,6 +4,7 @@ parameters:
 	checkAlwaysTrueCheckTypeFunctionCall: true
 	checkAlwaysTrueInstanceof: true
 	checkAlwaysTrueStrictComparison: true
+	checkDynamicProperties: %featureToggles.bleedingEdge%
 	checkExplicitMixedMissingReturn: true
 	checkFunctionNameCase: true
 	checkInternalClassCaseSensitivity: true

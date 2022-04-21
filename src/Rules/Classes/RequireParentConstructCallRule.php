@@ -10,6 +10,7 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use PHPStan\ShouldNotHappenException;
 use ReflectionClass;
+use function property_exists;
 use function sprintf;
 
 class RequireParentConstructCallRule implements Rule
@@ -79,7 +80,7 @@ class RequireParentConstructCallRule implements Rule
 
 	private function callsParentConstruct(Node $parserNode): bool
 	{
-		if (!isset($parserNode->stmts)) {
+		if (!property_exists($parserNode, 'stmts')) {
 			return false;
 		}
 
