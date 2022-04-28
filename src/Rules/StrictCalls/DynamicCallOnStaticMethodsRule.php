@@ -53,7 +53,7 @@ class DynamicCallOnStaticMethodsRule implements Rule
 		}
 
 		$methodReflection = $type->getMethod($name, $scope);
-		if ($methodReflection->isStatic() && $type->hasMethod('__callStatic') === TrinaryLogic::createNo()) {
+		if ($methodReflection->isStatic() && $type->hasMethod('__callStatic') !== TrinaryLogic::createYes()) {
 			return [sprintf(
 				'Dynamic call to static method %s::%s().',
 				$methodReflection->getDeclaringClass()->getDisplayName(),
