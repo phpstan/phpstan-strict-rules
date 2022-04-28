@@ -7,6 +7,7 @@ use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleLevelHelper;
+use PHPStan\TrinaryLogic;
 use PHPStan\Type\ErrorType;
 use PHPStan\Type\Type;
 use function sprintf;
@@ -52,7 +53,7 @@ class DynamicCallOnStaticMethodsRule implements Rule
 		}
 
 		$methodReflection = $type->getMethod($name, $scope);
-		if ($methodReflection->isStatic()) {
+		if ($methodReflection->isStatic() && $type->hasMethod('__callStatic') === TrinaryLogic::createNo()) {
 			return [sprintf(
 				'Dynamic call to static method %s::%s().',
 				$methodReflection->getDeclaringClass()->getDisplayName(),
