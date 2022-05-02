@@ -39,6 +39,10 @@ class RequireParentConstructCallRule implements Rule
 			return [];
 		}
 
+		if ($node->isAbstract()) {
+			return [];
+		}
+
 		$classReflection = $scope->getClassReflection()->getNativeReflection();
 		if ($classReflection->isInterface() || $classReflection->isAnonymous()) {
 			return [];
