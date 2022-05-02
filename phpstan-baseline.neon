@@ -63,16 +63,6 @@ parameters:
 			path: src/Rules/Classes/RequireParentConstructCallRule.php
 
 		-
-			message: "#^Method PHPStan\\\\Rules\\\\Classes\\\\RequireParentConstructCallRule\\:\\:getParentConstructorClass\\(\\) has parameter \\$classReflection with generic class ReflectionClass but does not specify its types\\: T$#"
-			count: 1
-			path: src/Rules/Classes/RequireParentConstructCallRule.php
-
-		-
-			message: "#^Method PHPStan\\\\Rules\\\\Classes\\\\RequireParentConstructCallRule\\:\\:getParentConstructorClass\\(\\) return type with generic class ReflectionClass does not specify its types\\: T$#"
-			count: 1
-			path: src/Rules/Classes/RequireParentConstructCallRule.php
-
-		-
 			message: "#^Class PHPStan\\\\Rules\\\\DisallowedConstructs\\\\DisallowedBacktickRule implements generic interface PHPStan\\\\Rules\\\\Rule but does not specify its types\\: TNodeType$#"
 			count: 1
 			path: src/Rules/DisallowedConstructs/DisallowedBacktickRule.php

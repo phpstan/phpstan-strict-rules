@@ -7,9 +7,10 @@ use PhpParser\Node\Expr\StaticCall;
 use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\ClassMethod;
 use PHPStan\Analyser\Scope;
+use PHPStan\BetterReflection\Reflection\Adapter\ReflectionClass;
+use PHPStan\BetterReflection\Reflection\Adapter\ReflectionEnum;
 use PHPStan\Rules\Rule;
 use PHPStan\ShouldNotHappenException;
-use ReflectionClass;
 use function property_exists;
 use function sprintf;
 
@@ -114,9 +115,10 @@ class RequireParentConstructCallRule implements Rule
 	}
 
 	/**
+	 * @param ReflectionClass|ReflectionEnum $classReflection
 	 * @return ReflectionClass|false
 	 */
-	private function getParentConstructorClass(ReflectionClass $classReflection)
+	private function getParentConstructorClass($classReflection)
 	{
 		while ($classReflection->getParentClass() !== false) {
 			$constructor = $classReflection->getParentClass()->hasMethod('__construct') ? $classReflection->getParentClass()->getMethod('__construct') : null;
