@@ -12,6 +12,8 @@ parameters:
 	reportMaybesInMethodSignatures: true
 	reportStaticMethodSignatures: true
 	reportMaybesInPropertyPhpDocTypes: true
+	featureToggles:
+		illegalConstructorMethodCall: %featureToggles.bleedingEdge%
 
 rules:
 	- PHPStan\Rules\BooleansInConditions\BooleanInBooleanAndRule
