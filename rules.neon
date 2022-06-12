@@ -27,6 +27,7 @@ rules:
 	- PHPStan\Rules\DisallowedConstructs\DisallowedEmptyRule
 	- PHPStan\Rules\DisallowedConstructs\DisallowedImplicitArrayCreationRule
 	- PHPStan\Rules\DisallowedConstructs\DisallowedShortTernaryRule
+	- PHPStan\Rules\DisallowedConstructs\DisallowedWeakComparisonRule
 	- PHPStan\Rules\ForeachLoop\OverwriteVariablesWithForeachRule
 	- PHPStan\Rules\ForLoop\OverwriteVariablesWithForLoopInitRule
 	- PHPStan\Rules\Functions\ClosureUsesThisRule
