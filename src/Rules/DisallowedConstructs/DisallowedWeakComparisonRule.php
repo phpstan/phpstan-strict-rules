@@ -26,9 +26,9 @@ class DisallowedWeakComparisonRule implements Rule
 			return [
 				'Weak comparison via "' . $node->getOperatorSigil() . '" is not allowed. Use strong comparison.',
 			];
-		} else {
-			return [];
 		}
+
+		return [];
 	}
 
 }
