@@ -19,7 +19,8 @@ class DisallowedWeakComparisonRuleTest extends RuleTestCase
 			[
 				'Weak comparison via "==" is not allowed. Use strong comparison instead.',
 				3,
-			],[
+			],
+			[
 				'Weak comparison via "!=" is not allowed. Use strong comparison instead.',
 				5,
 			],
