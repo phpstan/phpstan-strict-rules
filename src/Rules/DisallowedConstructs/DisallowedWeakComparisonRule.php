@@ -8,6 +8,7 @@ use PhpParser\Node\Expr\BinaryOp\Equal;
 use PhpParser\Node\Expr\BinaryOp\NotEqual;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 
 /**
  * @implements Rule<BinaryOp>
@@ -22,9 +23,18 @@ class DisallowedWeakComparisonRule implements Rule
 
 	public function processNode(Node $node, Scope $scope): array
 	{
-		if ($node instanceof Equal || $node instanceof NotEqual) {
+		if ($node instanceof Equal) {
 			return [
-				'Weak comparison via "' . $node->getOperatorSigil() . '" is not allowed. Use strong comparison instead.',
+				RuleErrorBuilder::message(
+					'Loose comparison via "==" is not allowed.'
+				)->tip('Use strict comparison via "===" instead.')->build(),
+			];
+		}
+		if ($node instanceof NotEqual) {
+			return [
+				RuleErrorBuilder::message(
+					'Loose comparison via "!=" is not allowed.'
+				)->tip('Use strict comparison via "!==" instead.')->build(),
 			];
 		}
 

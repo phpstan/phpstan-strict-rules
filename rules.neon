@@ -27,7 +27,6 @@ rules:
 	- PHPStan\Rules\DisallowedConstructs\DisallowedEmptyRule
 	- PHPStan\Rules\DisallowedConstructs\DisallowedImplicitArrayCreationRule
 	- PHPStan\Rules\DisallowedConstructs\DisallowedShortTernaryRule
-	- PHPStan\Rules\DisallowedConstructs\DisallowedWeakComparisonRule
 	- PHPStan\Rules\ForeachLoop\OverwriteVariablesWithForeachRule
 	- PHPStan\Rules\ForLoop\OverwriteVariablesWithForLoopInitRule
 	- PHPStan\Rules\Functions\ClosureUsesThisRule
@@ -53,6 +52,10 @@ rules:
 	- PHPStan\Rules\VariableVariables\VariableStaticPropertyFetchRule
 	- PHPStan\Rules\VariableVariables\VariableVariablesRule
 
+conditionalTags:
+	PHPStan\Rules\DisallowedConstructs\DisallowedWeakComparisonRule:
+		phpstan.rules.rule: %featureToggles.bleedingEdge%
+
 services:
 	-
 		class: PHPStan\Rules\BooleansInConditions\BooleanRuleHelper
@@ -72,3 +75,6 @@ services:
 			universalObjectCratesClasses: %universalObjectCratesClasses%
 		tags:
 			- phpstan.rules.rule
+
+	-
+		class: PHPStan\Rules\DisallowedConstructs\DisallowedWeakComparisonRule

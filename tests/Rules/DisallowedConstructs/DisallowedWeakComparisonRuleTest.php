@@ -20,12 +20,14 @@ class DisallowedWeakComparisonRuleTest extends RuleTestCase
 	{
 		$this->analyse([__DIR__ . '/data/weak-comparison.php'], [
 			[
-				'Weak comparison via "==" is not allowed. Use strong comparison instead.',
+				'Loose comparison via "==" is not allowed.',
 				3,
+				'Use strict comparison via "===" instead.',
 			],
 			[
-				'Weak comparison via "!=" is not allowed. Use strong comparison instead.',
+				'Loose comparison via "!=" is not allowed.',
 				5,
+				'Use strict comparison via "!==" instead.',
 			],
 		]);
 	}
