@@ -343,16 +343,6 @@ parameters:
 			path: tests/Rules/DisallowedConstructs/DisallowedImplicitArrayCreationRuleTest.php
 
 		-
-			message: "#^Class PHPStan\\\\Rules\\\\DisallowedConstructs\\\\DisallowedWeakComparisonRuleTest extends generic class PHPStan\\\\Testing\\\\RuleTestCase but does not specify its types\\: TRule$#"
-			count: 1
-			path: tests/Rules/DisallowedConstructs/DisallowedWeakComparisonRuleTest.php
-
-		-
-			message: "#^Method PHPStan\\\\Rules\\\\DisallowedConstructs\\\\DisallowedWeakComparisonRuleTest\\:\\:getRule\\(\\) return type with generic interface PHPStan\\\\Rules\\\\Rule does not specify its types\\: TNodeType$#"
-			count: 1
-			path: tests/Rules/DisallowedConstructs/DisallowedWeakComparisonRuleTest.php
-
-		-
 			message: "#^Class PHPStan\\\\Rules\\\\ForeachLoop\\\\OverwriteVariablesWithForeachRuleTest extends generic class PHPStan\\\\Testing\\\\RuleTestCase but does not specify its types\\: TRule$#"
 			count: 1
 			path: tests/Rules/ForeachLoop/OverwriteVariablesWithForeachRuleTest.php
