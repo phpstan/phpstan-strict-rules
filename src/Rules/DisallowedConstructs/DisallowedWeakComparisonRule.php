@@ -24,7 +24,7 @@ class DisallowedWeakComparisonRule implements Rule
 	{
 		if ($node instanceof Equal || $node instanceof NotEqual) {
 			return [
-				'Weak comparison via "' . $node->getOperatorSigil() . '" is not allowed. Use strong comparison.',
+				'Weak comparison via "' . $node->getOperatorSigil() . '" is not allowed. Use strong comparison instead.',
 			];
 		}
 
