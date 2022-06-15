@@ -53,7 +53,7 @@ rules:
 	- PHPStan\Rules\VariableVariables\VariableVariablesRule
 
 conditionalTags:
-	PHPStan\Rules\DisallowedConstructs\DisallowedWeakComparisonRule:
+	PHPStan\Rules\DisallowedConstructs\DisallowedLooseComparisonRule:
 		phpstan.rules.rule: %featureToggles.bleedingEdge%
 
 services:
@@ -77,4 +77,4 @@ services:
 			- phpstan.rules.rule
 
 	-
-		class: PHPStan\Rules\DisallowedConstructs\DisallowedWeakComparisonRule
+		class: PHPStan\Rules\DisallowedConstructs\DisallowedLooseComparisonRule
