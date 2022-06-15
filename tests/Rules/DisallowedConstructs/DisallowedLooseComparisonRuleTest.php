@@ -6,14 +6,14 @@ use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 
 /**
- * @extends RuleTestCase<DisallowedWeakComparisonRule>
+ * @extends RuleTestCase<DisallowedLooseComparisonRule>
  */
-class DisallowedWeakComparisonRuleTest extends RuleTestCase
+class DisallowedLooseComparisonRuleTest extends RuleTestCase
 {
 
 	protected function getRule(): Rule
 	{
-		return new DisallowedWeakComparisonRule();
+		return new DisallowedLooseComparisonRule();
 	}
 
 	public function testRule(): void

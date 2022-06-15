@@ -13,7 +13,7 @@ use PHPStan\Rules\RuleErrorBuilder;
 /**
  * @implements Rule<BinaryOp>
  */
-class DisallowedWeakComparisonRule implements Rule
+class DisallowedLooseComparisonRule implements Rule
 {
 
 	public function getNodeType(): string
