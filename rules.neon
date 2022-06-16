@@ -52,6 +52,10 @@ rules:
 	- PHPStan\Rules\VariableVariables\VariableStaticPropertyFetchRule
 	- PHPStan\Rules\VariableVariables\VariableVariablesRule
 
+conditionalTags:
+	PHPStan\Rules\DisallowedConstructs\DisallowedLooseComparisonRule:
+		phpstan.rules.rule: %featureToggles.bleedingEdge%
+
 services:
 	-
 		class: PHPStan\Rules\BooleansInConditions\BooleanRuleHelper
@@ -71,3 +75,6 @@ services:
 			universalObjectCratesClasses: %universalObjectCratesClasses%
 		tags:
 			- phpstan.rules.rule
+
+	-
+		class: PHPStan\Rules\DisallowedConstructs\DisallowedLooseComparisonRule
