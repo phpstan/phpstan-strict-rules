@@ -3,14 +3,15 @@
 namespace PHPStan\Rules\Methods;
 
 use PhpParser\Node;
-use PhpParser\Node\Stmt\ClassMethod;
 use PHPStan\Analyser\Scope;
 use PHPStan\Node\InClassMethodNode;
 use PHPStan\Reflection\ClassReflection;
-use PHPStan\Reflection\MethodReflection;
 use PHPStan\Rules\Rule;
 use function sprintf;
 
+/**
+ * @implements Rule<InClassMethodNode>
+ */
 class WrongCaseOfInheritedMethodRule implements Rule
 {
 
@@ -19,20 +20,12 @@ class WrongCaseOfInheritedMethodRule implements Rule
 		return InClassMethodNode::class;
 	}
 
-	/**
-	 * @param ClassMethod $node
-	 * @return string[]
-	 */
 	public function processNode(
 		Node $node,
 		Scope $scope
 	): array
 	{
-		$methodReflection = $scope->getFunction();
-		if (!$methodReflection instanceof MethodReflection) {
-			return [];
-		}
-
+		$methodReflection = $node->getMethodReflection();
 		$declaringClass = $methodReflection->getDeclaringClass();
 
 		$messages = [];

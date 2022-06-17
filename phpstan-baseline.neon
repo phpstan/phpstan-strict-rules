@@ -103,16 +103,6 @@ parameters:
 			path: src/Rules/ForeachLoop/OverwriteVariablesWithForeachRule.php
 
 		-
-			message: "#^Class PHPStan\\\\Rules\\\\Methods\\\\WrongCaseOfInheritedMethodRule implements generic interface PHPStan\\\\Rules\\\\Rule but does not specify its types\\: TNodeType$#"
-			count: 1
-			path: src/Rules/Methods/WrongCaseOfInheritedMethodRule.php
-
-		-
-			message: "#^Parameter \\#1 \\$node \\(PhpParser\\\\Node\\\\Stmt\\\\ClassMethod\\) of method PHPStan\\\\Rules\\\\Methods\\\\WrongCaseOfInheritedMethodRule\\:\\:processNode\\(\\) should be contravariant with parameter \\$node \\(PhpParser\\\\Node\\) of method PHPStan\\\\Rules\\\\Rule\\<PhpParser\\\\Node\\>\\:\\:processNode\\(\\)$#"
-			count: 1
-			path: src/Rules/Methods/WrongCaseOfInheritedMethodRule.php
-
-		-
 			message: "#^Class PHPStan\\\\Rules\\\\Operators\\\\OperandInArithmeticIncrementOrDecrementRule implements generic interface PHPStan\\\\Rules\\\\Rule but does not specify its types\\: TNodeType$#"
 			count: 1
 			path: src/Rules/Operators/OperandInArithmeticIncrementOrDecrementRule.php
