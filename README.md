@@ -55,6 +55,25 @@ includes:
 ```
 </details>
 
+## Disabling rules
+
+You can disable rules using configuration parameters:
+
+```neon
+parameters:
+	strictRules:
+		booleansInConditions: false
+		uselessCast: false
+		requireParentConstructorCall: false
+		disallowedConstructs: false
+		overwriteVariablesWithLoop: false
+		closureUsesThis: false
+		matchingInheritedMethodNames: false
+		numericOperandsInArithmeticOperators: false
+		strictCalls: false
+		switchConditionsMatchingType: false
+		noVariableVariables: false
+```
 
 ## Enabling rules one-by-one
 
@@ -79,13 +98,19 @@ services:
 
 ### With extension-installer
 
-Unfortunately, by using `phpstan/extension-installer` you can't enable it one by one, ***but you can [ignore specific errors](https://phpstan.org/user-guide/ignoring-errors) instead***.
-
-For example:
+When using `phpstan/extension-installer` you can disable automatic loading of all rules by:
 
 ```neon
 parameters:
-	ignoreErrors:
-		- '#Construct empty\(\) is not allowed. Use more strict comparison.#'
-		- '#Call to function in_array\(\) requires parameter \#3 to be set.#'
+	strictRules:
+		allRules: false
+```
+
+Then you can enable individual rules by adding them as services just like without extension-installer (see above) or re-enable them by configuration parameters:
+
+```neon
+parameters:
+	strictRules:
+		allRules: false
+		booleansInConditions: true
 ```
