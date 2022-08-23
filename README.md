@@ -79,26 +79,7 @@ parameters:
 
 If you don't want to start using all the available strict rules at once but only one or two, you can!
 
-### Without extension-installer
-
-Just don't include the whole `rules.neon` from this package in your configuration, but look at its contents and copy only the rules you want to your configuration under the `services` key:
-
-```neon
-services:
-	-
-		class: PHPStan\Rules\StrictCalls\StrictFunctionCallsRule
-		tags:
-			- phpstan.rules.rule
-
-	-
-		class: PHPStan\Rules\SwitchConditions\MatchingTypeInSwitchCaseConditionRule
-		tags:
-			- phpstan.rules.rule
-```
-
-### With extension-installer
-
-When using `phpstan/extension-installer` you can disable automatic loading of all rules by:
+You can disable all rules from the included `rules.neon` with:
 
 ```neon
 parameters:
@@ -106,7 +87,7 @@ parameters:
 		allRules: false
 ```
 
-Then you can enable individual rules by adding them as services just like without extension-installer (see above) or re-enable them by configuration parameters:
+Then you can re-enable individual rules with configuration parameters:
 
 ```neon
 parameters:
