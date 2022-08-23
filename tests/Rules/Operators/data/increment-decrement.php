@@ -58,3 +58,12 @@ $union = bar();
 	++$mixed;
 	++$union;
 })();
+
+
+function (): void {
+	for ($i = 5; $i < 4; $i++) {
+	}
+
+	for ($y = 0; $y < 0; $y++) {
+	}
+};
