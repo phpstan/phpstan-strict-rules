@@ -119,6 +119,8 @@ conditionalTags:
 		phpstan.rules.rule: %strictRules.noVariableVariables%
 	PHPStan\Rules\VariableVariables\VariableVariablesRule:
 		phpstan.rules.rule: %strictRules.noVariableVariables%
+	PHPStan\Rules\VariableVariables\VariablePropertyFetchRule:
+		phpstan.rules.rule: %strictRules.noVariableVariables%
 
 services:
 	-
@@ -126,12 +128,11 @@ services:
 
 	-
 		class: PHPStan\Rules\Operators\OperatorRuleHelper
+
 	-
 		class: PHPStan\Rules\VariableVariables\VariablePropertyFetchRule
 		arguments:
 			universalObjectCratesClasses: %universalObjectCratesClasses%
-		tags:
-			- phpstan.rules.rule
 
 	-
 		class: PHPStan\Rules\DisallowedConstructs\DisallowedLooseComparisonRule
