@@ -27,6 +27,10 @@ class ClosureUsesThisRule implements Rule
 			return [];
 		}
 
+		if ($scope->isInClosureBind()) {
+			return [];
+		}
+
 		$messages = [];
 		foreach ($node->uses as $closureUse) {
 			$varType = $scope->getType($closureUse->var);

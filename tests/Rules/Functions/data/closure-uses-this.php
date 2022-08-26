@@ -21,6 +21,9 @@ class Foo
 		$f = static function () use ($that) { // ok
 
 		};
-	}
 
+		$f = \Closure::bind(function () use ($that) { // ok
+
+		}, null, Foo::class);
+	}
 }
