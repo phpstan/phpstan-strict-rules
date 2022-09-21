@@ -62,6 +62,7 @@ You can disable rules using configuration parameters:
 ```neon
 parameters:
 	strictRules:
+		disallowedLooseComparison: false
 		booleansInConditions: false
 		uselessCast: false
 		requireParentConstructorCall: false
