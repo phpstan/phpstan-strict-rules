@@ -8,20 +8,3 @@ includes:
 parameters:
 	excludePaths:
 		- tests/*/data/*
-
-services:
-	scopeIsInClass:
-		class: PHPStan\Internal\ScopeIsInClassTypeSpecifyingExtension
-		arguments:
-			isInMethodName: isInClass
-			removeNullMethodName: getClassReflection
-		tags:
-			- phpstan.typeSpecifier.methodTypeSpecifyingExtension
-
-	scopeIsInTrait:
-		class: PHPStan\Internal\ScopeIsInClassTypeSpecifyingExtension
-		arguments:
-			isInMethodName: isInTrait
-			removeNullMethodName: getTraitReflection
-		tags:
-			- phpstan.typeSpecifier.methodTypeSpecifyingExtension
