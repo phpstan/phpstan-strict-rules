@@ -113,3 +113,7 @@ function (array $array, int $int, $mixed) {
 /** @var numeric-string $numericString */
 $numericString = doFoo();
 $numericString + 1;
+
+function (\ReflectionClass $ref): void {
+	print_r(class_parents($ref->getName()) + class_implements($ref->getName()));
+};

@@ -7,9 +7,8 @@ use PhpParser\Node\Expr\BinaryOp\BooleanAnd;
 use PhpParser\Node\Expr\BinaryOp\Plus;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
-use PHPStan\Type\ArrayType;
-use PHPStan\Type\MixedType;
 use PHPStan\Type\VerbosityLevel;
+use function count;
 use function sprintf;
 
 class OperandsInArithmeticAdditionRule implements Rule
@@ -36,9 +35,7 @@ class OperandsInArithmeticAdditionRule implements Rule
 	{
 		$leftType = $scope->getType($node->left);
 		$rightType = $scope->getType($node->right);
-		$mixedArrayType = new ArrayType(new MixedType(), new MixedType());
-
-		if ($mixedArrayType->isSuperTypeOf($leftType)->yes() && $mixedArrayType->isSuperTypeOf($rightType)->yes()) {
+		if (count($leftType->getArrays()) > 0 && count($rightType->getArrays()) > 0) {
 			return [];
 		}
 
