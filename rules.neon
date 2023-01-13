@@ -12,6 +12,7 @@ parameters:
 	reportMaybesInMethodSignatures: true
 	reportStaticMethodSignatures: true
 	reportMaybesInPropertyPhpDocTypes: true
+	reportWrongPhpDocTypeInVarTag: %featureToggles.bleedingEdge%
 	featureToggles:
 		illegalConstructorMethodCall: %featureToggles.bleedingEdge%
 	strictRules:
