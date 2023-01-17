@@ -10,7 +10,7 @@ class VariablePropertyFetchRuleTest extends RuleTestCase
 
 	protected function getRule(): Rule
 	{
-		return new VariablePropertyFetchRule($this->createBroker(), [
+		return new VariablePropertyFetchRule($this->createReflectionProvider(), [
 			'stdClass',
 			'SimpleXMLElement',
 		]);

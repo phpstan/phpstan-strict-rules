@@ -6,7 +6,7 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Name;
 use PHPStan\Analyser\Scope;
-use PHPStan\Broker\Broker;
+use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\Constant\ConstantBooleanType;
 use function array_key_exists;
@@ -24,12 +24,12 @@ class StrictFunctionCallsRule implements Rule
 		'array_keys' => 2,
 	];
 
-	/** @var Broker */
-	private $broker;
+	/** @var ReflectionProvider */
+	private $reflectionProvider;
 
-	public function __construct(Broker $broker)
+	public function __construct(ReflectionProvider $reflectionProvider)
 	{
-		$this->broker = $broker;
+		$this->reflectionProvider = $reflectionProvider;
 	}
 
 	public function getNodeType(): string
@@ -47,7 +47,7 @@ class StrictFunctionCallsRule implements Rule
 			return [];
 		}
 
-		$functionName = $this->broker->resolveFunctionName($node->name, $scope);
+		$functionName = $this->reflectionProvider->resolveFunctionName($node->name, $scope);
 		if ($functionName === null) {
 			return [];
 		}
