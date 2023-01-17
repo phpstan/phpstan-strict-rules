@@ -10,7 +10,6 @@ use PHPStan\Rules\RuleError;
 use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\ErrorType;
 use PHPStan\Type\GeneralizePrecision;
-use PHPStan\Type\TypeUtils;
 use PHPStan\Type\VerbosityLevel;
 use function sprintf;
 
@@ -40,7 +39,7 @@ class UselessCastRule implements Rule
 		if ($castType instanceof ErrorType) {
 			return [];
 		}
-		$castType = TypeUtils::generalizeType($castType, GeneralizePrecision::lessSpecific());
+		$castType = $castType->generalize(GeneralizePrecision::lessSpecific());
 
 		if ($this->treatPhpDocTypesAsCertain) {
 			$expressionType = $scope->getType($node->expr);

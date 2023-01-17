@@ -10,7 +10,7 @@ class StrictFunctionCallsRuleTest extends RuleTestCase
 
 	protected function getRule(): Rule
 	{
-		return new StrictFunctionCallsRule($this->createBroker());
+		return new StrictFunctionCallsRule($this->createReflectionProvider());
 	}
 
 	public function testRule(): void

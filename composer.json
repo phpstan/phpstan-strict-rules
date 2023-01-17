@@ -12,6 +12,7 @@
 	"require-dev": {
 		"nikic/php-parser": "^4.13.0",
 		"php-parallel-lint/php-parallel-lint": "^1.2",
+		"phpstan/phpstan-deprecation-rules": "^1.1",
 		"phpstan/phpstan-phpunit": "^1.0",
 		"phpunit/phpunit": "^9.5"
 	},
