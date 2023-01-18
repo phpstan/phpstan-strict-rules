@@ -49,6 +49,11 @@ class OperatorRuleHelper
 			return true;
 		}
 
+		if ($type instanceof StringType) {
+			// Because `$a = 'a'; $a++;` is valid
+			return true;
+		}
+
 		return $this->isSubtypeOfNumber($scope, $expr);
 	}
 
