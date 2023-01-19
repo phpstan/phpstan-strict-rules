@@ -12,7 +12,11 @@ use PHPStan\Rules\Rule;
 use PHPStan\Type\VerbosityLevel;
 use function sprintf;
 
-abstract class OperandInArithmeticDecrementRule implements Rule
+/**
+ * @phpstan-template TNodeType of PreInc|PreDec|PostInc|PostDec
+ * @phpstan-implements Rule<TNodeType>
+ */
+abstract class OperandInArithmeticIncrementOrDecrementRule implements Rule
 {
 
 	/** @var OperatorRuleHelper */
@@ -32,7 +36,12 @@ abstract class OperandInArithmeticDecrementRule implements Rule
 		$messages = [];
 		$varType = $scope->getType($node->var);
 
-		if (!$this->helper->isValidForDecrement($scope, $node->var)) {
+		if (
+			($node instanceof PreInc || $node instanceof PostInc)
+				&& !$this->helper->isValidForIncrement($scope, $node->var)
+			|| ($node instanceof PreDec || $node instanceof PostDec)
+				&& !$this->helper->isValidForDecrement($scope, $node->var)
+		) {
 			$messages[] = sprintf(
 				'Only numeric types are allowed in %s, %s given.',
 				$this->describeOperation(),

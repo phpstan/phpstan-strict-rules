@@ -4,7 +4,10 @@ namespace PHPStan\Rules\Operators;
 
 use PhpParser\Node\Expr\PostInc;
 
-class OperandInArithmeticPostIncrementRule extends OperandInArithmeticIncrementRule
+/**
+ * @phpstan-extends OperandInArithmeticIncrementOrDecrementRule<PostInc>
+ */
+class OperandInArithmeticPostIncrementRule extends OperandInArithmeticIncrementOrDecrementRule
 {
 
 	public function getNodeType(): string

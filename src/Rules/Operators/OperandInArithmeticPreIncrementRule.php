@@ -4,7 +4,10 @@ namespace PHPStan\Rules\Operators;
 
 use PhpParser\Node\Expr\PreInc;
 
-class OperandInArithmeticPreIncrementRule extends OperandInArithmeticIncrementRule
+/**
+ * @phpstan-extends OperandInArithmeticIncrementOrDecrementRule<PreInc>
+ */
+class OperandInArithmeticPreIncrementRule extends OperandInArithmeticIncrementOrDecrementRule
 {
 
 	public function getNodeType(): string
