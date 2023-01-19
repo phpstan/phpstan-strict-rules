@@ -42,15 +42,25 @@ class OperatorRuleHelper
 		return $this->isSubtypeOfNumber($scope, $expr);
 	}
 
-	public function isValidForIncrementOrDecrement(Scope $scope, Expr $expr): bool
+	public function isValidForIncrement(Scope $scope, Expr $expr): bool
 	{
 		$type = $scope->getType($expr);
 		if ($type instanceof MixedType) {
 			return true;
 		}
 
-		if ($type instanceof StringType) {
+		if ($type->isString()->yes()) {
 			// Because `$a = 'a'; $a++;` is valid
+			return true;
+		}
+
+		return $this->isSubtypeOfNumber($scope, $expr);
+	}
+
+	public function isValidForDecrement(Scope $scope, Expr $expr): bool
+	{
+		$type = $scope->getType($expr);
+		if ($type instanceof MixedType) {
 			return true;
 		}
 

@@ -23,6 +23,10 @@ class OperandInArithmeticPreDecrementRuleTest extends OperandInArithmeticIncreme
 				43,
 			],
 			[
+				'Only numeric types are allowed in pre-decrement, string given.',
+				44,
+			],
+			[
 				'Only numeric types are allowed in pre-decrement, null given.',
 				45,
 			],

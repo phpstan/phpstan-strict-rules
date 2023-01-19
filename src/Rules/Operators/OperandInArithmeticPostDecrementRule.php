@@ -4,7 +4,7 @@ namespace PHPStan\Rules\Operators;
 
 use PhpParser\Node\Expr\PostDec;
 
-class OperandInArithmeticPostDecrementRule extends OperandInArithmeticIncrementOrDecrementRule
+class OperandInArithmeticPostDecrementRule extends OperandInArithmeticDecrementRule
 {
 
 	public function getNodeType(): string

@@ -23,6 +23,10 @@ class OperandInArithmeticPostDecrementRuleTest extends OperandInArithmeticIncrem
 				21,
 			],
 			[
+				'Only numeric types are allowed in post-decrement, string given.',
+				22,
+			],
+			[
 				'Only numeric types are allowed in post-decrement, null given.',
 				23,
 			],

@@ -12,7 +12,7 @@ use PHPStan\Rules\Rule;
 use PHPStan\Type\VerbosityLevel;
 use function sprintf;
 
-abstract class OperandInArithmeticIncrementOrDecrementRule implements Rule
+abstract class OperandInArithmeticDecrementRule implements Rule
 {
 
 	/** @var OperatorRuleHelper */
@@ -32,7 +32,7 @@ abstract class OperandInArithmeticIncrementOrDecrementRule implements Rule
 		$messages = [];
 		$varType = $scope->getType($node->var);
 
-		if (!$this->helper->isValidForIncrementOrDecrement($scope, $node->var)) {
+		if (!$this->helper->isValidForDecrement($scope, $node->var)) {
 			$messages[] = sprintf(
 				'Only numeric types are allowed in %s, %s given.',
 				$this->describeOperation(),

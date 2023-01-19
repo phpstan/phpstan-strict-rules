@@ -4,7 +4,7 @@ namespace PHPStan\Rules\Operators;
 
 use PhpParser\Node\Expr\PreDec;
 
-class OperandInArithmeticPreDecrementRule extends OperandInArithmeticIncrementOrDecrementRule
+class OperandInArithmeticPreDecrementRule extends OperandInArithmeticDecrementRule
 {
 
 	public function getNodeType(): string
