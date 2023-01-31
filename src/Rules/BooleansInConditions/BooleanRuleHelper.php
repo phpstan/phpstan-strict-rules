@@ -5,7 +5,6 @@ namespace PHPStan\Rules\BooleansInConditions;
 use PhpParser\Node\Expr;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\RuleLevelHelper;
-use PHPStan\Type\BooleanType;
 use PHPStan\Type\ErrorType;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\Type;
@@ -32,7 +31,7 @@ class BooleanRuleHelper
 			$expr,
 			'',
 			static function (Type $type): bool {
-				return $type instanceof BooleanType;
+				return $type->isBoolean()->yes();
 			}
 		);
 		$foundType = $typeToCheck->getType();
@@ -40,7 +39,7 @@ class BooleanRuleHelper
 			return true;
 		}
 
-		return $foundType instanceof BooleanType;
+		return $foundType->isBoolean()->yes();
 	}
 
 }
