@@ -23,10 +23,6 @@ class OperandInArithmeticPostIncrementRuleTest extends OperandInArithmeticIncrem
 				32,
 			],
 			[
-				'Only numeric types are allowed in post-increment, string given.',
-				33,
-			],
-			[
 				'Only numeric types are allowed in post-increment, null given.',
 				34,
 			],

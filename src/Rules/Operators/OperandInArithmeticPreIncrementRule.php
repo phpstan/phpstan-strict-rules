@@ -4,6 +4,9 @@ namespace PHPStan\Rules\Operators;
 
 use PhpParser\Node\Expr\PreInc;
 
+/**
+ * @phpstan-extends OperandInArithmeticIncrementOrDecrementRule<PreInc>
+ */
 class OperandInArithmeticPreIncrementRule extends OperandInArithmeticIncrementOrDecrementRule
 {
 

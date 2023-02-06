@@ -103,16 +103,6 @@ parameters:
 			path: src/Rules/ForeachLoop/OverwriteVariablesWithForeachRule.php
 
 		-
-			message: "#^Class PHPStan\\\\Rules\\\\Operators\\\\OperandInArithmeticIncrementOrDecrementRule implements generic interface PHPStan\\\\Rules\\\\Rule but does not specify its types\\: TNodeType$#"
-			count: 1
-			path: src/Rules/Operators/OperandInArithmeticIncrementOrDecrementRule.php
-
-		-
-			message: "#^Parameter \\#1 \\$node \\(PhpParser\\\\Node\\\\Expr\\\\PostDec\\|PhpParser\\\\Node\\\\Expr\\\\PostInc\\|PhpParser\\\\Node\\\\Expr\\\\PreDec\\|PhpParser\\\\Node\\\\Expr\\\\PreInc\\) of method PHPStan\\\\Rules\\\\Operators\\\\OperandInArithmeticIncrementOrDecrementRule\\:\\:processNode\\(\\) should be contravariant with parameter \\$node \\(PhpParser\\\\Node\\) of method PHPStan\\\\Rules\\\\Rule\\<PhpParser\\\\Node\\>\\:\\:processNode\\(\\)$#"
-			count: 1
-			path: src/Rules/Operators/OperandInArithmeticIncrementOrDecrementRule.php
-
-		-
 			message: "#^Class PHPStan\\\\Rules\\\\Operators\\\\OperandsInArithmeticAdditionRule implements generic interface PHPStan\\\\Rules\\\\Rule but does not specify its types\\: TNodeType$#"
 			count: 1
 			path: src/Rules/Operators/OperandsInArithmeticAdditionRule.php
@@ -516,5 +506,3 @@ parameters:
 			message: "#^Method PHPStan\\\\Rules\\\\VariableVariables\\\\VariableVariablesRuleTest\\:\\:getRule\\(\\) return type with generic interface PHPStan\\\\Rules\\\\Rule does not specify its types\\: TNodeType$#"
 			count: 1
 			path: tests/Rules/VariableVariables/VariableVariablesRuleTest.php
-
-
