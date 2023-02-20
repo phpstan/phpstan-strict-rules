@@ -14,7 +14,8 @@ class OperandsInArithmeticSubtractionRuleTest extends RuleTestCase
 		return new OperandsInArithmeticSubtractionRule(
 			new OperatorRuleHelper(
 				self::getContainer()->getByType(RuleLevelHelper::class)
-			)
+			),
+			true
 		);
 	}
 
@@ -28,6 +29,14 @@ class OperandsInArithmeticSubtractionRuleTest extends RuleTestCase
 			[
 				'Only numeric types are allowed in -, null given on the right side.',
 				42,
+			],
+			[
+				'Only numeric types are allowed in -, null given on the right side.',
+				145,
+			],
+			[
+				'Only numeric types are allowed in -, null given on the right side.',
+				146,
 			],
 		]);
 	}

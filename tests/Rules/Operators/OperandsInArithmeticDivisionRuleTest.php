@@ -14,7 +14,8 @@ class OperandsInArithmeticDivisionRuleTest extends RuleTestCase
 		return new OperandsInArithmeticDivisionRule(
 			new OperatorRuleHelper(
 				self::getContainer()->getByType(RuleLevelHelper::class)
-			)
+			),
+			true
 		);
 	}
 
@@ -28,6 +29,14 @@ class OperandsInArithmeticDivisionRuleTest extends RuleTestCase
 			[
 				'Only numeric types are allowed in /, null given on the right side.',
 				68,
+			],
+			[
+				'Only numeric types are allowed in /, null given on the right side.',
+				171,
+			],
+			[
+				'Only numeric types are allowed in /, null given on the right side.',
+				172,
 			],
 		]);
 	}

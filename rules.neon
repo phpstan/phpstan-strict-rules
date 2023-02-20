@@ -204,21 +204,33 @@ services:
 
 	-
 		class: PHPStan\Rules\Operators\OperandsInArithmeticAdditionRule
+		arguments:
+			bleedingEdge: %featureToggles.bleedingEdge%
 
 	-
 		class: PHPStan\Rules\Operators\OperandsInArithmeticDivisionRule
+		arguments:
+			bleedingEdge: %featureToggles.bleedingEdge%
 
 	-
 		class: PHPStan\Rules\Operators\OperandsInArithmeticExponentiationRule
+		arguments:
+			bleedingEdge: %featureToggles.bleedingEdge%
 
 	-
 		class: PHPStan\Rules\Operators\OperandsInArithmeticModuloRule
+		arguments:
+			bleedingEdge: %featureToggles.bleedingEdge%
 
 	-
 		class: PHPStan\Rules\Operators\OperandsInArithmeticMultiplicationRule
+		arguments:
+			bleedingEdge: %featureToggles.bleedingEdge%
 
 	-
 		class: PHPStan\Rules\Operators\OperandsInArithmeticSubtractionRule
+		arguments:
+			bleedingEdge: %featureToggles.bleedingEdge%
 
 	-
 		class: PHPStan\Rules\StrictCalls\DynamicCallOnStaticMethodsRule

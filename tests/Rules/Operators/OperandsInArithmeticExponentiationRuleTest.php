@@ -14,7 +14,8 @@ class OperandsInArithmeticExponentiationRuleTest extends RuleTestCase
 		return new OperandsInArithmeticExponentiationRule(
 			new OperatorRuleHelper(
 				self::getContainer()->getByType(RuleLevelHelper::class)
-			)
+			),
+			true
 		);
 	}
 
@@ -28,6 +29,14 @@ class OperandsInArithmeticExponentiationRuleTest extends RuleTestCase
 			[
 				'Only numeric types are allowed in **, null given on the right side.',
 				81,
+			],
+			[
+				'Only numeric types are allowed in **, null given on the right side.',
+				184,
+			],
+			[
+				'Only numeric types are allowed in **, null given on the right side.',
+				185,
 			],
 		]);
 	}
