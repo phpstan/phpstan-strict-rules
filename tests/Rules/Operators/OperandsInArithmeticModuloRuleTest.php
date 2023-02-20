@@ -14,7 +14,8 @@ class OperandsInArithmeticModuloRuleTest extends RuleTestCase
 		return new OperandsInArithmeticModuloRule(
 			new OperatorRuleHelper(
 				self::getContainer()->getByType(RuleLevelHelper::class)
-			)
+			),
+			true
 		);
 	}
 
@@ -28,6 +29,14 @@ class OperandsInArithmeticModuloRuleTest extends RuleTestCase
 			[
 				'Only numeric types are allowed in %, null given on the right side.',
 				94,
+			],
+			[
+				'Only numeric types are allowed in %, null given on the right side.',
+				197,
+			],
+			[
+				'Only numeric types are allowed in %, null given on the right side.',
+				198,
 			],
 		]);
 	}

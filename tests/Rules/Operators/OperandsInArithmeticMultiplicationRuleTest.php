@@ -14,7 +14,8 @@ class OperandsInArithmeticMultiplicationRuleTest extends RuleTestCase
 		return new OperandsInArithmeticMultiplicationRule(
 			new OperatorRuleHelper(
 				self::getContainer()->getByType(RuleLevelHelper::class)
-			)
+			),
+			true
 		);
 	}
 
@@ -28,6 +29,14 @@ class OperandsInArithmeticMultiplicationRuleTest extends RuleTestCase
 			[
 				'Only numeric types are allowed in *, null given on the right side.',
 				55,
+			],
+			[
+				'Only numeric types are allowed in *, null given on the right side.',
+				158,
+			],
+			[
+				'Only numeric types are allowed in *, null given on the right side.',
+				159,
 			],
 		]);
 	}
