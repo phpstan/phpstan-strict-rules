@@ -7,8 +7,11 @@ use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleLevelHelper;
+use PHPStan\Testing\PHPStanTestCase;
+use PHPStan\Testing\TypeInferenceTestCase;
 use PHPStan\Type\ErrorType;
 use PHPStan\Type\Type;
+use function in_array;
 use function sprintf;
 
 class DynamicCallOnStaticMethodsRule implements Rule
@@ -53,6 +56,14 @@ class DynamicCallOnStaticMethodsRule implements Rule
 
 		$methodReflection = $type->getMethod($name, $scope);
 		if ($methodReflection->isStatic()) {
+			$prototype = $methodReflection->getPrototype();
+			if (in_array($prototype->getDeclaringClass()->getName(), [
+				TypeInferenceTestCase::class,
+				PHPStanTestCase::class,
+			], true)) {
+				return [];
+			}
+
 			return [sprintf(
 				'Dynamic call to static method %s::%s().',
 				$methodReflection->getDeclaringClass()->getDisplayName(),

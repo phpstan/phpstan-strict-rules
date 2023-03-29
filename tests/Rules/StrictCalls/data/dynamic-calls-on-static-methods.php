@@ -46,3 +46,16 @@ function () {
 	$classUsingTrait->foo();
 	$classUsingTrait->bar();
 };
+
+class FooTest extends \PHPStan\Testing\TypeInferenceTestCase
+{
+
+	public function doFoo(): void
+	{
+		self::gatherAssertTypes(__FILE__);
+		$this->gatherAssertTypes(__FILE__);
+		self::getContainer();
+		$this->getContainer();
+	}
+
+}
