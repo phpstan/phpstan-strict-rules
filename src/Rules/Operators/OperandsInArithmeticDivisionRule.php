@@ -20,7 +20,7 @@ class OperandsInArithmeticDivisionRule implements Rule
 	/** @var bool */
 	private $bleedingEdge;
 
-	public function __construct(OperatorRuleHelper $helper, bool $bleedingEdge)
+	public function __construct(OperatorRuleHelper $helper, bool $bleedingEdge = false)
 	{
 		$this->helper = $helper;
 		$this->bleedingEdge = $bleedingEdge;
