@@ -37,7 +37,7 @@ class VariableStaticPropertyFetchRule implements Rule
 			RuleErrorBuilder::message(sprintf(
 				'Variable static property access on %s.',
 				$propertyAccessedOn
-			))->build(),
+			))->identifier('staticProperty.dynamicName')->build(),
 		];
 	}
 

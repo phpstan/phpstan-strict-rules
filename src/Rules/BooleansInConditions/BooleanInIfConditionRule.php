@@ -41,7 +41,7 @@ class BooleanInIfConditionRule implements Rule
 			RuleErrorBuilder::message(sprintf(
 				'Only booleans are allowed in an if condition, %s given.',
 				$conditionExpressionType->describe(VerbosityLevel::typeOnly())
-			))->build(),
+			))->identifier('if.condNotBoolean')->build(),
 		];
 	}
 

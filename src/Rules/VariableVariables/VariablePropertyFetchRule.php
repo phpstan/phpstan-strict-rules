@@ -59,7 +59,7 @@ class VariablePropertyFetchRule implements Rule
 			RuleErrorBuilder::message(sprintf(
 				'Variable property access on %s.',
 				$fetchedOnType->describe(VerbosityLevel::typeOnly())
-			))->build(),
+			))->identifier('property.dynamicName')->build(),
 		];
 	}
 

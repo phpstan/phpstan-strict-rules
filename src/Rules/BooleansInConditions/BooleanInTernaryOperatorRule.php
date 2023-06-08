@@ -45,7 +45,7 @@ class BooleanInTernaryOperatorRule implements Rule
 			RuleErrorBuilder::message(sprintf(
 				'Only booleans are allowed in a ternary operator condition, %s given.',
 				$conditionExpressionType->describe(VerbosityLevel::typeOnly())
-			))->build(),
+			))->identifier('ternary.condNotBoolean')->build(),
 		];
 	}
 

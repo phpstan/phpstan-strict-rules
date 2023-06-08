@@ -67,7 +67,7 @@ class StrictFunctionCallsRule implements Rule
 					'Call to function %s() requires parameter #%d to be set.',
 					$functionName,
 					$argumentPosition + 1
-				))->build(),
+				))->identifier('function.strict')->build(),
 			];
 		}
 
@@ -79,7 +79,7 @@ class StrictFunctionCallsRule implements Rule
 					'Call to function %s() requires parameter #%d to be true.',
 					$functionName,
 					$argumentPosition + 1
-				))->build(),
+				))->identifier('function.strict')->build(),
 			];
 		}
 

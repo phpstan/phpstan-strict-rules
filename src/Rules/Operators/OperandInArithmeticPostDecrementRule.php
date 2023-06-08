@@ -20,4 +20,9 @@ class OperandInArithmeticPostDecrementRule extends OperandInArithmeticIncrementO
 		return 'post-decrement';
 	}
 
+	protected function getIdentifier(): string
+	{
+		return 'postDec';
+	}
+
 }

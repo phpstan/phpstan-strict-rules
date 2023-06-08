@@ -27,6 +27,7 @@ class DisallowedShortTernaryRule implements Rule
 
 		return [
 			RuleErrorBuilder::message('Short ternary operator is not allowed. Use null coalesce operator if applicable or consider using long ternary.')
+				->identifier('ternary.shortNotAllowed')
 				->build(),
 		];
 	}

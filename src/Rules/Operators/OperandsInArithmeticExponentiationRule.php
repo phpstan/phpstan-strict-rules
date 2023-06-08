@@ -53,7 +53,7 @@ class OperandsInArithmeticExponentiationRule implements Rule
 			$messages[] = RuleErrorBuilder::message(sprintf(
 				'Only numeric types are allowed in **, %s given on the left side.',
 				$leftType->describe(VerbosityLevel::typeOnly())
-			))->build();
+			))->identifier('pow.leftNonNumeric')->build();
 		}
 
 		$rightType = $scope->getType($right);
@@ -61,7 +61,7 @@ class OperandsInArithmeticExponentiationRule implements Rule
 			$messages[] = RuleErrorBuilder::message(sprintf(
 				'Only numeric types are allowed in **, %s given on the right side.',
 				$rightType->describe(VerbosityLevel::typeOnly())
-			))->build();
+			))->identifier('pow.rightNonNumeric')->build();
 		}
 
 		return $messages;

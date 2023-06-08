@@ -27,14 +27,18 @@ class DisallowedLooseComparisonRule implements Rule
 			return [
 				RuleErrorBuilder::message(
 					'Loose comparison via "==" is not allowed.'
-				)->tip('Use strict comparison via "===" instead.')->build(),
+				)->tip('Use strict comparison via "===" instead.')
+					->identifier('equal.notAllowed')
+					->build(),
 			];
 		}
 		if ($node instanceof NotEqual) {
 			return [
 				RuleErrorBuilder::message(
 					'Loose comparison via "!=" is not allowed.'
-				)->tip('Use strict comparison via "!==" instead.')->build(),
+				)->tip('Use strict comparison via "!==" instead.')
+					->identifier('notEqual.notAllowed')
+					->build(),
 			];
 		}
 

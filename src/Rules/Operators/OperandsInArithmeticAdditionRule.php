@@ -59,13 +59,13 @@ class OperandsInArithmeticAdditionRule implements Rule
 			$messages[] = RuleErrorBuilder::message(sprintf(
 				'Only numeric types are allowed in +, %s given on the left side.',
 				$leftType->describe(VerbosityLevel::typeOnly())
-			))->build();
+			))->identifier('plus.leftNonNumeric')->build();
 		}
 		if (!$this->helper->isValidForArithmeticOperation($scope, $right)) {
 			$messages[] = RuleErrorBuilder::message(sprintf(
 				'Only numeric types are allowed in +, %s given on the right side.',
 				$rightType->describe(VerbosityLevel::typeOnly())
-			))->build();
+			))->identifier('plus.rightNonNumeric')->build();
 		}
 
 		return $messages;

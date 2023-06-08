@@ -49,7 +49,10 @@ class MatchingTypeInSwitchCaseConditionRule implements Rule
 				$conditionType->describe(VerbosityLevel::value()),
 				$this->printer->prettyPrintExpr($case->cond),
 				$caseType->describe(VerbosityLevel::typeOnly())
-			))->line($case->getLine())->build();
+			))
+				->line($case->getLine())
+				->identifier('switch.type')
+				->build();
 		}
 
 		return $messages;

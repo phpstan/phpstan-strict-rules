@@ -28,6 +28,7 @@ class VariableVariablesRule implements Rule
 
 		return [
 			RuleErrorBuilder::message('Variable variables are not allowed.')
+				->identifier('variable.dynamicName')
 				->build(),
 		];
 	}

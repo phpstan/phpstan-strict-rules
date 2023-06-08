@@ -41,7 +41,7 @@ class BooleanInBooleanNotRule implements Rule
 			RuleErrorBuilder::message(sprintf(
 				'Only booleans are allowed in a negated boolean, %s given.',
 				$expressionType->describe(VerbosityLevel::typeOnly())
-			))->build(),
+			))->identifier('booleanNot.exprNotBoolean')->build(),
 		];
 	}
 

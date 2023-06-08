@@ -7,8 +7,8 @@ use PhpParser\Node\Expr;
 use PhpParser\Node\Expr\Assign;
 use PhpParser\Node\Stmt\For_;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\IdentifierRuleError;
 use PHPStan\Rules\Rule;
-use PHPStan\Rules\RuleError;
 use PHPStan\Rules\RuleErrorBuilder;
 use function is_string;
 use function sprintf;
@@ -41,7 +41,7 @@ class OverwriteVariablesWithForLoopInitRule implements Rule
 	}
 
 	/**
-	 * @return list<RuleError>
+	 * @return list<IdentifierRuleError>
 	 */
 	private function checkValueVar(Scope $scope, Expr $expr): array
 	{
@@ -52,6 +52,7 @@ class OverwriteVariablesWithForLoopInitRule implements Rule
 			&& $scope->hasVariableType($expr->name)->yes()
 		) {
 			$errors[] = RuleErrorBuilder::message(sprintf('For loop initial assignment overwrites variable $%s.', $expr->name))
+				->identifier('for.variableOverwrite')
 				->build();
 		}
 

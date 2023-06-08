@@ -38,7 +38,7 @@ class BooleanInBooleanOrRule implements Rule
 			$messages[] = RuleErrorBuilder::message(sprintf(
 				'Only booleans are allowed in ||, %s given on the left side.',
 				$leftType->describe(VerbosityLevel::typeOnly())
-			))->build();
+			))->identifier('booleanOr.leftNotBoolean')->build();
 		}
 
 		$rightScope = $node->getRightScope();
@@ -47,7 +47,7 @@ class BooleanInBooleanOrRule implements Rule
 			$messages[] = RuleErrorBuilder::message(sprintf(
 				'Only booleans are allowed in ||, %s given on the right side.',
 				$rightType->describe(VerbosityLevel::typeOnly())
-			))->build();
+			))->identifier('booleanOr.rightNotBoolean')->build();
 		}
 
 		return $messages;

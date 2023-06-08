@@ -62,7 +62,7 @@ class UselessCastRule implements Rule
 					'Casting to %s something that\'s already %s.',
 					$castType->describe(VerbosityLevel::typeOnly()),
 					$expressionType->describe(VerbosityLevel::typeOnly())
-				)))->build(),
+				)))->identifier('cast.useless')->build(),
 			];
 		}
 

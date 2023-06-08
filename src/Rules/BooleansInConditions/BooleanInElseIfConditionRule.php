@@ -41,7 +41,7 @@ class BooleanInElseIfConditionRule implements Rule
 			RuleErrorBuilder::message(sprintf(
 				'Only booleans are allowed in an elseif condition, %s given.',
 				$conditionExpressionType->describe(VerbosityLevel::typeOnly())
-			))->build(),
+			))->identifier('elseif.condNotBoolean')->build(),
 		];
 	}
 

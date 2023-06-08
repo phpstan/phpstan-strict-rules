@@ -20,4 +20,9 @@ class OperandInArithmeticPreDecrementRule extends OperandInArithmeticIncrementOr
 		return 'pre-decrement';
 	}
 
+	protected function getIdentifier(): string
+	{
+		return 'preDec';
+	}
+
 }

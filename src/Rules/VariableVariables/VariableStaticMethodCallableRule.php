@@ -37,7 +37,7 @@ class VariableStaticMethodCallableRule implements Rule
 			RuleErrorBuilder::message(sprintf(
 				'Variable static method call on %s.',
 				$methodCalledOn
-			))->build(),
+			))->identifier('staticMethod.dynamicName')->build(),
 		];
 	}
 

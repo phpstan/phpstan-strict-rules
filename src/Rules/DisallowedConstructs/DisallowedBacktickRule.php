@@ -23,6 +23,7 @@ class DisallowedBacktickRule implements Rule
 	{
 		return [
 			RuleErrorBuilder::message('Backtick operator is not allowed. Use shell_exec() instead.')
+				->identifier('backtick.notAllowed')
 				->build(),
 		];
 	}

@@ -46,12 +46,17 @@ abstract class OperandInArithmeticIncrementOrDecrementRule implements Rule
 				'Only numeric types are allowed in %s, %s given.',
 				$this->describeOperation(),
 				$varType->describe(VerbosityLevel::typeOnly())
-			))->build();
+			))->identifier(sprintf('%s.nonNumeric', $this->getIdentifier()))->build();
 		}
 
 		return $messages;
 	}
 
 	abstract protected function describeOperation(): string;
+
+	/**
+	 * @return 'preInc'|'postInc'|'preDec'|'postDec'
+	 */
+	abstract protected function getIdentifier(): string;
 
 }

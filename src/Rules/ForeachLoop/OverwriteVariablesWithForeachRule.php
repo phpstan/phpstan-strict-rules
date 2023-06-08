@@ -6,6 +6,7 @@ use PhpParser\Node;
 use PhpParser\Node\Expr;
 use PhpParser\Node\Stmt\Foreach_;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\IdentifierRuleError;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
 use function is_string;
@@ -31,6 +32,7 @@ class OverwriteVariablesWithForeachRule implements Rule
 			&& $scope->hasVariableType($node->keyVar->name)->yes()
 		) {
 			$errors[] = RuleErrorBuilder::message(sprintf('Foreach overwrites $%s with its key variable.', $node->keyVar->name))
+				->identifier('foreach.keyOverwrite')
 				->build();
 		}
 
@@ -42,7 +44,7 @@ class OverwriteVariablesWithForeachRule implements Rule
 	}
 
 	/**
-	 * @return string[]
+	 * @return list<IdentifierRuleError>
 	 */
 	private function checkValueVar(Scope $scope, Expr $expr): array
 	{
@@ -53,6 +55,7 @@ class OverwriteVariablesWithForeachRule implements Rule
 			&& $scope->hasVariableType($expr->name)->yes()
 		) {
 			$errors[] = RuleErrorBuilder::message(sprintf('Foreach overwrites $%s with its value variable.', $expr->name))
+				->identifier('foreach.valueOverwrite')
 				->build();
 		}
 

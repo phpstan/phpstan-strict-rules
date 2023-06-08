@@ -23,6 +23,7 @@ class DisallowedEmptyRule implements Rule
 	{
 		return [
 			RuleErrorBuilder::message('Construct empty() is not allowed. Use more strict comparison.')
+				->identifier('empty.notAllowed')
 				->build(),
 		];
 	}

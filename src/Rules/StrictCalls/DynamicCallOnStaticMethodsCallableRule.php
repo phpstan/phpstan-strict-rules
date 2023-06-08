@@ -58,7 +58,7 @@ class DynamicCallOnStaticMethodsCallableRule implements Rule
 					'Dynamic call to static method %s::%s().',
 					$methodReflection->getDeclaringClass()->getDisplayName(),
 					$methodReflection->getName()
-				))->build(),
+				))->identifier('staticMethod.dynamicCall')->build(),
 			];
 		}
 

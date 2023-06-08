@@ -31,7 +31,7 @@ class VariableMethodCallableRule implements Rule
 			RuleErrorBuilder::message(sprintf(
 				'Variable method call on %s.',
 				$scope->getType($node->getVar())->describe(VerbosityLevel::typeOnly())
-			))->build(),
+			))->identifier('method.dynamicName')->build(),
 		];
 	}
 

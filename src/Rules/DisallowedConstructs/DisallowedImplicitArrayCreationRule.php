@@ -46,6 +46,7 @@ class DisallowedImplicitArrayCreationRule implements Rule
 		if ($certainty->no()) {
 			return [
 				RuleErrorBuilder::message(sprintf('Implicit array creation is not allowed - variable $%s does not exist.', $node->name))
+					->identifier('variable.implicitArray')
 					->build(),
 			];
 		}
@@ -53,6 +54,7 @@ class DisallowedImplicitArrayCreationRule implements Rule
 		if ($certainty->maybe()) {
 			return [
 				RuleErrorBuilder::message(sprintf('Implicit array creation is not allowed - variable $%s might not exist.', $node->name))
+					->identifier('variable.implicitArray')
 					->build(),
 			];
 		}
