@@ -6,13 +6,15 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\Cast;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
-use PHPStan\Rules\RuleError;
 use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\ErrorType;
 use PHPStan\Type\GeneralizePrecision;
 use PHPStan\Type\VerbosityLevel;
 use function sprintf;
 
+/**
+ * @implements Rule<Cast>
+ */
 class UselessCastRule implements Rule
 {
 
@@ -29,10 +31,6 @@ class UselessCastRule implements Rule
 		return Cast::class;
 	}
 
-	/**
-	 * @param Cast $node
-	 * @return RuleError[] errors
-	 */
 	public function processNode(Node $node, Scope $scope): array
 	{
 		$castType = $scope->getType($node);

@@ -6,9 +6,13 @@ use PhpParser\Node;
 use PhpParser\Node\Stmt\ElseIf_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\VerbosityLevel;
 use function sprintf;
 
+/**
+ * @implements Rule<ElseIf_>
+ */
 class BooleanInElseIfConditionRule implements Rule
 {
 
@@ -25,10 +29,6 @@ class BooleanInElseIfConditionRule implements Rule
 		return ElseIf_::class;
 	}
 
-	/**
-	 * @param ElseIf_ $node
-	 * @return string[] errors
-	 */
 	public function processNode(Node $node, Scope $scope): array
 	{
 		if ($this->helper->passesAsBoolean($scope, $node->cond)) {
@@ -38,10 +38,10 @@ class BooleanInElseIfConditionRule implements Rule
 		$conditionExpressionType = $scope->getType($node->cond);
 
 		return [
-			sprintf(
+			RuleErrorBuilder::message(sprintf(
 				'Only booleans are allowed in an elseif condition, %s given.',
 				$conditionExpressionType->describe(VerbosityLevel::typeOnly())
-			),
+			))->build(),
 		];
 	}
 

@@ -6,9 +6,13 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\Ternary;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\VerbosityLevel;
 use function sprintf;
 
+/**
+ * @implements Rule<Ternary>
+ */
 class BooleanInTernaryOperatorRule implements Rule
 {
 
@@ -25,10 +29,6 @@ class BooleanInTernaryOperatorRule implements Rule
 		return Ternary::class;
 	}
 
-	/**
-	 * @param Ternary $node
-	 * @return string[] errors
-	 */
 	public function processNode(Node $node, Scope $scope): array
 	{
 		if ($node->if === null) {
@@ -42,10 +42,10 @@ class BooleanInTernaryOperatorRule implements Rule
 		$conditionExpressionType = $scope->getType($node->cond);
 
 		return [
-			sprintf(
+			RuleErrorBuilder::message(sprintf(
 				'Only booleans are allowed in a ternary operator condition, %s given.',
 				$conditionExpressionType->describe(VerbosityLevel::typeOnly())
-			),
+			))->build(),
 		];
 	}
 

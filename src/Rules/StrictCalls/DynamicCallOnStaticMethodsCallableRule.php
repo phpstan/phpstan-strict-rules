@@ -6,6 +6,7 @@ use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Node\MethodCallableNode;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Rules\RuleLevelHelper;
 use PHPStan\Type\ErrorType;
 use PHPStan\Type\Type;
@@ -52,11 +53,13 @@ class DynamicCallOnStaticMethodsCallableRule implements Rule
 
 		$methodReflection = $type->getMethod($name, $scope);
 		if ($methodReflection->isStatic()) {
-			return [sprintf(
-				'Dynamic call to static method %s::%s().',
-				$methodReflection->getDeclaringClass()->getDisplayName(),
-				$methodReflection->getName()
-			)];
+			return [
+				RuleErrorBuilder::message(sprintf(
+					'Dynamic call to static method %s::%s().',
+					$methodReflection->getDeclaringClass()->getDisplayName(),
+					$methodReflection->getName()
+				))->build(),
+			];
 		}
 
 		return [];

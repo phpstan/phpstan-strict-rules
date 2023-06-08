@@ -6,9 +6,13 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\BooleanNot;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\VerbosityLevel;
 use function sprintf;
 
+/**
+ * @implements Rule<BooleanNot>
+ */
 class BooleanInBooleanNotRule implements Rule
 {
 
@@ -25,10 +29,6 @@ class BooleanInBooleanNotRule implements Rule
 		return BooleanNot::class;
 	}
 
-	/**
-	 * @param BooleanNot $node
-	 * @return string[] errors
-	 */
 	public function processNode(Node $node, Scope $scope): array
 	{
 		if ($this->helper->passesAsBoolean($scope, $node->expr)) {
@@ -38,10 +38,10 @@ class BooleanInBooleanNotRule implements Rule
 		$expressionType = $scope->getType($node->expr);
 
 		return [
-			sprintf(
+			RuleErrorBuilder::message(sprintf(
 				'Only booleans are allowed in a negated boolean, %s given.',
 				$expressionType->describe(VerbosityLevel::typeOnly())
-			),
+			))->build(),
 		];
 	}
 

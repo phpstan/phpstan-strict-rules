@@ -4,7 +4,6 @@ includes:
 	- vendor/phpstan/phpstan-phpunit/rules.neon
 	- rules.neon
 	- phar://phpstan.phar/conf/bleedingEdge.neon
-	- phpstan-baseline.neon
 
 parameters:
 	excludePaths:

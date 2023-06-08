@@ -5,6 +5,9 @@ namespace PHPStan\Rules\ForeachLoop;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 
+/**
+ * @extends RuleTestCase<OverwriteVariablesWithForeachRule>
+ */
 class OverwriteVariablesWithForeachRuleTest extends RuleTestCase
 {
 

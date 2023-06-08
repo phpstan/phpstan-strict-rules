@@ -6,6 +6,7 @@ use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Node\StaticMethodCallableNode;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\VerbosityLevel;
 use function sprintf;
 
@@ -33,10 +34,10 @@ class VariableStaticMethodCallableRule implements Rule
 		}
 
 		return [
-			sprintf(
+			RuleErrorBuilder::message(sprintf(
 				'Variable static method call on %s.',
 				$methodCalledOn
-			),
+			))->build(),
 		];
 	}
 

@@ -5,6 +5,9 @@ namespace PHPStan\Rules\VariableVariables;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 
+/**
+ * @extends RuleTestCase<VariableMethodCallRule>
+ */
 class VariableMethodCallRuleTest extends RuleTestCase
 {
 

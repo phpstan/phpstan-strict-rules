@@ -5,6 +5,9 @@ namespace PHPStan\Rules\Methods;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 
+/**
+ * @extends RuleTestCase<WrongCaseOfInheritedMethodRule>
+ */
 class WrongCaseOfInheritedMethodRuleTest extends RuleTestCase
 {
 

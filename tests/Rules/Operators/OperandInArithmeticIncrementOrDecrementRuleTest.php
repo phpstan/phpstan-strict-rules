@@ -6,6 +6,10 @@ use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleLevelHelper;
 use PHPStan\Testing\RuleTestCase;
 
+/**
+ * @template T of Rule
+ * @extends RuleTestCase<T>
+ */
 abstract class OperandInArithmeticIncrementOrDecrementRuleTest extends RuleTestCase
 {
 
@@ -23,6 +27,9 @@ abstract class OperandInArithmeticIncrementOrDecrementRuleTest extends RuleTestC
 		$this->analyse([__DIR__ . '/data/increment-decrement.php'], $this->getExpectedErrors());
 	}
 
+	/**
+	 * @return T
+	 */
 	abstract protected function createRule(OperatorRuleHelper $helper): Rule;
 
 	/**

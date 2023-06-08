@@ -5,6 +5,9 @@ namespace PHPStan\Rules\Cast;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 
+/**
+ * @extends RuleTestCase<UselessCastRule>
+ */
 class UselessCastRuleTest extends RuleTestCase
 {
 

@@ -4,6 +4,9 @@ namespace PHPStan\Rules\Operators;
 
 use PHPStan\Rules\Rule;
 
+/**
+ * @extends OperandInArithmeticIncrementOrDecrementRuleTest<OperandInArithmeticPreDecrementRule>
+ */
 class OperandInArithmeticPreDecrementRuleTest extends OperandInArithmeticIncrementOrDecrementRuleTest
 {
 

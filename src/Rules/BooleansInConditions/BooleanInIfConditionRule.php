@@ -6,9 +6,13 @@ use PhpParser\Node;
 use PhpParser\Node\Stmt\If_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\VerbosityLevel;
 use function sprintf;
 
+/**
+ * @implements Rule<If_>
+ */
 class BooleanInIfConditionRule implements Rule
 {
 
@@ -25,10 +29,6 @@ class BooleanInIfConditionRule implements Rule
 		return If_::class;
 	}
 
-	/**
-	 * @param If_ $node
-	 * @return string[] errors
-	 */
 	public function processNode(Node $node, Scope $scope): array
 	{
 		if ($this->helper->passesAsBoolean($scope, $node->cond)) {
@@ -38,10 +38,10 @@ class BooleanInIfConditionRule implements Rule
 		$conditionExpressionType = $scope->getType($node->cond);
 
 		return [
-			sprintf(
+			RuleErrorBuilder::message(sprintf(
 				'Only booleans are allowed in an if condition, %s given.',
 				$conditionExpressionType->describe(VerbosityLevel::typeOnly())
-			),
+			))->build(),
 		];
 	}
 

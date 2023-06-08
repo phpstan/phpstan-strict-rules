@@ -6,21 +6,21 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\StaticPropertyFetch;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\VerbosityLevel;
 use function sprintf;
 
+/**
+ * @implements Rule<StaticPropertyFetch>
+ */
 class VariableStaticPropertyFetchRule implements Rule
 {
 
 	public function getNodeType(): string
 	{
-		return Node\Expr\StaticPropertyFetch::class;
+		return StaticPropertyFetch::class;
 	}
 
-	/**
-	 * @param StaticPropertyFetch $node
-	 * @return string[]
-	 */
 	public function processNode(Node $node, Scope $scope): array
 	{
 		if ($node->name instanceof Node\Identifier) {
@@ -34,10 +34,10 @@ class VariableStaticPropertyFetchRule implements Rule
 		}
 
 		return [
-			sprintf(
+			RuleErrorBuilder::message(sprintf(
 				'Variable static property access on %s.',
 				$propertyAccessedOn
-			),
+			))->build(),
 		];
 	}
 

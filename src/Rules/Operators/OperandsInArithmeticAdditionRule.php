@@ -8,10 +8,14 @@ use PhpParser\Node\Expr\AssignOp\Plus as AssignOpPlus;
 use PhpParser\Node\Expr\BinaryOp\Plus as BinaryOpPlus;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\VerbosityLevel;
 use function count;
 use function sprintf;
 
+/**
+ * @implements Rule<Expr>
+ */
 class OperandsInArithmeticAdditionRule implements Rule
 {
 
@@ -32,9 +36,6 @@ class OperandsInArithmeticAdditionRule implements Rule
 		return Expr::class;
 	}
 
-	/**
-	 * @return string[] errors
-	 */
 	public function processNode(Node $node, Scope $scope): array
 	{
 		if ($node instanceof BinaryOpPlus) {
@@ -55,16 +56,16 @@ class OperandsInArithmeticAdditionRule implements Rule
 
 		$messages = [];
 		if (!$this->helper->isValidForArithmeticOperation($scope, $left)) {
-			$messages[] = sprintf(
+			$messages[] = RuleErrorBuilder::message(sprintf(
 				'Only numeric types are allowed in +, %s given on the left side.',
 				$leftType->describe(VerbosityLevel::typeOnly())
-			);
+			))->build();
 		}
 		if (!$this->helper->isValidForArithmeticOperation($scope, $right)) {
-			$messages[] = sprintf(
+			$messages[] = RuleErrorBuilder::message(sprintf(
 				'Only numeric types are allowed in +, %s given on the right side.',
 				$rightType->describe(VerbosityLevel::typeOnly())
-			);
+			))->build();
 		}
 
 		return $messages;

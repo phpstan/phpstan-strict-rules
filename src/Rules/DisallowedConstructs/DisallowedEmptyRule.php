@@ -6,7 +6,11 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\Empty_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 
+/**
+ * @implements Rule<Empty_>
+ */
 class DisallowedEmptyRule implements Rule
 {
 
@@ -15,14 +19,11 @@ class DisallowedEmptyRule implements Rule
 		return Empty_::class;
 	}
 
-	/**
-	 * @param Empty_ $node
-	 * @return string[]
-	 */
 	public function processNode(Node $node, Scope $scope): array
 	{
 		return [
-			'Construct empty() is not allowed. Use more strict comparison.',
+			RuleErrorBuilder::message('Construct empty() is not allowed. Use more strict comparison.')
+				->build(),
 		];
 	}
 

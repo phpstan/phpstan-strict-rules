@@ -9,6 +9,7 @@ use PhpParser\Node\Expr\PreDec;
 use PhpParser\Node\Expr\PreInc;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\VerbosityLevel;
 use function sprintf;
 
@@ -28,8 +29,7 @@ abstract class OperandInArithmeticIncrementOrDecrementRule implements Rule
 	}
 
 	/**
-	 * @param PreInc|PreDec|PostInc|PostDec $node
-	 * @return string[] errors
+	 * @param TNodeType $node
 	 */
 	public function processNode(Node $node, Scope $scope): array
 	{
@@ -42,11 +42,11 @@ abstract class OperandInArithmeticIncrementOrDecrementRule implements Rule
 			|| ($node instanceof PreDec || $node instanceof PostDec)
 				&& !$this->helper->isValidForDecrement($scope, $node->var)
 		) {
-			$messages[] = sprintf(
+			$messages[] = RuleErrorBuilder::message(sprintf(
 				'Only numeric types are allowed in %s, %s given.',
 				$this->describeOperation(),
 				$varType->describe(VerbosityLevel::typeOnly())
-			);
+			))->build();
 		}
 
 		return $messages;

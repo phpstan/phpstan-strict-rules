@@ -6,6 +6,9 @@ use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 use const PHP_VERSION_ID;
 
+/**
+ * @extends RuleTestCase<RequireParentConstructCallRule>
+ */
 class RequireParentConstructCallRuleTest extends RuleTestCase
 {
 

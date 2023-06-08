@@ -5,6 +5,9 @@ namespace PHPStan\Rules\DisallowedConstructs;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 
+/**
+ * @extends RuleTestCase<DisallowedBacktickRule>
+ */
 class DisallowedBacktickRuleTest extends RuleTestCase
 {
 

@@ -6,6 +6,7 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\Ternary;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 
 /**
  * @implements Rule<Ternary>
@@ -25,7 +26,8 @@ class DisallowedShortTernaryRule implements Rule
 		}
 
 		return [
-			'Short ternary operator is not allowed. Use null coalesce operator if applicable or consider using long ternary.',
+			RuleErrorBuilder::message('Short ternary operator is not allowed. Use null coalesce operator if applicable or consider using long ternary.')
+				->build(),
 		];
 	}
 

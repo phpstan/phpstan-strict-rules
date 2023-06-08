@@ -6,21 +6,21 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\StaticCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\VerbosityLevel;
 use function sprintf;
 
+/**
+ * @implements Rule<StaticCall>
+ */
 class VariableStaticMethodCallRule implements Rule
 {
 
 	public function getNodeType(): string
 	{
-		return Node\Expr\StaticCall::class;
+		return StaticCall::class;
 	}
 
-	/**
-	 * @param StaticCall $node
-	 * @return string[]
-	 */
 	public function processNode(Node $node, Scope $scope): array
 	{
 		if ($node->name instanceof Node\Identifier) {
@@ -34,10 +34,10 @@ class VariableStaticMethodCallRule implements Rule
 		}
 
 		return [
-			sprintf(
+			RuleErrorBuilder::message(sprintf(
 				'Variable static method call on %s.',
 				$methodCalledOn
-			),
+			))->build(),
 		];
 	}
 

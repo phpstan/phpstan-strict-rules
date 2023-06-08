@@ -7,6 +7,8 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Node\InClassMethodNode;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleError;
+use PHPStan\Rules\RuleErrorBuilder;
 use function sprintf;
 
 /**
@@ -50,9 +52,6 @@ class WrongCaseOfInheritedMethodRule implements Rule
 				continue;
 			}
 
-			/** @var string $interfaceMessage */
-			$interfaceMessage = $interfaceMessage;
-
 			$messages[] = $interfaceMessage;
 		}
 
@@ -63,7 +62,7 @@ class WrongCaseOfInheritedMethodRule implements Rule
 		ClassReflection $declaringClass,
 		ClassReflection $classReflection,
 		string $methodName
-	): ?string
+	): ?RuleError
 	{
 		if (!$classReflection->hasNativeMethod($methodName)) {
 			return null;
@@ -74,14 +73,14 @@ class WrongCaseOfInheritedMethodRule implements Rule
 			return null;
 		}
 
-		return sprintf(
+		return RuleErrorBuilder::message(sprintf(
 			'Method %s::%s() does not match %s method name: %s::%s().',
 			$declaringClass->getDisplayName(),
 			$methodName,
 			$classReflection->isInterface() ? 'interface' : 'parent',
 			$classReflection->getDisplayName(),
 			$parentMethod->getName()
-		);
+		))->build();
 	}
 
 }

@@ -8,9 +8,13 @@ use PhpParser\Node\Expr\Assign;
 use PhpParser\Node\Expr\Variable;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use function is_string;
 use function sprintf;
 
+/**
+ * @implements Rule<Assign>
+ */
 class DisallowedImplicitArrayCreationRule implements Rule
 {
 
@@ -19,10 +23,6 @@ class DisallowedImplicitArrayCreationRule implements Rule
 		return Assign::class;
 	}
 
-	/**
-	 * @param Assign $node
-	 * @return string[]
-	 */
 	public function processNode(Node $node, Scope $scope): array
 	{
 		if (!$node->var instanceof ArrayDimFetch) {
@@ -45,13 +45,15 @@ class DisallowedImplicitArrayCreationRule implements Rule
 		$certainty = $scope->hasVariableType($node->name);
 		if ($certainty->no()) {
 			return [
-				sprintf('Implicit array creation is not allowed - variable $%s does not exist.', $node->name),
+				RuleErrorBuilder::message(sprintf('Implicit array creation is not allowed - variable $%s does not exist.', $node->name))
+					->build(),
 			];
 		}
 
 		if ($certainty->maybe()) {
 			return [
-				sprintf('Implicit array creation is not allowed - variable $%s might not exist.', $node->name),
+				RuleErrorBuilder::message(sprintf('Implicit array creation is not allowed - variable $%s might not exist.', $node->name))
+					->build(),
 			];
 		}
 

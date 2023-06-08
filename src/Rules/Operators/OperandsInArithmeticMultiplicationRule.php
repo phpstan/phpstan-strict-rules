@@ -8,9 +8,13 @@ use PhpParser\Node\Expr\AssignOp\Mul as AssignOpMul;
 use PhpParser\Node\Expr\BinaryOp\Mul as BinaryOpMul;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\VerbosityLevel;
 use function sprintf;
 
+/**
+ * @implements Rule<Expr>
+ */
 class OperandsInArithmeticMultiplicationRule implements Rule
 {
 
@@ -31,9 +35,6 @@ class OperandsInArithmeticMultiplicationRule implements Rule
 		return Expr::class;
 	}
 
-	/**
-	 * @return string[] errors
-	 */
 	public function processNode(Node $node, Scope $scope): array
 	{
 		if ($node instanceof BinaryOpMul) {
@@ -49,18 +50,18 @@ class OperandsInArithmeticMultiplicationRule implements Rule
 		$messages = [];
 		$leftType = $scope->getType($left);
 		if (!$this->helper->isValidForArithmeticOperation($scope, $left)) {
-			$messages[] = sprintf(
+			$messages[] = RuleErrorBuilder::message(sprintf(
 				'Only numeric types are allowed in *, %s given on the left side.',
 				$leftType->describe(VerbosityLevel::typeOnly())
-			);
+			))->build();
 		}
 
 		$rightType = $scope->getType($right);
 		if (!$this->helper->isValidForArithmeticOperation($scope, $right)) {
-			$messages[] = sprintf(
+			$messages[] = RuleErrorBuilder::message(sprintf(
 				'Only numeric types are allowed in *, %s given on the right side.',
 				$rightType->describe(VerbosityLevel::typeOnly())
-			);
+			))->build();
 		}
 
 		return $messages;

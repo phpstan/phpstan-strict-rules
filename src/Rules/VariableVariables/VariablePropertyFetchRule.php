@@ -8,9 +8,13 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\VerbosityLevel;
 use function sprintf;
 
+/**
+ * @implements Rule<PropertyFetch>
+ */
 class VariablePropertyFetchRule implements Rule
 {
 
@@ -31,13 +35,9 @@ class VariablePropertyFetchRule implements Rule
 
 	public function getNodeType(): string
 	{
-		return Node\Expr\PropertyFetch::class;
+		return PropertyFetch::class;
 	}
 
-	/**
-	 * @param PropertyFetch $node
-	 * @return string[]
-	 */
 	public function processNode(Node $node, Scope $scope): array
 	{
 		if ($node->name instanceof Node\Identifier) {
@@ -56,10 +56,10 @@ class VariablePropertyFetchRule implements Rule
 		}
 
 		return [
-			sprintf(
+			RuleErrorBuilder::message(sprintf(
 				'Variable property access on %s.',
 				$fetchedOnType->describe(VerbosityLevel::typeOnly())
-			),
+			))->build(),
 		];
 	}
 

@@ -8,6 +8,9 @@ use PHPStan\Testing\RuleTestCase;
 use function array_merge;
 use const PHP_VERSION_ID;
 
+/**
+ * @extends RuleTestCase<OperandsInArithmeticAdditionRule>
+ */
 class OperandsInArithmeticAdditionRuleTest extends RuleTestCase
 {
 

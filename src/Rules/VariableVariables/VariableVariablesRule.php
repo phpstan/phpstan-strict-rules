@@ -6,20 +6,20 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\Variable;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use function is_string;
 
+/**
+ * @implements Rule<Variable>
+ */
 class VariableVariablesRule implements Rule
 {
 
 	public function getNodeType(): string
 	{
-		return Node\Expr\Variable::class;
+		return Variable::class;
 	}
 
-	/**
-	 * @param Variable $node
-	 * @return string[]
-	 */
 	public function processNode(Node $node, Scope $scope): array
 	{
 		if (is_string($node->name)) {
@@ -27,7 +27,8 @@ class VariableVariablesRule implements Rule
 		}
 
 		return [
-			'Variable variables are not allowed.',
+			RuleErrorBuilder::message('Variable variables are not allowed.')
+				->build(),
 		];
 	}
 

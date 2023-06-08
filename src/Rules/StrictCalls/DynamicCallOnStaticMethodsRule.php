@@ -6,6 +6,7 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Rules\RuleLevelHelper;
 use PHPStan\Testing\PHPStanTestCase;
 use PHPStan\Testing\TypeInferenceTestCase;
@@ -14,6 +15,9 @@ use PHPStan\Type\Type;
 use function in_array;
 use function sprintf;
 
+/**
+ * @implements Rule<MethodCall>
+ */
 class DynamicCallOnStaticMethodsRule implements Rule
 {
 
@@ -30,10 +34,6 @@ class DynamicCallOnStaticMethodsRule implements Rule
 		return MethodCall::class;
 	}
 
-	/**
-	 * @param MethodCall $node
-	 * @return string[]
-	 */
 	public function processNode(Node $node, Scope $scope): array
 	{
 		if (!$node->name instanceof Node\Identifier) {
@@ -64,11 +64,13 @@ class DynamicCallOnStaticMethodsRule implements Rule
 				return [];
 			}
 
-			return [sprintf(
-				'Dynamic call to static method %s::%s().',
-				$methodReflection->getDeclaringClass()->getDisplayName(),
-				$methodReflection->getName()
-			)];
+			return [
+				RuleErrorBuilder::message(sprintf(
+					'Dynamic call to static method %s::%s().',
+					$methodReflection->getDeclaringClass()->getDisplayName(),
+					$methodReflection->getName()
+				))->build(),
+			];
 		}
 
 		return [];

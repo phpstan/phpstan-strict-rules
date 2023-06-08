@@ -6,6 +6,7 @@ use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Node\BooleanAndNode;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\VerbosityLevel;
 use function sprintf;
 
@@ -34,19 +35,19 @@ class BooleanInBooleanAndRule implements Rule
 		$messages = [];
 		if (!$this->helper->passesAsBoolean($scope, $originalNode->left)) {
 			$leftType = $scope->getType($originalNode->left);
-			$messages[] = sprintf(
+			$messages[] = RuleErrorBuilder::message(sprintf(
 				'Only booleans are allowed in &&, %s given on the left side.',
 				$leftType->describe(VerbosityLevel::typeOnly())
-			);
+			))->build();
 		}
 
 		$rightScope = $node->getRightScope();
 		if (!$this->helper->passesAsBoolean($rightScope, $originalNode->right)) {
 			$rightType = $rightScope->getType($originalNode->right);
-			$messages[] = sprintf(
+			$messages[] = RuleErrorBuilder::message(sprintf(
 				'Only booleans are allowed in &&, %s given on the right side.',
 				$rightType->describe(VerbosityLevel::typeOnly())
-			);
+			))->build();
 		}
 
 		return $messages;

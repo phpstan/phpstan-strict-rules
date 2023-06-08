@@ -5,6 +5,9 @@ namespace PHPStan\Rules\StrictCalls;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 
+/**
+ * @extends RuleTestCase<StrictFunctionCallsRule>
+ */
 class StrictFunctionCallsRuleTest extends RuleTestCase
 {
 

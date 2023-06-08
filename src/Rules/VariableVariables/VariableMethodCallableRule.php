@@ -6,6 +6,7 @@ use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Node\MethodCallableNode;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\VerbosityLevel;
 use function sprintf;
 
@@ -27,10 +28,10 @@ class VariableMethodCallableRule implements Rule
 		}
 
 		return [
-			sprintf(
+			RuleErrorBuilder::message(sprintf(
 				'Variable method call on %s.',
 				$scope->getType($node->getVar())->describe(VerbosityLevel::typeOnly())
-			),
+			))->build(),
 		];
 	}
 
