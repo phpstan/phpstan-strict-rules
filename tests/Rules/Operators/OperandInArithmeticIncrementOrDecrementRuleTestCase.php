@@ -10,7 +10,7 @@ use PHPStan\Testing\RuleTestCase;
  * @template T of Rule
  * @extends RuleTestCase<T>
  */
-abstract class OperandInArithmeticIncrementOrDecrementRuleTest extends RuleTestCase
+abstract class OperandInArithmeticIncrementOrDecrementRuleTestCase extends RuleTestCase
 {
 
 	protected function getRule(): Rule

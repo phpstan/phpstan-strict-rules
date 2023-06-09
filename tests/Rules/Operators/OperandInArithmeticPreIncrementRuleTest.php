@@ -5,9 +5,9 @@ namespace PHPStan\Rules\Operators;
 use PHPStan\Rules\Rule;
 
 /**
- * @extends OperandInArithmeticIncrementOrDecrementRuleTest<OperandInArithmeticPreIncrementRule>
+ * @extends OperandInArithmeticIncrementOrDecrementRuleTestCase<OperandInArithmeticPreIncrementRule>
  */
-class OperandInArithmeticPreIncrementRuleTest extends OperandInArithmeticIncrementOrDecrementRuleTest
+class OperandInArithmeticPreIncrementRuleTest extends OperandInArithmeticIncrementOrDecrementRuleTestCase
 {
 
 	protected function createRule(OperatorRuleHelper $helper): Rule
