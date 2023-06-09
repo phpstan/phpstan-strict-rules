@@ -21,10 +21,6 @@ class RequireParentConstructCallRuleTest extends RuleTestCase
 	{
 		$this->analyse([__DIR__ . '/data/call-to-parent-constructor.php'], [
 			[
-				'IpsumCallToParentConstructor::__construct() calls parent constructor but parent does not have one.',
-				31,
-			],
-			[
 				'BCallToParentConstructor::__construct() does not call parent constructor from ACallToParentConstructor.',
 				51,
 			],
@@ -53,12 +49,7 @@ class RequireParentConstructCallRuleTest extends RuleTestCase
 		if (PHP_VERSION_ID >= 70400) {
 			self::markTestSkipped('This test does not support PHP 7.4 or higher.');
 		}
-		$this->analyse([__DIR__ . '/data/call-to-parent-constructor-php-lt-74.php'], [
-			[
-				'CCallToParentConstructor::__construct() calls parent constructor but does not extend any class.',
-				6,
-			],
-		]);
+		$this->analyse([__DIR__ . '/data/call-to-parent-constructor-php-lt-74.php'], []);
 	}
 
 }

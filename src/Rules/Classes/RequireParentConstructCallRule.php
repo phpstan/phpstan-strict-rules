@@ -50,34 +50,18 @@ class RequireParentConstructCallRule implements Rule
 		}
 
 		if ($this->callsParentConstruct($node)) {
-			if ($classReflection->getParentClass() === false) {
-				return [
-					RuleErrorBuilder::message(sprintf(
-						'%s::__construct() calls parent constructor but does not extend any class.',
-						$classReflection->getName()
-					))->build(),
-				];
-			}
+			return [];
+		}
 
-			if ($this->getParentConstructorClass($classReflection) === false) {
-				return [
-					RuleErrorBuilder::message(sprintf(
-						'%s::__construct() calls parent constructor but parent does not have one.',
-						$classReflection->getName()
-					))->build(),
-				];
-			}
-		} else {
-			$parentClass = $this->getParentConstructorClass($classReflection);
-			if ($parentClass !== false) {
-				return [
-					RuleErrorBuilder::message(sprintf(
-						'%s::__construct() does not call parent constructor from %s.',
-						$classReflection->getName(),
-						$parentClass->getName()
-					))->build(),
-				];
-			}
+		$parentClass = $this->getParentConstructorClass($classReflection);
+		if ($parentClass !== false) {
+			return [
+				RuleErrorBuilder::message(sprintf(
+					'%s::__construct() does not call parent constructor from %s.',
+					$classReflection->getName(),
+					$parentClass->getName()
+				))->build(),
+			];
 		}
 
 		return [];
