@@ -142,12 +142,16 @@ services:
 
 	-
 		class: PHPStan\Rules\BooleansInConditions\BooleanInBooleanAndRule
+		arguments:
+			bleedingEdge: %featureToggles.bleedingEdge%
 
 	-
 		class: PHPStan\Rules\BooleansInConditions\BooleanInBooleanNotRule
 
 	-
 		class: PHPStan\Rules\BooleansInConditions\BooleanInBooleanOrRule
+		arguments:
+			bleedingEdge: %featureToggles.bleedingEdge%
 
 	-
 		class: PHPStan\Rules\BooleansInConditions\BooleanInElseIfConditionRule

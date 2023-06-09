@@ -43,3 +43,8 @@ if ($string) {
 $bool ? 1 : 2;
 $string ? 1 : 2;
 $string ?: null;
+
+$bool and $explicitMixed;
+$explicitMixed and $bool;
+$bool or $explicitMixed;
+$explicitMixed or $bool;

@@ -17,7 +17,8 @@ class BooleanInBooleanAndRuleTest extends RuleTestCase
 		return new BooleanInBooleanAndRule(
 			new BooleanRuleHelper(
 				self::getContainer()->getByType(RuleLevelHelper::class)
-			)
+			),
+			true
 		);
 	}
 
@@ -44,6 +45,14 @@ class BooleanInBooleanAndRuleTest extends RuleTestCase
 				'Only booleans are allowed in &&, mixed given on the right side.',
 				19,
 			],
+			[
+				'Only booleans are allowed in and, mixed given on the right side.',
+				47,
+			],
+			[
+				'Only booleans are allowed in and, mixed given on the left side.',
+				48,
+			],
 		]);
 	}
 
@@ -61,11 +70,11 @@ class BooleanInBooleanAndRuleTest extends RuleTestCase
 	{
 		$this->analyse([__DIR__ . '/data/logical-and.php'], [
 			[
-				'Only booleans are allowed in &&, string|false given on the left side.',
+				'Only booleans are allowed in and, string|false given on the left side.',
 				14,
 			],
 			[
-				'Only booleans are allowed in &&, mixed given on the right side.',
+				'Only booleans are allowed in and, mixed given on the right side.',
 				14,
 			],
 		]);

@@ -19,9 +19,13 @@ class BooleanInBooleanOrRule implements Rule
 	/** @var BooleanRuleHelper */
 	private $helper;
 
-	public function __construct(BooleanRuleHelper $helper)
+	/** @var bool */
+	private $bleedingEdge;
+
+	public function __construct(BooleanRuleHelper $helper, bool $bleedingEdge)
 	{
 		$this->helper = $helper;
+		$this->bleedingEdge = $bleedingEdge;
 	}
 
 	public function getNodeType(): string
@@ -33,21 +37,25 @@ class BooleanInBooleanOrRule implements Rule
 	{
 		$originalNode = $node->getOriginalNode();
 		$messages = [];
+		$nodeText = $this->bleedingEdge ? $originalNode->getOperatorSigil() : '||';
+		$identifierType = $originalNode instanceof Node\Expr\BinaryOp\BooleanOr ? 'booleanOr' : 'logicalOr';
 		if (!$this->helper->passesAsBoolean($scope, $originalNode->left)) {
 			$leftType = $scope->getType($originalNode->left);
 			$messages[] = RuleErrorBuilder::message(sprintf(
-				'Only booleans are allowed in ||, %s given on the left side.',
+				'Only booleans are allowed in %s, %s given on the left side.',
+				$nodeText,
 				$leftType->describe(VerbosityLevel::typeOnly())
-			))->identifier('booleanOr.leftNotBoolean')->build();
+			))->identifier(sprintf('%s.leftNotBoolean', $identifierType))->build();
 		}
 
 		$rightScope = $node->getRightScope();
 		if (!$this->helper->passesAsBoolean($rightScope, $originalNode->right)) {
 			$rightType = $rightScope->getType($originalNode->right);
 			$messages[] = RuleErrorBuilder::message(sprintf(
-				'Only booleans are allowed in ||, %s given on the right side.',
+				'Only booleans are allowed in %s, %s given on the right side.',
+				$nodeText,
 				$rightType->describe(VerbosityLevel::typeOnly())
-			))->identifier('booleanOr.rightNotBoolean')->build();
+			))->identifier(sprintf('%s.rightNotBoolean', $identifierType))->build();
 		}
 
 		return $messages;

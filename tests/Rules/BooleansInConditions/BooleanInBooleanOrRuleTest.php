@@ -17,7 +17,8 @@ class BooleanInBooleanOrRuleTest extends RuleTestCase
 		return new BooleanInBooleanOrRule(
 			new BooleanRuleHelper(
 				self::getContainer()->getByType(RuleLevelHelper::class)
-			)
+			),
+			true
 		);
 	}
 
@@ -39,6 +40,14 @@ class BooleanInBooleanOrRuleTest extends RuleTestCase
 			[
 				'Only booleans are allowed in ||, mixed given on the right side.',
 				29,
+			],
+			[
+				'Only booleans are allowed in or, mixed given on the right side.',
+				49,
+			],
+			[
+				'Only booleans are allowed in or, mixed given on the left side.',
+				50,
 			],
 		]);
 	}
