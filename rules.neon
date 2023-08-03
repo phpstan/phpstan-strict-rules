@@ -20,6 +20,7 @@ parameters:
 		disallowedLooseComparison: [%strictRules.allRules%, %featureToggles.bleedingEdge%]
 		booleansInConditions: %strictRules.allRules%
 		uselessCast: %strictRules.allRules%
+		nullCast: [%strictRules.allRules%, %featureToggles.bleedingEdge%]
 		requireParentConstructorCall: %strictRules.allRules%
 		disallowedConstructs: %strictRules.allRules%
 		overwriteVariablesWithLoop: %strictRules.allRules%
@@ -36,6 +37,7 @@ parametersSchema:
 		disallowedLooseComparison: anyOf(bool(), arrayOf(bool())),
 		booleansInConditions: anyOf(bool(), arrayOf(bool()))
 		uselessCast: anyOf(bool(), arrayOf(bool()))
+		nullCast: anyOf(bool(), arrayOf(bool()))
 		requireParentConstructorCall: anyOf(bool(), arrayOf(bool()))
 		disallowedConstructs: anyOf(bool(), arrayOf(bool()))
 		overwriteVariablesWithLoop: anyOf(bool(), arrayOf(bool()))
@@ -64,6 +66,8 @@ conditionalTags:
 		phpstan.rules.rule: %strictRules.booleansInConditions%
 	PHPStan\Rules\Cast\UselessCastRule:
 		phpstan.rules.rule: %strictRules.uselessCast%
+	PHPStan\Rules\Cast\NullCastRule:
+		phpstan.rules.rule: %strictRules.nullCast%
 	PHPStan\Rules\Classes\RequireParentConstructCallRule:
 		phpstan.rules.rule: %strictRules.requireParentConstructorCall%
 	PHPStan\Rules\DisallowedConstructs\DisallowedBacktickRule:
@@ -164,6 +168,11 @@ services:
 
 	-
 		class: PHPStan\Rules\Cast\UselessCastRule
+		arguments:
+			treatPhpDocTypesAsCertain: %treatPhpDocTypesAsCertain%
+
+	-
+		class: PHPStan\Rules\Cast\NullCastRule
 		arguments:
 			treatPhpDocTypesAsCertain: %treatPhpDocTypesAsCertain%
 
