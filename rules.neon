@@ -19,6 +19,7 @@ parameters:
 		allRules: true
 		disallowedLooseComparison: [%strictRules.allRules%, %featureToggles.bleedingEdge%]
 		booleansInConditions: %strictRules.allRules%
+		boolOperandsInGreaterSmallerOperators: %strictRules.allRules%
 		uselessCast: %strictRules.allRules%
 		requireParentConstructorCall: %strictRules.allRules%
 		disallowedConstructs: %strictRules.allRules%
@@ -35,6 +36,7 @@ parametersSchema:
 		allRules: anyOf(bool(), arrayOf(bool())),
 		disallowedLooseComparison: anyOf(bool(), arrayOf(bool())),
 		booleansInConditions: anyOf(bool(), arrayOf(bool()))
+		boolOperandsInGreaterSmallerOperators: anyOf(bool(), arrayOf(bool()))
 		uselessCast: anyOf(bool(), arrayOf(bool()))
 		requireParentConstructorCall: anyOf(bool(), arrayOf(bool()))
 		disallowedConstructs: anyOf(bool(), arrayOf(bool()))
@@ -102,6 +104,8 @@ conditionalTags:
 		phpstan.rules.rule: %strictRules.numericOperandsInArithmeticOperators%
 	PHPStan\Rules\Operators\OperandsInArithmeticSubtractionRule:
 		phpstan.rules.rule: %strictRules.numericOperandsInArithmeticOperators%
+	PHPStan\Rules\Operators\OperandsIncompatibleGreaterSmallerRule:
+		phpstan.rules.rule: %strictRules.boolOperandsInGreaterSmallerOperators%
 	PHPStan\Rules\StrictCalls\DynamicCallOnStaticMethodsRule:
 		phpstan.rules.rule: %strictRules.strictCalls%
 	PHPStan\Rules\StrictCalls\DynamicCallOnStaticMethodsCallableRule:
@@ -233,6 +237,11 @@ services:
 
 	-
 		class: PHPStan\Rules\Operators\OperandsInArithmeticSubtractionRule
+		arguments:
+			bleedingEdge: %featureToggles.bleedingEdge%
+
+	-
+		class: PHPStan\Rules\Operators\OperandsIncompatibleGreaterSmallerRule
 		arguments:
 			bleedingEdge: %featureToggles.bleedingEdge%
 
