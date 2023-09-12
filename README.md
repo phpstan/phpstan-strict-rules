@@ -30,6 +30,8 @@
 * Require calling parent constructor
 * Disallow usage of backtick operator (`` $ls = `ls -la` ``)
 * Closure should use `$this` directly instead of using `$this` variable indirectly
+* Report useless casts
+* Disallow explicit casting of potential `null` values (with [https://phpstan.org/blog/what-is-bleeding-edge](bleeding edge) enabled)
 
 Additional rules are coming in subsequent releases!
 
@@ -65,6 +67,7 @@ parameters:
 		disallowedLooseComparison: false
 		booleansInConditions: false
 		uselessCast: false
+		nullCast: false
 		requireParentConstructorCall: false
 		disallowedConstructs: false
 		overwriteVariablesWithLoop: false
