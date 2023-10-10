@@ -29,6 +29,7 @@
 * Check LSP even for static methods
 * Require calling parent constructor
 * Disallow usage of backtick operator (`` $ls = `ls -la` ``)
+* Disallow usage of error control operators(`@callSomeFunc()`)
 * Closure should use `$this` directly instead of using `$this` variable indirectly
 
 Additional rules are coming in subsequent releases!

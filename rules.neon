@@ -70,6 +70,8 @@ conditionalTags:
 		phpstan.rules.rule: %strictRules.disallowedConstructs%
 	PHPStan\Rules\DisallowedConstructs\DisallowedEmptyRule:
 		phpstan.rules.rule: %strictRules.disallowedConstructs%
+	PHPStan\Rules\DisallowedConstructs\DisallowedErrorControlRule:
+		phpstan.rules.rule: %strictRules.disallowedConstructs%
 	PHPStan\Rules\DisallowedConstructs\DisallowedImplicitArrayCreationRule:
 		phpstan.rules.rule: %strictRules.disallowedConstructs%
 	PHPStan\Rules\DisallowedConstructs\DisallowedShortTernaryRule:
@@ -175,6 +177,9 @@ services:
 
 	-
 		class: PHPStan\Rules\DisallowedConstructs\DisallowedEmptyRule
+
+	-
+		class: PHPStan\Rules\DisallowedConstructs\DisallowedErrorControlRule
 
 	-
 		class: PHPStan\Rules\DisallowedConstructs\DisallowedImplicitArrayCreationRule
