@@ -5,7 +5,9 @@ namespace PHPStan\Rules\StrictCalls;
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Name;
+use PHPStan\Analyser\ArgumentsNormalizer;
 use PHPStan\Analyser\Scope;
+use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
@@ -47,11 +49,17 @@ class StrictFunctionCallsRule implements Rule
 			return [];
 		}
 
-		$functionName = $this->reflectionProvider->resolveFunctionName($node->name, $scope);
-		if ($functionName === null) {
+		if (!$this->reflectionProvider->hasFunction($node->name, $scope)) {
 			return [];
 		}
-		$functionName = strtolower($functionName);
+
+		$function = $this->reflectionProvider->getFunction($node->name, $scope);
+		$parametersAcceptor = ParametersAcceptorSelector::selectFromArgs($scope, $node->getArgs(), $function->getVariants());
+		$node = ArgumentsNormalizer::reorderFuncArguments($parametersAcceptor, $node);
+		if ($node === null) {
+			return [];
+		}
+		$functionName = strtolower($function->getName());
 		if (!array_key_exists($functionName, $this->functionArguments)) {
 			return [];
 		}

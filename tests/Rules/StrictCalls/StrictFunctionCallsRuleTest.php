@@ -4,6 +4,7 @@ namespace PHPStan\Rules\StrictCalls;
 
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
+use const PHP_VERSION_ID;
 
 /**
  * @extends RuleTestCase<StrictFunctionCallsRule>
@@ -72,6 +73,14 @@ class StrictFunctionCallsRuleTest extends RuleTestCase
 				31,
 			],
 		]);
+	}
+
+	public function testBug231(): void
+	{
+		if (PHP_VERSION_ID < 80100) {
+			$this->markTestSkipped('Test requires PHP 8.1.');
+		}
+		$this->analyse([__DIR__ . '/data/bug-231.php'], []);
 	}
 
 }
