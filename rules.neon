@@ -29,6 +29,7 @@ parameters:
 		strictCalls: %strictRules.allRules%
 		switchConditionsMatchingType: %strictRules.allRules%
 		noVariableVariables: %strictRules.allRules%
+		strictArrayFilter: [%strictRules.allRules%, %featureToggles.bleedingEdge%]
 
 parametersSchema:
 	strictRules: structure([
@@ -45,6 +46,7 @@ parametersSchema:
 		strictCalls: anyOf(bool(), arrayOf(bool()))
 		switchConditionsMatchingType: anyOf(bool(), arrayOf(bool()))
 		noVariableVariables: anyOf(bool(), arrayOf(bool()))
+		strictArrayFilter: anyOf(bool(), arrayOf(bool()))
 	])
 
 conditionalTags:
@@ -78,6 +80,8 @@ conditionalTags:
 		phpstan.rules.rule: %strictRules.overwriteVariablesWithLoop%
 	PHPStan\Rules\ForLoop\OverwriteVariablesWithForLoopInitRule:
 		phpstan.rules.rule: %strictRules.overwriteVariablesWithLoop%
+	PHPStan\Rules\Functions\ArrayFilterStrictRule:
+		phpstan.rules.rule: %strictRules.strictArrayFilter%
 	PHPStan\Rules\Functions\ClosureUsesThisRule:
 		phpstan.rules.rule: %strictRules.closureUsesThis%
 	PHPStan\Rules\Methods\WrongCaseOfInheritedMethodRule:
@@ -183,6 +187,12 @@ services:
 
 	-
 		class: PHPStan\Rules\ForLoop\OverwriteVariablesWithForLoopInitRule
+
+	-
+		class: PHPStan\Rules\Functions\ArrayFilterStrictRule
+		arguments:
+			treatPhpDocTypesAsCertain: %treatPhpDocTypesAsCertain%
+			reportMaybes: %reportMaybes%
 
 	-
 		class: PHPStan\Rules\Functions\ClosureUsesThisRule
