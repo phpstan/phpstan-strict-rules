@@ -10,11 +10,11 @@
 		"phpstan/phpstan": "^1.11"
 	},
 	"require-dev": {
-		"nikic/php-parser": "^4.13.0",
+		"nikic/php-parser": "^5.0.0",
 		"php-parallel-lint/php-parallel-lint": "^1.2",
 		"phpstan/phpstan-deprecation-rules": "^1.1",
 		"phpstan/phpstan-phpunit": "^1.0",
-		"phpunit/phpunit": "^9.5"
+		"phpunit/phpunit": "^11.0"
 	},
 	"config": {
 		"platform": {
