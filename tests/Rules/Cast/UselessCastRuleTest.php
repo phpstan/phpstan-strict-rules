@@ -49,6 +49,11 @@ class UselessCastRuleTest extends RuleTestCase
 				],
 				[
 					'Casting to string something that\'s already string.',
+					39,
+					'Because the type is coming from a PHPDoc, you can turn off this check by setting <fg=cyan>treatPhpDocTypesAsCertain: false</> in your <fg=cyan>%configurationFile%</>.',
+				],
+				[
+					'Casting to string something that\'s already string.',
 					46,
 					'Because the type is coming from a PHPDoc, you can turn off this check by setting <fg=cyan>treatPhpDocTypesAsCertain: false</> in your <fg=cyan>%configurationFile%</>.',
 				],
