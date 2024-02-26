@@ -74,6 +74,7 @@ parameters:
 		strictCalls: false
 		switchConditionsMatchingType: false
 		noVariableVariables: false
+		strictArrayFilter: false
 ```
 
 ## Enabling rules one-by-one
