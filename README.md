@@ -76,6 +76,8 @@ parameters:
 		noVariableVariables: false
 ```
 
+Aside from introducing new custom rules, phpstan-strict-rules also [change the default values of some configuration parameters](https://github.com/phpstan/phpstan-strict-rules/blob/1.6.x/rules.neon#L1) that are present in PHPStan itself. These parameters are [documented on phpstan.org](https://phpstan.org/config-reference#stricter-analysis).
+
 ## Enabling rules one-by-one
 
 If you don't want to start using all the available strict rules at once but only one or two, you can!
@@ -96,3 +98,5 @@ parameters:
 		allRules: false
 		booleansInConditions: true
 ```
+
+Even with `strictRules.allRules` set to `false`, part of this package is still in effect. That's because phpstan-strict-rules also [change the default values of some configuration parameters](https://github.com/phpstan/phpstan-strict-rules/blob/1.6.x/rules.neon#L1) that are present in PHPStan itself. These parameters are [documented on phpstan.org](https://phpstan.org/config-reference#stricter-analysis).
