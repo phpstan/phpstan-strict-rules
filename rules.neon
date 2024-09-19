@@ -170,6 +170,7 @@ services:
 		class: PHPStan\Rules\Cast\UselessCastRule
 		arguments:
 			treatPhpDocTypesAsCertain: %treatPhpDocTypesAsCertain%
+			treatPhpDocTypesAsCertainTip: %tips.treatPhpDocTypesAsCertain%
 
 	-
 		class: PHPStan\Rules\Classes\RequireParentConstructCallRule
@@ -197,6 +198,7 @@ services:
 		arguments:
 			treatPhpDocTypesAsCertain: %treatPhpDocTypesAsCertain%
 			checkNullables: %checkNullables%
+			treatPhpDocTypesAsCertainTip: %tips.treatPhpDocTypesAsCertain%
 
 	-
 		class: PHPStan\Rules\Functions\ClosureUsesThisRule

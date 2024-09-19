@@ -16,7 +16,10 @@ class UselessCastRuleTest extends RuleTestCase
 
 	protected function getRule(): Rule
 	{
-		return new UselessCastRule($this->treatPhpDocTypesAsCertain);
+		return new UselessCastRule(
+			$this->treatPhpDocTypesAsCertain,
+			true
+		);
 	}
 
 	protected function shouldTreatPhpDocTypesAsCertain(): bool

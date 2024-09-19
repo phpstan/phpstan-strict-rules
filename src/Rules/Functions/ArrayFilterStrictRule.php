@@ -32,15 +32,20 @@ class ArrayFilterStrictRule implements Rule
 	/** @var bool */
 	private $checkNullables;
 
+	/** @var bool */
+	private $treatPhpDocTypesAsCertainTip;
+
 	public function __construct(
 		ReflectionProvider $reflectionProvider,
 		bool $treatPhpDocTypesAsCertain,
-		bool $checkNullables
+		bool $checkNullables,
+		bool $treatPhpDocTypesAsCertainTip
 	)
 	{
 		$this->reflectionProvider = $reflectionProvider;
 		$this->treatPhpDocTypesAsCertain = $treatPhpDocTypesAsCertain;
 		$this->checkNullables = $checkNullables;
+		$this->treatPhpDocTypesAsCertainTip = $treatPhpDocTypesAsCertainTip;
 	}
 
 	public function getNodeType(): string
@@ -135,8 +140,8 @@ class ArrayFilterStrictRule implements Rule
 				$callbackType->describe(VerbosityLevel::typeOnly())
 			))->identifier('arrayFilter.strict');
 
-			if (!$this->isCallbackTypeNull($nativeCallbackType) && $this->treatPhpDocTypesAsCertain) {
-				$errorBuilder->tip('Because the type is coming from a PHPDoc, you can turn off this check by setting <fg=cyan>treatPhpDocTypesAsCertain: false</> in your <fg=cyan>%configurationFile%</>.');
+			if ($this->treatPhpDocTypesAsCertainTip && !$this->isCallbackTypeNull($nativeCallbackType) && $this->treatPhpDocTypesAsCertain) {
+				$errorBuilder->treatPhpDocTypesAsCertainTip();
 			}
 
 			return [$errorBuilder->build()];

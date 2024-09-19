@@ -21,9 +21,16 @@ class UselessCastRule implements Rule
 	/** @var bool */
 	private $treatPhpDocTypesAsCertain;
 
-	public function __construct(bool $treatPhpDocTypesAsCertain)
+	/** @var bool */
+	private $treatPhpDocTypesAsCertainTip;
+
+	public function __construct(
+		bool $treatPhpDocTypesAsCertain,
+		bool $treatPhpDocTypesAsCertainTip
+	)
 	{
 		$this->treatPhpDocTypesAsCertain = $treatPhpDocTypesAsCertain;
+		$this->treatPhpDocTypesAsCertainTip = $treatPhpDocTypesAsCertainTip;
 	}
 
 	public function getNodeType(): string
@@ -55,7 +62,11 @@ class UselessCastRule implements Rule
 					return $ruleErrorBuilder;
 				}
 
-				return $ruleErrorBuilder->tip('Because the type is coming from a PHPDoc, you can turn off this check by setting <fg=cyan>treatPhpDocTypesAsCertain: false</> in your <fg=cyan>%configurationFile%</>.');
+				if (!$this->treatPhpDocTypesAsCertainTip) {
+					return $ruleErrorBuilder;
+				}
+
+				return $ruleErrorBuilder->treatPhpDocTypesAsCertainTip();
 			};
 			return [
 				$addTip(RuleErrorBuilder::message(sprintf(

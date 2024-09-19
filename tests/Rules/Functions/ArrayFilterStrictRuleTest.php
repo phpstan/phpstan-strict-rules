@@ -19,7 +19,12 @@ class ArrayFilterStrictRuleTest extends RuleTestCase
 
 	protected function getRule(): Rule
 	{
-		return new ArrayFilterStrictRule($this->createReflectionProvider(), $this->treatPhpDocTypesAsCertain, $this->checkNullables);
+		return new ArrayFilterStrictRule(
+			$this->createReflectionProvider(),
+			$this->treatPhpDocTypesAsCertain,
+			$this->checkNullables,
+			true
+		);
 	}
 
 	protected function shouldTreatPhpDocTypesAsCertain(): bool
