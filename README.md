@@ -74,7 +74,9 @@ parameters:
 		closureUsesThis: false
 		matchingInheritedMethodNames: false
 		numericOperandsInArithmeticOperators: false
-		strictCalls: false
+		strictFunctionCalls: false
+		dynamicCallOnStaticMethod: false
+		dynamicCallOnStaticMethodsCallable: false
 		switchConditionsMatchingType: false
 		noVariableVariables: false
 		strictArrayFilter: false

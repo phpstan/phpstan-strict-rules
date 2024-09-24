@@ -29,7 +29,9 @@ parameters:
 		closureUsesThis: %strictRules.allRules%
 		matchingInheritedMethodNames: %strictRules.allRules%
 		numericOperandsInArithmeticOperators: %strictRules.allRules%
-		strictCalls: %strictRules.allRules%
+		strictFunctionCalls: %strictRules.allRules%
+		dynamicCallOnStaticMethod: %strictRules.allRules%
+		dynamicCallOnStaticMethodsCallable: %strictRules.allRules%
 		switchConditionsMatchingType: %strictRules.allRules%
 		noVariableVariables: %strictRules.allRules%
 		strictArrayFilter: [%strictRules.allRules%, %featureToggles.bleedingEdge%]
@@ -49,7 +51,9 @@ parametersSchema:
 		closureUsesThis: anyOf(bool(), arrayOf(bool()))
 		matchingInheritedMethodNames: anyOf(bool(), arrayOf(bool()))
 		numericOperandsInArithmeticOperators: anyOf(bool(), arrayOf(bool()))
-		strictCalls: anyOf(bool(), arrayOf(bool()))
+		strictFunctionCalls: anyOf(bool(), arrayOf(bool()))
+		dynamicCallOnStaticMethod: anyOf(bool(), arrayOf(bool()))
+		dynamicCallOnStaticMethodsCallable: anyOf(bool(), arrayOf(bool()))
 		switchConditionsMatchingType: anyOf(bool(), arrayOf(bool()))
 		noVariableVariables: anyOf(bool(), arrayOf(bool()))
 		strictArrayFilter: anyOf(bool(), arrayOf(bool()))
@@ -113,11 +117,11 @@ conditionalTags:
 	PHPStan\Rules\Operators\OperandsInArithmeticSubtractionRule:
 		phpstan.rules.rule: %strictRules.numericOperandsInArithmeticOperators%
 	PHPStan\Rules\StrictCalls\DynamicCallOnStaticMethodsRule:
-		phpstan.rules.rule: %strictRules.strictCalls%
+		phpstan.rules.rule: %strictRules.dynamicCallOnStaticMethod%
 	PHPStan\Rules\StrictCalls\DynamicCallOnStaticMethodsCallableRule:
-		phpstan.rules.rule: %strictRules.strictCalls%
+		phpstan.rules.rule: %strictRules.dynamicCallOnStaticMethodsCallable%
 	PHPStan\Rules\StrictCalls\StrictFunctionCallsRule:
-		phpstan.rules.rule: %strictRules.strictCalls%
+		phpstan.rules.rule: %strictRules.strictFunctionCalls%
 	PHPStan\Rules\SwitchConditions\MatchingTypeInSwitchCaseConditionRule:
 		phpstan.rules.rule: %strictRules.switchConditionsMatchingType%
 	PHPStan\Rules\VariableVariables\VariableMethodCallRule:
