@@ -66,7 +66,6 @@ parameters:
 		booleansInConditions: false
 		uselessCast: false
 		requireParentConstructorCall: false
-		disallowedConstructs: false
 		disallowedBacktick: false
 		disallowedEmpty: false
 		disallowedImplicitArrayCreation: false
