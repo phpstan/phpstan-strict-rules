@@ -31,7 +31,6 @@ parameters:
 		numericOperandsInArithmeticOperators: %strictRules.allRules%
 		strictFunctionCalls: %strictRules.allRules%
 		dynamicCallOnStaticMethod: %strictRules.allRules%
-		dynamicCallOnStaticMethodsCallable: %strictRules.allRules%
 		switchConditionsMatchingType: %strictRules.allRules%
 		noVariableVariables: %strictRules.allRules%
 		strictArrayFilter: [%strictRules.allRules%, %featureToggles.bleedingEdge%]
@@ -53,7 +52,6 @@ parametersSchema:
 		numericOperandsInArithmeticOperators: anyOf(bool(), arrayOf(bool()))
 		strictFunctionCalls: anyOf(bool(), arrayOf(bool()))
 		dynamicCallOnStaticMethod: anyOf(bool(), arrayOf(bool()))
-		dynamicCallOnStaticMethodsCallable: anyOf(bool(), arrayOf(bool()))
 		switchConditionsMatchingType: anyOf(bool(), arrayOf(bool()))
 		noVariableVariables: anyOf(bool(), arrayOf(bool()))
 		strictArrayFilter: anyOf(bool(), arrayOf(bool()))
@@ -119,7 +117,7 @@ conditionalTags:
 	PHPStan\Rules\StrictCalls\DynamicCallOnStaticMethodsRule:
 		phpstan.rules.rule: %strictRules.dynamicCallOnStaticMethod%
 	PHPStan\Rules\StrictCalls\DynamicCallOnStaticMethodsCallableRule:
-		phpstan.rules.rule: %strictRules.dynamicCallOnStaticMethodsCallable%
+		phpstan.rules.rule: %strictRules.dynamicCallOnStaticMethod%
 	PHPStan\Rules\StrictCalls\StrictFunctionCallsRule:
 		phpstan.rules.rule: %strictRules.strictFunctionCalls%
 	PHPStan\Rules\SwitchConditions\MatchingTypeInSwitchCaseConditionRule:
