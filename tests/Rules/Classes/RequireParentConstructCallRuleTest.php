@@ -4,7 +4,6 @@ namespace PHPStan\Rules\Classes;
 
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
-use const PHP_VERSION_ID;
 
 /**
  * @extends RuleTestCase<RequireParentConstructCallRule>
@@ -42,14 +41,6 @@ class RequireParentConstructCallRuleTest extends RuleTestCase
 	public function testCheckInTraits(): void
 	{
 		$this->analyse([__DIR__ . '/data/call-to-parent-constructor-in-trait.php'], []);
-	}
-
-	public function testCallsParentButHasNotParent(): void
-	{
-		if (PHP_VERSION_ID >= 70400) {
-			self::markTestSkipped('This test does not support PHP 7.4 or higher.');
-		}
-		$this->analyse([__DIR__ . '/data/call-to-parent-constructor-php-lt-74.php'], []);
 	}
 
 }
