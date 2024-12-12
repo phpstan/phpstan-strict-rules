@@ -1,4 +1,5 @@
 parameters:
+	strictRulesInstalled: true
 	polluteScopeWithLoopInitialAssignments: false
 	polluteScopeWithAlwaysIterableForeach: false
 	polluteScopeWithBlock: false
