@@ -181,3 +181,22 @@ class ExtendsPrivateConstructor extends PrivateConstructor
 	}
 
 }
+
+class DeprecatedConstructor
+{
+	/** @deprecated */
+	public function __construct()
+	{
+
+	}
+
+}
+
+class ExtendsDeprecatedConstructor extends DeprecatedConstructor
+{
+	public function __construct()
+	{
+		// should not call deprecated parent
+	}
+
+}

@@ -113,6 +113,7 @@ class RequireParentConstructCallRule implements Rule
 					&& $constructor->getDeclaringClass()->getName() === $classReflection->getParentClass()->getName()
 					&& !$constructor->isAbstract()
 					&& !$constructor->isPrivate()
+					&& !$constructor->isDeprecated()
 				) || (
 					$constructorWithClassName !== null
 					&& $constructorWithClassName->getDeclaringClass()->getName() === $classReflection->getParentClass()->getName()
