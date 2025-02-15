@@ -2,8 +2,6 @@
 
 namespace PHPStan\Rules\BooleansInConditions;
 
-use PHPStan\Rules\BooleansInConditions\BooleanInDoWhileConditionRule;
-use PHPStan\Rules\BooleansInConditions\BooleanRuleHelper;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleLevelHelper;
 use PHPStan\Testing\RuleTestCase;

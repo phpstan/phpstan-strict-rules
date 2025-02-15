@@ -3,7 +3,6 @@
 namespace PHPStan\Rules\BooleansInConditions;
 
 use PhpParser\Node;
-use PhpParser\Node\Stmt\While_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
@@ -11,7 +10,7 @@ use PHPStan\Type\VerbosityLevel;
 use function sprintf;
 
 /**
- * @implements Rule<While_>
+ * @implements Rule<Node\Stmt\While_>
  */
 class BooleanInWhileConditionRule implements Rule
 {
@@ -25,7 +24,7 @@ class BooleanInWhileConditionRule implements Rule
 
 	public function getNodeType(): string
 	{
-		return While_::class;
+		return Node\Stmt\While_::class;
 	}
 
 	public function processNode(Node $node, Scope $scope): array
