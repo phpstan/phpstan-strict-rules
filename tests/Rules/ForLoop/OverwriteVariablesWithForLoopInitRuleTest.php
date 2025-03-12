@@ -62,4 +62,9 @@ class OverwriteVariablesWithForLoopInitRuleTest extends RuleTestCase
 		]);
 	}
 
+	protected function shouldPolluteScopeWithLoopInitialAssignments(): bool
+	{
+		return false;
+	}
+
 }
