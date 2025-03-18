@@ -48,3 +48,13 @@ $bool and $explicitMixed;
 $explicitMixed and $bool;
 $bool or $explicitMixed;
 $explicitMixed or $bool;
+
+$someBool = true;
+$someString = 'string';
+while ($someBool) { $someBool = !$someBool; }
+while ($someString) { $someString = ''; }
+
+$someBool = true;
+$someString = 'string';
+do { $someBool = !$someBool; } while ($someBool);
+do { $someString = ''; } while ($someString);
