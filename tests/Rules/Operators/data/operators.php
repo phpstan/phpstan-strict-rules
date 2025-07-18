@@ -215,3 +215,19 @@ function (array $array, int $int, $mixed) {
 /** @var numeric-string $numericString */
 $numericString = doFoo();
 $numericString += 1;
+
++$int;
++$float;
++$intOrFloat;
++$string;
++$array;
++$object;
++$null;
+
+-$int;
+-$float;
+-$intOrFloat;
+-$string;
+-$array;
+-$object;
+-$null;
