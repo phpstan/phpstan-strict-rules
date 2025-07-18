@@ -10,7 +10,7 @@
 |:---------------------------------------|:--------------------------------------------------------------------------------------------------------|
 | `booleansInConditions`                 | Require booleans in `if`, `elseif`, ternary operator, after `!`, and on both sides of `&&` and `\|\|`.  |
 | `booleansInLoopConditions`             | Require booleans in `while` and `do while` loop conditions.                                             |
-| `numericOperandsInArithmeticOperators` | Require numeric operands or arrays in `+` and numeric operands in `-`/`*`/`/`/`**`/`%`.                 |
+| `numericOperandsInArithmeticOperators` | Require numeric operand in `+$var`, `-$var`, `$var++`, `$var--`, `++$var` and `--$var`. |
 | `numericOperandsInArithmeticOperators` | Require numeric operand in `$var++`, `$var--`, `++$var`and `--$var`.                                    |
 | `strictFunctionCalls`                  | These functions contain a `$strict` parameter for better type safety, it must be set to `true`:<br>* `in_array` (3rd parameter)<br>* `array_search` (3rd parameter)<br>* `array_keys` (3rd parameter; only if the 2nd parameter `$search_value` is provided)<br>* `base64_decode` (2nd parameter). |
 | `overwriteVariablesWithLoop`           | Variables assigned in `while` loop condition and `for` loop initial assignment cannot be used after the loop.  |
