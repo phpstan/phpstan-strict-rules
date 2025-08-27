@@ -32,6 +32,7 @@ parameters:
 		noVariableVariables: %strictRules.allRules%
 		strictArrayFilter: %strictRules.allRules%
 		illegalConstructorMethodCall: %strictRules.allRules%
+		noRedundantTraitUse: %strictRules.allRules%
 
 parametersSchema:
 	strictRules: structure([
@@ -55,6 +56,7 @@ parametersSchema:
 		noVariableVariables: anyOf(bool(), arrayOf(bool()))
 		strictArrayFilter: anyOf(bool(), arrayOf(bool()))
 		illegalConstructorMethodCall: anyOf(bool(), arrayOf(bool()))
+		noRedundantTraitUse: anyOf(bool(), arrayOf(bool()))
 	])
 
 conditionalTags:
@@ -148,6 +150,8 @@ conditionalTags:
 		phpstan.rules.rule: %strictRules.illegalConstructorMethodCall%
 	PHPStan\Rules\Methods\IllegalConstructorStaticCallRule:
 		phpstan.rules.rule: %strictRules.illegalConstructorMethodCall%
+	PHPStan\Rules\Classes\NoRedundantTraitUseRule:
+		phpstan.rules.rule: %strictRules.noRedundantTraitUse%
 
 services:
 	-
@@ -196,6 +200,9 @@ services:
 
 	-
 		class: PHPStan\Rules\Classes\RequireParentConstructCallRule
+
+	-
+		class: PHPStan\Rules\Classes\NoRedundantTraitUseRule
 
 	-
 		class: PHPStan\Rules\DisallowedConstructs\DisallowedBacktickRule

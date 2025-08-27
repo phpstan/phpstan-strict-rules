@@ -27,6 +27,7 @@
 |                                        | Contravariance for parameter types and covariance for return types in inherited methods (also known as Liskov substitution principle - LSP).|
 |                                        | Check LSP even for static methods.                                                                      |
 | `requireParentConstructorCall`         | Require calling parent constructor.                                                                     |
+| `noRedundantTraitUse`                  | Disallow redundant trait usage when a trait is already included via another trait.                     |
 | `disallowedBacktick`                   | Disallow usage of backtick operator (`` $ls = `ls -la` ``).                                             |
 | `closureUsesThis`                      | Closure should use `$this` directly instead of using `$this` variable indirectly.                       |
 
@@ -80,6 +81,7 @@ parameters:
 		noVariableVariables: false
 		strictArrayFilter: false
 		illegalConstructorMethodCall: false
+		noRedundantTraitUse: false
 ```
 
 Aside from introducing new custom rules, phpstan-strict-rules also [change the default values of some configuration parameters](./rules.neon#L1) that are present in PHPStan itself. These parameters are [documented on phpstan.org](https://phpstan.org/config-reference#stricter-analysis).
