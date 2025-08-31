@@ -11,28 +11,20 @@ use PHPStan\Testing\RuleTestCase;
 class ArrayFilterStrictRuleTest extends RuleTestCase
 {
 
-	private bool $treatPhpDocTypesAsCertain;
-
 	private bool $checkNullables;
 
 	protected function getRule(): Rule
 	{
 		return new ArrayFilterStrictRule(
 			$this->createReflectionProvider(),
-			$this->treatPhpDocTypesAsCertain,
+			$this->shouldTreatPhpDocTypesAsCertain(),
 			$this->checkNullables,
 			true,
 		);
 	}
 
-	protected function shouldTreatPhpDocTypesAsCertain(): bool
-	{
-		return $this->treatPhpDocTypesAsCertain;
-	}
-
 	public function testRule(): void
 	{
-		$this->treatPhpDocTypesAsCertain = true;
 		$this->checkNullables = true;
 		$this->analyse([__DIR__ . '/data/array-filter-strict.php'], [
 			[
@@ -60,7 +52,6 @@ class ArrayFilterStrictRuleTest extends RuleTestCase
 
 	public function testRuleAllowMissingCallbackInSomeCases(): void
 	{
-		$this->treatPhpDocTypesAsCertain = true;
 		$this->checkNullables = true;
 		$this->analyse([__DIR__ . '/data/array-filter-allow.php'], [
 			[
