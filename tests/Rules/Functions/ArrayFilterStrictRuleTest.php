@@ -11,21 +11,18 @@ use PHPStan\Testing\RuleTestCase;
 class ArrayFilterStrictRuleTest extends RuleTestCase
 {
 
-	private bool $checkNullables;
-
 	protected function getRule(): Rule
 	{
 		return new ArrayFilterStrictRule(
 			$this->createReflectionProvider(),
 			$this->shouldTreatPhpDocTypesAsCertain(),
-			$this->checkNullables,
+			true,
 			true,
 		);
 	}
 
 	public function testRule(): void
 	{
-		$this->checkNullables = true;
 		$this->analyse([__DIR__ . '/data/array-filter-strict.php'], [
 			[
 				'Call to function array_filter() requires parameter #2 to be passed to avoid loose comparison semantics.',
@@ -52,7 +49,6 @@ class ArrayFilterStrictRuleTest extends RuleTestCase
 
 	public function testRuleAllowMissingCallbackInSomeCases(): void
 	{
-		$this->checkNullables = true;
 		$this->analyse([__DIR__ . '/data/array-filter-allow.php'], [
 			[
 				'Call to function array_filter() requires parameter #2 to be passed to avoid loose comparison semantics.',
