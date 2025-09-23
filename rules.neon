@@ -130,6 +130,8 @@ conditionalTags:
 		phpstan.rules.rule: %strictRules.strictFunctionCalls%
 	PHPStan\Rules\SwitchConditions\MatchingTypeInSwitchCaseConditionRule:
 		phpstan.rules.rule: %strictRules.switchConditionsMatchingType%
+	PHPStan\Rules\VariableVariables\VariableFunctionCallRule:
+		phpstan.rules.rule: %strictRules.noVariableVariables%
 	PHPStan\Rules\VariableVariables\VariableMethodCallRule:
 		phpstan.rules.rule: %strictRules.noVariableVariables%
 	PHPStan\Rules\VariableVariables\VariableMethodCallableRule:
@@ -281,6 +283,9 @@ services:
 
 	-
 		class: PHPStan\Rules\SwitchConditions\MatchingTypeInSwitchCaseConditionRule
+
+	-
+		class: PHPStan\Rules\VariableVariables\VariableFunctionCallRule
 
 	-
 		class: PHPStan\Rules\VariableVariables\VariableMethodCallRule
