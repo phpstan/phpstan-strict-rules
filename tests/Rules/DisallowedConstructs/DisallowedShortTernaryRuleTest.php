@@ -21,11 +21,43 @@ class DisallowedShortTernaryRuleTest extends RuleTestCase
 		$this->analyse([__DIR__ . '/data/short-ternary.php'], [
 			[
 				'Short ternary operator is not allowed. Use null coalesce operator if applicable or consider using long ternary.',
-				3,
+				6,
 			],
 			[
 				'Short ternary operator is not allowed. Use null coalesce operator if applicable or consider using long ternary.',
-				4,
+				7,
+			],
+			[
+				'Short ternary operator is not allowed. Use null coalesce operator if applicable or consider using long ternary.',
+				13,
+			],
+			[
+				'Short ternary operator is not allowed. Use null coalesce operator if applicable or consider using long ternary.',
+				14,
+			],
+			[
+				'Short ternary operator is not allowed. Use null coalesce operator if applicable or consider using long ternary.',
+				31,
+			],
+			[
+				'Short ternary operator is not allowed. Use null coalesce operator if applicable or consider using long ternary.',
+				32,
+			],
+			[
+				'Short ternary operator is not allowed. Use null coalesce operator if applicable or consider using long ternary.',
+				37,
+			],
+			[
+				'Short ternary operator is not allowed. Use null coalesce operator if applicable or consider using long ternary.',
+				38,
+			],
+			[
+				'Short ternary operator is not allowed. Use null coalesce operator if applicable or consider using long ternary.',
+				49,
+			],
+			[
+				'Short ternary operator is not allowed. Use null coalesce operator if applicable or consider using long ternary.',
+				50,
 			],
 		]);
 	}
