@@ -5,6 +5,7 @@
 	"license": [
 		"MIT"
 	],
+	"keywords": ["static analysis"],
 	"require": {
 		"php": "^7.4 || ^8.0",
 		"phpstan/phpstan": "^2.1.29"
