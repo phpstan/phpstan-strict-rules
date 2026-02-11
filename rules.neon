@@ -164,6 +164,8 @@ services:
 
 	-
 		class: PHPStan\Rules\DisallowedConstructs\DisallowedLooseComparisonRule
+		arguments:
+			includeOperandTypesInErrorMessage: %featureToggles.bleedingEdge%
 
 	-
 		class: PHPStan\Rules\BooleansInConditions\BooleanInBooleanAndRule
