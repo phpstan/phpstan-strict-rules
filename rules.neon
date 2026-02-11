@@ -12,6 +12,7 @@ parameters:
 	reportMaybesInPropertyPhpDocTypes: true
 	reportWrongPhpDocTypeInVarTag: true
 	checkStrictPrintfPlaceholderTypes: true
+	reportNonIntStringArrayKey: %featureToggles.bleedingEdge%
 	strictRules:
 		allRules: true
 		disallowedLooseComparison: %strictRules.allRules%
