@@ -3,8 +3,10 @@
 .github export-ignore
 tests export-ignore
 tmp export-ignore
+.editorconfig export-ignore
 .gitattributes export-ignore
 .gitignore export-ignore
+CLAUDE.md export-ignore
 Makefile export-ignore
 phpstan.neon export-ignore
 phpunit.xml export-ignore
