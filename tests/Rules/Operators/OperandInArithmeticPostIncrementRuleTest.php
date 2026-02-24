@@ -45,12 +45,7 @@ class OperandInArithmeticPostIncrementRuleTest extends OperandInArithmeticIncrem
 	 */
 	protected function getExpectedErrorsWithBcMath(): array
 	{
-		return [
-			[
-				'Only numeric types are allowed in post-increment, BcMath\Number given.',
-				12,
-			],
-		];
+		return [];
 	}
 
 }

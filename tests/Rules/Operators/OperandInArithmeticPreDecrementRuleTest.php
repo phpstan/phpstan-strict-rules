@@ -49,12 +49,7 @@ class OperandInArithmeticPreDecrementRuleTest extends OperandInArithmeticIncreme
 	 */
 	protected function getExpectedErrorsWithBcMath(): array
 	{
-		return [
-			[
-				'Only numeric types are allowed in pre-decrement, BcMath\Number given.',
-				16,
-			],
-		];
+		return [];
 	}
 
 }

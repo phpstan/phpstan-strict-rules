@@ -2,6 +2,7 @@
 
 namespace PHPStan\Rules\Operators;
 
+use PHPStan\Php\PhpVersion;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleLevelHelper;
 use PHPStan\Testing\RuleTestCase;
@@ -17,6 +18,7 @@ class OperandsInArithmeticDivisionRuleTest extends RuleTestCase
 		return new OperandsInArithmeticDivisionRule(
 			new OperatorRuleHelper(
 				self::getContainer()->getByType(RuleLevelHelper::class),
+				self::getContainer()->getByType(PhpVersion::class),
 			),
 		);
 	}
