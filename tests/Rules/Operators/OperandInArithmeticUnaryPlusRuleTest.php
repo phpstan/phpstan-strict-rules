@@ -31,4 +31,12 @@ class OperandInArithmeticUnaryPlusRuleTest extends RuleTestCase
 		]);
 	}
 
+	/**
+	 * @requires PHP >= 8.4
+	 */
+	public function testRuleWithBcMath(): void
+	{
+		$this->analyse([__DIR__ . '/data/operators-bcmath.php'], []);
+	}
+
 }

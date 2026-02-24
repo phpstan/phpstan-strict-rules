@@ -44,4 +44,17 @@ class OperandInArithmeticPostDecrementRuleTest extends OperandInArithmeticIncrem
 		];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function getExpectedErrorsWithBcMath(): array
+	{
+		return [
+			[
+				'Only numeric types are allowed in post-decrement, BcMath\Number given.',
+				8,
+			],
+		];
+	}
+
 }

@@ -43,4 +43,25 @@ class OperandsInArithmeticDivisionRuleTest extends RuleTestCase
 		]);
 	}
 
+	/**
+	 * @requires PHP >= 8.4
+	 */
+	public function testRuleWithBcMath(): void
+	{
+		$this->analyse([__DIR__ . '/data/operators-bcmath.php'], [
+			[
+				'Only numeric types are allowed in /, null given on the right side.',
+				96,
+			],
+			[
+				'Only numeric types are allowed in /, null given on the left side.',
+				97,
+			],
+			[
+				'Only numeric types are allowed in /, null given on the right side.',
+				217,
+			],
+		]);
+	}
+
 }

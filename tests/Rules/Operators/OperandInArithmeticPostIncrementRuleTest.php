@@ -40,4 +40,17 @@ class OperandInArithmeticPostIncrementRuleTest extends OperandInArithmeticIncrem
 		];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function getExpectedErrorsWithBcMath(): array
+	{
+		return [
+			[
+				'Only numeric types are allowed in post-increment, BcMath\Number given.',
+				12,
+			],
+		];
+	}
+
 }

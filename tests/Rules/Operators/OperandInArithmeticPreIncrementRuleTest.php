@@ -40,4 +40,17 @@ class OperandInArithmeticPreIncrementRuleTest extends OperandInArithmeticIncreme
 		];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function getExpectedErrorsWithBcMath(): array
+	{
+		return [
+			[
+				'Only numeric types are allowed in pre-increment, BcMath\Number given.',
+				20,
+			],
+		];
+	}
+
 }

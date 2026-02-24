@@ -28,6 +28,14 @@ abstract class OperandInArithmeticIncrementOrDecrementRuleTestCase extends RuleT
 	}
 
 	/**
+	 * @requires PHP >= 8.4
+	 */
+	public function testRuleWithBcMath(): void
+	{
+		$this->analyse([__DIR__ . '/data/increment-decrement-bcmath.php'], $this->getExpectedErrorsWithBcMath());
+	}
+
+	/**
 	 * @return T
 	 */
 	abstract protected function createRule(OperatorRuleHelper $helper): Rule;
@@ -36,5 +44,10 @@ abstract class OperandInArithmeticIncrementOrDecrementRuleTestCase extends RuleT
 	 * @return list<array{0: string, 1: int, 2?: string}>
 	 */
 	abstract protected function getExpectedErrors(): array;
+
+	/**
+	 * @return list<array{0: string, 1: int, 2?: string}>
+	 */
+	abstract protected function getExpectedErrorsWithBcMath(): array;
 
 }
