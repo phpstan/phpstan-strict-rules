@@ -12,7 +12,6 @@ use PHPStan\Type\FloatType;
 use PHPStan\Type\IntegerType;
 use PHPStan\Type\IntersectionType;
 use PHPStan\Type\MixedType;
-use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
 use PHPStan\Type\Type;
 use PHPStan\Type\UnionType;
@@ -39,7 +38,7 @@ class OperatorRuleHelper
 			return true;
 		}
 
-		return $this->isSubtypeOfNumber($scope, $expr, true);
+		return $this->isSubtypeOfNumber($scope, $expr);
 	}
 
 	public function isValidForIncrement(Scope $scope, Expr $expr): bool
@@ -67,20 +66,9 @@ class OperatorRuleHelper
 		return $this->isSubtypeOfNumber($scope, $expr);
 	}
 
-	private function isSubtypeOfNumber(Scope $scope, Expr $expr, bool $includeOperatorOverloads = false): bool
+	private function isSubtypeOfNumber(Scope $scope, Expr $expr): bool
 	{
-		$types = [
-			new IntegerType(),
-			new FloatType(),
-			new IntersectionType([new StringType(), new AccessoryNumericStringType()]),
-		];
-
-		if ($includeOperatorOverloads) {
-			$types[] = new ObjectType('GMP');
-			$types[] = new ObjectType('BcMath\\Number');
-		}
-
-		$acceptedType = new UnionType($types);
+		$acceptedType = new UnionType([new IntegerType(), new FloatType(), new IntersectionType([new StringType(), new AccessoryNumericStringType()])]);
 
 		$type = $this->ruleLevelHelper->findTypeToCheck(
 			$scope,
