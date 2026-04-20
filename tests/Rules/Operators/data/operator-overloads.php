@@ -90,3 +90,14 @@ function mixedNumericOperations(GMP $gmp, $bcmath, int $int, float $float): void
 	$bcmath * $float;
 	$bcmath / $float;
 }
+
+/**
+ * GMP and BCMath\Number are not compatible with each other.
+ * Strict-rules allows both as valid operand types; PHPStan core catches the incompatibility.
+ * @param \BcMath\Number $bcmath
+ */
+function incompatibleOverloads(GMP $gmp, $bcmath): void
+{
+	$gmp + $bcmath;
+	$bcmath + $gmp;
+}
