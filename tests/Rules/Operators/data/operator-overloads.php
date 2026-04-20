@@ -2,6 +2,7 @@
 
 namespace OperatorOverloads;
 
+use BcMath\Number;
 use GMP;
 
 function gmpOperations(GMP $gmp, int $int): void
@@ -38,10 +39,7 @@ function gmpOperations(GMP $gmp, int $int): void
 	$gmp **= $int;
 }
 
-/**
- * @param \BcMath\Number $bcmath
- */
-function bcmathOperations($bcmath, int $int): void
+function bcmathOperations(Number $bcmath, int $int): void
 {
 	$bcmath + $int;
 	$bcmath - $int;
@@ -75,10 +73,7 @@ function bcmathOperations($bcmath, int $int): void
 	$bcmath **= $int;
 }
 
-/**
- * @param \BcMath\Number $bcmath
- */
-function mixedNumericOperations(GMP $gmp, $bcmath, int $int, float $float): void
+function mixedNumericOperations(GMP $gmp, Number $bcmath, int $int, float $float): void
 {
 	$gmp + $float;
 	$gmp - $float;
@@ -91,12 +86,7 @@ function mixedNumericOperations(GMP $gmp, $bcmath, int $int, float $float): void
 	$bcmath / $float;
 }
 
-/**
- * GMP and BCMath\Number are not compatible with each other.
- * Strict-rules allows both as valid operand types; PHPStan core catches the incompatibility.
- * @param \BcMath\Number $bcmath
- */
-function incompatibleOverloads(GMP $gmp, $bcmath): void
+function incompatibleOverloads(GMP $gmp, Number $bcmath): void
 {
 	$gmp + $bcmath;
 	$bcmath + $gmp;
