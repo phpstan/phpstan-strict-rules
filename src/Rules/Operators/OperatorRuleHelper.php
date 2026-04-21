@@ -3,6 +3,8 @@
 namespace PHPStan\Rules\Operators;
 
 use PhpParser\Node\Expr;
+use PhpParser\Node\Expr\BinaryOp\Plus;
+use PhpParser\Node\Scalar\Int_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\RuleLevelHelper;
 use PHPStan\Type\Accessory\AccessoryNumericStringType;
@@ -38,7 +40,20 @@ class OperatorRuleHelper
 			return true;
 		}
 
-		return $this->isSubtypeOfNumber($scope, $expr);
+		if ($this->isSubtypeOfNumber($scope, $expr)) {
+			return true;
+		}
+
+		// Check if the type supports arithmetic via operator overloading extensions
+		// (only applies to object types like GMP, BCMath\Number)
+		if ($type->isObject()->yes()) {
+			$resultType = $scope->getType(new Plus($expr, new Int_(1)));
+			if (!$resultType instanceof ErrorType) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	public function isValidForIncrement(Scope $scope, Expr $expr): bool
