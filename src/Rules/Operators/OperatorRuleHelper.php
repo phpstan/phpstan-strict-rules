@@ -3,7 +3,6 @@
 namespace PHPStan\Rules\Operators;
 
 use PhpParser\Node\Expr;
-use PhpParser\Node\Expr\BinaryOp\Plus;
 use PhpParser\Node\Scalar\Int_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\RuleLevelHelper;
@@ -47,7 +46,7 @@ class OperatorRuleHelper
 		// Check if the type supports arithmetic via operator overloading extensions
 		// (only applies to object types like GMP, BCMath\Number)
 		if ($type->isObject()->yes()) {
-			$resultType = $scope->getType(new Plus($expr, new Int_(1)));
+			$resultType = $scope->getType(new Expr\BinaryOp\Plus($expr, new Int_(1)));
 			if (!$resultType instanceof ErrorType) {
 				return true;
 			}
@@ -68,7 +67,18 @@ class OperatorRuleHelper
 			return true;
 		}
 
-		return $this->isSubtypeOfNumber($scope, $expr);
+		if ($this->isSubtypeOfNumber($scope, $expr)) {
+			return true;
+		}
+
+		if ($type->isObject()->yes()) {
+			$resultType = $scope->getType(new Expr\PostInc($expr));
+			if (!$resultType instanceof ErrorType) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	public function isValidForDecrement(Scope $scope, Expr $expr): bool
@@ -78,7 +88,18 @@ class OperatorRuleHelper
 			return true;
 		}
 
-		return $this->isSubtypeOfNumber($scope, $expr);
+		if ($this->isSubtypeOfNumber($scope, $expr)) {
+			return true;
+		}
+
+		if ($type->isObject()->yes()) {
+			$resultType = $scope->getType(new Expr\PostDec($expr));
+			if (!$resultType instanceof ErrorType) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	private function isSubtypeOfNumber(Scope $scope, Expr $expr): bool
