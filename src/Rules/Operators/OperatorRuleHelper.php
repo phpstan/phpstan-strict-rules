@@ -72,7 +72,7 @@ class OperatorRuleHelper
 		}
 
 		if ($type->isObject()->yes()) {
-			$resultType = $scope->getType(new Expr\PostInc($expr));
+			$resultType = $scope->getType(new Expr\PreInc($expr));
 			if (!$resultType instanceof ErrorType) {
 				return true;
 			}
@@ -93,7 +93,7 @@ class OperatorRuleHelper
 		}
 
 		if ($type->isObject()->yes()) {
-			$resultType = $scope->getType(new Expr\PostDec($expr));
+			$resultType = $scope->getType(new Expr\PreDec($expr));
 			if (!$resultType instanceof ErrorType) {
 				return true;
 			}
