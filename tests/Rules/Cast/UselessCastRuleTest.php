@@ -89,4 +89,10 @@ class UselessCastRuleTest extends RuleTestCase
 		]);
 	}
 
+	public function testBug14565(): void
+	{
+		$this->treatPhpDocTypesAsCertain = true;
+		$this->analyse([__DIR__ . '/data/bug-14565.php'], []);
+	}
+
 }
