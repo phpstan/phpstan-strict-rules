@@ -27,3 +27,7 @@ cs-fix:
 .PHONY: phpstan
 phpstan:
 	php vendor/bin/phpstan analyse -l 8 -c phpstan.neon src tests
+
+name-collision:
+	php vendor/bin/detect-collisions --configuration collision-detector.json
+

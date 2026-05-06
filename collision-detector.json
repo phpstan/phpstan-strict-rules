@@ -1,0 +1,3 @@
+{
+  "scanPaths": ["src", "tests"]
+}
