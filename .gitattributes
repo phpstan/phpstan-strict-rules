@@ -10,3 +10,4 @@ CLAUDE.md export-ignore
 Makefile export-ignore
 phpstan.neon export-ignore
 phpunit.xml export-ignore
+collision-detector.json export-ignore
