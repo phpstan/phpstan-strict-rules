@@ -26,6 +26,7 @@ parameters:
 		disallowedShortTernary: %strictRules.allRules%
 		overwriteVariablesWithLoop: %strictRules.allRules%
 		closureUsesThis: %strictRules.allRules%
+		unserializeAllowedClasses: %strictRules.allRules%
 		matchingInheritedMethodNames: %strictRules.allRules%
 		numericOperandsInArithmeticOperators: %strictRules.allRules%
 		strictFunctionCalls: %strictRules.allRules%
@@ -49,6 +50,7 @@ parametersSchema:
 		disallowedShortTernary: anyOf(bool(), arrayOf(bool()))
 		overwriteVariablesWithLoop: anyOf(bool(), arrayOf(bool()))
 		closureUsesThis: anyOf(bool(), arrayOf(bool()))
+		unserializeAllowedClasses: anyOf(bool(), arrayOf(bool()))
 		matchingInheritedMethodNames: anyOf(bool(), arrayOf(bool()))
 		numericOperandsInArithmeticOperators: anyOf(bool(), arrayOf(bool()))
 		strictFunctionCalls: anyOf(bool(), arrayOf(bool()))
@@ -98,6 +100,8 @@ conditionalTags:
 		phpstan.rules.rule: %strictRules.strictArrayFilter%
 	PHPStan\Rules\Functions\ClosureUsesThisRule:
 		phpstan.rules.rule: %strictRules.closureUsesThis%
+	PHPStan\Rules\Functions\UnserializeAllowedClassesRule:
+		phpstan.rules.rule: %strictRules.unserializeAllowedClasses%
 	PHPStan\Rules\Methods\WrongCaseOfInheritedMethodRule:
 		phpstan.rules.rule: %strictRules.matchingInheritedMethodNames%
 	PHPStan\Rules\Operators\OperandInArithmeticPostDecrementRule:
@@ -228,6 +232,9 @@ services:
 
 	-
 		class: PHPStan\Rules\Functions\ClosureUsesThisRule
+
+	-
+		class: PHPStan\Rules\Functions\UnserializeAllowedClassesRule
 
 	-
 		class: PHPStan\Rules\Methods\WrongCaseOfInheritedMethodRule
