@@ -44,4 +44,12 @@ class OperandInArithmeticPreDecrementRuleTest extends OperandInArithmeticIncreme
 		];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function getExpectedErrorsWithBcMath(): array
+	{
+		return [];
+	}
+
 }

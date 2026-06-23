@@ -2,6 +2,7 @@
 
 namespace PHPStan\Rules\Operators;
 
+use PHPStan\Php\PhpVersion;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleLevelHelper;
 use PHPStan\Testing\RuleTestCase;
@@ -17,6 +18,7 @@ class OperandsInArithmeticDivisionRuleTest extends RuleTestCase
 		return new OperandsInArithmeticDivisionRule(
 			new OperatorRuleHelper(
 				self::getContainer()->getByType(RuleLevelHelper::class),
+				self::getContainer()->getByType(PhpVersion::class),
 			),
 		);
 	}
@@ -39,6 +41,27 @@ class OperandsInArithmeticDivisionRuleTest extends RuleTestCase
 			[
 				'Only numeric types are allowed in /, null given on the right side.',
 				172,
+			],
+		]);
+	}
+
+	/**
+	 * @requires PHP >= 8.4
+	 */
+	public function testRuleWithBcMath(): void
+	{
+		$this->analyse([__DIR__ . '/data/operators-bcmath.php'], [
+			[
+				'Only numeric types are allowed in /, null given on the right side.',
+				96,
+			],
+			[
+				'Only numeric types are allowed in /, null given on the left side.',
+				97,
+			],
+			[
+				'Only numeric types are allowed in /, null given on the right side.',
+				217,
 			],
 		]);
 	}

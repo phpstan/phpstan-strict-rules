@@ -1,0 +1,267 @@
+<?php
+
+namespace Operators;
+
+use BcMath\Number;
+
+$number = new Number(123);
+
+$int = 123;
+$float = 123.456;
+$array = [];
+$string = '123';
+$object = new stdClass();
+$null = null;
+
+/** @var int|float $intOrFloat */
+$intOrFloat = foo();
+
+/** @var numeric-string $numericString */
+$numericString = doFoo();
+
+/** @var mixed $mixed */
+$mixed = getMixed();
+
+$number + $number;
+$number + $int;
+$int + $number;
+$number + $float;
+$float + $number;
+$number + $array;
+$array + $number;
+$number + $string;
+$string + $number;
+$number + $object;
+$object + $number;
+$number + $null;
+$null + $number;
+$number + $intOrFloat;
+$intOrFloat + $number;
+$number + $numericString;
+$numericString + $number;
+$number + $mixed;
+$mixed + $number;
+
+$number - $number;
+$number - $int;
+$int - $number;
+$number - $float;
+$float - $number;
+$number - $array;
+$array - $number;
+$number - $string;
+$string - $number;
+$number - $object;
+$object - $number;
+$number - $null;
+$null - $number;
+$number - $intOrFloat;
+$intOrFloat - $number;
+$number - $numericString;
+$numericString - $number;
+$number - $mixed;
+$mixed - $number;
+
+$number * $number;
+$number * $int;
+$int * $number;
+$number * $float;
+$float * $number;
+$number * $array;
+$array * $number;
+$number * $string;
+$string * $number;
+$number * $object;
+$object * $number;
+$number * $null;
+$null * $number;
+$number * $intOrFloat;
+$intOrFloat * $number;
+$number * $numericString;
+$numericString * $number;
+$number * $mixed;
+$mixed * $number;
+
+$number / $number;
+$number / $int;
+$int / $number;
+$number / $float;
+$float / $number;
+$number / $array;
+$array / $number;
+$number / $string;
+$string / $number;
+$number / $object;
+$object / $number;
+$number / $null;
+$null / $number;
+$number / $intOrFloat;
+$intOrFloat / $number;
+$number / $numericString;
+$numericString / $number;
+$number / $mixed;
+$mixed / $number;
+
+$number ** $number;
+$number ** $int;
+$int ** $number;
+$number ** $float;
+$float ** $number;
+$number ** $array;
+$array ** $number;
+$number ** $string;
+$string ** $number;
+$number ** $object;
+$object ** $number;
+$number ** $null;
+$null ** $number;
+$number ** $intOrFloat;
+$intOrFloat ** $number;
+$number ** $numericString;
+$numericString ** $number;
+$number ** $mixed;
+$mixed ** $number;
+
+$number % $number;
+$number % $int;
+$int % $number;
+$number % $float;
+$float % $number;
+$number % $array;
+$array % $number;
+$number % $string;
+$string % $number;
+$number % $object;
+$object % $number;
+$number % $null;
+$null % $number;
+$number % $intOrFloat;
+$intOrFloat % $number;
+$number % $numericString;
+$numericString % $number;
+$number % $mixed;
+$mixed % $number;
+
+$number += $number;
+$number += $int;
+$int += $number;
+$number += $float;
+$float += $number;
+$number += $float;
+$number += $array;
+$array += $number;
+$number += $string;
+$string += $number;
+$number += $object;
+$object += $number;
+$number += $null;
+$number += $intOrFloat;
+$intOrFloat += $number;
+$number += $numericString;
+$numericString += $number;
+$number += $mixed;
+$mixed += $number;
+
+$number -= $number;
+$number -= $int;
+$int -= $number;
+$number -= $float;
+$float -= $number;
+$number -= $float;
+$number -= $array;
+$array -= $number;
+$number -= $string;
+$string -= $number;
+$number -= $object;
+$object -= $number;
+$number -= $null;
+$number -= $intOrFloat;
+$intOrFloat -= $number;
+$number -= $numericString;
+$numericString -= $number;
+$number -= $mixed;
+$mixed -= $number;
+
+$number *= $number;
+$number *= $int;
+$int *= $number;
+$number *= $float;
+$float *= $number;
+$number *= $float;
+$number *= $array;
+$array *= $number;
+$number *= $string;
+$string *= $number;
+$number *= $object;
+$object *= $number;
+$number *= $null;
+$number *= $intOrFloat;
+$intOrFloat *= $number;
+$number *= $numericString;
+$numericString *= $number;
+$number *= $mixed;
+$mixed *= $number;
+
+$number /= $number;
+$number /= $int;
+$int /= $number;
+$number /= $float;
+$float /= $number;
+$number /= $float;
+$number /= $array;
+$array /= $number;
+$number /= $string;
+$string /= $number;
+$number /= $object;
+$object /= $number;
+$number /= $null;
+$number /= $intOrFloat;
+$intOrFloat /= $number;
+$number /= $numericString;
+$numericString /= $number;
+$number /= $mixed;
+$mixed /= $number;
+
+$number **= $number;
+$number **= $int;
+$int **= $number;
+$number **= $float;
+$float **= $number;
+$number **= $float;
+$number **= $array;
+$array **= $number;
+$number **= $string;
+$string **= $number;
+$number **= $object;
+$object **= $number;
+$number **= $null;
+$number **= $intOrFloat;
+$intOrFloat **= $number;
+$number **= $numericString;
+$numericString **= $number;
+$number **= $mixed;
+$mixed **= $number;
+
+$number %= $number;
+$number %= $int;
+$int %= $number;
+$number %= $float;
+$float %= $number;
+$number %= $float;
+$number %= $array;
+$array %= $number;
+$number %= $string;
+$string %= $number;
+$number %= $object;
+$object %= $number;
+$number %= $null;
+$number %= $intOrFloat;
+$intOrFloat %= $number;
+$number %= $numericString;
+$numericString %= $number;
+$number %= $mixed;
+$mixed %= $number;
+
++$number;
+
+-$number;

@@ -2,6 +2,7 @@
 
 namespace PHPStan\Rules\Operators;
 
+use PHPStan\Php\PhpVersion;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleLevelHelper;
 use PHPStan\Testing\RuleTestCase;
@@ -18,6 +19,7 @@ abstract class OperandInArithmeticIncrementOrDecrementRuleTestCase extends RuleT
 		return $this->createRule(
 			new OperatorRuleHelper(
 				self::getContainer()->getByType(RuleLevelHelper::class),
+				self::getContainer()->getByType(PhpVersion::class),
 			),
 		);
 	}
@@ -25,6 +27,14 @@ abstract class OperandInArithmeticIncrementOrDecrementRuleTestCase extends RuleT
 	public function testRule(): void
 	{
 		$this->analyse([__DIR__ . '/data/increment-decrement.php'], $this->getExpectedErrors());
+	}
+
+	/**
+	 * @requires PHP >= 8.4
+	 */
+	public function testRuleWithBcMath(): void
+	{
+		$this->analyse([__DIR__ . '/data/increment-decrement-bcmath.php'], $this->getExpectedErrorsWithBcMath());
 	}
 
 	/**
@@ -36,5 +46,10 @@ abstract class OperandInArithmeticIncrementOrDecrementRuleTestCase extends RuleT
 	 * @return list<array{0: string, 1: int, 2?: string}>
 	 */
 	abstract protected function getExpectedErrors(): array;
+
+	/**
+	 * @return list<array{0: string, 1: int, 2?: string}>
+	 */
+	abstract protected function getExpectedErrorsWithBcMath(): array;
 
 }

@@ -4,6 +4,7 @@ namespace PHPStan\Rules\Operators;
 
 use PhpParser\Node\Expr;
 use PHPStan\Analyser\Scope;
+use PHPStan\Php\PhpVersion;
 use PHPStan\Rules\RuleLevelHelper;
 use PHPStan\Type\Accessory\AccessoryNumericStringType;
 use PHPStan\Type\BenevolentUnionType;
@@ -12,6 +13,7 @@ use PHPStan\Type\FloatType;
 use PHPStan\Type\IntegerType;
 use PHPStan\Type\IntersectionType;
 use PHPStan\Type\MixedType;
+use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
 use PHPStan\Type\Type;
 use PHPStan\Type\UnionType;
@@ -21,9 +23,12 @@ class OperatorRuleHelper
 
 	private RuleLevelHelper $ruleLevelHelper;
 
-	public function __construct(RuleLevelHelper $ruleLevelHelper)
+	private PhpVersion $phpVersion;
+
+	public function __construct(RuleLevelHelper $ruleLevelHelper, PhpVersion $phpVersion)
 	{
 		$this->ruleLevelHelper = $ruleLevelHelper;
+		$this->phpVersion = $phpVersion;
 	}
 
 	public function isValidForArithmeticOperation(Scope $scope, Expr $expr): bool
@@ -68,7 +73,13 @@ class OperatorRuleHelper
 
 	private function isSubtypeOfNumber(Scope $scope, Expr $expr): bool
 	{
-		$acceptedType = new UnionType([new IntegerType(), new FloatType(), new IntersectionType([new StringType(), new AccessoryNumericStringType()])]);
+		$acceptedTypes = [new IntegerType(), new FloatType(), new IntersectionType([new StringType(), new AccessoryNumericStringType()])];
+
+		if ($this->phpVersion->supportsBcMathNumberOperatorOverloading()) {
+			$acceptedTypes[] = new ObjectType('BcMath\Number');
+		}
+
+		$acceptedType = new UnionType($acceptedTypes);
 
 		$type = $this->ruleLevelHelper->findTypeToCheck(
 			$scope,

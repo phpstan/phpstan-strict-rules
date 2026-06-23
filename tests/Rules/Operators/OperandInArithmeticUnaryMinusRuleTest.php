@@ -2,6 +2,7 @@
 
 namespace PHPStan\Rules\Operators;
 
+use PHPStan\Php\PhpVersion;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleLevelHelper;
 use PHPStan\Testing\RuleTestCase;
@@ -17,6 +18,7 @@ class OperandInArithmeticUnaryMinusRuleTest extends RuleTestCase
 		return new OperandInArithmeticUnaryMinusRule(
 			new OperatorRuleHelper(
 				self::getContainer()->getByType(RuleLevelHelper::class),
+				self::getContainer()->getByType(PhpVersion::class),
 			),
 		);
 	}
@@ -29,6 +31,14 @@ class OperandInArithmeticUnaryMinusRuleTest extends RuleTestCase
 				233,
 			],
 		]);
+	}
+
+	/**
+	 * @requires PHP >= 8.4
+	 */
+	public function testRuleWithBcMath(): void
+	{
+		$this->analyse([__DIR__ . '/data/operators-bcmath.php'], []);
 	}
 
 }
