@@ -60,4 +60,9 @@ class OperandsInArithmeticAdditionRuleTest extends RuleTestCase
 		$this->analyse([__DIR__ . '/data/operators.php'], $messages);
 	}
 
+	public function testOperatorOverloads(): void
+	{
+		$this->analyse([__DIR__ . '/data/operator-overloads.php'], []);
+	}
+
 }

@@ -23,19 +23,19 @@ class OperandInArithmeticPreIncrementRuleTest extends OperandInArithmeticIncreme
 		return [
 			[
 				'Only numeric types are allowed in pre-increment, false given.',
-				54,
+				64,
 			],
 			[
 				'Only numeric types are allowed in pre-increment, null given.',
-				56,
+				66,
 			],
 			[
 				'Only numeric types are allowed in pre-increment, stdClass given.',
-				57,
+				67,
 			],
 			[
 				'Only numeric types are allowed in pre-increment, int|stdClass|string given.',
-				59,
+				69,
 			],
 		];
 	}

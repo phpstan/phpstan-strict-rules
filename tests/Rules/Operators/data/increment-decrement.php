@@ -2,6 +2,8 @@
 
 namespace Operators;
 
+use BcMath\Number;
+use GMP;
 use stdClass;
 
 $int = 123;
@@ -14,8 +16,10 @@ $object = new stdClass();
 $mixed = foo();
 /** @var int|string|stdClass $union */
 $union = bar();
+$gmp = new GMP('1');
+$bcmath = new BCMath\Number('2');
 
-(function () use ($int, $float, $bool, $string, $null, $object, $mixed, $union): void {
+(function () use ($int, $float, $bool, $string, $null, $object, $mixed, $union, $gmp, $bcmath): void {
 	$int--;
 	$float--;
 	$bool--;
@@ -24,9 +28,11 @@ $union = bar();
 	$object--;
 	$mixed--;
 	$union--;
+	$gmp--;
+	$bcmath--;
 })();
 
-(function () use ($int, $float, $bool, $string, $null, $object, $mixed, $union): void {
+(function () use ($int, $float, $bool, $string, $null, $object, $mixed, $union, $gmp, $bcmath): void {
 	$int++;
 	$float++;
 	$bool++;
@@ -35,9 +41,11 @@ $union = bar();
 	$object++;
 	$mixed++;
 	$union++;
+	$gmp++;
+	$bcmath++;
 })();
 
-(function () use ($int, $float, $bool, $string, $null, $object, $mixed, $union): void {
+(function () use ($int, $float, $bool, $string, $null, $object, $mixed, $union, $gmp, $bcmath): void {
 	--$int;
 	--$float;
 	--$bool;
@@ -46,9 +54,11 @@ $union = bar();
 	--$object;
 	--$mixed;
 	--$union;
+	--$gmp;
+	--$bcmath;
 })();
 
-(function () use ($int, $float, $bool, $string, $null, $object, $mixed, $union): void {
+(function () use ($int, $float, $bool, $string, $null, $object, $mixed, $union, $gmp, $bcmath): void {
 	++$int;
 	++$float;
 	++$bool;
@@ -57,6 +67,8 @@ $union = bar();
 	++$object;
 	++$mixed;
 	++$union;
+	++$gmp;
+	++$bcmath;
 })();
 
 

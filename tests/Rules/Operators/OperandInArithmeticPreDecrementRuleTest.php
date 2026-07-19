@@ -23,23 +23,23 @@ class OperandInArithmeticPreDecrementRuleTest extends OperandInArithmeticIncreme
 		return [
 			[
 				'Only numeric types are allowed in pre-decrement, false given.',
-				43,
+				51,
 			],
 			[
 				'Only numeric types are allowed in pre-decrement, string given.',
-				44,
+				52,
 			],
 			[
 				'Only numeric types are allowed in pre-decrement, null given.',
-				45,
+				53,
 			],
 			[
 				'Only numeric types are allowed in pre-decrement, stdClass given.',
-				46,
+				54,
 			],
 			[
 				'Only numeric types are allowed in pre-decrement, int|stdClass|string given.',
-				48,
+				56,
 			],
 		];
 	}

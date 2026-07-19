@@ -31,4 +31,9 @@ class OperandInArithmeticUnaryPlusRuleTest extends RuleTestCase
 		]);
 	}
 
+	public function testOperatorOverloads(): void
+	{
+		$this->analyse([__DIR__ . '/data/operator-overloads.php'], []);
+	}
+
 }
