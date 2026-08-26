@@ -14,7 +14,7 @@
 		"php-parallel-lint/php-parallel-lint": "^1.2",
 		"phpstan/phpstan-deprecation-rules": "^2.0",
 		"phpstan/phpstan-phpunit": "^2.0",
-		"phpunit/phpunit": "^9.6",
+		"phpunit/phpunit": "^13.0",
 		"shipmonk/name-collision-detector": "^2.1"
 	},
 	"config": {
