@@ -31,6 +31,7 @@
 | `strictArrayFilter`                    | Require `array_filter()` to have a callback parameter to avoid loose comparison semantics.              |
 | `illegalConstructorMethodCall`         | Disallow calling `__construct()` on an existing object or as a static call outside of parent constructor. |
 | `closureUsesThis`                      | Closure should use `$this` directly instead of using `$this` variable indirectly.                       |
+| `unserializeAllowedClasses`            | Calls to `unserialize()` must include the `allowed_classes` option.                                     |
 
 Additional rules are coming in subsequent releases!
 
@@ -74,6 +75,7 @@ parameters:
 		disallowedShortTernary: false
 		overwriteVariablesWithLoop: false
 		closureUsesThis: false
+		unserializeAllowedClasses: false
 		matchingInheritedMethodNames: false
 		numericOperandsInArithmeticOperators: false
 		strictFunctionCalls: false
