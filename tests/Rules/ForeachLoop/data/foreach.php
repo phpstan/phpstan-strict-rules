@@ -14,6 +14,7 @@ class Foo
 		foreach ($a as $str) {
 
 		}
+		echo $str;
 
 		foreach ($a as $val) {
 			foreach ($b as $var) {
@@ -26,12 +27,14 @@ class Foo
 		foreach ($a as [$b, $c, [$d, $e]]) {
 
 		}
+		echo $b, $d;
 	}
 
 	public function doBaz(array $a, string $b, string $d) {
 		foreach ($a as list($b, $c, list($d, $e))) {
 
 		}
+		echo $b, $d;
 	}
 
 	public function doLorem(array $a, string $b) {
@@ -41,6 +44,7 @@ class Foo
 		foreach ($a as $c => $val) {
 
 		}
+		echo $b, $c;
 	}
 
 }
