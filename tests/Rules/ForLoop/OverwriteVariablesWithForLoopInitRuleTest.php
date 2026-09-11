@@ -25,39 +25,61 @@ class OverwriteVariablesWithForLoopInitRuleTest extends RuleTestCase
 			],
 			[
 				'For loop initial assignment overwrites variable $i.',
-				20,
+				21,
 			],
 			[
 				'For loop initial assignment overwrites variable $j.',
-				20,
+				21,
 			],
 			[
 				'For loop initial assignment overwrites variable $i.',
-				24,
+				26,
 			],
 			[
 				'For loop initial assignment overwrites variable $i.',
-				35,
+				38,
 			],
 			[
 				'For loop initial assignment overwrites variable $j.',
-				35,
+				38,
 			],
 			[
 				'For loop initial assignment overwrites variable $i.',
-				39,
+				43,
 			],
 			[
 				'For loop initial assignment overwrites variable $j.',
-				39,
+				43,
 			],
 			[
 				'For loop initial assignment overwrites variable $i.',
-				50,
+				55,
 			],
 			[
 				'For loop initial assignment overwrites variable $i.',
-				54,
+				60,
+			],
+		]);
+	}
+
+	public function testLoopVariableReuse(): void
+	{
+		$this->analyse([__DIR__ . '/data/for-reuse.php'], [
+			[
+				'For loop initial assignment overwrites variable $i.',
+				61,
+			],
+			[
+				'For loop initial assignment overwrites variable $i.',
+				70,
+			],
+			[
+				'For loop initial assignment overwrites variable $i.',
+				78,
+			],
+			[
+				'For loop initial assignment overwrites variable $i.',
+				87,
 			],
 		]);
 	}

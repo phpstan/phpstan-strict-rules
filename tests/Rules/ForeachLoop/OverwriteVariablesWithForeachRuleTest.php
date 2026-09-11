@@ -25,25 +25,48 @@ class OverwriteVariablesWithForeachRuleTest extends RuleTestCase
 			],
 			[
 				'Foreach overwrites $b with its value variable.',
-				26,
+				27,
 			],
 			[
 				'Foreach overwrites $d with its value variable.',
-				26,
+				27,
 			],
 			[
 				'Foreach overwrites $b with its value variable.',
-				32,
+				34,
 			],
 			[
 				'Foreach overwrites $d with its value variable.',
-				32,
+				34,
 			],
 			[
 				'Foreach overwrites $b with its key variable.',
-				38,
+				41,
 			],
 		]);
+	}
+
+	public function testLoopVariableReuse(): void
+	{
+		$this->analyse([__DIR__ . '/data/foreach-reuse.php'], [
+			[
+				'Foreach overwrites $x with its value variable.',
+				86,
+			],
+			[
+				'Foreach overwrites $x with its value variable.',
+				99,
+			],
+			[
+				'Foreach overwrites $x with its value variable.',
+				110,
+			],
+		]);
+	}
+
+	public function testBug9940(): void
+	{
+		$this->analyse([__DIR__ . '/data/bug-9940.php'], []);
 	}
 
 }
