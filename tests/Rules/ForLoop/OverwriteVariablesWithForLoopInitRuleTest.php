@@ -16,6 +16,16 @@ class OverwriteVariablesWithForLoopInitRuleTest extends RuleTestCase
 		return new OverwriteVariablesWithForLoopInitRule();
 	}
 
+	public static function getAdditionalConfigFiles(): array
+	{
+		return array_merge(
+			parent::getAdditionalConfigFiles(),
+			[
+				__DIR__ . '/overwrite-variables-with-for-loop-init-rule.neon',
+			],
+		);
+	}
+
 	public function testRule(): void
 	{
 		$this->analyse([__DIR__ . '/data/data.php'], [
@@ -84,9 +94,5 @@ class OverwriteVariablesWithForLoopInitRuleTest extends RuleTestCase
 		]);
 	}
 
-	protected function shouldPolluteScopeWithLoopInitialAssignments(): bool
-	{
-		return false;
-	}
 
 }
