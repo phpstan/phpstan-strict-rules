@@ -4,6 +4,7 @@ namespace PHPStan\Rules\ForLoop;
 
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
+use function array_merge;
 
 /**
  * @template-extends RuleTestCase<OverwriteVariablesWithForLoopInitRule>
@@ -93,6 +94,5 @@ class OverwriteVariablesWithForLoopInitRuleTest extends RuleTestCase
 			],
 		]);
 	}
-
 
 }

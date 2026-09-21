@@ -1,0 +1,37 @@
+[
+    {
+        "ignorable": true,
+        "line": 25,
+        "message": "Variable $r is never read."
+    },
+    {
+        "ignorable": true,
+        "line": 26,
+        "message": "Variable $r is never read."
+    },
+    {
+        "ignorable": true,
+        "line": 27,
+        "message": "Variable $r is never read."
+    },
+    {
+        "ignorable": true,
+        "line": 28,
+        "message": "Variable $r is never read."
+    },
+    {
+        "ignorable": true,
+        "line": 29,
+        "message": "Variable $r is never read."
+    },
+    {
+        "ignorable": true,
+        "line": 36,
+        "message": "Variable $r is never read."
+    },
+    {
+        "ignorable": true,
+        "line": 43,
+        "message": "Variable $r is never read."
+    }
+]

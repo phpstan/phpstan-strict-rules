@@ -1,0 +1,7 @@
+[
+    {
+        "ignorable": true,
+        "line": 4,
+        "message": "Foreach value variable $val is never read."
+    }
+]
