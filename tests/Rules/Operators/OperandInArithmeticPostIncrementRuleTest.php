@@ -23,19 +23,19 @@ class OperandInArithmeticPostIncrementRuleTest extends OperandInArithmeticIncrem
 		return [
 			[
 				'Only numeric types are allowed in post-increment, false given.',
-				32,
+				38,
 			],
 			[
 				'Only numeric types are allowed in post-increment, null given.',
-				34,
+				40,
 			],
 			[
 				'Only numeric types are allowed in post-increment, stdClass given.',
-				35,
+				41,
 			],
 			[
 				'Only numeric types are allowed in post-increment, int|stdClass|string given.',
-				37,
+				43,
 			],
 		];
 	}

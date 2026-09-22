@@ -43,4 +43,9 @@ class OperandsInArithmeticMultiplicationRuleTest extends RuleTestCase
 		]);
 	}
 
+	public function testOperatorOverloads(): void
+	{
+		$this->analyse([__DIR__ . '/data/operator-overloads.php'], []);
+	}
+
 }
