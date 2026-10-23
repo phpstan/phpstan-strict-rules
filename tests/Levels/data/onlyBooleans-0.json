@@ -3,5 +3,15 @@
         "message": "Only booleans are allowed in an if condition, mixed given.",
         "line": 32,
         "ignorable": true
+    },
+    {
+        "message": "Function doesNotExist not found.",
+        "line": 52,
+        "ignorable": true
+    },
+    {
+        "message": "Undefined variable: $undefined",
+        "line": 55,
+        "ignorable": true
     }
 ]
