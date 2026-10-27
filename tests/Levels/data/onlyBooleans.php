@@ -40,4 +40,21 @@ class Foo
 		}
 	}
 
+	public function doBar(array $array): void
+	{
+		if ($array['foo']) {
+
+		}
+		$value = $array[0] ?? null;
+		if ($value) {
+
+		}
+		if (doesNotExist()) {
+
+		}
+		if ($undefined) {
+
+		}
+	}
+
 }
