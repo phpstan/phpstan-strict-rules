@@ -3,8 +3,11 @@
 namespace PHPStan\Rules\Cast;
 
 use PhpParser\Node;
+use PhpParser\Node\Expr;
 use PhpParser\Node\Expr\Cast;
 use PhpParser\Node\Expr\Cast\Void_;
+use PhpParser\NodeTraverser;
+use PhpParser\NodeVisitorAbstract;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
@@ -55,28 +58,36 @@ class UselessCastRule implements Rule
 			$expressionType = $scope->getNativeType($node->expr);
 		}
 		if ($castType->isSuperTypeOf($expressionType)->yes()) {
-			$addTip = function (RuleErrorBuilder $ruleErrorBuilder) use ($scope, $node, $castType): RuleErrorBuilder {
-				if (!$this->treatPhpDocTypesAsCertain) {
-					return $ruleErrorBuilder;
-				}
+			$ruleErrorBuilder = RuleErrorBuilder::message(sprintf(
+				'Casting to %s something that\'s already %s.',
+				$castType->describe(VerbosityLevel::typeOnly()),
+				$expressionType->describe(VerbosityLevel::typeOnly()),
+			))->identifier('cast.useless');
 
-				if (!$this->treatPhpDocTypesAsCertainTip) {
-					return $ruleErrorBuilder;
-				}
+			if ($castType->isSuperTypeOf($scope->getNativeType($node->expr))->yes()) {
+				$ruleErrorBuilder->fixNode($node, static function (Cast $node): Node {
+					// Reprint the operand tree so parentheses reflect operator precedence.
+					$traverser = new NodeTraverser(new class extends NodeVisitorAbstract {
 
-				$expressionTypeWithoutPhpDoc = $scope->getNativeType($node->expr);
-				if ($castType->isSuperTypeOf($expressionTypeWithoutPhpDoc)->yes()) {
-					return $ruleErrorBuilder;
-				}
+						public function enterNode(Node $node): ?Node
+						{
+							if ($node instanceof Expr) {
+								$node->setAttribute('origNode', null);
+							}
 
-				return $ruleErrorBuilder->treatPhpDocTypesAsCertainTip();
-			};
+							return null;
+						}
+
+					});
+
+					return $traverser->traverse([$node->expr])[0];
+				});
+			} elseif ($this->treatPhpDocTypesAsCertain && $this->treatPhpDocTypesAsCertainTip) {
+				$ruleErrorBuilder->treatPhpDocTypesAsCertainTip();
+			}
+
 			return [
-				$addTip(RuleErrorBuilder::message(sprintf(
-					'Casting to %s something that\'s already %s.',
-					$castType->describe(VerbosityLevel::typeOnly()),
-					$expressionType->describe(VerbosityLevel::typeOnly()),
-				)))->identifier('cast.useless')->build(),
+				$ruleErrorBuilder->build(),
 			];
 		}
 

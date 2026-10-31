@@ -1,0 +1,71 @@
+<?php declare(strict_types = 1);
+
+namespace UselessCastFixable;
+
+use stdClass;
+
+/**
+ * @param bool $phpDocBoolean
+ * @param int $phpDocInteger
+ * @param float $phpDocFloat
+ * @param string $phpDocString
+ * @param array<int> $phpDocArray
+ * @param stdClass $phpDocObject
+ * @param non-empty-string $string
+ */
+function casts(
+	bool $boolean,
+	int $integer,
+	float $float,
+	string $string,
+	array $array,
+	stdClass $object,
+	?int $nullableInteger,
+	$phpDocBoolean,
+	$phpDocInteger,
+	$phpDocFloat,
+	$phpDocString,
+	$phpDocArray,
+	$phpDocObject,
+	$mixed
+): void
+{
+	$boolean;
+	$integer;
+	$float;
+	$string;
+	$array;
+	$object;
+
+	(bool) $phpDocBoolean;
+	(int) $phpDocInteger;
+	(float) $phpDocFloat;
+	(string) $phpDocString;
+	(array) $phpDocArray;
+	(object) $phpDocObject;
+
+	(string) $integer;
+	(int) $nullableInteger;
+	(int) $mixed;
+
+	if ($nullableInteger !== null) {
+		$nullableInteger;
+	}
+	if (is_int($mixed)) {
+		$mixed;
+	}
+
+	42;
+	true;
+	'value';
+	[1, 2];
+	new stdClass();
+	($integer + 1) * 2;
+	2 - ($integer + 1);
+	($boolean || true) && false;
+	($integer = 1) + 2;
+	($integer + 1) ** 2;
+	$boolean ? $integer : 0;
+	++$integer;
+	strlen($string);
+}
