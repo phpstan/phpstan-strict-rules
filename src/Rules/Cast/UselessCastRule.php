@@ -67,7 +67,8 @@ class UselessCastRule implements Rule
 			if ($castType->isSuperTypeOf($scope->getNativeType($node->expr))->yes()) {
 				$ruleErrorBuilder->fixNode($node, static function (Cast $node): Node {
 					// Reprint the operand tree so parentheses reflect operator precedence.
-					$traverser = new NodeTraverser(new class extends NodeVisitorAbstract {
+					$traverser = new NodeTraverser();
+					$traverser->addVisitor(new class extends NodeVisitorAbstract {
 
 						public function enterNode(Node $node): ?Node
 						{
