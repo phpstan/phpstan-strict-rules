@@ -13,11 +13,13 @@ class UselessCastRuleTest extends RuleTestCase
 
 	private bool $treatPhpDocTypesAsCertain;
 
+	private bool $treatPhpDocTypesAsCertainTip = true;
+
 	protected function getRule(): Rule
 	{
 		return new UselessCastRule(
 			$this->treatPhpDocTypesAsCertain,
-			true,
+			$this->treatPhpDocTypesAsCertainTip,
 		);
 	}
 
@@ -93,6 +95,33 @@ class UselessCastRuleTest extends RuleTestCase
 	{
 		$this->treatPhpDocTypesAsCertain = true;
 		$this->analyse([__DIR__ . '/data/bug-14565.php'], []);
+	}
+
+	public function testVoidCastIsNotFixed(): void
+	{
+		$this->treatPhpDocTypesAsCertain = true;
+		$this->fix(__DIR__ . '/data/bug-14565.php', __DIR__ . '/data/bug-14565.php');
+	}
+
+	/**
+	 * @return iterable<array{bool, bool}>
+	 */
+	public function dataFix(): iterable
+	{
+		yield [true, true];
+		yield [true, false];
+		yield [false, true];
+		yield [false, false];
+	}
+
+	/**
+	 * @dataProvider dataFix
+	 */
+	public function testFix(bool $treatPhpDocTypesAsCertain, bool $treatPhpDocTypesAsCertainTip): void
+	{
+		$this->treatPhpDocTypesAsCertain = $treatPhpDocTypesAsCertain;
+		$this->treatPhpDocTypesAsCertainTip = $treatPhpDocTypesAsCertainTip;
+		$this->fix(__DIR__ . '/data/useless-cast-fixable.php', __DIR__ . '/data/useless-cast-fixable.php.fixed');
 	}
 
 }
