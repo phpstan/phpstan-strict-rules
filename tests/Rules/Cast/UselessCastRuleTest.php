@@ -97,6 +97,12 @@ class UselessCastRuleTest extends RuleTestCase
 		$this->analyse([__DIR__ . '/data/bug-14565.php'], []);
 	}
 
+	public function testVoidCastIsNotFixed(): void
+	{
+		$this->treatPhpDocTypesAsCertain = true;
+		$this->fix(__DIR__ . '/data/bug-14565.php', __DIR__ . '/data/bug-14565.php');
+	}
+
 	/**
 	 * @return iterable<array{bool, bool}>
 	 */
