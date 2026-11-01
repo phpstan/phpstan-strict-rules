@@ -32,10 +32,10 @@ function casts(
 {
 	$boolean;
 	$integer;
-	$float;
-	$string;
-	$array;
-	$object;
+	(float) $float;
+	(string) $string;
+	(array) $array;
+	(object) $object;
 
 	(bool) $phpDocBoolean;
 	(int) $phpDocInteger;
@@ -57,15 +57,58 @@ function casts(
 
 	42;
 	true;
-	'value';
-	[1, 2];
-	new stdClass();
-	($integer + 1) * 2;
-	2 - ($integer + 1);
-	($boolean || true) && false;
-	($integer = 1) + 2;
+	(string) 'value';
+	(array) [1, 2];
+	(object) new stdClass();
+	$integer + 1 * 2;
+	2 - $integer + 1;
+	$boolean || true && false;
+	$integer = 1 + 2;
 	($integer + 1) ** 2;
 	$boolean ? $integer : 0;
 	++$integer;
 	strlen($string);
+}
+
+class Foo
+{
+	public static function bug(string $key): void
+	{
+		$a = [$key => 1];
+
+		foreach ($a as $k => $v) {
+			$l = strlen((string)$k); // type cast is needed for auto-coerced non-decimal-int-string
+		}
+	}
+}
+
+// https://3v4l.org/krTct#v
+function doFoo() {
+	$array = [0, 1];
+	foreach ((array) $array as &$v) {
+		$v=2;
+	}
+	var_dump($array);
+}
+function doBar() {
+	$array = [0, 1];
+	foreach ($array as &$v) {
+		$v=2;
+	}
+	var_dump($array);
+}
+doFoo();
+doBar();
+
+class X {
+	public int $i;
+	public string $s;
+}
+
+function doBaz(X $x) {
+	echo $x->i;
+	echo (int) $x->s;
+
+	echo (string) $x->i;
+	echo (string) $x->s;
 }

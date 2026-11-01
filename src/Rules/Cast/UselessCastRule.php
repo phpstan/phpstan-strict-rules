@@ -64,24 +64,23 @@ class UselessCastRule implements Rule
 				$expressionType->describe(VerbosityLevel::typeOnly()),
 			))->identifier('cast.useless');
 
-			if ($castType->isSuperTypeOf($scope->getNativeType($node->expr))->yes()) {
-				$ruleErrorBuilder->fixNode($node, static function (Cast $node): Node {
-					// Reprint the operand tree so parentheses reflect operator precedence.
-					$traverser = new NodeTraverser();
-					$traverser->addVisitor(new class extends NodeVisitorAbstract {
-
-						public function enterNode(Node $node): ?Node
-						{
-							if ($node instanceof Expr) {
-								$node->setAttribute('origNode', null);
-							}
-
-							return null;
+			$nativeType = $scope->getNativeType($node->expr);
+			if ($castType->isSuperTypeOf($nativeType)->yes()) {
+				$ruleErrorBuilder->fixNode($node, static function (Cast $node) use ($nativeType): Node {
+					if ($node instanceof Cast\Bool_) {
+						if (!$nativeType->isBoolean()->yes()) {
+							return $node;
 						}
+					} else if ($node instanceof Cast\Int_) {
+						if (!$nativeType->isInteger()->yes()) {
+							return $node;
+						}
+					} else {
+						// skip all other casts
+						return $node;
+					}
 
-					});
-
-					return $traverser->traverse([$node->expr])[0];
+					return $node->expr;
 				});
 			} elseif ($this->treatPhpDocTypesAsCertain && $this->treatPhpDocTypesAsCertainTip) {
 				$ruleErrorBuilder->treatPhpDocTypesAsCertainTip();

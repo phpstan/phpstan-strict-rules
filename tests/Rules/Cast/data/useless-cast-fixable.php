@@ -69,3 +69,46 @@ function casts(
 	(int) ++$integer;
 	(int) strlen($string);
 }
+
+class Foo
+{
+	public static function bug(string $key): void
+	{
+		$a = [$key => 1];
+
+		foreach ($a as $k => $v) {
+			$l = strlen((string)$k); // type cast is needed for auto-coerced non-decimal-int-string
+		}
+	}
+}
+
+// https://3v4l.org/krTct#v
+function doFoo() {
+	$array = [0, 1];
+	foreach ((array) $array as &$v) {
+		$v=2;
+	}
+	var_dump($array);
+}
+function doBar() {
+	$array = [0, 1];
+	foreach ($array as &$v) {
+		$v=2;
+	}
+	var_dump($array);
+}
+doFoo();
+doBar();
+
+class X {
+	public int $i;
+	public string $s;
+}
+
+function doBaz(X $x) {
+	echo (int) $x->i;
+	echo (int) $x->s;
+
+	echo (string) $x->i;
+	echo (string) $x->s;
+}
