@@ -3,11 +3,8 @@
 namespace PHPStan\Rules\Cast;
 
 use PhpParser\Node;
-use PhpParser\Node\Expr;
 use PhpParser\Node\Expr\Cast;
 use PhpParser\Node\Expr\Cast\Void_;
-use PhpParser\NodeTraverser;
-use PhpParser\NodeVisitorAbstract;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
@@ -71,7 +68,7 @@ class UselessCastRule implements Rule
 						if (!$nativeType->isBoolean()->yes()) {
 							return $node;
 						}
-					} else if ($node instanceof Cast\Int_) {
+					} elseif ($node instanceof Cast\Int_) {
 						if (!$nativeType->isInteger()->yes()) {
 							return $node;
 						}
