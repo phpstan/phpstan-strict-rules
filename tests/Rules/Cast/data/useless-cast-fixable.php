@@ -68,6 +68,7 @@ function casts(
 	(int) ($boolean ? $integer : 0);
 	(int) ++$integer;
 	(int) strlen($string);
+	$b = $integer-(int)-$integer;
 }
 
 class Foo

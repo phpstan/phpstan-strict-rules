@@ -69,7 +69,10 @@ class UselessCastRule implements Rule
 							return $node;
 						}
 					} elseif ($node instanceof Cast\Int_) {
-						if (!$nativeType->isInteger()->yes()) {
+						if (
+							$node->expr instanceof Node\Expr\UnaryMinus
+							|| !$nativeType->isInteger()->yes()
+						) {
 							return $node;
 						}
 					} else {
