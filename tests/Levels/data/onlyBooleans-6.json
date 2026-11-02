@@ -3,5 +3,10 @@
         "message": "Method PHPStan\\Levels\\OnlyBooleans\\Foo::doFoo() has parameter $mixed with no type specified.",
         "line": 14,
         "ignorable": true
+    },
+    {
+        "message": "Method PHPStan\\Levels\\OnlyBooleans\\Foo::doBar() has parameter $array with no value type specified in iterable type array.",
+        "line": 43,
+        "ignorable": true
     }
 ]
