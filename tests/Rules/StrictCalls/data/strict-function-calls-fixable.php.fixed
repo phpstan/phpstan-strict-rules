@@ -36,3 +36,11 @@ base64_decode('abcd');
 
 $numericStringNeedle = '01'; // edge case: numeric string compared against int-string
 in_array($numericStringNeedle, ['1', '2']);
+
+class X {
+	private const TYPES = [128, 256];
+
+	function doFoo(int $i):bool {
+		return in_array($i, self::TYPES, true);
+	}
+}
