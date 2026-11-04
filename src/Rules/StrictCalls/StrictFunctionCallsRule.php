@@ -191,6 +191,10 @@ class StrictFunctionCallsRule implements Rule
 		) || (
 			$needleType->isInteger()->yes()
 			&& $haystackValueType->isInteger()->yes()
+		) || (
+			$needleType->isString()->yes()
+			&& $haystackValueType->isString()->yes()
+			&& $haystackValueType->isNumericString()->no()
 		);
 	}
 
