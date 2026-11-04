@@ -6,7 +6,6 @@ use PhpParser\Node;
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\ConstFetch;
 use PhpParser\Node\Expr\FuncCall;
-use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
 use PhpParser\Node\Scalar;
@@ -20,7 +19,6 @@ use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\Type;
 use function array_key_exists;
 use function in_array;
-use function is_string;
 use function sprintf;
 use function strtolower;
 
