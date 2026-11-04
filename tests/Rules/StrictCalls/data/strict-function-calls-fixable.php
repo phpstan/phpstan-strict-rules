@@ -76,3 +76,22 @@ class X {
 		in_array($s, self::TYPES_NUMERIC_STRING);
 	}
 }
+
+class SideEffectProperty {
+
+	public function __get(string $name): bool
+	{
+		// some side-effect
+		echo 'side effect';
+
+		return false;
+	}
+
+}
+
+$sideEffectProperty = new SideEffectProperty();
+// the "strict" argument is an interpolated string whose embedded expression
+// triggers a magic __get() with a side-effect; it must not be overwritten
+// with a plain "true" because that would silently drop the side-effect.
+in_array(1, [1], "{$sideEffectProperty->strict}");
+
