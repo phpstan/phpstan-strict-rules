@@ -6,8 +6,10 @@ use PhpParser\Node;
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\ConstFetch;
 use PhpParser\Node\Expr\FuncCall;
+use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
+use PhpParser\Node\Scalar;
 use PHPStan\Analyser\ArgumentsNormalizer;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ParametersAcceptorSelector;
@@ -17,6 +19,7 @@ use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\Type;
 use function array_key_exists;
+use function is_string;
 use function sprintf;
 use function strtolower;
 
@@ -123,10 +126,13 @@ class StrictFunctionCallsRule implements Rule
 			($functionName === 'in_array' || $functionName === 'array_search' || $functionName === 'array_keys')
 			&& $this->hasSafeStrictComparisonTypes($functionName, $normalizedNode, $scope)
 		) {
-			$errorBuilder->fixNode($originalNode, static function (FuncCall $call): FuncCall {
+			$errorBuilder->fixNode($originalNode, static function (FuncCall $call) use ($functionName): FuncCall {
 				$strictArgument = null;
-				$positionalArgument = 0;
 				$hasNamedArguments = false;
+				$usedPositions = [];
+				$namedArgumentPositions = $functionName === 'array_keys'
+					? ['array' => 0, 'filter_value' => 1, 'strict' => 2]
+					: ['needle' => 0, 'haystack' => 1, 'strict' => 2];
 				foreach ($call->getArgs() as $arg) {
 					if ($arg->unpack) {
 						// unpack is not fixable
@@ -135,20 +141,42 @@ class StrictFunctionCallsRule implements Rule
 
 					if ($arg->name !== null) {
 						$hasNamedArguments = true;
-						if ($arg->name->toString() === 'strict') {
+						$argumentName = $arg->name->toString();
+						if (!array_key_exists($argumentName, $namedArgumentPositions)) {
+							return $call;
+						}
+
+						$argumentPosition = $namedArgumentPositions[$argumentName];
+						$usedPositions[$argumentPosition] = true;
+						if ($argumentPosition === 2) {
 							$strictArgument = $arg;
 						}
 						continue;
 					}
 
-					if ($positionalArgument === 2) {
+					$argumentPosition = 0;
+					while (array_key_exists($argumentPosition, $usedPositions)) {
+						$argumentPosition++;
+					}
+					$usedPositions[$argumentPosition] = true;
+					if ($argumentPosition === 2) {
 						$strictArgument = $arg;
 					}
-					$positionalArgument++;
 				}
 
 				$true = new ConstFetch(new Name('true'));
 				if ($strictArgument !== null) {
+					if (
+						!$strictArgument->value instanceof ConstFetch
+						&& !$strictArgument->value instanceof Scalar
+						&& !(
+							$strictArgument->value instanceof Variable
+							&& is_string($strictArgument->value->name)
+						)
+					) {
+						return $call;
+					}
+
 					$strictArgument->value = $true;
 					return $call;
 				}
