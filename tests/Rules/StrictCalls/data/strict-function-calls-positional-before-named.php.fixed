@@ -1,0 +1,11 @@
+<?php // lint >= 8.2
+
+namespace StrictCallsNamedArguments;
+
+use function in_array;
+
+function doFoo(int $i): void
+{
+	// named argument followed by positional ones
+	in_array(needle: $i, haystack: [1, 2], true);
+}

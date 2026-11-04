@@ -22,11 +22,8 @@ function doFoo(int $i, int $i2, $phpdocIntRange): void {
 	}
 	if ($i2 > 0) {
 		in_array($i, haystack: [1, $i2]);
-		in_array($i, haystack: [1, $i2], returnsFalseWithSideEffect());
+		in_array($i, [1, $i2], returnsFalseWithSideEffect());
 	}
-
-	// named argument followed by positional ones
-	in_array(needle: $i, haystack: [1, 2], false);
 
 	in_array($i, haystack: [1, $phpdocIntRange]);
 	in_array($phpdocIntRange, haystack: [1, 2]);

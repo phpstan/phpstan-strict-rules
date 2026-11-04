@@ -95,6 +95,15 @@ class StrictFunctionCallsRuleTest extends RuleTestCase
 		);
 	}
 
+	public function testFixPositionalBeforeNamed(): void
+	{
+		$this->fix(
+			__DIR__ . '/data/strict-function-calls-positional-before-named.php',
+			__DIR__ . '/data/strict-function-calls-positional-before-named.php.fixed',
+		);
+	}
+
+
 	public function testBug231(): void
 	{
 		if (PHP_VERSION_ID < 80100) {
