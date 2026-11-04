@@ -19,6 +19,7 @@ use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\Type;
 use function array_key_exists;
+use function in_array;
 use function is_string;
 use function sprintf;
 use function strtolower;
@@ -169,8 +170,15 @@ class StrictFunctionCallsRule implements Rule
 				$true = new ConstFetch(new Name('true'));
 				if ($strictArgument !== null) {
 					if (
-						!$strictArgument->value instanceof ConstFetch
-						&& !$strictArgument->value instanceof Scalar
+						$strictArgument->value instanceof ConstFetch
+					) {
+						if (!in_array($strictArgument->value->name->toLowerString(), ['true', 'false', 'null'], true)) {
+							return $call;
+						}
+					} elseif (
+						!$strictArgument->value instanceof Scalar\Int_
+						&& !$strictArgument->value instanceof Scalar\Float_
+						&& !$strictArgument->value instanceof Scalar\String_
 						&& !(
 							$strictArgument->value instanceof Variable
 							&& is_string($strictArgument->value->name)
