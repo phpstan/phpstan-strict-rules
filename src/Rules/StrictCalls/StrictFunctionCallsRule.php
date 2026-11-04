@@ -129,6 +129,8 @@ class StrictFunctionCallsRule implements Rule
 				$hasNamedArguments = false;
 				foreach ($call->getArgs() as $arg) {
 					if ($arg->unpack) {
+						// unpack is not fixable
+						return $call;
 					}
 
 					if ($arg->name !== null) {
