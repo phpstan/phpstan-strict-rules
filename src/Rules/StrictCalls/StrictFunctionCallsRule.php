@@ -11,6 +11,7 @@ use PhpParser\Node\Name;
 use PhpParser\Node\Scalar;
 use PHPStan\Analyser\ArgumentsNormalizer;
 use PHPStan\Analyser\Scope;
+use PHPStan\Reflection\ParametersAcceptor;
 use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Rules\IdentifierRuleError;
@@ -18,6 +19,7 @@ use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\Type;
 use function array_key_exists;
+use function array_search;
 use function in_array;
 use function sprintf;
 use function strtolower;
@@ -88,6 +90,8 @@ class StrictFunctionCallsRule implements Rule
 					$originalNode,
 					$node,
 					$scope,
+					$parametersAcceptor,
+					$argumentPosition,
 				),
 			];
 		}
@@ -105,6 +109,8 @@ class StrictFunctionCallsRule implements Rule
 					$originalNode,
 					$node,
 					$scope,
+					$parametersAcceptor,
+					$argumentPosition,
 				),
 			];
 		}
@@ -117,7 +123,9 @@ class StrictFunctionCallsRule implements Rule
 		string $functionName,
 		FuncCall $originalNode,
 		FuncCall $normalizedNode,
-		Scope $scope
+		Scope $scope,
+		ParametersAcceptor $parametersAcceptor,
+		int $strictArgumentPosition
 	): IdentifierRuleError
 	{
 		$errorBuilder = RuleErrorBuilder::message($message)->identifier('function.strict');
@@ -125,13 +133,15 @@ class StrictFunctionCallsRule implements Rule
 			($functionName === 'in_array' || $functionName === 'array_search' || $functionName === 'array_keys')
 			&& $this->hasSafeStrictComparisonTypes($functionName, $normalizedNode, $scope)
 		) {
-			$errorBuilder->fixNode($originalNode, static function (FuncCall $call) use ($functionName): FuncCall {
+			$namedArgumentPositions = [];
+			foreach ($parametersAcceptor->getParameters() as $position => $parameter) {
+				$namedArgumentPositions[$parameter->getName()] = $position;
+			}
+
+			$errorBuilder->fixNode($originalNode, static function (FuncCall $call) use ($namedArgumentPositions, $strictArgumentPosition): FuncCall {
 				$strictArgument = null;
 				$hasNamedArguments = false;
 				$usedPositions = [];
-				$namedArgumentPositions = $functionName === 'array_keys'
-					? ['array' => 0, 'filter_value' => 1, 'strict' => 2]
-					: ['needle' => 0, 'haystack' => 1, 'strict' => 2];
 				foreach ($call->getArgs() as $arg) {
 					if ($arg->unpack) {
 						// unpack is not fixable
@@ -147,7 +157,7 @@ class StrictFunctionCallsRule implements Rule
 
 						$argumentPosition = $namedArgumentPositions[$argumentName];
 						$usedPositions[$argumentPosition] = true;
-						if ($argumentPosition === 2) {
+						if ($argumentPosition === $strictArgumentPosition) {
 							$strictArgument = $arg;
 						}
 						continue;
@@ -158,7 +168,7 @@ class StrictFunctionCallsRule implements Rule
 						$argumentPosition++;
 					}
 					$usedPositions[$argumentPosition] = true;
-					if ($argumentPosition !== 2) {
+					if ($argumentPosition !== $strictArgumentPosition) {
 						continue;
 					}
 
@@ -184,12 +194,14 @@ class StrictFunctionCallsRule implements Rule
 					return $call;
 				}
 
+				$targetArgumentName = array_search($strictArgumentPosition, $namedArgumentPositions, true);
+
 				$call->args[] = new Arg(
 					$true,
 					false,
 					false,
 					[],
-					$hasNamedArguments ? new Identifier('strict') : null,
+					$hasNamedArguments && $targetArgumentName !== false ? new Identifier($targetArgumentName) : null,
 				);
 
 				return $call;
