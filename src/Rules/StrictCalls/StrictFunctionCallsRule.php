@@ -159,9 +159,11 @@ class StrictFunctionCallsRule implements Rule
 						$argumentPosition++;
 					}
 					$usedPositions[$argumentPosition] = true;
-					if ($argumentPosition === 2) {
-						$strictArgument = $arg;
+					if ($argumentPosition !== 2) {
+						continue;
 					}
+
+					$strictArgument = $arg;
 				}
 
 				$true = new ConstFetch(new Name('true'));
