@@ -16,6 +16,9 @@ in_array(1, [1.0], false);
 in_array(1, [1, 1.0]);
 in_array('1', ['01']);
 
+in_array(1, [1, 2], 1);
+in_array(1, [1, 2], 0);
+
 $float = 1.0;
 in_array($float, [1.0]);
 in_array(null, [null]);
