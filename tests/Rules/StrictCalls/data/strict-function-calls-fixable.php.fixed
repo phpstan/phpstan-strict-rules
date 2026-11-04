@@ -10,7 +10,7 @@ in_array(1, [1, 2], true);
 in_array(1, [1, 2], true);
 array_keys([1, 2], 1, true);
 $strict = rand(0, 1) === 1;
-array_keys([1, 2], 1, true);
+array_keys([1, 2], 1, $strict);
 in_array(1, [1.0]);
 in_array(1, [1.0], false);
 in_array(1, [1, 1.0]);

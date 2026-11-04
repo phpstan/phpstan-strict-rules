@@ -178,10 +178,6 @@ class StrictFunctionCallsRule implements Rule
 					} elseif (
 						!$strictArgument->value instanceof Scalar\Int_
 						&& !$strictArgument->value instanceof Scalar\String_
-						&& !(
-							$strictArgument->value instanceof Variable
-							&& is_string($strictArgument->value->name)
-						)
 					) {
 						return $call;
 					}
