@@ -34,7 +34,7 @@ function doFoo(int $i): bool
 array_keys([1, 2]);
 base64_decode('abcd');
 
-$numericStringNeedle = '01'; // edge case: numeric string compared against int-string
+$numericStringNeedle = '01'; // edge case: numeric string compared against int-string: https://3v4l.org/hmgdd#v
 in_array($numericStringNeedle, ['1', '2']);
 
 class X {
