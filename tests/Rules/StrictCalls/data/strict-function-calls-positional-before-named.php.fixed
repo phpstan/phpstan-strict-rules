@@ -1,6 +1,6 @@
 <?php // lint >= 8.2
 
-namespace StrictCallsNamedArguments;
+namespace StrictCallsNamedArgumentsFollowedByPositional;
 
 use function in_array;
 
