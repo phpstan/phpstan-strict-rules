@@ -8,6 +8,8 @@ tests:
 .PHONY: lint
 lint:
 	php vendor/bin/parallel-lint --colors -e php,php3,php4,php5,phtml,phpt,fixed \
+		--exclude tests/Rules/StrictCalls/data/strict-function-calls-positional-before-named.php \
+		--exclude tests/Rules/StrictCalls/data/strict-function-calls-positional-before-named.php.fixed \
 		src tests
 
 .PHONY: cs-install
