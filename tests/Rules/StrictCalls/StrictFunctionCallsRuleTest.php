@@ -103,7 +103,6 @@ class StrictFunctionCallsRuleTest extends RuleTestCase
 		);
 	}
 
-
 	public function testBug231(): void
 	{
 		if (PHP_VERSION_ID < 80100) {
