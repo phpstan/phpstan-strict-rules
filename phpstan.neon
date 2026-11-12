@@ -6,5 +6,12 @@ includes:
 	- phar://phpstan.phar/conf/bleedingEdge.neon
 
 parameters:
+	level: 8
+	resultCachePath: tmp/resultCache.php
+
+	paths:
+		- src
+		- tests
+
 	excludePaths:
 		- tests/*/data/*
