@@ -141,6 +141,7 @@ GitHub Actions (`.github/workflows/build.yml`) runs on PRs and pushes to `2.0.x`
 - **Coding Standard**: phpcs via phpstan/build-cs (2.x branch)
 - **Tests**: PHPUnit on PHP 7.4–8.4, both lowest and highest dependencies
 - **Static Analysis**: PHPStan at level 8 on PHP 7.4–8.4, both lowest and highest dependencies
+- **Mutation Testing**: Infection (via `phpstan/build-infection`) on PHP 8.3–8.5, pull requests only, requires 100% MSI on changed lines
 
 The default branch is `2.0.x`.
 
