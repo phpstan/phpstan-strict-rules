@@ -75,6 +75,34 @@ class StrictFunctionCallsRuleTest extends RuleTestCase
 		]);
 	}
 
+	public function testFix(): void
+	{
+		$this->fix(
+			__DIR__ . '/data/strict-function-calls-fixable.php',
+			__DIR__ . '/data/strict-function-calls-fixable.php.fixed',
+		);
+	}
+
+	public function testFixNamedArguments(): void
+	{
+		if (PHP_VERSION_ID < 80000) {
+			self::markTestSkipped('Test requires PHP 8.0.');
+		}
+
+		$this->fix(
+			__DIR__ . '/data/strict-function-calls-named-arguments.php',
+			__DIR__ . '/data/strict-function-calls-named-arguments.php.fixed',
+		);
+	}
+
+	public function testFixPositionalBeforeNamed(): void
+	{
+		$this->fix(
+			__DIR__ . '/data/strict-function-calls-positional-before-named.php',
+			__DIR__ . '/data/strict-function-calls-positional-before-named.php.fixed',
+		);
+	}
+
 	public function testBug231(): void
 	{
 		if (PHP_VERSION_ID < 80100) {
