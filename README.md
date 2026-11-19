@@ -31,6 +31,7 @@
 | `strictArrayFilter`                    | Require `array_filter()` to have a callback parameter to avoid loose comparison semantics.              |
 | `illegalConstructorMethodCall`         | Disallow calling `__construct()` on an existing object or as a static call outside of parent constructor. |
 | `closureUsesThis`                      | Closure should use `$this` directly instead of using `$this` variable indirectly.                       |
+| `requireUnitTestFQNToMatchCoveredClass`| Require unit test with a single coversClass attribute to have a FQN structure similar to the class it covers. If a class lives in `Organization\Package\Foo\Bar` the test that covers it should live in `Organization\Package\Test(s)(\Unit)\Foo\BarTest`. |
 
 Additional rules are coming in subsequent releases!
 

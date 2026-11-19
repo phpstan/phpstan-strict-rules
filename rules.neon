@@ -34,6 +34,7 @@ parameters:
 		noVariableVariables: %strictRules.allRules%
 		strictArrayFilter: %strictRules.allRules%
 		illegalConstructorMethodCall: %strictRules.allRules%
+		requireUnitTestFQNToMatchCoveredClass: %strictRules.allRules%
 
 parametersSchema:
 	strictRules: structure([
@@ -57,6 +58,7 @@ parametersSchema:
 		noVariableVariables: anyOf(bool(), arrayOf(bool()))
 		strictArrayFilter: anyOf(bool(), arrayOf(bool()))
 		illegalConstructorMethodCall: anyOf(bool(), arrayOf(bool()))
+		requireUnitTestFQNToMatchCoveredClass: anyOf(bool(), arrayOf(bool()))
 	])
 
 conditionalTags:
@@ -132,6 +134,8 @@ conditionalTags:
 		phpstan.rules.rule: %strictRules.strictFunctionCalls%
 	PHPStan\Rules\SwitchConditions\MatchingTypeInSwitchCaseConditionRule:
 		phpstan.rules.rule: %strictRules.switchConditionsMatchingType%
+	PHPStan\Rules\Tests\RequireUnitTestFQNToMatchCoveredClass:
+		phpstan.rules.rule: %strictRules.requireUnitTestFQNToMatchCoveredClass%
 	PHPStan\Rules\VariableVariables\VariableMethodCallRule:
 		phpstan.rules.rule: %strictRules.noVariableVariables%
 	PHPStan\Rules\VariableVariables\VariableMethodCallableRule:
@@ -300,6 +304,9 @@ services:
 
 	-
 		class: PHPStan\Rules\VariableVariables\VariableStaticPropertyFetchRule
+
+	-
+		class: PHPStan\Rules\Tests\RequireUnitTestFQNToMatchCoveredClass
 
 	-
 		class: PHPStan\Rules\VariableVariables\VariableVariablesRule
