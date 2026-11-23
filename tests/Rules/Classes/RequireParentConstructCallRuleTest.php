@@ -38,6 +38,17 @@ class RequireParentConstructCallRuleTest extends RuleTestCase
 		]);
 	}
 
+	public function testAnonymousClass(): void
+	{
+		$file = __DIR__ . '/data/call-to-parent-constructor-in-anonymous-class.php';
+		$this->analyse([$file], [
+			[
+				'CallToParentConstructorInAnonymousClass\\Foo@anonymous/' . $file . ':14::__construct() does not call parent constructor from CallToParentConstructorInAnonymousClass\\Foo.',
+				16,
+			],
+		]);
+	}
+
 	public function testCheckInTraits(): void
 	{
 		$this->analyse([__DIR__ . '/data/call-to-parent-constructor-in-trait.php'], []);
