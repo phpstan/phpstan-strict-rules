@@ -8,7 +8,7 @@
 
 | Configuration Parameters               | Rule Description                                                                                        |
 |:---------------------------------------|:--------------------------------------------------------------------------------------------------------|
-| `booleansInConditions`                 | Require booleans in `if`, `elseif`, ternary operator, after `!`, and on both sides of `&&` and `\|\|`.  |
+| `booleansInConditions`                 | Require booleans in `if`, `elseif`, ternary operator, after `!`, and on both sides of `&&`, `\|\|`, and `xor`. |
 | `booleansInLoopConditions`             | Require booleans in `while` and `do while` loop conditions.                                             |
 | `uselessCast`                          | Detect useless casts — e.g. casting to `int` when the expression is already `int`.                      |
 | `numericOperandsInArithmeticOperators` | Require numeric operands in `+`, `-`, `*`, `/`, `%`, `**`, `+$var`, `-$var`, `$var++`, `$var--`, `++$var` and `--$var`. |

@@ -58,3 +58,10 @@ $someBool = true;
 $someString = 'string';
 do { $someBool = !$someBool; } while ($someBool);
 do { $someString = ''; } while ($someString);
+
+$bool xor $bool;
+$string xor $bool;
+$bool xor $string;
+$string xor $string;
+$bool xor $explicitMixed;
+$explicitMixed xor $bool;

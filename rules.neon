@@ -68,6 +68,8 @@ conditionalTags:
 		phpstan.rules.rule: %strictRules.booleansInConditions%
 	PHPStan\Rules\BooleansInConditions\BooleanInBooleanOrRule:
 		phpstan.rules.rule: %strictRules.booleansInConditions%
+	PHPStan\Rules\BooleansInConditions\BooleanInBooleanXorRule:
+		phpstan.rules.rule: %strictRules.booleansInConditions%
 	PHPStan\Rules\BooleansInConditions\BooleanInDoWhileConditionRule:
 		phpstan.rules.rule: %strictRules.booleansInLoopConditions%
 	PHPStan\Rules\BooleansInConditions\BooleanInElseIfConditionRule:
@@ -176,6 +178,9 @@ services:
 
 	-
 		class: PHPStan\Rules\BooleansInConditions\BooleanInBooleanOrRule
+
+	-
+		class: PHPStan\Rules\BooleansInConditions\BooleanInBooleanXorRule
 
 	-
 		class: PHPStan\Rules\BooleansInConditions\BooleanInDoWhileConditionRule
